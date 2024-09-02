@@ -21,8 +21,8 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="bg-blue-500 h-[550px] m-10 p-4">
-          <div>
+        <div className="h-[550px] m-10 p-4">
+          <div className="inline-block">
             <Image src={molekul} alt="molekul"></Image>
           </div>
           <div className="relative">
