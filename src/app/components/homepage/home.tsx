@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+import molekul from "../../../../public/icon/molekul.svg";
 
 function Home() {
   return (
@@ -18,7 +20,18 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="bg-blue-500 h-[550px] m-10 p-4">Kolom 2</div>
+        <div className="bg-blue-500 h-[550px] m-10 p-4">
+          <div>
+            <Image src={molekul} alt="molekul"></Image>
+          </div>
+          <div className="relative">
+            <Image
+              className="absolute top-[330px] right-0"
+              src={molekul}
+              alt="molekul"
+            ></Image>
+          </div>
+        </div>
       </div>
     </div>
   );
