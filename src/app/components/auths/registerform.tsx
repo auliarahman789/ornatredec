@@ -6,7 +6,7 @@ const josefin = Josefin_Sans({subsets: ['latin']})
 function Register() {
   return (
     <main>
-        <div className='bg-white w-[480px] h-[460px]'>
+        <div className='bg-white w-[500px] h-[480px]'>
             <div className='flex flex-col justify-center items-center'>
             <h1 className={`font-bold text-[28px] pt-[60px] text-[#3F9272] ${josefin}`}>Buat Akun</h1>
             <form className='pt-[25px] gap-3.5 flex flex-col justify-center items-center'>
