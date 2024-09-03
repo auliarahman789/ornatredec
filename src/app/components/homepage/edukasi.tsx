@@ -15,21 +15,24 @@ function Edukasi() {
           alt="gambar"
         />
         <div className="">
-          <h1 className="text-6xl text-[#FFFFFF] font-bold">Edukasi</h1>
+          <h1 className="text-6xl text-[#FFFFFF] font-bold pb-[13px]">
+            Edukasi
+          </h1>
           <div className="flex">
             <Image
               src="/Bulat.png"
               width={56}
               height={56}
               alt="lingkaran"
-              className="pb-8 pt-4"
+              className="pb-8 pt-6"
             />
             <div className="flex flex-col">
-              <span className="pl-4 pt-4 text-2xl text-white font-bold flex flex-col cursor-pointer">
-                Tips and Trick merawat tanaman
+              <span className="pl-4 pt-[13px] text-[32px] text-white font-bold cursor-pointer">
+                Tanaman Hias
               </span>
-              <span className="pl-4 text-[#CCFFEB]">
-                berikut adalah beberapa cara untuk memelihara tanaman
+              <span className="pl-5 text-[#CCFFEB] text-[20px] ">
+                tips and trick merawat.....
+                <span className="text-white text-2xl">Baca selengkapnya</span>
               </span>
             </div>
           </div>
@@ -39,14 +42,15 @@ function Edukasi() {
               width={56}
               height={56}
               alt="lingkaran"
-              className="pt-8"
+              className="pt-6 pb-8"
             />
             <div className="flex flex-col">
-              <span className="pl-4 pt-8 text-2xl text-white font-bold cursor-pointer">
-                Tips and Trick merawat burung hias
+              <span className="pl-4 pt-4 text-[32px] text-white font-bold cursor-pointer">
+                Ikan Hias
               </span>
-              <span className="pl-4 text-[#CCFFEB]">
-                berikut adalah beberapa cara untuk memelihara burung hias
+              <span className="pl-5 text-[#CCFFEB] text-[20px] ">
+                tips and trick merawat.....
+                <span className="text-white text-2xl">Baca selengkapnya</span>
               </span>
             </div>
           </div>
@@ -56,14 +60,15 @@ function Edukasi() {
               width={56}
               height={56}
               alt="lingkaran"
-              className="pt-16"
+              className="pt-6 pb-8"
             />
             <div className="flex flex-col">
-              <span className="pl-4 text-2xl text-white font-bold cursor-pointer pt-16">
-                Tips and Trick merawat ikan hias
+              <span className="pl-4 text-[32px] text-white font-bold cursor-pointer pt-6">
+                Ikan Hias
               </span>
-              <span className="pl-4 text-[#CCFFEB]">
-                berikut adalah beberapa cara untuk memelihara ikan hias
+              <span className="pl-5 text-[#CCFFEB] text-[20px] ">
+                tips and trick merawat.....
+                <span className="text-white text-2xl">Baca selengkapnya</span>
               </span>
             </div>
           </div>
