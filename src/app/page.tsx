@@ -10,6 +10,7 @@ function page() {
       <Navbar />
       <Home />
       <Footer />
+      <Login />
     </div>
   );
 }

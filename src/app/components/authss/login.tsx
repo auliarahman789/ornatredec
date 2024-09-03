@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React from "react";
 function Login() {
   return (
     <div>
@@ -13,7 +14,7 @@ function Login() {
               </div>
               <div className="bg-[#E3FFF3] border rounded text-[#3F9272]">
                 Username
-                </div>
+              </div>
               <div className="bg-[#E3FFF3] border rounded text-[#3F9272]">
                 Password
               </div>
@@ -25,4 +26,4 @@ function Login() {
   );
 }
 
-export default Login
+export default Login;
