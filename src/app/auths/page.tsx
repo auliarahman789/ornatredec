@@ -23,8 +23,8 @@ function Page() {
         />
       </div>
       <div className='flex shadow-[15px_15px_3px] shadow-[#0000002e] relative z-10'>
-        {/* <RegisterL isAnimated={undefined} setIsAnimated={undefined} />
-        <Register /> */}
+        <RegisterL />
+        <Register />
       </div>
     </main>
   )
