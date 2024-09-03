@@ -1,7 +1,7 @@
 import React from "react";
 
 function tanaman() {
-  return <div>tanaman</div>;
+  return <div>tanafkhilhli</div>;
 }
 
 export default tanaman;
