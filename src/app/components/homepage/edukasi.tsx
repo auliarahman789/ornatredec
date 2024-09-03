@@ -26,7 +26,7 @@ function Edukasi() {
             />
             <div className="flex flex-col">
               <span className="pl-4 pt-4 text-2xl text-white font-bold flex flex-col cursor-pointer">
-                Tips and Trick merawat tanaman
+                Cara Merawat Tanaman dengan Benar agar . .
               </span>
               <span className="pl-4 text-[#CCFFEB]">
                 berikut adalah beberapa cara untuk memelihara tanaman
