@@ -16,34 +16,36 @@ export default function Carausel1() {
     autoplaySpeed: 1000,
   };
   return (
-    <Slider {...settings}>
-      <div className="">
-        <Image
-          className="w-[1200px] h-[450px] rounded-3xl"
-          src="/img/pot.png"
-          alt="Logo"
-          width={200}
-          height={200}
-        />
-      </div>
-      <div className="">
-        <Image
-          className="w-[1200px] h-[450px] rounded-3xl"
-          src="/img/pot.png"
-          alt="Logo"
-          width={200}
-          height={200}
-        />
-      </div>
-      <div className="">
-        <Image
-          className="w-[1200px] h-[450px] rounded-3xl"
-          src="/img/pot.png"
-          alt="Logo"
-          width={200}
-          height={200}
-        />
-      </div>
-    </Slider>
+    <div className="w-[410px] h-[70px] ms-16">
+      <Slider {...settings}>
+        <div className="mt-12">
+          <Image
+            className="w-[1000px] h-[450px] rounded-3xl"
+            src="/img/pot.png"
+            alt="Logo"
+            width={100}
+            height={100}
+          />
+        </div>
+        <div className="mt-12">
+          <Image
+            className="w-[1000px] h-[450px] rounded-3xl"
+            src="/img/pot.png"
+            alt="Logo"
+            width={100}
+            height={100}
+          />
+        </div>
+        <div className="mt-12">
+          <Image
+            className="w-[1000px] h-[450px] rounded-3xl"
+            src="/img/pot.png"
+            alt="Logo"
+            width={100}
+            height={100}
+          />
+        </div>
+      </Slider>
+    </div>
   );
 }

@@ -21,7 +21,10 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="h-[550px] m-10 p-4">
+        <div className="h-[550px] m-10 p-4 relative">
+          <div className="absolute top-0 left-0 right-0">
+            <Carausel1 />
+          </div>
           <div className="inline-block">
             <Image src={molekul} alt="molekul"></Image>
           </div>
@@ -32,7 +35,6 @@ function Home() {
               alt="molekul"
             ></Image>
           </div>
-          <Carausel1 />
         </div>
       </div>
     </div>
