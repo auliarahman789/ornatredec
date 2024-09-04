@@ -12,7 +12,6 @@ function page() {
       <Home />
       <Edukasi />
       <Footer />
-      <Login />
     </div>
   );
 }
