@@ -1,9 +1,36 @@
+'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import user from '../../../../public/icon/User_fill.svg'
 import password from '../../../../public/icon/Lock_alt_fill.svg'
+import axios from 'axios'
 
-function Login() {
+
+const Login = () => {
+  const [username, setUsername] = useState<string>();
+  const [password, setPassword] = useState<string>();
+async function login() {
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/login`;
+    try {
+      const res = await axios.post(
+        url,
+        {
+          username: username,
+          password: password,
+          role: 'user',
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res);
+      alert('Berhasil Login');
+    } catch (error: any) {
+      console.log(error);
+      alert('Terjadi kesalahan saat membuat akun.');
+    }
+  }
+
   return (
     <main>
         <div className='bg-white w-[530px] h-[520px]'>
@@ -11,13 +38,13 @@ function Login() {
             <h1 className='font-bold text-[30px] pt-[60px] text-[#3F9272] mt-24'>Masuk</h1>
             <form action='' className='pt-[25px] gap-3.5 flex flex-col justify-center items-center'>
             <div className='relative '>
-            <input type='text' name='username' placeholder='Username' className='w-[320px] pl-20 bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8 text-[#3F9272] rounded-md' />
+            <input type='text' name='username' placeholder='Username' className='w-[320px] pl-16 bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8 text-[#3F9272] rounded-md' />
               <Image src={user} alt="username" width={25} height={25} 
                className="absolute top-1/2 left-4 -translate-y-1/2"/>
             </div>
             <div className='relative'>
-              <input type='password' name='password' placeholder='Password' className='w-[320px] pl-20 bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8 text-[#3F9272] rounded-md' />
-              <Image src={password} alt="password" width={27} height={27} 
+              <input type='password' name='password' placeholder='Password' className='w-[320px] pl-16 bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8 text-[#3F9272] rounded-md' />
+              <Image src={'password'} alt="password" width={27} height={27} 
                className="absolute top-1/2 left-4 -translate-y-1/2"/>
             </div>
             </form>
