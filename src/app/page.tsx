@@ -4,6 +4,7 @@ import Navbar from "./components/homepage/navbar";
 import Home from "./components/homepage/home";
 import Edukasi from "./components/homepage/edukasi";
 import Produk from "./components/homepage/produk";
+import Forum from "./components/homepage/forum";
 
 function page() {
   return (
@@ -12,6 +13,7 @@ function page() {
       <Home />
       <Edukasi />
       <Produk />
+      <Forum />
       <Footer />
     </div>
   );
