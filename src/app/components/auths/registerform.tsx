@@ -8,10 +8,10 @@ import phoneIcon from '../../../../public/icon/Phone_fill.svg'
 import axios from 'axios'
 
 const Register = ({isAnimated, setIsAnimated}:{isAnimated: any, setIsAnimated: any}) => {
-  const [username, setUsername] = useState<string>();
-  const [email, setEmail] = useState<string>();
-  const [phone, setPhone] = useState<string>();
-  const [password, setPassword] = useState<string>();
+  const [username, setUsername] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   async function buatAkun() {
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/register`;
@@ -31,7 +31,16 @@ const Register = ({isAnimated, setIsAnimated}:{isAnimated: any, setIsAnimated: a
       );
       console.log(res);
       alert('Berhasil Membuat Akun');
+      
+      // Reset form state
+      setUsername('');
+      setEmail('');
+      setPhone('');
+      setPassword('');
+
+      // Trigger animation
       setIsAnimated(!isAnimated);
+
     } catch (error: any) {
       console.log(error);
       alert('Terjadi kesalahan saat membuat akun.');
@@ -47,6 +56,7 @@ const Register = ({isAnimated, setIsAnimated}:{isAnimated: any, setIsAnimated: a
             <div className='relative'>
               <input 
                 type='text' 
+                value={username} // Menggunakan nilai dari state
                 onChange={(e) => setUsername(e.target.value)} 
                 name='username' 
                 placeholder='Username' 
@@ -61,6 +71,7 @@ const Register = ({isAnimated, setIsAnimated}:{isAnimated: any, setIsAnimated: a
             <div className='relative'>
               <input 
                 type='email'
+                value={email} // Menggunakan nilai dari state
                 onChange={(e) => setEmail(e.target.value)} 
                 name='email' 
                 placeholder='Email' 
@@ -75,6 +86,7 @@ const Register = ({isAnimated, setIsAnimated}:{isAnimated: any, setIsAnimated: a
             <div className='relative'>
               <input 
                 type='password' 
+                value={password} // Menggunakan nilai dari state
                 onChange={(e) => setPassword(e.target.value)} 
                 name='password' 
                 placeholder='Password' 
@@ -89,6 +101,7 @@ const Register = ({isAnimated, setIsAnimated}:{isAnimated: any, setIsAnimated: a
             <div className='relative'>
               <input 
                 type='tel' 
+                value={phone} // Menggunakan nilai dari state
                 onChange={(e) => setPhone(e.target.value)} 
                 name='telephone' 
                 placeholder='No Telephone' 
