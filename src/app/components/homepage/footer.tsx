@@ -7,35 +7,35 @@ function Footer() {
         <div className="my-[90px]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 translate-y-10">
             <div className="flex flex-col items-center md:items-start ms-[141px]">
-              <span className="text-gray-400 leading-tight max-w-[360px]">
+              <span className="text-[#308967] leading-tight max-w-[360px]">
                 Ornatredec adalah web yang menyediakan fitur seperti forum untuk
                 penggemar, edukasi tentang tanaman hias, burung hias, dan ikan
                 hias juga menyediakan laman untuk jual beli.
               </span>
             </div>
-            <div className="grid grid-cols-3 justify-center -mt-32 mr-10">
+            <div className="grid grid-cols-3 justify-center -mt-28 mr-24">
               {/* About */}
               <div className="flex flex-col items-center leading-tight">
-                <span className="bg-slate-500 px-4 py-2">About</span>
-                <p className="text-gray-600 mt-4 bg-slate-500">company</p>
-                <p className="text-gray-600 bg-slate-800">company</p>
-                <p className="text-gray-600 bg-slate-400">company</p>
+                <span className="text-[#3F9272] text-[29px]">About</span>
+                <p className="text-[#3F9272] mt-4 text-[16px]">company</p>
+                <p className="text-[#3F9272] text-[16px]">company</p>
+                <p className="text-[#3F9272] text-[16px]">company</p>
               </div>
 
               {/* Kontak */}
-              <div className="flex flex-col items-center">
-                <span className="bg-slate-600 px-4 py-2">Kontak</span>
-                <p className="text-gray-600 mt-4">
-                  Hubungi kami di email atau nomor telepon.
-                </p>
+              <div className="flex flex-col items-center leading-tight">
+                <span className="text-[#3F9272] text-[29px]">Kontak</span>
+                <p className="text-[#3F9272] text-[16px] mt-4">company</p>
+                <p className="text-[#3F9272] text-[16px]">company</p>
+                <p className="text-[#3F9272] text-[16px]">company</p>
               </div>
 
               {/* Sosial Media */}
-              <div className="flex flex-col items-center">
-                <span className="bg-slate-800 px-4 py-2">Sosial Media</span>
-                <p className="text-gray-600 mt-4">
-                  Ikuti kami di Instagram, Twitter, dan Facebook.
-                </p>
+              <div className="flex flex-col items-center leading-tight">
+                <span className="text-[#3F9272] text-[29px]">Sosial Media</span>
+                <p className="text-[#308967] mt-4 text-[16px]">Company</p>
+                <p className="text-[#308967] text-[16px]">Comunity</p>
+                <p className="text-[#308967] text-[16px]">Careers</p>
               </div>
             </div>
           </div>
