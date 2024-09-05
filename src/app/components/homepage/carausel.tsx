@@ -13,11 +13,9 @@ const Carausel1: NextPage = () => {
     [key: string]: any; // Menggunakan tipe any untuk fleksibilitas
   }
   const imageMap: ImageMap = {
-    1: "/carousel/1.png",
-    2: "/carousel/2.png",
-    3: "/carousel/3.png",
-    4: "/carousel/4.png",
-    5: "/carousel/5.png",
+    1: "/carousel/13.png",
+    2: "/carousel/14.png",
+    3: "/carousel/15.png",
   };
   const shuffleArray = (array: string[]) => {
     for (let i = array.length - 1; i > 0; i--) {
