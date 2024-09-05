@@ -7,18 +7,19 @@ import Image from "next/image";
 import { NextPage } from "next";
 
 const Carausel1: NextPage = () => {
-  // const [imageIndex, setImageIndex] = useState<any | null>(null);
-  const [imageIndex, setImageIndex] = useState<string>("");
+  const [shuffledKeys, setShuffledKeys] = useState<string[]>([]); // State untuk menyimpan key yang sudah diacak
+
   interface ImageMap {
-    [key: string]: any; // Menggunakan tipe any untuk fleksibilitas
+    [key: string]: any;
   }
+
   const imageMap: ImageMap = {
-    1: "/carousel/1.png",
-    2: "/carousel/2.png",
-    3: "/carousel/3.png",
-    4: "/carousel/4.png",
-    5: "/carousel/5.png",
+    1: "/carousel/13.png",
+    2: "/carousel/14.png",
+    3: "/carousel/15.png",
+    4: "/carousel/16.png",
   };
+
   const shuffleArray = (array: string[]) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -33,24 +34,9 @@ const Carausel1: NextPage = () => {
   };
 
   useEffect(() => {
-    console.log(imageIndex);
     const randomKeys = getRandomImageKeys();
-    setImageIndex(randomKeys[0]); // Ambil gambar pertama dari array acak
-  }, []);
-
-  // useEffect(() => {
-  //   // const imageCount = 12; // Replace with the number of images in your folder
-  //   // const randomIndex = Math.floor(Math.random() * imageCount);
-  //   // setImageIndex(randomIndex);
-  //   const getRandomIndex = () => {
-  //     const keys = Object.keys(imageMap);
-  //     const randomIndex = Math.floor(Math.random() * keys.length);
-  //     return keys[randomIndex];
-  //   };
-
-  //   // Atur indeks gambar awal secara acak
-  //   setImageIndex(getRandomIndex());
-  // }, []);
+    setShuffledKeys(randomKeys); // Simpan array yang sudah diacak dalam state
+  }, []); // Hanya diacak sekali saat komponen pertama kali di-render
 
   const settings = {
     dots: false,
@@ -65,10 +51,12 @@ const Carausel1: NextPage = () => {
   return (
     <div className="w-[410px] h-[70px] ms-16">
       <Slider {...settings}>
-        {getRandomImageKeys().map((key) => (
-          <div key={key} className="mt-14 mx-16">
+        {shuffledKeys.map((key) => (
+          <div key={key} className="mt-14 mx-20">
             <Image
-              className="w-[300px] h-[400px]"
+              className={`w-[300px] h-[400px] ${
+                key === "2" ? "mt-10 ms-5" : ""
+              }`} // Menambahkan class 'custom-class' hanya pada gambar ke-14
               src={imageMap[key]}
               alt="Gambar Acak"
               width={1000}
