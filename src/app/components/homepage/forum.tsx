@@ -1,23 +1,23 @@
 import React from "react";
 import Image from "next/image";
 
-function forum() {
+function Forum() {
   return (
-    <div className="h-screen">
-      <div>
-        <h1 className="text-[48px] text-[#308967] text-center z-50 relative font-bold">
+    <div className="relative h-[1150px] overflow-hidden bg-[#D9FFF0]">
+      <div className="relative mt-60 z-20">
+        <h1 className="text-[48px] text-[#308967] text-center font-bold">
           Forum <span className="text-[#66C09E] font-bold">Diskusi</span>
         </h1>
-        <div className="z-50 relative flex justify-center translate-y-12">
+        <div className="relative flex justify-center translate-y-12 z-20">
           <Image
             src="/img/message.png"
             width={160}
             height={160}
             alt="apa"
-            className="z-10 relative"
+            className="relative"
           />
         </div>
-        <div className="bg-[#51CB9F] z-10 relative ml-[98px] mr-[98px] h-96 translate-y-20">
+        <div className="bg-[#51CB9F] ml-[98px] mr-[98px] h-96 translate-y-20 relative z-20">
           <h1 className="text-[#367B60] text-[24px] text-center">
             Pembahasan <span className="text-white">Popular</span>
           </h1>
@@ -72,16 +72,16 @@ function forum() {
             </div>
           </div>
         </div>
-        <Image
-          src="/img/lengkung putih.png"
-          width={1000}
-          height={1000}
-          alt="apa"
-          className="w-full h-[1200px] -translate-y-[1000px]"
-        />
       </div>
+      <Image
+        src="/img/lengkung putih.png"
+        width={1000}
+        height={1200} // Increase height as needed
+        alt="lengkungan putih"
+        className="absolute bottom-0 translate-y-32 left-0 w-full h-[1390px]"
+      />
     </div>
   );
 }
 
-export default forum;
+export default Forum;
