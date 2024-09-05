@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function forum() {
   return (
-    <div className="h-screen">
+    <div>
       <div>
         <h1 className="text-[48px] text-[#308967] text-center z-50 relative font-bold">
           Forum <span className="text-[#66C09E] font-bold">Diskusi</span>

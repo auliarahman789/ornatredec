@@ -64,7 +64,7 @@ function Edukasi() {
             />
             <div className="flex flex-col">
               <span className="pl-4 text-[32px] text-white font-bold cursor-pointer pt-6">
-                Ikan Hias
+                Burung Hias
               </span>
               <span className="pl-5 text-[#CCFFEB] text-[20px] ">
                 tips and trick merawat.....

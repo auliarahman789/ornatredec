@@ -53,7 +53,7 @@ const Carausel1: NextPage = () => {
   // }, []);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 2200,
     slidesToShow: 1,

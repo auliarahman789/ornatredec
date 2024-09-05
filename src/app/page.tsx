@@ -9,7 +9,6 @@ import Forum from "./components/homepage/forum";
 function page() {
   return (
     <div>
-      <Navbar />
       <Home />
       <Edukasi />
       <Produk />
