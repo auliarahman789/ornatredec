@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import molekul from "../../../../public/icon/molekul.svg";
+import Carausel1 from "./carausel";
 
 function Home() {
   return (
@@ -20,8 +21,11 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="bg-blue-500 h-[550px] m-10 p-4">
-          <div>
+        <div className="h-[550px] m-10 p-4 relative">
+          <div className="absolute top-0 left-0 right-0">
+            <Carausel1 />
+          </div>
+          <div className="inline-block">
             <Image src={molekul} alt="molekul"></Image>
           </div>
           <div className="relative">
