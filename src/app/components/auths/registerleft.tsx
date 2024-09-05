@@ -1,6 +1,7 @@
 import React from 'react'
 
-function RegisterL() {
+const RegisterL = ({ isAnimated, setIsAnimated }:
+  { isAnimated: any, setIsAnimated: any }) => {
   return (
     <div className="h-[520px] w-[420px] bg-no-repeat bg-center text-white
      flex flex-col items-center justify-center gap-5"
@@ -14,13 +15,12 @@ function RegisterL() {
         <p>Tap disini jika kamu sudah<br/> 
         memiliki akun di T-trana</p>
       </div>
-      <button className='bg-transparent rounded-full h-[45px] w-[160px] border-[1px] border-white'>
-        Login
-      </button>
+        <button type='submit' onClick={(e) => {setIsAnimated(!isAnimated);}}
+          className='bg-transparent rounded-full h-[45px] w-[160px] 
+          border-[1px] border-white'>
+          Login
+        </button>
   </div>
-  
-
-  
   )
 }
 
