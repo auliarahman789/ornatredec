@@ -3,9 +3,9 @@ import Image from "next/image";
 
 function Forum() {
   return (
-    <div className="h-screen">
-      <div>
-        <h1 className="text-[48px] text-[#308967] text-center z-50 relative font-bold">
+    <div className="relative h-[1075px] overflow-hidden bg-[#D9FFF0]">
+      <div className="relative mt-52 z-20">
+        <h1 className="text-[48px] text-[#308967] text-center font-bold">
           Forum <span className="text-[#66C09E] font-bold">Diskusi</span>
         </h1>
         <div className="relative flex justify-center translate-y-12 z-20">
@@ -78,7 +78,7 @@ function Forum() {
         width={1000}
         height={1200} // Increase height as needed
         alt="lengkungan putih"
-        className="absolute bottom-0 translate-y-32 left-0 w-full h-[1390px]"
+        className="absolute bottom-0 translate-y-24 left-0 w-full h-[1250px]"
       />
     </div>
   );
