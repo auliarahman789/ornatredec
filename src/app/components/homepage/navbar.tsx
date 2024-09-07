@@ -1,15 +1,38 @@
+import Link from "next/link";
 import React from "react";
 
 function Navbar() {
   return (
     <div>
-      <nav className="flex justify-between bg-gradient-to-r from-[#51CB9F] via-[#83F6CA] to-[#DBFFF6] px-14 flex-row p-6">
-        <div className="flex space-x-4 text-[#308967]">
-          <button>Home</button>
-          <button>Forum</button>
-          <button>Produk</button>
-          <button>Edukasi</button>
-          <button>About</button>
+      <nav className="flex justify-between bg-[#DBFFF6] px-14 p-6">
+        <div className="flex flex-row  text-[#308967]">
+          <ul className="flex space-x-4 space-y-2">
+            <Link href="#">
+            <li className="pt-2">
+             Home
+            </li>
+            </Link>
+            <Link href="">
+            <li>
+             Forum
+            </li>
+            </Link>
+            <Link href="">
+            <li>
+             Produk
+            </li>
+            </Link>
+            <Link href="">
+            <li>
+             Edukasi
+            </li>
+            </Link>
+            <Link href="/about">
+            <li>
+             About
+            </li>
+            </Link>
+          </ul>
         </div>
         <div>
           <button>login</button>

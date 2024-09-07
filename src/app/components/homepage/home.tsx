@@ -5,7 +5,7 @@ import Carausel1 from "./carausel";
 
 function Home() {
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col h-screen bg-gradient-to-b from-[#DBFFF6] to-[#E4FFF2]">
       <div className="grid grid-cols-2 gap-4">
         <div className="m-10 h-[550px]">
           <div className="mt-[117px] inline-block font-bold text-[64px]">

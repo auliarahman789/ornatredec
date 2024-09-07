@@ -3,8 +3,13 @@ import Image from "next/image";
 
 function Forum() {
   return (
-    <div className="relative h-[1150px] overflow-hidden bg-[#D9FFF0]">
-      <div className="relative mt-60 z-20">
+<<<<<<<<< Temporary merge branch 1
+    <div className="h-screen">
+      <div>
+        <h1 className="text-[48px] text-[#308967] text-center z-50 relative font-bold">
+=========
+    <div className="relative h-[1075px] overflow-hidden bg-[#D9FFF0]">
+      <div className="relative mt-52 z-20">
         <h1 className="text-[48px] text-[#308967] text-center font-bold">
           Forum <span className="text-[#66C09E] font-bold">Diskusi</span>
         </h1>
