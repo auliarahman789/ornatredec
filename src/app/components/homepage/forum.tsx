@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
+import Footer from "./footer";
 
 function Forum() {
   return (
-    <div className="">
+    <div>
       <div>
-        <h1 className="text-[48px] text-[#308967] text-center z-50 relative font-bold"></h1>
-        <div className="relative h-[1075px] overflow-hidden bg-[#D9FFF0]">
+        <h1 className="text-[48px] text-[rgb(48,137,103)] text-center z-50 relative font-bold"></h1>
+        <div className="relative h-[60%] overflow-hidden bg-white">
           <div className="relative z-20">
             <h1 className="text-[48px] text-[#308967] text-center font-bold">
               Forum <span className="text-[#66C09E] font-bold">Diskusi</span>
@@ -76,13 +77,13 @@ function Forum() {
               </div>
             </div>
           </div>
-          <Image
+          {/* <Image
             src="/img/lengkung putih.png"
             width={1000}
             height={1200} // Increase height as needed
             alt="lengkungan putih"
-            className="absolute bottom-0 translate-y-24 left-0 w-full h-[1250px]"
-          />
+            className="absolute bottom-0 translate-y-24 left-0 w-full"
+          /> */}
         </div>
       </div>
     </div>

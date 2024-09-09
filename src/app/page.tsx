@@ -14,7 +14,7 @@ function page() {
       <main className=" min-h-screen w-full ">
         <Forum />
       </main>
-      <main className="flex min-h-[30%] w-full px-[8%]">
+      <main className="h-[60%]">
         <Footer />
       </main>
     </div>
