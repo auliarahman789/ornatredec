@@ -47,6 +47,7 @@ const Carausel1: NextPage = () => {
     autoplay: true,
     autoplaySpeed: 1000,
     arrows: false,
+    arrow: false,
   };
 
   return (
