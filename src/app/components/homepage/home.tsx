@@ -7,8 +7,8 @@ function Home() {
   return (
     <div className="flex flex-col h-screen bg-gradient-to-b from-[#DBFFF6] to-[#E4FFF2]">
       <div className="grid grid-cols-2 gap-4">
-        <div className="m-10 h-[550px]">
-          <div className="mt-[117px] inline-block font-bold text-[64px]">
+        <div className="m-10 h-[250%]">
+          <div className="mt-[20%] inline-block font-bold text-[64px]">
             <span className="text-[#308967]">LOREM </span>
             <span className="bg-[#308967] text-white pt-3">IPSUM</span>
           </div>
@@ -21,7 +21,7 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="h-[550px] m-10 p-4 relative">
+        <div className="h-[250%] m-10 p-4 relative">
           <div className="absolute top-0 left-0 right-0">
             <Carausel1 />
           </div>

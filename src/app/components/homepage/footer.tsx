@@ -3,17 +3,17 @@ import React from "react";
 function Footer() {
   return (
     <div>
-      <footer className="bg-[#D9FFF0] text-white py-6 h-[346px]">
-        <div className="my-[90px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 translate-y-10">
-            <div className="flex flex-col items-center md:items-start ms-[141px]">
+      <footer className="bg-white text-white py-6 z-50 ">
+        <div className="">
+          <div className="flex flex-col w-full md:grid-cols-2 gap-8 translate-y-10 ">
+            <div className="flex flex-col w-[50%] items-center md:items-start ">
               <span className="text-[#308967] leading-tight max-w-[360px]">
                 T-trana adalah web yang meyediakan fitur seperti forum untuk
                 penggemar, edukasi tentang tanaman hias,burung hias dan ikan
                 hias juga, menyediakan laman untuk jual beli.
               </span>
             </div>
-            <div className="grid grid-cols-3 justify-center -mt-28 mr-24">
+            <div className="flex  w-full items-center justify-end ">
               {/* About */}
               <div className="flex flex-col items-center leading-tight">
                 <span className="text-[#3F9272] text-[29px]">About</span>
