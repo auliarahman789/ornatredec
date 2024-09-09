@@ -24,11 +24,11 @@ function Page() {
                   <div>
                   <Image src='/img/about2.png' alt={''} width={300} height={400}/>
                   </div>
-                  <div className='col-span-2'>
+                  <div className='col-span-2 -translate-x-12'>
                     <h1 className='text-[#3F9272] font-bold text-[33px]'>
                           Produk
                       </h1>
-                      <p className='pe-24 text-justify text-[#54A082]'>
+                      <p className='pe-11 text-justify text-[#54A082]'>
                       T-Trana menyediakan berbagai kebutuhan untuk pecinta ikan hias, tanaman hias, dan burung hias, dengan produk berkualitas yang membantu merawat dan mempercantik koleksi Anda. <br/>
                       Ikan Hias: T-Trana menawarkan berbagai jenis ikan hias yang menarik, lengkap dengan perlengkapan akuarium seperti filter berkualitas, pompa, dan dekorasi yang estetis. Selain itu, tersedia pakan ikan yang diformulasikan khusus untuk menjaga kesehatan dan keindahan ikan peliharaan Anda. <br/>
                       Tanaman Hias: Untuk tanaman hias, T-Trana menyediakan koleksi tanaman indoor dan outdoor yang beragam, pupuk khusus, media tanam berkualitas, serta peralatan berkebun yang memudahkan perawatan tanaman kesayangan Anda. <br/>
