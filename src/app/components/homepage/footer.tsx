@@ -8,9 +8,9 @@ function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 translate-y-10">
             <div className="flex flex-col items-center md:items-start ms-[141px]">
               <span className="text-[#308967] leading-tight max-w-[360px]">
-                Ornatredec adalah web yang menyediakan fitur seperti forum untuk
-                penggemar, edukasi tentang tanaman hias, burung hias, dan ikan
-                hias juga menyediakan laman untuk jual beli.
+                T-trana adalah web yang meyediakan fitur seperti forum untuk
+                penggemar, edukasi tentang tanaman hias,burung hias dan ikan
+                hias juga, menyediakan laman untuk jual beli.
               </span>
             </div>
             <div className="grid grid-cols-3 justify-center -mt-28 mr-24">
