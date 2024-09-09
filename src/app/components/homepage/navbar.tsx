@@ -22,7 +22,7 @@ function Navbar() {
              Produk
             </li>
             </Link>
-            <Link href="">
+            <Link href="/Edukasi">
             <li>
              Edukasi
             </li>
