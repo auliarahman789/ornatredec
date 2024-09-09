@@ -24,10 +24,10 @@ function Navbar() {
             <Link href="">
               <li className="cursor-pointer text-[18px]">Produk</li>
             </Link>
-            <Link href="">
+            <Link href="/Edukasi">
               <li className="cursor-pointer text-[18px]">Edukasi</li>
             </Link>
-            <Link href="/about">
+            <Link href="/About">
               <li className="cursor-pointer text-[18px]">About</li>
             </Link>
           </ul>
