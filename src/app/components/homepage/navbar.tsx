@@ -8,35 +8,25 @@ function Navbar() {
         <div className="flex flex-row  text-[#308967]">
           <ul className="flex space-x-4 space-y-2">
             <Link href="/">
-            <li className="pt-2">
-             Home
-            </li>
+              <li className="pt-2">Home</li>
             </Link>
             <Link href="">
-            <li>
-             Forum
-            </li>
+              <li>Forum</li>
             </Link>
             <Link href="">
-            <li>
-             Produk
-            </li>
+              <li>Produk</li>
             </Link>
             <Link href="">
-            <li>
-             Edukasi
-            </li>
+              <li>Edukasi</li>
             </Link>
             <Link href="/about">
-            <li>
-             About
-            </li>
+              <li>About</li>
             </Link>
           </ul>
         </div>
         <div>
-          <button>login</button>
-          <button className="bg-green-500 rounded-lg py-1 px-4 ml-2">
+          <button className="text-[#308967]">login</button>
+          <button className="bg-green-500 rounded-lg py-1 px-4 ml-2 text-white">
             Daftar
           </button>
         </div>
