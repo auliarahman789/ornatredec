@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Josefin_Sans as JosefinSans } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/homepage/navbar";
+import Footer from "./components/homepage/footer";
 
 const josefinSans = JosefinSans({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={josefinSans.className}>
         <Navbar />
         {children}
+        {/* <Footer /> */}
       </body>
     </html>
   );

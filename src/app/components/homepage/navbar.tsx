@@ -7,7 +7,7 @@ function Navbar() {
       <nav className="flex justify-between bg-[#DBFFF6] px-14 p-6">
         <div className="flex flex-row  text-[#308967]">
           <ul className="flex space-x-4 space-y-2">
-            <Link href="#">
+            <Link href="/">
             <li className="pt-2">
              Home
             </li>
