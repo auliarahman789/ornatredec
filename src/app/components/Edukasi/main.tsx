@@ -1,4 +1,5 @@
 import React from "react";
+import Tanaman from "./tanaman";
 
 function Main() {
   return (

@@ -25,15 +25,15 @@ function Footer() {
               <p className="text-xl text-[#3F9272] -translate-x-10 pt-4">
                 +6283890485363
               </p>
-              <div className="pl-[7%] flex flex-row pt-2">
+              <div className="pl-[3%] flex flex-row pt-2 space-x-2">
+                <Image src="/img/ig.png" width={50} height={25} alt="ig" />
                 <Image
-                  src="/img/ig.png"
-                  width={50}
+                  src="/img/whats app.png"
+                  width={65}
                   height={25}
-                  alt="nikdsnvz"
+                  alt="wa"
                 />
-                <Image src="/img/ig.png" width={50} height={25} alt="azlnfa" />
-                <Image src="/img/ig.png" width={50} height={25} alt="sg" />
+                <Image src="/img/twitter.png" width={60} height={25} alt="tw" />
               </div>
             </div>
           </div>
