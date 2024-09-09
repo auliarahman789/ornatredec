@@ -13,8 +13,13 @@ function page() {
       <Home />
       <Edukasi />
       <Produk />
-      <Forum />
-      <Footer />
+      <main className=" min-h-screen w-full ">
+        <Forum />
+      </main>
+
+      <main className="flex min-h-[30%] w-full px-[8%]">
+        <Footer />
+      </main>
     </div>
   );
 }
