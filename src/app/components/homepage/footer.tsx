@@ -26,8 +26,13 @@ function Footer() {
                 +6283890485363
               </p>
               <div className="pl-[7%] flex flex-row pt-2">
-                <Image src="/img/ig.png" width={50} height={25} alt="sg" />
-                <Image src="/img/ig.png" width={50} height={25} alt="sg" />
+                <Image
+                  src="/img/ig.png"
+                  width={50}
+                  height={25}
+                  alt="nikdsnvz"
+                />
+                <Image src="/img/ig.png" width={50} height={25} alt="azlnfa" />
                 <Image src="/img/ig.png" width={50} height={25} alt="sg" />
               </div>
             </div>
