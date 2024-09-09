@@ -1,12 +1,20 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+import logo from "../../../../public/icon/logo.svg";
 
 function Navbar() {
   return (
     <div>
-      <nav className="flex justify-between bg-[#DBFFF6] px-14 p-6">
-        <div className="flex flex-row  text-[#308967]">
-          <ul className="flex space-x-4 space-y-2">
+      <nav className="flex justify-between items-center bg-[#DBFFF6] px-14 p-6">
+        {/* Bagian kiri: logo */}
+        <div className="flex items-center">
+          <Image src={logo} alt="Logo" width={95} height={95} />
+        </div>
+
+        {/* Bagian tengah: menu navigasi */}
+        <div className="flex-1 flex justify-center text-[#308967]">
+          <ul className="flex space-x-10">
             <Link href="/">
               <li className="pt-2">Home</li>
             </Link>
@@ -24,9 +32,11 @@ function Navbar() {
             </Link>
           </ul>
         </div>
+
+        {/* Bagian kanan: tombol login dan daftar */}
         <div>
-          <button className="text-[#308967]">login</button>
-          <button className="bg-green-500 rounded-lg py-1 px-4 ml-2 text-white">
+          <button>login</button>
+          <button className="bg-green-500 rounded-lg py-1 px-4 ml-2">
             Daftar
           </button>
         </div>

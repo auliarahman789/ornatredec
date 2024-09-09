@@ -1,32 +1,32 @@
-'use client'
-import React, { useState } from 'react'
-import Register from '../components/auths/registerform'
-import RegisterL from '../components/auths/registerleft'
-import Image from 'next/image'
-import Login from '../components/auths/loginform'
-import LoginR from '../components/auths/loginright'
+"use client";
+import React, { useState } from "react";
+import Register from "../components/auths/registerform";
+import RegisterL from "../components/auths/registerleft";
+import Image from "next/image";
+import Login from "../components/auths/loginform";
+import LoginR from "../components/auths/loginright";
 
 const Page = () => {
   const [isAnimated, setIsAnimated] = useState(true);
   return (
     <main className="bg-[#E3FFF3] w-full h-screen flex justify-center items-center relative">
       <div>
-        <Image 
-          src="/icon/biru.png" 
-          alt="icon background" 
-          width={390} 
-          height={390} 
+        <Image
+          src="/icon/biru.png"
+          alt="icon background"
+          width={390}
+          height={390}
           className="absolute top-0 left-0 z-10"
         />
-        <Image 
-          src="/icon/kuning.png" 
-          alt="icon background" 
-          width={390} 
-          height={390} 
+        <Image
+          src="/icon/kuning.png"
+          alt="icon background"
+          width={390}
+          height={390}
           className="absolute bottom-0 right-0 z-10"
         />
       </div>
-      <div className='bg-white relative w-[960px] h-[520px] shadow-[15px_15px_3px] shadow-[#0000002e] z-20'>
+      <div className="bg-white relative w-[960px] h-[520px] shadow-[15px_15px_3px] shadow-[#0000002e] z-20">
         <div
           id="register"
           className={`absolute top-0 left-0 ms-[120px] h-full w-[40%] flex justify-center items-center transition-all duration-700 ease-in-out ${
@@ -34,10 +34,7 @@ const Page = () => {
           }`}
         >
           <div className="w-[530px] h-[520px] flex justify-center items-center">
-            <Register 
-              isAnimated={isAnimated}
-              setIsAnimated={setIsAnimated}
-             />
+            <Register isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
           </div>
         </div>
         <div
@@ -68,10 +65,7 @@ const Page = () => {
                 isAnimated ? "translate-x-[50%] z-50" : "translate-x-0"
               }`}
             >
-              <LoginR
-                isAnimated={isAnimated}
-                setIsAnimated={setIsAnimated}
-              />
+              <LoginR isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
             </div>
             <div
               id="register-left"
@@ -82,13 +76,13 @@ const Page = () => {
               <RegisterL
                 isAnimated={isAnimated}
                 setIsAnimated={setIsAnimated}
-              /> 
+              />
             </div>
           </div>
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
