@@ -13,7 +13,7 @@ function Page() {
                           Edukasi
                       </h1>
                       <p className='pe-8 text-justify text-[#54A082]'>
-                      T-Trana tidak hanya menawarkan produk berkualitas, tetapi juga berfokus pada edukasi bagi para pecinta ikan hias, tanaman hias, dan burung hias. Melalui berbagai program dan sumber daya yang tersedia, T-Trana berupaya membantu Anda merawat koleksi hobi dengan lebih baik dan mendalam.<br/>
+                      T-Trana menawarkan produk berkualitas, tetapi juga berfokus pada edukasi bagi para pecinta ikan hias, tanaman hias, dan burung hias. Melalui berbagai program dan sumber daya yang tersedia, T-Trana berupaya membantu Anda merawat koleksi hobi dengan lebih baik dan mendalam.<br/>
                       Panduan Perawatan: T-Trana menyediakan panduan dasar yang komprehensif mengenai cara merawat ikan hias, tanaman hias, dan burung hias. Panduan ini mencakup berbagai aspek penting seperti memilih habitat yang sesuai, menjaga kebersihan, serta memberikan nutrisi yang tepat untuk memastikan kesehatan dan kesejahteraan mereka. <br/>
                       Sesi Tanya Jawab: Selain panduan perawatan, T-Trana juga menyediakan sesi tanya jawab interaktif yang memungkinkan Anda berkomunikasi langsung dengan para ahli dan anggota komunitas berpengalaman. Dalam sesi ini, Anda bisa mengajukan berbagai pertanyaan terkait perawatan, pemilihan produk, atau solusi untuk masalah yang dihadapi dalam memelihara ikan, tanaman, atau burung hias. <br/>
                       Dengan edukasi yang menyeluruh, T-Trana berkomitmen untuk menyediakan informasi dan sumber daya yang bermanfaat, membantu Anda memperdalam pengetahuan dan keterampilan dalam merawat koleksi hobi Anda. </p>
@@ -32,7 +32,7 @@ function Page() {
                       T-Trana menyediakan berbagai kebutuhan untuk pecinta ikan hias, tanaman hias, dan burung hias, dengan produk berkualitas yang membantu merawat dan mempercantik koleksi Anda. <br/>
                       Ikan Hias: T-Trana menawarkan berbagai jenis ikan hias yang menarik, lengkap dengan perlengkapan akuarium seperti filter berkualitas, pompa, dan dekorasi yang estetis. Selain itu, tersedia pakan ikan yang diformulasikan khusus untuk menjaga kesehatan dan keindahan ikan peliharaan Anda. <br/>
                       Tanaman Hias: Untuk tanaman hias, T-Trana menyediakan koleksi tanaman indoor dan outdoor yang beragam, pupuk khusus, media tanam berkualitas, serta peralatan berkebun yang memudahkan perawatan tanaman kesayangan Anda. <br/>
-                      Burung Hias: T-Trana menghadirkan berbagai jenis burung hias dengan aksesoris pendukung seperti kandang, tempat makan, mainan, serta pakan yang bergizi dan disesuaikan dengan kebutuhan spesies burung. <br/>
+                      Burung Hias: T-Trana menghadirkan berbagai jenis burung hias dengan aksesoris pendukung seperti tempat makan, serta pakan yang bergizi dan disesuaikan dengan kebutuhan spesies burung. <br/>
                       Dengan produk yang lengkap dan berkualitas, T-Trana menjadi pilihan terbaik untuk merawat dan memperindah koleksi ikan, tanaman, dan burung hias Anda dengan mudah dan nyaman. <br />
                     </p>
                   </div>
@@ -45,8 +45,8 @@ function Page() {
                             <br/> Beberapa fitur unggulan dari forum ini meliputi:
                             Diskusi Terbuka: Buat dan ikuti berbagai topik menarik seputar tanaman, ikan, dan burung hias. Dari cara merawat hingga rekomendasi spesies terbaik, semua bisa dibahas di sini.
                             <br/>Tips & Trik: Dapatkan informasi dan saran dari anggota forum yang berpengalaman, serta bagikan tips Anda untuk membantu sesama anggota.
-                            <br/>Tanya Jawab: Punya masalah dengan tanaman yang layu, ikan yang stres, atau burung yang tidak aktif? Ajukan pertanyaan di forum, dan dapatkan jawaban dari komunitas atau ahli yang siap membantu.
-                            <br/>Galeri Foto & Video: Bagikan foto dan video koleksi tanaman, ikan, atau burung hias Anda, serta lihat koleksi anggota lain untuk inspirasi dan ide.
+                            <br/>Tanya Jawab: Punya masalah dengan tanaman yang layu, ikan yang stres, atau burung yang sedang sakit? Ajukan pertanyaan di forum, dan dapatkan jawaban dari komunitas atau ahli yang siap membantu.
+                            <br/>Galeri Foto: Bagikan foto koleksi tanaman, ikan, atau burung hias Anda, serta lihat koleksi anggota lain untuk inspirasi dan ide.
                             Forum T-Trana diciptakan untuk menjadi wadah bertukar informasi dan memperdalam pengetahuan tentang flora dan fauna hias yang Anda cintai. Temukan solusi, inspirasi, dan jalin persahabatan baru di komunitas yang penuh semangat ini!
                       </p>
                   </div>
