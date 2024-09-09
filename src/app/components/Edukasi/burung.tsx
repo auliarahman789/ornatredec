@@ -48,7 +48,7 @@ function Burung() {
       <div className="">
         <Image src='/img/burungmati.png' className="w-full h-auto translate-x-[13px]" alt={"burung"} width={550} height={434}/>
       </div>
-      <div className="mx-[8%] mt-[5%]">
+      <div className="ms-[10%] mt-[5%]">
         <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">Tips Menghindari
         Burung Cepat Mati</h1>
         <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
