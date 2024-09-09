@@ -25,11 +25,9 @@ function Navbar() {
               <li className="cursor-pointer text-[18px]">Produk</li>
             </Link>
             <Link href="">
-            <li>
-             Edukasi
-            </li>
+              <li className="cursor-pointer text-[18px]">Edukasi</li>
             </Link>
-            <Link href="/about">
+            <Link href="/About">
               <li className="cursor-pointer text-[18px]">About</li>
             </Link>
           </ul>
