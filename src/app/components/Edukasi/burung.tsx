@@ -3,7 +3,7 @@ import React from "react";
 
 function Burung() {
   return (
-    <div className="grid gap-0 grid-cols-2 mx-[100px] pb-[8%]">
+    <div className="grid gap-0 grid-cols-2 mx-[100px] pb-[8%]" id="burung">
       <div className="translate-x-[13px]">
         <h1 className="text-[#3F9272] font-bold text-[40px]">Apa Itu Burung Hias?</h1>
         <p className="text-[20px] me-[4%] mt-[2%] text-[#54A082]">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
