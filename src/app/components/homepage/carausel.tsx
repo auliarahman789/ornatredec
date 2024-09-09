@@ -46,8 +46,11 @@ const Carausel1: NextPage = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1000,
+<<<<<<<<< Temporary merge branch 1
     arrows: false,
+=========
     arrow: false,
+>>>>>>>>> Temporary merge branch 2
   };
 
   return (
