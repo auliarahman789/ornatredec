@@ -1,7 +1,7 @@
 import React from "react";
 
-function Tanaman() {
+function Edukasi() {
   return <div></div>;
 }
 
-export default Tanaman;
+export default Edukasi;
