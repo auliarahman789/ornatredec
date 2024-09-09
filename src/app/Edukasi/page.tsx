@@ -1,6 +1,6 @@
 import React from "react";
-import Main from "../components/Edukasi/main";
-import Burung from "../components/Edukasi/burung";
+import Main from "../components/(Edukasi)/main";
+import Burung from "../components/(Edukasi)/burung";
 import Footer from "../components/homepage/footer";
 
 function Edukasi() {

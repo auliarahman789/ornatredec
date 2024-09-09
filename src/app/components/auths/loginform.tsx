@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [role, setRole] = useState<string>("user"); 
+  const [role, setRole] = useState<string>("user");
   const router = useRouter();
 
   async function login() {
@@ -69,7 +69,7 @@ const Login = () => {
                 name="password"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className="w-[320px] pl-14 bg-[#E3FFF3] pb-[13px] mt-6 pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8 text-[#3F9272] rounded-md"
+                className="w-[320px] pl-14 bg-[#E3FFF3] pb-[13px] mt-6 pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8/ text-[#3F9272] rounded-md"
               />
               <Image
                 src={passwordIcon}
