@@ -17,7 +17,7 @@ const LoginR = ({
       }}
     >
       <div className="text-center">
-        <h1 className="text-[30px] font-bold mt-24 -translate-y-2">Selamat Datang</h1>
+        <h1 className="text-[30px] font-bold mt-20 -translate-y-2">Selamat Datang</h1>
         <p className="mt-6 -translate-y-3">
           Tap disini jika kamu belum
           <br />
@@ -28,7 +28,7 @@ const LoginR = ({
         onClick={(e) => {
           setIsAnimated(!isAnimated);
         }}
-        className="bg-transparent rounded-full mt-2 h-[40px] w-[170px] border-[1px] border-white -translate-y-4"
+        className="bg-transparent rounded-full mt-2 h-[50px] w-[170px] border-[1px] border-white -translate-y-4"
       >
         Buat
       </button>
