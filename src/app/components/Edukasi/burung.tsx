@@ -1,7 +1,11 @@
 import React from "react";
 
 function Burung() {
-  return <div></div>;
+  return (
+    <div>
+
+  </div>
+  )
 }
 
 export default Burung;
