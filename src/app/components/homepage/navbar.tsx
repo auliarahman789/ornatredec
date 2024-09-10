@@ -27,7 +27,7 @@ function Navbar() {
             <Link href="">
               <li>Edukasi</li>
             </Link>
-            <Link href="/about">
+            <Link href="/About">
               <li>About</li>
             </Link>
           </ul>
@@ -35,10 +35,14 @@ function Navbar() {
 
         {/* Bagian kanan: tombol login dan daftar */}
         <div>
-          <button className="text-[#308967]">login</button>
-          <button className="text-white bg-green-500 rounded-lg py-1 px-4 ml-2">
-            Daftar
-          </button>
+          <Link href="/auths">
+            <button className="text-[#308967]">login</button>
+          </Link>
+          <Link href="/auths">
+            <button className="text-white bg-green-500 rounded-lg py-1 px-4 ml-2">
+              Daftar
+            </button>
+          </Link>
         </div>
       </nav>
     </div>
