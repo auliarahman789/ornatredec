@@ -1,5 +1,3 @@
-import React from "react";
-import Main from "../components/Edukasi/burung2";
 import Burung from "../components/Edukasi/burung";
 import Footer from "../components/homepage/footer";
 

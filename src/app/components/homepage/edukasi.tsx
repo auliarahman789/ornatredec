@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function Edukasi() {
   return (
@@ -68,7 +69,9 @@ function Edukasi() {
               </span>
               <span className="pl-5 text-[#CCFFEB] text-[20px] ">
                 tips and trick merawat.....
-                <span className="text-white text-2xl">Baca selengkapnya</span>
+                <Link href="/Edukasi">
+                  <span className="text-white text-2xl">Baca selengkapnya</span>
+                </Link>
               </span>
             </div>
           </div>

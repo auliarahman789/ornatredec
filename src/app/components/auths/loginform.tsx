@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [role, setRole] = useState<string>("user"); 
+  const [role, setRole] = useState<string>("user");
   const router = useRouter();
 
   async function login() {
@@ -40,7 +40,7 @@ const Login = () => {
   }
 
   return (
-    <main>
+    <main id="Login">
       <div className="bg-white w-[530px] h-[520px]">
         <div className="flex flex-col justify-center items-center">
           <h1 className="font-bold text-[30px] pt-[60px] text-[#3F9272] mt-16">
@@ -69,7 +69,7 @@ const Login = () => {
                 name="password"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className="w-[320px] pl-14 bg-[#E3FFF3] pb-[13px] mt-6 pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8 text-[#3F9272] rounded-md"
+                className="w-[320px] pl-14 bg-[#E3FFF3] pb-[13px] mt-6 pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8/ text-[#3F9272] rounded-md"
               />
               <Image
                 src={passwordIcon}
@@ -83,7 +83,7 @@ const Login = () => {
           <button
             type="submit"
             onClick={login} // Call the login function here
-            className="bg-[#3F9272] text-sm text-white px-12 py-[10px] mt-[30px] rounded-full"
+            className="bg-[#3F9272] text-sm text-white px-12 py-[10px] h-[50px] w-[170px] mt-[30px] rounded-full"
           >
             Masuk
           </button>
