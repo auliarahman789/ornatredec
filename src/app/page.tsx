@@ -14,9 +14,8 @@ function page() {
       <main className=" min-h-screen w-full ">
         <Forum />
       </main>
-      <main className="h-[60%]">
-        <Footer />
-      </main>
+
+      <Footer />
     </div>
   );
 }

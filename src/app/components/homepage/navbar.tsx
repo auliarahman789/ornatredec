@@ -8,15 +8,15 @@ function Navbar() {
     <div>
       <nav className="flex justify-between items-center bg-[#DBFFF6] px-14 p-6">
         {/* Bagian kiri: logo */}
-        <div className="flex items-center">
+        <div className="flex">
           <Image src={logo} alt="Logo" width={95} height={95} />
         </div>
 
         {/* Bagian tengah: menu navigasi */}
         <div className="flex-1 flex justify-center text-[#308967]">
-          <ul className="flex space-x-10">
+          <ul className="flex space-x-10 text-[18px]">
             <Link href="/">
-              <li className="pt-2">Home</li>
+              <li>Home</li>
             </Link>
             <Link href="">
               <li>Forum</li>
@@ -35,8 +35,8 @@ function Navbar() {
 
         {/* Bagian kanan: tombol login dan daftar */}
         <div>
-          <button>login</button>
-          <button className="bg-green-500 rounded-lg py-1 px-4 ml-2">
+          <button className="text-[#308967]">login</button>
+          <button className="text-white bg-green-500 rounded-lg py-1 px-4 ml-2">
             Daftar
           </button>
         </div>

@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [role, setRole] = useState<string>("user"); 
+  const [role, setRole] = useState<string>("user");
   const router = useRouter();
 
   async function login() {
