@@ -6,7 +6,7 @@ import Navbar from "./homepage/navbar";
 
 const josefinSans = JosefinSans({ subsets: ["latin"] });
 
-const disableNavbar = ["/auths"];  // Array of paths where Navbar should be disabled
+const disableNavbar = ["/auths"]; 
 
 export default function RootLayoutClient({
   children,
@@ -14,8 +14,6 @@ export default function RootLayoutClient({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-
-  // Check if pathname matches any of the paths in disableNavbar
   const isNavbarDisabled = disableNavbar.includes(pathname);
 
   return (
