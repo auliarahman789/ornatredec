@@ -83,7 +83,7 @@ const Login = () => {
           <button
             type="submit"
             onClick={login} // Call the login function here
-            className="bg-[#3F9272] text-sm text-white px-12 py-[10px] mt-[30px] rounded-full"
+            className="bg-[#3F9272] text-sm text-white px-12 py-[10px] h-[50px] w-[170px] mt-[30px] rounded-full"
           >
             Masuk
           </button>
