@@ -9,15 +9,14 @@ function Home() {
       <div className="grid grid-cols-2 gap-4">
         <div className="m-10 h-[250%]">
           <div className="mt-[20%] inline-block font-bold text-[64px]">
-            <span className="text-[#308967]">LOREM </span>
-            <span className="bg-[#308967] text-white pt-3">IPSUM</span>
+            <span className="text-[#308967]">Selamat </span>
+            <span className="bg-[#308967] text-white pt-3">Datang</span>
           </div>
           <div className="text-[#308967] me-9">
             <p className="text-[20px] mt-[15px] leading-tight font-normal">
-              Lorem ipsum dolor sit amet. In illum veniam ut aperiam dolor et
-              voluptate omnis qui veritatis dolorem et omnis doloribus et saepe
-              inventore? Et sequi officia rem soluta repudiandae et quia
-              voluptatum qui necessitatibus voluptatem.
+              T-trana adalah web yang meyediakan fitur seperti forum untuk
+              penggemar, edukasi tentang tanaman hias,burung hias dan ikan hias
+              juga, menyediakan laman untuk jual beli.
             </p>
           </div>
         </div>

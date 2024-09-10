@@ -16,27 +16,27 @@ function Navbar() {
         <div className="flex-1 flex justify-center text-[#308967]">
           <ul className="flex space-x-10">
             <Link href="/">
-              <li className="cursor-pointer text-[18px]">Home</li>
+              <li className="pt-2">Home</li>
             </Link>
             <Link href="">
-              <li className="cursor-pointer text-[18px]">Forum</li>
+              <li>Forum</li>
             </Link>
             <Link href="">
-              <li className="cursor-pointer text-[18px]">Produk</li>
+              <li>Produk</li>
             </Link>
             <Link href="">
-              <li className="cursor-pointer text-[18px]">Edukasi</li>
+              <li>Edukasi</li>
             </Link>
             <Link href="/about">
-              <li className="cursor-pointer text-[18px]">About</li>
+              <li>About</li>
             </Link>
           </ul>
         </div>
 
         {/* Bagian kanan: tombol login dan daftar */}
         <div>
-          <button className="mr-2 text-[#308967]">Login</button>
-          <button className="bg-green-500 text-white rounded-lg py-1 px-4">
+          <button>login</button>
+          <button className="bg-green-500 rounded-lg py-1 px-4 ml-2">
             Daftar
           </button>
         </div>

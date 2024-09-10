@@ -3,7 +3,7 @@ import React from "react";
 
 const Produk = () => {
   async function Produk() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/`;
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/product`;
     try {
       const res = await axios.post(
         url,

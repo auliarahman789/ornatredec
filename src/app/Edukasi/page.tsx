@@ -1,10 +1,12 @@
 import React from "react";
 import Main from "../components/Edukasi/main";
+import Tanaman from "../components/Edukasi/tanaman";
 
 function Edukasi() {
   return (
-    <div>
+    <div className="bg-[#E4FFF2]">
       <Main />
+      <Tanaman />
     </div>
   );
 }
