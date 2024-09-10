@@ -48,12 +48,27 @@ function Tanaman() {
         </div>
         <div className="grid grid-cols-2 min-h-screen bg-[#E4FFF2] -translate-y-[28%]">
           <div className="pl-[17%]">
-            <Image
-              src="/img/Daun hias.png"
-              width={555}
-              height={80}
-              alt="bunga"
-            />
+            <Image src="/img/tan2.png" width={555} height={80} alt="bunga" />
+          </div>
+          <div>
+            <h1 className="text-[40px] text-center pr-[12%] pt-[2%] font-bold text-[#3F9272]">
+              Tujuan Merawat Tanaman
+            </h1>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 bg-[#E4FFF2] min-h-screen -translate-y-[56%]">
+          <div className="flex justify-start pt-[2%] pl-[17%]">
+            <h1 className="text-[40px] font-bold text-[#3F9272]">
+              Tujuan Merawat Tanaman
+            </h1>
+          </div>
+          <div>
+            <Image src="/img/tan3.png" width={555} height={80} alt="bunga" />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 min-h-screen bg-[#E4FFF2] -translate-y-[85%]">
+          <div className="pl-[17%]">
+            <Image src="/img/tan4.png" width={555} height={80} alt="bunga" />
           </div>
           <div>
             <h1 className="text-[40px] text-center pr-[12%] pt-[2%] font-bold text-[#3F9272]">
