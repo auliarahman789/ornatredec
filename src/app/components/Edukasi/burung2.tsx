@@ -1,6 +1,12 @@
 import React from "react";
 
-function Main() {
+const Burung2 = ({
+  isAnimated,
+  setIsAnimated,
+}: {
+  isAnimated: any;
+  setIsAnimated: any;
+}) => {
   return (
     <div className="pt-1 ">
       <div
@@ -27,15 +33,22 @@ function Main() {
               </p>
             </div>
           </div>
-          <ul className="text-center space-x-10 -translate-y-14 text-[22px] text-white font-semibold flex justify-center mt-5">
-            <li className="mx-2 cursor-pointer">Tanaman</li>
-            <li className="mx-2 cursor-pointer">Ikan</li>
-            <li className="mx-2 cursor-pointer">Burung</li>
-          </ul>
         </div>
       </div>
+      <ul className="text-center space-x-10 -translate-y-14 text-[22px] text-white font-semibold flex justify-center mt-5">
+        <li className="mx-2 cursor-pointer">Tanaman</li>
+        <li className="mx-2 cursor-pointer">Ikan</li>
+        <li
+          className="mx-2 cursor-pointer"
+          onClick={(e) => {
+            setIsAnimated(!isAnimated);
+          }}
+        >
+          Burung
+        </li>
+      </ul>
     </div>
   );
-}
+};
 
-export default Main;
+export default Burung2;

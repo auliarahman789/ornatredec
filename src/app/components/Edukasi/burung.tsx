@@ -1,10 +1,13 @@
+'use client'
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import Burung2 from "./burung2";
 
 function Burung() {
+  const [isAnimated, setIsAnimated] = useState(true);
   return (
-    <div className="grid gap-0 grid-cols-2 mx-[100px] pb-[8%]" id="burung">
-      <div className="translate-x-[13px]">
+    <><Burung2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} /><div className="grid gap-0 grid-cols-2 mx-[100px] pb-[8%]" id="burung">
+      <div className={`-translate-x-20 ${isAnimated ? 'translate-x-[13px]' : 'opacity-0'}`}>
         <h1 className="text-[#3F9272] font-bold text-[40px]">Apa Itu Burung Hias?</h1>
         <p className="text-[20px] me-[4%] mt-[2%] text-[#54A082]">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
           sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -16,10 +19,10 @@ function Burung() {
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ve</p>
       </div>
       <div className="ms-[5%]">
-        <Image src='/img/burung1.png' className="w-full h-auto -translate-x-[13px]" alt={"burung"} width={550} height={434}/>
+        <Image src='/img/burung1.png' className="w-full h-auto -translate-x-[13px]" alt={"burung"} width={550} height={434} />
       </div>
       <div className="">
-        <Image src='/img/burung2.png' className="w-full h-auto translate-x-[13px]" alt={"burung"} width={550} height={434}/>
+        <Image src='/img/burung2.png' className="w-full h-auto translate-x-[13px]" alt={"burung"} width={550} height={434} />
       </div>
       <div className="mx-[8%] mt-[5%]">
         <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">Cara Merawat Burung Hias</h1>
@@ -43,14 +46,14 @@ function Burung() {
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ve</p>
       </div>
       <div className="ms-[5%]">
-        <Image src='/img/pakanburung.png' className="w-full h-auto -translate-x-[13px]" alt={"burung"} width={550} height={434}/>
+        <Image src='/img/pakanburung.png' className="w-full h-auto -translate-x-[13px]" alt={"burung"} width={550} height={434} />
       </div>
       <div className="">
-        <Image src='/img/burungmati.png' className="w-full h-auto translate-x-[13px]" alt={"burung"} width={550} height={434}/>
+        <Image src='/img/burungmati.png' className="w-full h-auto translate-x-[13px]" alt={"burung"} width={550} height={434} />
       </div>
       <div className="ms-[10%] mt-[5%]">
         <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">Tips Menghindari
-        Burung Cepat Mati</h1>
+          Burung Cepat Mati</h1>
         <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
           sed do eiusmod tempor incididunt ut labore et dolore magna
           aliqua.Ut enim ad minim veniam, quis nostrud exercitation
@@ -60,7 +63,7 @@ function Burung() {
           dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ve</p>
       </div>
-  </div>
+    </div></>
   )
 }
 
