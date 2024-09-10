@@ -5,7 +5,7 @@ function Footer() {
   return (
     <div>
       <footer>
-        <div className="grid grid-cols-2 h-60 bg-[#D9FFF0] ">
+        <div className="grid grid-cols-2 h-60 w-full bg-[#D9FFF0] ">
           <div className=" pl-24 pt-16 pr-[10%]">
             <Image src="icon/logo.svg" width={150} height={150} alt="logo" />
             <span className="text-[16px] text-[#308967]">
@@ -37,9 +37,6 @@ function Footer() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="grid grid-rows-1">
-          <div className="bg-[#D9FFF0] h-8 pl-24 pr-24"></div>
         </div>
         <div className="grid grid-rows-1">
           <div className="bg-[#D9FFF0] h-8 pl-24 pr-24">

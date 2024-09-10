@@ -1,13 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import Footer from "./footer";
 
 function Forum() {
   return (
     <div>
       <div>
         <h1 className="text-[48px] text-[rgb(48,137,103)] text-center z-50 relative font-bold"></h1>
-        <div className="relative h-[60%] overflow-hidden bg-white">
+        <div className="relative h-auto overflow-hidden bg-white">
           <div className="relative z-20">
             <h1 className="text-[48px] text-[#308967] text-center font-bold">
               Forum <span className="text-[#66C09E] font-bold">Diskusi</span>
@@ -21,7 +20,7 @@ function Forum() {
                 className="relative"
               />
             </div>
-            <div className="bg-[#51CB9F] ml-[98px] mr-[98px] h-96 translate-y-20 relative z-20">
+            <div className="bg-[#51CB9F] ml-[8%] mr-[8%] h-96 translate-y-20 relative z-20">
               <h1 className="text-[#367B60] text-[24px] text-center">
                 Pembahasan <span className="text-white">Popular</span>
               </h1>
@@ -77,13 +76,6 @@ function Forum() {
               </div>
             </div>
           </div>
-          {/* <Image
-            src="/img/lengkung putih.png"
-            width={1000}
-            height={1200} // Increase height as needed
-            alt="lengkungan putih"
-            className="absolute bottom-0 translate-y-24 left-0 w-full"
-          /> */}
         </div>
       </div>
     </div>
