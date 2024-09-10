@@ -17,6 +17,7 @@ function Navbar() {
           <ul className="flex space-x-10 text-[18px]">
             <Link href="/">
               <li>Home</li>
+              <li className="pt-2">Home</li>
             </Link>
             <Link href="">
               <li>Forum</li>
@@ -36,7 +37,9 @@ function Navbar() {
         {/* Bagian kanan: tombol login dan daftar */}
         <div>
           <button className="text-[#308967]">login</button>
-          <button className="bg-green-500 rounded-lg py-1 px-4 ml-2 text-white">
+          <button className="bg-green-500 rounded-lg py-1 px-4 ml-2 text-white"></button>
+          <button>login</button>
+          <button className="bg-green-500 rounded-lg py-1 px-4 ml-2">
             Daftar
           </button>
         </div>
