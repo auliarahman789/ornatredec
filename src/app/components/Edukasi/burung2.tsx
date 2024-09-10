@@ -16,7 +16,7 @@ const Burung2 = ({ isAnimated, setIsAnimated }:
       <ul className="text-center space-x-10 -translate-y-14 text-[22px] text-white font-semibold flex justify-center mt-5">
         <li className="mx-2 cursor-pointer">Tanaman</li>
         <li className="mx-2 cursor-pointer">Ikan</li>
-        <li className="mx-2 cursor-pointer"  onClick={(e) => {setIsAnimated(!isAnimated);}}>Burung</li>
+        <li className="mx-2 cursor-pointer"  onClick={(e) => {setIsAnimated(true);}}>Burung</li>
       </ul>
     </div>
   );

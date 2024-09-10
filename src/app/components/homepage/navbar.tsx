@@ -27,7 +27,7 @@ function Navbar() {
             <Link href="/Edukasi">
               <li className="cursor-pointer text-[18px]">Edukasi</li>
             </Link>
-            <Link href="/About">
+            <Link href="/about">
               <li className="cursor-pointer text-[18px]">About</li>
             </Link>
           </ul>
