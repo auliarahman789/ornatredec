@@ -1,48 +1,162 @@
-import React from "react";
+"use client";
 import Image from "next/image";
+import React, { useState } from "react";
+import Burung2 from "./burung2";
 
-function Tanaman() {
+function Burung() {
+  const [isAnimated, setIsAnimated] = useState(false);
   return (
-    <div id="Tanaman">
-      <div className="pt-1 ">
+    <>
+      <Burung2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
+      <div
+        className="grid gap-0 grid-cols-2 mx-[98px] me-[100px] pb-[8%]"
+        id="burung"
+      >
         <div
-          className="relative mt-[40px] mx-[100px] w-[84%] h-[415px] bg-cover"
-          style={{ backgroundImage: "url('/img/bgburung.png')" }}
+          className={`${
+            isAnimated
+              ? "transition-transform duration-1000 ease-in-out translate-x-3 opacity-100"
+              : "-translate-x-[100%] opacity-0"
+          }`}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-[#000000] to-[#d9d9d970] ps-8 pt-[10%]">
-            <h1 className="text-5xl font-bold text-white">Edukasi</h1>
-            <p className="w-[56%] text-[27px] text-white mt-2">
-              Dapatkan informasi terbaru dan praktis tentang cara merawat Burung
-              Hias di sini, dan tingkatkan pengalaman Anda dalam menjaga
-              keindahan dan kesehatan koleksi Anda.
-            </p>
-          </div>
+          <h1 className="text-[#3F9272] font-bold text-[40px]">
+            Apa Itu Burung Hias?
+          </h1>
+          <p className="text-[20px] me-[4%] mt-[2%] text-[#54A082]">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim ve
+          </p>
         </div>
-        <ul className="text-center space-x-10 -translate-y-14 text-[22px] text-white font-semibold flex justify-center mt-5">
-          <li className="mx-2 cursor-pointer">Tanaman</li>
-          <li className="mx-2 cursor-pointer">Ikan</li>
-          <li className="mx-2 cursor-pointer">Burung</li>
-        </ul>
-      </div>
-      <div id="Tanaman">
-        <div className="grid grid-cols-2 bg-[#E4FFF2] min-h-screen">
-          <div className="flex justify-start pl-[15%]">
-            <h1 className="text-[40px] font-bold text-[#3F9272]">
-              Tujuan Merawat Tanaman Hias
-            </h1>
-          </div>
-          <div>
-            <Image
-              src="/img/Daun hias.png"
-              width={555}
-              height={80}
-              alt="bunga"
-            />
-          </div>
+        <div
+          className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
+            isAnimated
+              ? "translate-x-2 opacity-100"
+              : "translate-x-[100%] opacity-0"
+          }`}
+        >
+          <Image
+            src="/img/burung1.png"
+            className="w-full h-auto -translate-x-[10px]"
+            alt={"burung"}
+            width={400}
+            height={434}
+          />
+        </div>
+        <div
+          className={`${
+            isAnimated
+              ? "transition-transform duration-1000 ease-in-out translate-x-0 pe-1 opacity-100"
+              : "-translate-x-[100%] opacity-0"
+          }`}
+        >
+          <Image
+            src="/img/burung2.png"
+            className="w-full h-auto translate-x-[13px]"
+            alt={"burung"}
+            width={550}
+            height={434}
+          />
+        </div>
+        <div
+          className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
+            isAnimated
+              ? "translate-x-3 pe-7 ps-5 pt-5 opacity-100"
+              : "translate-x-[100%] opacity-0"
+          }`}
+        >
+          <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
+            Cara Merawat Burung Hias
+          </h1>
+          <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore mag
+          </p>
+        </div>
+        <div
+          className={`${
+            isAnimated
+              ? "transition-transform duration-1000 ease-in-out translate-x-3 opacity-100 pt-5"
+              : "-translate-x-[100%] opacity-0"
+          }`}
+        >
+          <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
+            Makanan Yang Cocok Untuk Burung Hias
+          </h1>
+          <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim ve
+          </p>
+        </div>
+        <div
+          className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
+            isAnimated
+              ? "translate-x-2 opacity-100"
+              : "translate-x-[100%] opacity-0"
+          }`}
+        >
+          <Image
+            src="/img/pakanburung.png"
+            className="w-full h-auto -translate-x-[13px]"
+            alt={"burung"}
+            width={550}
+            height={434}
+          />
+        </div>
+        <div
+          className={`${
+            isAnimated
+              ? "transition-transform duration-1000 ease-in-out translate-x-0 pe-1 opacity-100"
+              : "-translate-x-[100%] opacity-0"
+          }`}
+        >
+          <Image
+            src="/img/burungmati.png"
+            className="w-full h-auto translate-x-[13px]"
+            alt={"burung"}
+            width={550}
+            height={434}
+          />
+        </div>
+        <div
+          className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
+            isAnimated
+              ? "translate-x-3 pe-7 ps-5 pt-5 opacity-100"
+              : "translate-x-[100%] opacity-0"
+          }`}
+        >
+          <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
+            Tips Menghindari Burung Cepat Mati
+          </h1>
+          <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim ve
+          </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
-export default Tanaman;
+export default Burung;

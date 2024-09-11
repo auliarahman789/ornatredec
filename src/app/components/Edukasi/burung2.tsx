@@ -25,7 +25,18 @@ const Burung2 = ({
       <ul className="text-center space-x-10 -translate-y-14 text-[22px] text-white font-semibold flex justify-center mt-5">
         <li className="mx-2 cursor-pointer">Tanaman</li>
         <li className="mx-2 cursor-pointer">Ikan</li>
-        <li className="mx-2 cursor-pointer text-[#89FFD2]"  onClick={(e) => {setIsAnimated(true);}}>Burung</li>
+<<<<<<< HEAD
+        <li className="mx-2 cursor-pointer"  onClick={(e) => {setIsAnimated(true);}}>Burung</li>
+=======
+        <li
+          className="mx-2 cursor-pointer"
+          onClick={(e) => {
+            setIsAnimated(!isAnimated);
+          }}
+        >
+          Burung
+        </li>
+>>>>>>> b28647107acf34ecfb618d88d944e215bd1f29ee
       </ul>
     </div>
   );
