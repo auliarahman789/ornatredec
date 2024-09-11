@@ -1,10 +1,13 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Ikan2 from "./ikan2";
 
 function Ikan() {
   const [isAnimated, setIsAnimated] = useState(false);
+  useEffect(() => {
+    setIsAnimated(true);
+  }, []);
   return (
     <>
       <Ikan2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />

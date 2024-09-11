@@ -1,11 +1,14 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tanaman2 from "./tanaman2";
 import Footer from "../../homepage/footer";
 
 function Tanaman() {
   const [isAnimated, setIsAnimated] = useState(false);
+  useEffect(() => {
+    setIsAnimated(true);
+  }, []);
   return (
     <div className="bg-[#DBFFF6]">
       <Tanaman2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
