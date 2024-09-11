@@ -20,17 +20,16 @@ function Ikan() {
           }`}
         >
           <h1 className="text-[#3F9272] font-bold text-[40px]">
-           Apa Itu Ikan Hias?
+            Apa Itu Ikan Hias?
           </h1>
           <p className="text-[20px] me-[4%] mt-[2%] text-[#54A082]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim ve
+            Ikan hias adalah jenis ikan yang dipelihara oleh pecinta akuarium
+            atau penghobi sebagai dekorasi hidup karena keindahan yang
+            dimilikinya, baik dari segi warna, bentuk tubuh, maupun pola unik
+            yang terdapat pada sisik atau siripnya. Biasanya, ikan hias
+            dipelihara di akuarium dalam ruangan, kolam hias di taman, atau
+            bahkan tangki khusus dengan sistem yang dirancang untuk menciptakan
+            ekosistem air yang nyaman bagi mereka.
           </p>
         </div>
         <div
@@ -74,12 +73,12 @@ function Ikan() {
             Cara Merawat Merawat Ikan Hias
           </h1>
           <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore mag
+            Merawat ikan hias bukan hanya soal memberi makan setiap hari, tetapi
+            juga menciptakan lingkungan yang sehat dan nyaman bagi mereka. Di
+            T-trana, kami menyediakan panduan praktis untuk membantu Anda
+            merawat ikan hias agar tetap sehat dan memperindah akuarium Anda.
+            Berikut adalah beberapa cara efektif untuk merawat ikan hias dengan
+            baik
           </p>
         </div>
         <div
@@ -93,14 +92,11 @@ function Ikan() {
             Makanan Yang Cocok Untuk Ikan Hias
           </h1>
           <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim ve
+            Pelet atau Flakes Makanan komersial yang mudah didapat dan seimbang
+            nutrisi. Cacing Sutera Sumber protein tinggi untuk pertumbuhan ikan.
+            Artemia Makanan hidup yang kaya nutrisi untuk ikan kecil. Sayuran
+            Seperti bayam atau selada, cocok untuk ikan herbivora. Daphnia Pakan
+            hidup yang baik untuk menjaga kesehatan ikan.
           </p>
         </div>
         <div
@@ -144,14 +140,11 @@ function Ikan() {
             Tips Menghindari Ikan Tidak Cepat Mati
           </h1>
           <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim ve
+            agar ikan hias tidak cepat mati, pastikan untuk menjaga kualitas air
+            dengan rutin menggantinya, mengatur suhu yang sesuai, memberikan
+            makanan yang seimbang, tidak menaruh terlalu banyak ikan dalam satu
+            akuarium, memilih ikan yang sehat saat membeli, serta memantau pH
+            air agar sesuai dengan kebutuhan ikan.
           </p>
         </div>
       </div>

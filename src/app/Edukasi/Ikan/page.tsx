@@ -7,9 +7,9 @@ function Edukasi() {
     <div>
       <div className="bg-[#E4FFF2] min-h-screen">
         <Ikan />
-        </div>
-        <Footer />
       </div>
+      <Footer />
+    </div>
   );
 }
 
