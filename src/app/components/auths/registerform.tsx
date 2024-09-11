@@ -20,7 +20,7 @@ const Register = ({
   const [password, setPassword] = useState<string>("");
 
   async function buatAkun() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/register`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/register`;
     try {
       const res = await axios.post(
         url,
@@ -37,14 +37,10 @@ const Register = ({
       );
       console.log(res);
       alert("Berhasil Membuat Akun");
-
-      // Reset form state
       setUsername("");
       setEmail("");
       setPhone("");
       setPassword("");
-
-      // Trigger animation
       setIsAnimated(!isAnimated);
     } catch (error: any) {
       console.log(error);
