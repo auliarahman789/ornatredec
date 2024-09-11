@@ -10,7 +10,7 @@ function Ikan() {
       <Ikan2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
       <div
         id="ikan"
-        className="grid gap-0 grid-cols-2 mx-[98px] me-[100px] pb-[8%]"
+        className="overflow-x-hidden grid gap-0 grid-cols-2 mx-[98px] me-[100px] pb-[8%]"
       >
         <div
           className={`${
