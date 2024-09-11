@@ -44,7 +44,7 @@ const Ikan2 = ({
             Ikan
           </li>
         </Link>
-        <Link href="#ikan">
+        <Link href="/Edukasi/Burung#burung">
           <li
             className="mx-2 cursor-pointer"
             onClick={(e) => {
