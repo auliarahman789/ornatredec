@@ -14,12 +14,12 @@ const Burung2 = ({
         className="relative mt-[40px] mx-[100px] w-[84%] h-[415px] bg-cover"
         style={{ backgroundImage: "url('/img/bgburung.png')" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#000000] to-[#d9d9d970] ps-8 pt-[10%]">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000] to-[#d9d9d970] ps-8 pt-[8%]">
           <h1 className="text-5xl font-bold text-white">Edukasi</h1>
           <p className="w-[56%] text-[27px] text-white mt-2">
-            Dapatkan informasi terbaru dan praktis tentang cara merawat Burung
-            Hias di sini, dan tingkatkan pengalaman Anda dalam menjaga keindahan
-            dan kesehatan koleksi Anda.
+            Dapatkan informasi terbaru dan praktis tentang cara merawat ikan,
+            burung, dan tanaman hias di sini, dan tingkatkan pengalaman
+            Anda dalam menjaga keindahan dan kesehatan koleksi Anda.
           </p>
         </div>
       </div>
@@ -30,7 +30,7 @@ const Burung2 = ({
         <Link href='/Edukasi/Ikan'>
         <li className="mx-2 cursor-pointer">Ikan</li>
         </Link>
-        <Link href='#burung'>
+        <Link href='/Edukasi/Burung#burung'>
         <li className="mx-2 cursor-pointer text-[#89FFD2]"  onClick={(e) => {setIsAnimated(true);}}>Burung</li>
         </Link>
       </ul>

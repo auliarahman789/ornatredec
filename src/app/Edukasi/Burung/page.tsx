@@ -3,11 +3,11 @@ import Footer from "@/app/components/homepage/footer";
 
 function Edukasi() {
   return (
-    <div>
-      <div className="bg-[#E4FFF2] min-h-screen">
-        <Burung />
+    <div className="bg-[#E4FFF2]">
+      <Burung />
+      <div>
+      <Footer />
       </div>
-        <Footer />
     </div>
   );
 }
