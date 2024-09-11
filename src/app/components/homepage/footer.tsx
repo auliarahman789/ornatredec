@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import logo from "../../../../public/icon/logo.svg";
+
 function Footer() {
   return (
     <div>
