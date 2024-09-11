@@ -1,5 +1,5 @@
 import React from "react";
-import Ikan from "../components/Edukasi/ikan";
+import Ikan from "../components/Edukasi/ikan/ikan";
 import Footer from "../components/homepage/footer";
 import Tanaman from "../components/Edukasi/Tanaman/tanaman";
 
