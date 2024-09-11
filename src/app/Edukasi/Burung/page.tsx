@@ -1,5 +1,5 @@
-import Burung from "../components/Edukasi/burung";
-import Footer from "../components/homepage/footer";
+import Burung from "../../components/Edukasi/burung";
+import Footer from "../../components/homepage/footer";
 
 function Edukasi() {
   return (
