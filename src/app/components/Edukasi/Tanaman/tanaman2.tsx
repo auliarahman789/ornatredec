@@ -12,7 +12,7 @@ const Tanaman2 = ({
     <div className="pt-1 ">
       <div
         className="relative mt-[40px] mx-[100px] w-[84%] h-[415px] bg-cover"
-        style={{ backgroundImage: "url('/img/bgburung.png')" }}
+        style={{ backgroundImage: "url('/img/judul.png')" }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#000000] to-[#d9d9d970] ps-8 pt-[10%]">
           <h1 className="text-5xl font-bold text-white">Edukasi</h1>
@@ -34,12 +34,12 @@ const Tanaman2 = ({
             Tanaman
           </li>
         </Link>
-        <Link href="/Edukasi/Ikan">
-          <li className="mx-2 cursor-pointer">Ikan</li>
+        <Link href="/Edukasi/Ikan#ikan">
+          <li className="mx-2 cursor-pointer hover:text-[#89FFD2]">Ikan</li>
         </Link>
-        <Link href="#burung">
+        <Link href="/Edukasi/Burung#burung">
           <li
-            className="mx-2 cursor-pointer"
+            className="mx-2 cursor-pointer hover:text-[#89FFD2]"
             onClick={(e) => {
               setIsAnimated(true);
             }}
