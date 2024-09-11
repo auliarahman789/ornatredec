@@ -2,11 +2,12 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Tanaman2 from "./tanaman2";
+import Footer from "../../homepage/footer";
 
 function Tanaman() {
   const [isAnimated, setIsAnimated] = useState(false);
   return (
-    <>
+    <div>
       <Tanaman2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
       <div
         id="tumbuhan"
@@ -71,7 +72,7 @@ function Tanaman() {
           }`}
         >
           <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
-            Cara Merawat Burung Hias
+            Cara Merawat Tanaman Hias
           </h1>
           <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -90,7 +91,7 @@ function Tanaman() {
           }`}
         >
           <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
-            Makanan Yang Cocok Untuk Burung Hias
+            Waktu Yang Baik Untuk Merawat Tanaman
           </h1>
           <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -141,7 +142,7 @@ function Tanaman() {
           }`}
         >
           <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
-            Tips Menghindari Burung Cepat Mati
+            Penyebab Tanaman Sakit
           </h1>
           <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -155,7 +156,7 @@ function Tanaman() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
