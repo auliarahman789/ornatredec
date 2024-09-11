@@ -46,7 +46,7 @@ function Ikan() {
           <div>
             <Image
               src="/img/ikan hias 1.png"
-              width={555}
+              width={530}
               height={80}
               alt="bunga"
             />
