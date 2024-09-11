@@ -1,13 +1,14 @@
 import Burung from "@/app/components/Edukasi/burung/burung";
 import Footer from "@/app/components/homepage/footer";
+import React from "react";
 
 function Edukasi() {
   return (
-    <div className="bg-[#E4FFF2]">
-      <Burung />
-      <div>
-      <Footer />
+    <div>
+      <div className="bg-[#E4FFF2] min-h-screen">
+        <Burung />
       </div>
+        <Footer />
     </div>
   );
 }

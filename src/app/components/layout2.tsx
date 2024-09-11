@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { Josefin_Sans as JosefinSans } from "next/font/google";
 
 import { usePathname } from "next/navigation";
@@ -6,7 +6,7 @@ import Navbar from "./homepage/navbar";
 
 const josefinSans = JosefinSans({ subsets: ["latin"] });
 
-const disableNavbar = ["/auths"]; 
+const disableNavbar = ["/auths"];
 
 export default function RootLayoutClient({
   children,
@@ -19,6 +19,7 @@ export default function RootLayoutClient({
   return (
     <div className={josefinSans.className}>
       {!isNavbarDisabled && <Navbar />}
+
       {children}
     </div>
   );

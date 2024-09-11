@@ -1,16 +1,17 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import Burung2 from "./burung2";
+import Tanaman2 from "./tanaman2";
+import Footer from "../../homepage/footer";
 
-function Burung() {
+function Tanaman() {
   const [isAnimated, setIsAnimated] = useState(false);
   return (
-    <>
-      <Burung2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
+    <div>
+      <Tanaman2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
       <div
+        id="tumbuhan"
         className="grid gap-0 grid-cols-2 mx-[98px] me-[100px] pb-[8%]"
-        id="burung"
       >
         <div
           className={`${
@@ -20,7 +21,7 @@ function Burung() {
           }`}
         >
           <h1 className="text-[#3F9272] font-bold text-[40px]">
-            Apa Itu Burung Hias?
+            Tujuan Merawat Tanaman
           </h1>
           <p className="text-[20px] me-[4%] mt-[2%] text-[#54A082]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -41,7 +42,7 @@ function Burung() {
           }`}
         >
           <Image
-            src="/img/burung1.png"
+            src="/img/Daun hias.png"
             className="w-full h-auto -translate-x-[10px]"
             alt={"burung"}
             width={400}
@@ -71,7 +72,7 @@ function Burung() {
           }`}
         >
           <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
-            Cara Merawat Burung Hias
+            Cara Merawat Tanaman Hias
           </h1>
           <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -90,7 +91,7 @@ function Burung() {
           }`}
         >
           <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
-            Makanan Yang Cocok Untuk Burung Hias
+            Waktu Yang Baik Untuk Merawat Tanaman
           </h1>
           <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -141,7 +142,7 @@ function Burung() {
           }`}
         >
           <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
-            Tips Menghindari Burung Cepat Mati
+            Penyebab Tanaman Sakit
           </h1>
           <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -155,8 +156,8 @@ function Burung() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
-export default Burung;
+export default Tanaman;
