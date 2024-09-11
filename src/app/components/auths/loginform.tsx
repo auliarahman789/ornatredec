@@ -40,7 +40,7 @@ const Login = () => {
   }
 
   return (
-    <main>
+    <main id="Login">
       <div className="bg-white w-[530px] h-[520px]">
         <div className="flex flex-col justify-center items-center">
           <h1 className="font-bold text-[30px] pt-[60px] text-[#3F9272] mt-16">

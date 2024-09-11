@@ -33,9 +33,20 @@ function Tanaman() {
       <div id="Tanaman">
         <div className="grid grid-cols-2 bg-[#E4FFF2] min-h-screen">
           <div className="flex justify-start pl-[17%]">
-            <h1 className="text-[40px] font-bold text-[#3F9272]">
-              Tujuan Merawat Tanaman
-            </h1>
+            <div className="flex flex-col">
+              <h1 className="text-[40px] font-bold text-[#3F9272]">
+                Tujuan Merawat Tanaman
+              </h1>
+              <p className="text-[#54A082] text-[24px] text-left">
+                Tanaman hias adalah jenis tanaman yang ditanam dan dipelihara
+                untuk tujuan dekoratif, baik di dalam maupun di luar ruangan.
+                Tanaman hias dipilih karena keindahan daun, bunga, atau
+                bentuknya yang unik dan menarik. Selain sebagai elemen estetika,
+                tanaman hias juga dapat memberikan manfaat lain seperti
+                meningkatkan kualitas udara, menciptakan suasana yang lebih
+                sejuk, dan menambah kesegaran di sekitar lingkungan.
+              </p>
+            </div>
           </div>
           <div>
             <Image
@@ -52,14 +63,14 @@ function Tanaman() {
           </div>
           <div>
             <h1 className="text-[40px] text-center pr-[12%] pt-[2%] font-bold text-[#3F9272]">
-              Tujuan Merawat Tanaman
+              Cara Merawat Tanaman
             </h1>
           </div>
         </div>
         <div className="grid grid-cols-2 bg-[#E4FFF2] min-h-screen -translate-y-[56%]">
           <div className="flex justify-start pt-[2%] pl-[17%]">
-            <h1 className="text-[40px] font-bold text-[#3F9272]">
-              Tujuan Merawat Tanaman
+            <h1 className="text-[40px] font-bold text-[#3F9272] text-center">
+              Waktu yang tepat menyiram tanaman
             </h1>
           </div>
           <div>
@@ -72,7 +83,7 @@ function Tanaman() {
           </div>
           <div>
             <h1 className="text-[40px] text-center pr-[12%] pt-[2%] font-bold text-[#3F9272]">
-              Tujuan Merawat Tanaman
+              Cara Tanaman sehat
             </h1>
           </div>
         </div>
