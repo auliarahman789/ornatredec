@@ -1,9 +1,12 @@
-import React from 'react'
+import Tanaman from "@/app/components/Edukasi/Tanaman/tanaman";
+import React from "react";
 
 function Page() {
   return (
-    <div>Page</div>
-  )
+    <div>
+      <Tanaman />
+    </div>
+  );
 }
 
-export default Page
+export default Page;
