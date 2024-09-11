@@ -5,7 +5,8 @@ import Tanaman from "../components/Edukasi/Tanaman/tanaman";
 
 function page() {
   return (
-    <div>
+  <div className="bg-[#E4FFF2] min-h-screen">
+      <Ikan />
       <Tanaman />
     </div>
   );
