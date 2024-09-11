@@ -20,7 +20,6 @@ export default function RootLayoutClient({
     <div className={josefinSans.className}>
       {!isNavbarDisabled && <Navbar />}
       {children}
-      {/* <Footer /> */}
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Burung2 = ({
@@ -23,17 +24,15 @@ const Burung2 = ({
         </div>
       </div>
       <ul className="text-center space-x-10 -translate-y-14 text-[22px] text-white font-semibold flex justify-center mt-5">
+        <Link href='/Edukasi/Tanaman'>
         <li className="mx-2 cursor-pointer">Tanaman</li>
+        </Link>
+        <Link href='/Edukasi/Ikan'>
         <li className="mx-2 cursor-pointer">Ikan</li>
-        <li className="mx-2 cursor-pointer"  onClick={(e) => {setIsAnimated(true);}}>Burung</li>
-        <li
-          className="mx-2 cursor-pointer"
-          onClick={(e) => {
-            setIsAnimated(!isAnimated);
-          }}
-        >
-          Burung
-        </li>
+        </Link>
+        <Link href='#burung'>
+        <li className="mx-2 cursor-pointer text-[#89FFD2]"  onClick={(e) => {setIsAnimated(true);}}>Burung</li>
+        </Link>
       </ul>
     </div>
   );

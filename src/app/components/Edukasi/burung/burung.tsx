@@ -6,7 +6,7 @@ import Burung2 from "./burung2";
 function Burung() {
   const [isAnimated, setIsAnimated] = useState(false);
   return (
-    <><Burung2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} /><div className="grid gap-0 grid-cols-2 mx-[98px] me-[100px] pb-[8%]" id="burung">
+    <><Burung2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} /><div className="grid gap-0 overflow-x-hidden grid-cols-2 mx-[98px] me-[100px] pb-[8%]" id="burung">
        <div className={`${isAnimated ? 'transition-transform duration-1000 ease-in-out translate-x-3 opacity-100' : '-translate-x-[100%] opacity-0'}`}>
         <h1 className="text-[#3F9272] font-bold text-[40px]">Tujuan Merawat Burung Hias</h1>
         <p className="text-[20px] me-[4%] mt-[2%] text-[#54A082] text-justify">
