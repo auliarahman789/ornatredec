@@ -7,6 +7,7 @@ function page() {
     <div>
       <div>
         <Tanaman />
+        <Footer />
       </div>
     </div>
   );

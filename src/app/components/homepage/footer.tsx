@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import logo from "../../../../public/icon/logo.svg";
 
 function Footer() {
   return (
@@ -7,7 +8,7 @@ function Footer() {
       <footer>
         <div className="grid grid-cols-2 h-60 w-full bg-[#D9FFF0] ">
           <div className="pl-24 pt-16 pr-[10%]">
-            <Image src="icon/logo.svg" width={150} height={150} alt="logo" />
+            <Image src={logo} width={150} height={150} alt="logo" />
             <span className="text-[16px] text-[#308967]">
               T-trana adalah web yang meyediakan fitur seperti forum untuk
               penggemar, edukasi tentang tanaman hias,burung hias dan ikan hias

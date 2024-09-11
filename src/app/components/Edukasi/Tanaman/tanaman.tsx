@@ -7,11 +7,11 @@ import Footer from "../../homepage/footer";
 function Tanaman() {
   const [isAnimated, setIsAnimated] = useState(false);
   return (
-    <div>
+    <div className="bg-[#DBFFF6]">
       <Tanaman2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
       <div
         id="tumbuhan"
-        className="grid gap-0 grid-cols-2 mx-[98px] me-[100px] pb-[8%]"
+        className="grid gap-0 grid-cols-2 mx-[98px] me-[100px] pb-[8%] "
       >
         <div
           className={`${
@@ -24,7 +24,9 @@ function Tanaman() {
             Tujuan Merawat Tanaman
           </h1>
           <p className="text-[20px] me-[4%] mt-[2%] text-[#54A082]">
-            Merawat tanaman hias membuat lingkuran anda menjadi indah
+            Menanam tanaman hias di lingkungan anda membuat lingkungan anda
+            menjadi indah dan juga sejuk karena tanaman hias pada pagi hari
+            memberikan oksigen sehingga dapat menyejukkan lingkungan rumah anda
           </p>
         </div>
         <div
@@ -149,6 +151,7 @@ function Tanaman() {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
