@@ -27,10 +27,7 @@ function Navbar() {
             <Link href="/Edukasi">
               <li>Edukasi</li>
             </Link>
-<<<<<<<<< Temporary merge branch 1
-            <Link href="/about">
-              <li className="cursor-pointer text-[18px]">About</li>
-=========
+
             <Link href="/About">
               <li>About</li>
             </Link>
