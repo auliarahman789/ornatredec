@@ -20,7 +20,7 @@ function Burung() {
           }`}
         >
           <h1 className="text-[#3F9272] font-bold text-[40px]">
-            Apa Itu Burung Hias?
+            Tujuan Merawat Tanaman
           </h1>
           <p className="text-[20px] me-[4%] mt-[2%] text-[#54A082]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -41,7 +41,7 @@ function Burung() {
           }`}
         >
           <Image
-            src="/img/burung1.png"
+            src="/img/Daun hias.png"
             className="w-full h-auto -translate-x-[10px]"
             alt={"burung"}
             width={400}
