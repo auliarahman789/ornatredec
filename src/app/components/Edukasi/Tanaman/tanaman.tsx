@@ -1,16 +1,16 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import Burung2 from "./burung2";
+import Tanaman2 from "./tanaman2";
 
-function Burung() {
+function Tanaman() {
   const [isAnimated, setIsAnimated] = useState(false);
   return (
     <>
-      <Burung2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
+      <Tanaman2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
       <div
+        id="tumbuhan"
         className="grid gap-0 grid-cols-2 mx-[98px] me-[100px] pb-[8%]"
-        id="burung"
       >
         <div
           className={`${
@@ -159,4 +159,4 @@ function Burung() {
   );
 }
 
-export default Burung;
+export default Tanaman;
