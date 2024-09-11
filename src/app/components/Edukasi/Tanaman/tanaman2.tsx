@@ -9,7 +9,7 @@ const Tanaman2 = ({
   setIsAnimated: any;
 }) => {
   return (
-    <div className="pt-1 " id="tumbuhan">
+    <div className="pt-1 ">
       <div
         className="relative mt-[40px] mx-[100px] w-[84%] h-[415px] bg-cover"
         style={{ backgroundImage: "url('/img/judul.png')" }}
