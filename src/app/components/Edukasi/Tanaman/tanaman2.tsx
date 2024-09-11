@@ -9,7 +9,7 @@ const Tanaman2 = ({
   setIsAnimated: any;
 }) => {
   return (
-    <div className="pt-1 ">
+    <div className="pt-1 " id="tumbuhan">
       <div
         className="relative mt-[40px] mx-[100px] w-[84%] h-[415px] bg-cover"
         style={{ backgroundImage: "url('/img/judul.png')" }}
@@ -24,7 +24,7 @@ const Tanaman2 = ({
         </div>
       </div>
       <ul className="text-center space-x-10 -translate-y-14 text-[22px] text-white font-semibold flex justify-center mt-5">
-        <Link href="/Edukasi/Tumbuhan">
+        <Link href="/Edukasi/Tumbuhan#tumbuhan">
           <li
             className="mx-2 cursor-pointer text-[#89FFD2]"
             onClick={(e) => {
@@ -34,12 +34,12 @@ const Tanaman2 = ({
             Tanaman
           </li>
         </Link>
-        <Link href="/Edukasi/Ikan">
-          <li className="mx-2 cursor-pointer">Ikan</li>
+        <Link href="/Edukasi/Ikan#ikan">
+          <li className="mx-2 cursor-pointer hover:text-[#89FFD2]">Ikan</li>
         </Link>
-        <Link href="#burung">
+        <Link href="/Edukasi/Burung#burung">
           <li
-            className="mx-2 cursor-pointer"
+            className="mx-2 cursor-pointer hover:text-[#89FFD2]"
             onClick={(e) => {
               setIsAnimated(true);
             }}
