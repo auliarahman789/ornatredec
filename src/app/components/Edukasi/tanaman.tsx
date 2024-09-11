@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Footer from "../homepage/footer";
 
 function Tanaman() {
   return (
@@ -37,7 +38,7 @@ function Tanaman() {
               <h1 className="text-[40px] font-bold text-[#3F9272]">
                 Tujuan Merawat Tanaman
               </h1>
-              <p className="text-[#54A082] text-[24px] text-left">
+              <p className="text-[#54A082] text-[24px] text-justify pr-6">
                 Tanaman hias adalah jenis tanaman yang ditanam dan dipelihara
                 untuk tujuan dekoratif, baik di dalam maupun di luar ruangan.
                 Tanaman hias dipilih karena keindahan daun, bunga, atau
