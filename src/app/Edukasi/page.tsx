@@ -1,15 +1,17 @@
 import React from "react";
-import Tanaman from "../components/Edukasi/tanaman";
 import Ikan from "../components/Edukasi/ikan";
-import Burung from "../components/Edukasi/burung";
 import Footer from "../components/homepage/footer";
+import Tanaman from "../components/Edukasi/Tanaman/tanaman";
 
-function Edukasi() {
+function page() {
   return (
-    <div className="bg-[#E4FFF2] min-h-screen">
+  <div className="bg-[#E4FFF2] min-h-screen">
       <Ikan />
+    <div>
+      <Tanaman />
     </div>
+  </div>
   );
 }
 
-export default Edukasi;
+export default page;
