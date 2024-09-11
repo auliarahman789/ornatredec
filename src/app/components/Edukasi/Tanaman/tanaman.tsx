@@ -39,7 +39,7 @@ function Tanaman() {
           <Image
             src="/img/Daun hias.png"
             className="w-full h-auto -translate-x-[10px]"
-            alt={"burung"}
+            alt={"daun"}
             width={400}
             height={434}
           />
