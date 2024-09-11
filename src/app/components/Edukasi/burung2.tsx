@@ -34,15 +34,6 @@ const Burung2 = ({
         >
           Burung
         </li>
-
-        <li
-          className="mx-2 cursor-pointer"
-          onClick={(e) => {
-            setIsAnimated(true);
-          }}
-        >
-          Burung
-        </li>
       </ul>
     </div>
   );
