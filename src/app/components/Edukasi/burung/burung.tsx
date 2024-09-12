@@ -1,29 +1,33 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Burung2 from "./burung2";
 
 function Burung() {
-  const [isAnimated, setIsAnimated] = useState();
+  const [isAnimated, setIsAnimated] = useState(false);
+  useEffect(() => {
+    setIsAnimated(true);
+  }, []);
   return (
     <><Burung2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} /><div className="grid gap-0 overflow-x-hidden grid-cols-2 mx-[98px] me-[100px] pb-[8%]" id="burung">
        <div className={`${isAnimated ? 'transition-transform duration-1000 ease-in-out translate-x-3 opacity-100' : '-translate-x-[100%] opacity-0'}`}>
-        <h1 className="text-[#3F9272] font-bold text-[40px]">Tujuan Merawat Burung Hias</h1>
+        <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">Tujuan Merawat Burung Hias</h1>
         <p className="text-[20px] me-[4%] mt-[2%] text-[#54A082] text-justify">
-          Merawat burung hias bukan hanya sekadar hobi yang menyenangkan,
-          tetapi juga merupakan tanggung jawab besar dalam menjaga
-          kelestarian dan kesehatan burung-burung yang memiliki keindahan unik.
-          Bagi pecinta burung hias, memberikan perawatan yang baik adalah kunci
-          utama agar burung bisa hidup dengan nyaman, bahagia, dan tetap mempesona
-          dalam penampilannya. Di T-Trana, kami memahami betapa pentingnya
-          perawatan yang cermat bagi burung hias agar mereka dapat tumbuh sehat.</p>
+          Merawat burung hias menambah keindahan dan kenyamanan di rumah dengan
+          warna bulu yang cerah dan kicauan merdu. Kegiatan ini tidak hanya
+          memberikan kesenangan visual dan auditori, tetapi juga membantu
+          relaksasi, mengurangi stres, serta menciptakan suasana yang lebih tenang.
+          Memelihara burung hias mengajarkan tanggung jawab dan kepedulian, yang
+          berdampak positif pada kesehatan mental dan emosional. Dengan demikian, burung hias tidak
+          hanya memperindah lingkungan, tetapi juga meningkatkan kualitas hidup secara keseluruhan.</p>
       </div>
       <div className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${isAnimated ? 'translate-x-2 opacity-100' : 'translate-x-[100%] opacity-0'}`}>
-        <Image src='/img/burung1.png' className="w-full h-auto -translate-x-[10px]" alt={"burung"} width={400} height={434} />
-        <h1 className="content text-xl">Lihat Selengkapnya</h1>
+        <Image src='/img/burung1.png' className="w-full h-auto relative -translate-x-[10px]" alt={"burung"} width={400} height={434} />
+        <h1 className="content text-5xl text-white w-[543px] h-[448px]">Selengkapnya</h1>
       </div>
       <div className={`${isAnimated ? 'transition-transform duration-1000 ease-in-out translate-x-0 pe-1 opacity-100' : '-translate-x-[100%] opacity-0'}`}>
         <Image src='/img/burung2.png' className="w-full h-auto translate-x-[13px] " alt={"burung"} width={550} height={434} />
+        <h1 className="content text-5xl text-white translate-x-3 w-[527px] h-[445px]">Selengkapnya</h1>
       </div>
       <div className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${isAnimated ? 'translate-x-3 pe-7 ps-5 pt-5 opacity-100' : 'translate-x-[100%] opacity-0'}`}>
         <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">Cara Merawat Burung Hias</h1>
@@ -50,9 +54,11 @@ function Burung() {
       </div>
       <div className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${isAnimated ? 'translate-x-2 opacity-100' : 'translate-x-[100%] opacity-0'}`}>
         <Image src='/img/pakanburung.png' className="w-full h-auto -translate-x-[13px]" alt={"burung"} width={550} height={434} />
+        <h1 className="content text-5xl text-white w-[400px] h-[400px]">Selengkapnya</h1>
       </div>
       <div className={`${isAnimated ? 'transition-transform duration-1000 ease-in-out translate-x-0 pe-1 opacity-100' : '-translate-x-[100%] opacity-0'}`}>
         <Image src='/img/burungmati.png' className="w-full h-auto translate-x-[13px]" alt={"burung"} width={550} height={434} />
+        <h1 className="content text-5xl text-white">Selengkapnya</h1>
       </div>
       <div className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${isAnimated ? 'translate-x-3 pe-7 ps-5 pt-5 opacity-100' : 'translate-x-[100%] opacity-0'}`}>
         <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">Hal Yang Menyebabkan Kesehatan Burung Menurun</h1>

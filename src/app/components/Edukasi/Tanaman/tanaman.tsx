@@ -1,11 +1,14 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tanaman2 from "./tanaman2";
 import Footer from "../../homepage/footer";
 
 function Tanaman() {
   const [isAnimated, setIsAnimated] = useState(false);
+  useEffect(() => {
+    setIsAnimated(true);
+  }, []);
   return (
     <div className="bg-[#DBFFF6]">
       <Tanaman2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
@@ -39,7 +42,7 @@ function Tanaman() {
           <Image
             src="/img/Daun hias.png"
             className="w-full h-auto -translate-x-[10px]"
-            alt={"burung"}
+            alt={"daun"}
             width={400}
             height={434}
           />

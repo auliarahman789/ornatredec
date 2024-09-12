@@ -25,13 +25,13 @@ const Burung2 = ({
       </div>
       <ul className="text-center space-x-10 -translate-y-14 text-[22px] text-white font-semibold flex justify-center mt-5">
         <Link href="/Edukasi/Tumbuhan#tumbuhan">
-          <li className="mx-2 cursor-pointer hover:text-[#89FFD2]" onClick={(e) => {setIsAnimated(true);}}>Tanaman</li>
+          <li className="mx-2 cursor-pointer hover:text-[#89FFD2]" onClick={(e) => {setIsAnimated(false);}}>Tanaman</li>
         </Link>
         <Link href="/Edukasi/Ikan#ikan">
-          <li className="mx-2 cursor-pointer hover:text-[#89FFD2]">Ikan</li>
+          <li className="mx-2 cursor-pointer hover:text-[#89FFD2]"  onClick={(e) => {setIsAnimated(false);}}>Ikan</li>
         </Link>
-        <Link href='/Edukasi/Burung#burung'>
-        <li className="mx-2 cursor-pointer hover:text-[#89FFD2] text-[#89FFD2]"  onClick={(e) => {setIsAnimated(true);}}>Burung</li>
+        <Link href='/Edukasi/Burung#burung' onClick={(e) => {setIsAnimated(false);}}>
+        <li className="mx-2 cursor-pointer hover:text-[#89FFD2] text-[#89FFD2]" >Burung</li>
         </Link>
       </ul>
     </div>
