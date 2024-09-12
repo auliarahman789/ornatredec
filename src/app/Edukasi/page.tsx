@@ -104,7 +104,7 @@ const page = ({
                   className="w-[40%] h-[338px]"
                 />
                 <h1 className="text-[40px] text-[#3F9272] font-bold text-end pl-[7.5%] pt-6">
-                  Edukasi BUrung Hias
+                  Edukasi Burung Hias
                 </h1>
               </div>
               <div className="pl-[48%] -translate-y-56 text-[#3F9272] pr-10 text-[22px]">
