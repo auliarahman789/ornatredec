@@ -46,11 +46,6 @@ const page = ({
 
                 alt="bunga" />
               <h1 className="text-[40px] text-[#3F9272] font-bold text-end pl-[7.5%] pt-6">
-=======
-                alt="bunga"
-              />
-              <h1 className="text-[40px] text-[#3F9272] font-bold text-end pl-[10%] pt-6">
->>>>>>> dbabdf6870c1eed6ae4fb2ed85c475bcbe2f7fd7
                 Edukasi Tanaman Hias
               </h1>
             </div>
