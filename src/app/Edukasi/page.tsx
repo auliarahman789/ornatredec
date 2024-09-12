@@ -102,7 +102,6 @@ const page = ({
               <Link href='/Edukasi/Burung#burung' onClick={(e) => {setIsAnimated(false);}}>
                 <p className="translate-x-[63%] mt-14">Lihat selengkapnya</p>
               </Link>
-              
             </div>
           </div>
         </div>
