@@ -128,7 +128,7 @@ function Burung() {
             width={550}
             height={434}
           />
-          <h1 className="content text-5xl text-white w-[400px] h-[440px]">
+          <h1 className="content text-5xl text-white w-[97.5%] h-[100%]">
             Selengkapnya
           </h1>
         </div>
@@ -146,7 +146,9 @@ function Burung() {
             width={550}
             height={434}
           />
-          <h1 className="content text-5xl text-white">Selengkapnya</h1>
+          <h1 className="content text-5xl text-white w-[99.5%] h-[100%] translate-x-3">
+            Selengkapnya
+          </h1>
         </div>
         <div
           className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
