@@ -26,10 +26,17 @@ function Tanaman() {
           <h1 className="text-[#3F9272] font-bold text-[40px]">
             Tujuan Merawat Tanaman
           </h1>
-          <p className="text-[20px] me-[4%] mt-[2%] text-[#54A082]">
-            Menanam tanaman hias di lingkungan anda membuat lingkungan anda
-            menjadi indah dan juga sejuk karena tanaman hias pada pagi hari
-            memberikan oksigen sehingga dapat menyejukkan lingkungan rumah anda
+          <p className="text-[20px] me-[4%] text-[#54A082] text-justify">
+            Merawat tanaman hias memiliki tujuan yang penting, seperti
+            memperindah ruangan dan menghadirkan nuansa alami yang menenangkan.
+            Selain itu, tanaman hias berperan dalam meningkatkan kualitas udara
+            dengan menyaring polutan, sehingga udara di sekitar menjadi lebih
+            bersih dan segar. Kegiatan ini juga memberikan efek relaksasi,
+            membantu mengurangi stres, dan menciptakan lingkungan yang lebih
+            nyaman. Tak hanya itu, merawat tanaman juga berdampak positif pada
+            kesehatan mental dan emosional. Oleh karena itu, tanaman hias tidak
+            hanya mempercantik lingkungan, tetapi juga berkontribusi terhadap
+            kualitas hidup
           </p>
         </div>
         <div

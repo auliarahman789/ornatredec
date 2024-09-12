@@ -1,8 +1,16 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Footer from "../components/homepage/footer";
+import Link from "next/link";
 
-function page() {
+const page = ({
+  isAnimated,
+  setIsAnimated,
+}: {
+  isAnimated: any;
+  setIsAnimated: any;
+}) => {
   return (
     <>
       <div className="overflow-hidden bg-[#E4FFF2] pb-40">
@@ -49,6 +57,14 @@ function page() {
                   menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <p className="translate-x-[63%] mt-5">Lihat selengkapnya</p>
+                <Link
+                  href="/Edukasi/Tumbuhan#tumbuhan"
+                  onClick={(e) => {
+                    setIsAnimated(false);
+                  }}
+                >
+                  <p className="translate-x-[63%] mt-14">Lihat selengkapnya</p>
+                </Link>
               </div>
             </div>
             <div className="bg-white w-[80%] h-[338px] mx-auto mt-9  shadow-[3px_5px_4px] shadow-[#0000002e]">
@@ -69,7 +85,17 @@ function page() {
                   Ikan hias di sini, dan tingkatkan pengalaman Anda dalam
                   menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
+
                 <p className="translate-x-[63%] mt-14">Lihat selengkapnya</p>
+
+                <Link
+                  href="/Edukasi/Ikan#ikan"
+                  onClick={(e) => {
+                    setIsAnimated(false);
+                  }}
+                >
+                  <p className="translate-x-[63%] mt-14">Lihat selengkapnya</p>
+                </Link>
               </div>
             </div>
             <div className="bg-white w-[80%] h-[338px] mx-auto mt-9  shadow-[3px_5px_4px] shadow-[#0000002e]">
@@ -83,6 +109,7 @@ function page() {
                 />
                 <h1 className="text-[40px] text-[#3F9272] font-bold text-end pl-[7.5%] pt-6">
                   Edukasi Ikan Hias
+                  Edukasi Burung Hias
                 </h1>
               </div>
               <div className="pl-[48%] -translate-y-56 text-[#3F9272] pr-10 text-[22px]">
@@ -92,14 +119,24 @@ function page() {
                   menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <p className="translate-x-[63%] mt-14">Lihat selengkapnya</p>
+                  Burung Hias di sini, dan tingkatkan pengalaman Anda dalam
+                  menjaga keindahan dan kesehatan koleksi Anda.
+                </p>
+                <Link
+                  href="/Edukasi/Burung#burung"
+                  onClick={(e) => {
+                    setIsAnimated(false);
+                  }}
+                >
+                  <p className="translate-x-[63%] mt-14">Lihat selengkapnya</p>
+                </Link>
               </div>
             </div>
           </div>
         </div>
-      </div>
       <Footer />
     </>
   );
-}
+};
 
 export default page;
