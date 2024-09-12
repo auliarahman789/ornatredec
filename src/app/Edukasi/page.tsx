@@ -45,8 +45,8 @@ function page() {
                 Dapatkan informasi terbaru dan praktis tentang cara merawat
                 tanaman hias di sini, dan tingkatkan pengalaman Anda dalam
                 menjaga keindahan dan kesehatan koleksi Anda.
-                          </p>
-                          <p className="translate-x-[63%] mt-5">Lihat selengkapnya</p>
+              </p>
+              <p className="translate-x-[63%] mt-5">Lihat selengkapnya</p>
             </div>
           </div>
           <div className="bg-white w-[80%] h-[338px] mx-auto mt-9  shadow-[3px_5px_4px] shadow-[#0000002e]">
@@ -63,32 +63,32 @@ function page() {
             </div>
             <div className="pl-[48%] -translate-y-56 text-[#3F9272] pr-10 text-[22px]">
               <p>
-                              Dapatkan informasi terbaru dan praktis tentang cara
-                              merawat Ikan hias di sini, dan tingkatkan pengalaman Anda
-                              dalam menjaga keindahan dan kesehatan koleksi Anda.
-                          </p>
-                          <p className="translate-x-[63%] mt-14">Lihat selengkapnya</p>
+                Dapatkan informasi terbaru dan praktis tentang cara merawat Ikan
+                hias di sini, dan tingkatkan pengalaman Anda dalam menjaga
+                keindahan dan kesehatan koleksi Anda.
+              </p>
+              <p className="translate-x-[63%] mt-14">Lihat selengkapnya</p>
             </div>
           </div>
           <div className="bg-white w-[80%] h-[338px] mx-auto mt-9 shadow-[3px_5px_4px] shadow-[#0000002e]">
             <div className="flex">
               <Image
-                src="/img/Daun hias.png"
+                src="/img/burung hias.png"
                 width={400}
                 height={434}
-                alt="bunga"
+                alt="burung"
               />
               <h1 className="text-[40px] text-[#3F9272] font-bold text-end pl-[7.5%] pt-6">
-                Edukasi Tanaman Hias
+                Edukasi Burung Hias
               </h1>
             </div>
             <div className="pl-[48%] -translate-y-56 text-[#3F9272] pr-10 text-[22px]">
               <p>
                 Dapatkan informasi terbaru dan praktis tentang cara merawat
-                tanaman hias di sini, dan tingkatkan pengalaman Anda dalam
+                Burung Hias di sini, dan tingkatkan pengalaman Anda dalam
                 menjaga keindahan dan kesehatan koleksi Anda.
-                          </p>
-                          <p className="translate-x-[63%] mt-5">Lihat selengkapnya</p>
+              </p>
+              <p className="translate-x-[63%] mt-5">Lihat selengkapnya</p>
             </div>
           </div>
         </div>
