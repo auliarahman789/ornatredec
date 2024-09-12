@@ -1,13 +1,16 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Footer from "../components/homepage/footer";
 import Link from "next/link";
 
-function page() {
-  function setIsAnimated(arg0: boolean) {
-    throw new Error("Function not implemented.");
-  }
-
+const page = ({
+  isAnimated,
+  setIsAnimated,
+}: {
+  isAnimated: any;
+  setIsAnimated: any;
+}) => {
   return (
     <>
       <div className="overflow-hidden bg-[#E4FFF2] pb-40">
@@ -51,7 +54,7 @@ function page() {
                 <p>
                   Dapatkan informasi terbaru dan praktis tentang cara merawat
                   tanaman hias di sini, dan tingkatkan pengalaman Anda dalam
-                  menjaga keindahan dan kesehatan koleksi Anda.
+                  menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <Link
                   href="/Edukasi/Tumbuhan#tumbuhan"
@@ -79,7 +82,7 @@ function page() {
                 <p>
                   Dapatkan informasi terbaru dan praktis tentang cara merawat
                   Ikan hias di sini, dan tingkatkan pengalaman Anda dalam
-                  menjaga keindahan dan kesehatan koleksi Anda.
+                  menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <Link
                   href="/Edukasi/Ikan#ikan"
@@ -108,7 +111,7 @@ function page() {
                 <p>
                   Dapatkan informasi terbaru dan praktis tentang cara merawat
                   Burung Hias di sini, dan tingkatkan pengalaman Anda dalam
-                  menjaga keindahan dan kesehatan koleksi Anda.
+                  menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <Link
                   href="/Edukasi/Burung#burung"
@@ -126,6 +129,6 @@ function page() {
       <Footer />
     </>
   );
-}
+};
 
 export default page;
