@@ -54,7 +54,7 @@ function Burung() {
       </div>
       <div className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${isAnimated ? 'translate-x-2 opacity-100' : 'translate-x-[100%] opacity-0'}`}>
         <Image src='/img/pakanburung.png' className="w-full h-auto -translate-x-[13px]" alt={"burung"} width={550} height={434} />
-        <h1 className="content text-5xl text-white w-[400px] h-[400px]">Selengkapnya</h1>
+        <h1 className="content text-5xl text-white w-[400px] h-[440px]">Selengkapnya</h1>
       </div>
       <div className={`${isAnimated ? 'transition-transform duration-1000 ease-in-out translate-x-0 pe-1 opacity-100' : '-translate-x-[100%] opacity-0'}`}>
         <Image src='/img/burungmati.png' className="w-full h-auto translate-x-[13px]" alt={"burung"} width={550} height={434} />
