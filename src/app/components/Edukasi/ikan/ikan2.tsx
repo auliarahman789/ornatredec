@@ -28,7 +28,7 @@ const Ikan2 = ({
           <li
             className="mx-2 cursor-pointer hover:text-[#89FFD2]"
             onClick={(e) => {
-              setIsAnimated(true);
+              setIsAnimated(false);
             }}
           >
             Tanaman
@@ -38,7 +38,7 @@ const Ikan2 = ({
           <li
             className="mx-2 cursor-pointer text-[#89FFD2]"
             onClick={(e) => {
-              setIsAnimated(true);
+              setIsAnimated(false);
             }}
           >
             Ikan
@@ -48,7 +48,7 @@ const Ikan2 = ({
           <li
             className="mx-2 cursor-pointer hover:text-[#89FFD2]"
             onClick={(e) => {
-              setIsAnimated(true);
+              setIsAnimated(false);
             }}
           >
             Burung

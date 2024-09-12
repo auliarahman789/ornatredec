@@ -28,20 +28,22 @@ const Tanaman2 = ({
           <li
             className="mx-2 cursor-pointer text-[#89FFD2]"
             onClick={(e) => {
-              setIsAnimated(true);
+              setIsAnimated(false);
             }}
           >
             Tanaman
           </li>
         </Link>
         <Link href="/Edukasi/Ikan#ikan">
-          <li className="mx-2 cursor-pointer hover:text-[#89FFD2]">Ikan</li>
+          <li className="mx-2 cursor-pointer hover:text-[#89FFD2]" onClick={(e) => {
+              setIsAnimated(false);
+            }}>Ikan</li>
         </Link>
         <Link href="/Edukasi/Burung#burung">
           <li
             className="mx-2 cursor-pointer hover:text-[#89FFD2]"
             onClick={(e) => {
-              setIsAnimated(true);
+              setIsAnimated(false);
             }}
           >
             Burung
