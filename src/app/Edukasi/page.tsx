@@ -1,16 +1,8 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import Footer from "../components/homepage/footer";
-import Link from "next/link";
 
-const page = ({
-  isAnimated,
-  setIsAnimated,
-}: {
-  isAnimated: any;
-  setIsAnimated: any;
-}) => {
+function page() {
   return (
     <>
       <div className="overflow-hidden bg-[#E4FFF2] pb-40">
@@ -54,7 +46,7 @@ const page = ({
                 <p>
                   Dapatkan informasi terbaru dan praktis tentang cara merawat
                   tanaman hias di sini, dan tingkatkan pengalaman Anda dalam
-                  menjaga keindahan dan kesehatan koleksi Anda.
+                  menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <Link
                   href="/Edukasi/Tumbuhan#tumbuhan"
@@ -82,7 +74,7 @@ const page = ({
                 <p>
                   Dapatkan informasi terbaru dan praktis tentang cara merawat
                   Ikan hias di sini, dan tingkatkan pengalaman Anda dalam
-                  menjaga keindahan dan kesehatan koleksi Anda.
+                  menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <Link
                   href="/Edukasi/Ikan#ikan"
@@ -111,7 +103,7 @@ const page = ({
                 <p>
                   Dapatkan informasi terbaru dan praktis tentang cara merawat
                   Burung Hias di sini, dan tingkatkan pengalaman Anda dalam
-                  menjaga keindahan dan kesehatan koleksi Anda.
+                  menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <Link
                   href="/Edukasi/Burung#burung"
@@ -126,9 +118,8 @@ const page = ({
           </div>
         </div>
       </div>
-      <Footer />
-    </>
+    </div><Footer /></>
   );
-};
+}
 
 export default page;
