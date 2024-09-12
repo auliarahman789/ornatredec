@@ -36,7 +36,7 @@ function Tanaman() {
             nyaman. Tak hanya itu, merawat tanaman juga berdampak positif pada
             kesehatan mental dan emosional. Oleh karena itu, tanaman hias tidak
             hanya mempercantik lingkungan, tetapi juga berkontribusi terhadap
-            kualitas hidup
+            kualitas hidup akahs
           </p>
         </div>
         <div
@@ -79,13 +79,14 @@ function Tanaman() {
           <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
             Cara Merawat Tanaman Hias
           </h1>
-          <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore mag
+          <p className="text-[20px] me-[5%] mt-[5%] text-[#54A082] text-justify">
+            Merawat tanaman hias melibatkan beberapa langkah kunci untuk
+            pertumbuhannya yang optimal. Pastikan tanaman mendapatkan cahaya
+            yang sesuai dan penyiraman yang tepat, menjaga tanah tetap lembab
+            namun tidak basah. Berikan pupuk secara berkala dan pastikan
+            drainase yang baik. Selalu periksa tanaman untuk hama atau penyakit,
+            dan lakukan pemangkasan untuk menghilangkan bagian yang mati. Dengan
+            perawatan yang konsisten, tanaman hias akan tumbuh sehat dan indah.
           </p>
         </div>
         <div
@@ -98,15 +99,16 @@ function Tanaman() {
           <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
             Waktu Yang Baik Untuk Merawat Tanaman
           </h1>
-          <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim ve
+          <p className="text-[20px] me-[5%] mt-[5%] text-[#54A082] text-justify">
+            Merawat tanaman hias memerlukan perhatian pada waktu yang tepat
+            untuk setiap kegiatan. Penyiraman sebaiknya dilakukan pagi atau sore
+            hari untuk menghindari penguapan yang cepat. Pemupukan biasanya
+            dilakukan setiap beberapa minggu sekali, tergantung jenis tanaman
+            dan pupuk yang digunakan. Pemangkasan dapat dilakukan saat tanaman
+            sedang aktif tumbuh, biasanya di awal musim semi. Pastikan juga
+            memeriksa tanaman secara rutin untuk hama atau penyakit. Perawatan
+            yang tepat waktu akan mendukung pertumbuhan tanaman yang sehat dan
+            optimal.
           </p>
         </div>
         <div
@@ -149,15 +151,16 @@ function Tanaman() {
           <h1 className="text-[#3F9272] font-bold text-[40px] leading-none">
             Penyebab Tanaman Sakit
           </h1>
-          <p className="text-[20px] me-[5%] mt-[2%] text-[#54A082]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim ve
+          <p className="text-[20px] me-[5%] mt-[5%] text-[#54A082] text-justify">
+            Tanaman bisa layu atau mati karena beberapa penyebab utama.
+            Kekurangan air atau penyiraman yang tidak konsisten dapat membuat
+            tanaman dehidrasi dan akarnya membusuk. Penyiraman berlebihan juga
+            dapat merusak akar dan menyebabkan pembusukan. Kelebihan atau
+            kekurangan cahaya mempengaruhi kesehatan tanaman; terlalu banyak
+            atau terlalu sedikit cahaya bisa menghambat pertumbuhan. Penyakit
+            dan hama, seperti jamur atau serangga, juga dapat merusak tanaman.
+            Selain itu, kualitas tanah dan drainase yang buruk dapat menambah
+            masalah bagi kesehatan tanaman.
           </p>
         </div>
       </div>
