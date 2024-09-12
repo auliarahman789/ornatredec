@@ -141,7 +141,7 @@ function Burung() {
         >
           <Image
             src="/img/burungmati.png"
-            className="w-full h-auto translate-x-[13px]"
+            className="w-full h-auto translate-x-[13px ]"
             alt={"burung"}
             width={550}
             height={434}
