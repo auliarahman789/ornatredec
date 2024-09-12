@@ -104,13 +104,13 @@ const page = ({
                   className="w-[40%] h-[338px]"
                 />
                 <h1 className="text-[40px] text-[#3F9272] font-bold text-end pl-[7.5%] pt-6">
-                  Edukasi Ikan Hias
+                  Edukasi BUrung Hias
                 </h1>
               </div>
               <div className="pl-[48%] -translate-y-56 text-[#3F9272] pr-10 text-[22px]">
                 <p>
                   Dapatkan informasi terbaru dan praktis tentang cara merawat
-                  Ikan hias di sini, dan tingkatkan pengalaman Anda dalam
+                  Burung Hias di sini, dan tingkatkan pengalaman Anda dalam
                   menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <Link
