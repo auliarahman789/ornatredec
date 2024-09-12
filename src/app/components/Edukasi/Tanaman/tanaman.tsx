@@ -26,7 +26,7 @@ function Tanaman() {
           <h1 className="text-[#3F9272] font-bold text-[40px]">
             Tujuan Merawat Tanaman
           </h1>
-          <p className="text-[20px] me-[4%] mt-[4%] text-[#54A082] text-justify">
+          <p className="text-[20px] me-[4%] text-[#54A082] text-justify">
             Merawat tanaman hias memiliki tujuan yang penting, seperti
             memperindah ruangan dan menghadirkan nuansa alami yang menenangkan.
             Selain itu, tanaman hias berperan dalam meningkatkan kualitas udara
