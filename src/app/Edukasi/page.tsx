@@ -1,8 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import Footer from "../components/homepage/footer";
+import Link from "next/link";
 
 function page() {
+  function setIsAnimated(arg0: boolean) {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <>
       <div className="overflow-hidden bg-[#E4FFF2] pb-40">
@@ -118,7 +123,8 @@ function page() {
           </div>
         </div>
       </div>
-    </div><Footer /></>
+      <Footer />
+    </>
   );
 }
 
