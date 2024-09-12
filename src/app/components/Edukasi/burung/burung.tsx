@@ -51,7 +51,7 @@ function Burung() {
             width={400}
             height={434}
           />
-          <h1 className="content text-5xl text-white w-[543px] h-[448px]">
+          <h1 className="content cursor-pointer text-5xl text-white w-[543px] h-[448px]">
             Selengkapnya
           </h1>
         </div>
@@ -69,7 +69,7 @@ function Burung() {
             width={550}
             height={434}
           />
-          <h1 className="content text-5xl text-white translate-x-3 w-[527px] h-[445px]">
+          <h1 className="content cursor-pointer text-5xl text-white translate-x-3 w-[527px] h-[445px]">
             Selengkapnya
           </h1>
         </div>
@@ -128,7 +128,7 @@ function Burung() {
             width={550}
             height={434}
           />
-          <h1 className="content text-5xl text-white w-[97.5%] h-[100%]">
+          <h1 className="content text-5xl cursor-pointer text-white w-[97.5%] h-[100%]">
             Selengkapnya
           </h1>
         </div>
@@ -147,6 +147,9 @@ function Burung() {
             height={434}
           />
           <h1 className="content text-5xl text-white w-[99.5%] h-[100%] translate-x-3">
+            Selengkapnya
+          </h1>
+          <h1 className="content cursor-pointer text-5xl text-white w-[99.5%] h-[100%] translate-x-3">
             Selengkapnya
           </h1>
         </div>
@@ -173,6 +176,5 @@ function Burung() {
     </>
   );
 }
-
 
 export default Burung;
