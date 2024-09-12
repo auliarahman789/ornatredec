@@ -44,11 +44,14 @@ function Ikan() {
         >
           <Image
             src="/img/ikan hias 1.png"
-            className="w-full h-auto -translate-x-[10px]"
-            alt={"burung"}
+            className="w-full h-auto relative -translate-x-[10px]"
+            alt={"ikan"}
             width={400}
             height={434}
           />
+          <h1 className="content text-5xl text-white w-[530px] h-[450px]">
+            Selengkapnya
+          </h1>
         </div>
         <div
           className={`${
@@ -60,10 +63,13 @@ function Ikan() {
           <Image
             src="/img/beri makan ikan.png"
             className="w-full h-auto translate-x-[13px]"
-            alt={"burung"}
+            alt={"ikan"}
             width={550}
             height={434}
           />
+          <h1 className="content text-5xl text-white translate-x-3 w-[527px] h-[448px]">
+            Selengkapnya
+          </h1>
         </div>
         <div
           className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
@@ -112,10 +118,13 @@ function Ikan() {
           <Image
             src="/img/makananikan.png"
             className="w-full h-auto -translate-x-[13px]"
-            alt={"burung"}
+            alt={"ikan"}
             width={550}
             height={434}
           />
+          <h1 className="content text-5xl text-white w-[520px] h-[450px]">
+            Selengkapnya
+          </h1>
         </div>
         <div
           className={`${
@@ -127,10 +136,13 @@ function Ikan() {
           <Image
             src="/img/ikandiadu.png"
             className="w-full h-auto translate-x-[13px]"
-            alt={"burung"}
+            alt={"ikan"}
             width={550}
             height={434}
           />
+          <h1 className="content text-5xl text-white translate-x-3 w-[530px] h-[446px]">
+            Selengkapnya
+          </h1>
         </div>
         <div
           className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
