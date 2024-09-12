@@ -141,7 +141,7 @@ function Burung() {
         >
           <Image
             src="/img/burungmati.png"
-            className="w-full h-auto translate-x-[13px ]"
+            className="w-full h-auto translate-x-[13px]"
             alt={"burung"}
             width={550}
             height={434}
@@ -151,7 +151,7 @@ function Burung() {
         <div
           className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
             isAnimated
-              ? "translate-x-3 pe-7 ps-5 pt-5 opacity-100"
+              ? "translate-x-5 pe-7 ps-5 pt-5 opacity-100"
               : "translate-x-[100%] opacity-0"
           }`}
         >
@@ -171,5 +171,6 @@ function Burung() {
     </>
   );
 }
+
 
 export default Burung;
