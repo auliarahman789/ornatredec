@@ -1,17 +1,20 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tanaman2 from "./tanaman2";
 import Footer from "../../homepage/footer";
 
 function Tanaman() {
   const [isAnimated, setIsAnimated] = useState(false);
+  useEffect(() => {
+    setIsAnimated(true);
+  }, []);
   return (
     <div className="bg-[#DBFFF6]">
       <Tanaman2 isAnimated={isAnimated} setIsAnimated={setIsAnimated} />
       <div
         id="tumbuhan"
-        className="grid gap-0 grid-cols-2 mx-[98px] me-[100px] pb-[8%] "
+        className="overflow-x-hidden grid gap-0 grid-cols-2 mx-[98px] me-[100px] pb-[8%] "
       >
         <div
           className={`${
@@ -23,7 +26,7 @@ function Tanaman() {
           <h1 className="text-[#3F9272] font-bold text-[40px]">
             Tujuan Merawat Tanaman
           </h1>
-          <p className="text-[20px] me-[4%] mt-[4%] text-[#54A082] text-justify">
+          <p className="text-[20px] me-[4%] text-[#54A082] text-justify">
             Merawat tanaman hias memiliki tujuan yang penting, seperti
             memperindah ruangan dan menghadirkan nuansa alami yang menenangkan.
             Selain itu, tanaman hias berperan dalam meningkatkan kualitas udara

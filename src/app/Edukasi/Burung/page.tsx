@@ -7,8 +7,8 @@ function Edukasi() {
     <div>
       <div className="bg-[#E4FFF2] min-h-screen">
         <Burung />
-        <Footer />
       </div>
+        <Footer />
     </div>
   );
 }

@@ -27,7 +27,6 @@ function Navbar() {
             <Link href="/Edukasi">
               <li>Edukasi</li>
             </Link>
-
             <Link href="/About">
               <li>About</li>
             </Link>
