@@ -49,7 +49,7 @@ function Ikan() {
             width={400}
             height={434}
           />
-          <h1 className="content text-5xl text-white w-[530px] h-[450px]">
+          <h1 className="cursor-pointer content text-5xl text-white w-[530px] h-[450px]">
             Selengkapnya
           </h1>
         </div>
@@ -67,7 +67,7 @@ function Ikan() {
             width={550}
             height={434}
           />
-          <h1 className="content text-5xl text-white translate-x-3 w-[527px] h-[448px]">
+          <h1 className="cursor-pointer content text-5xl text-white translate-x-3 w-[527px] h-[448px]">
             Selengkapnya
           </h1>
         </div>
@@ -122,7 +122,7 @@ function Ikan() {
             width={550}
             height={434}
           />
-          <h1 className="content text-5xl text-white w-[520px] h-[450px]">
+          <h1 className="cursor-pointer content text-5xl text-white w-[520px] h-[450px]">
             Selengkapnya
           </h1>
         </div>
@@ -140,7 +140,7 @@ function Ikan() {
             width={550}
             height={434}
           />
-          <h1 className="content text-5xl text-white translate-x-3 w-[530px] h-[446px]">
+          <h1 className="cursor-pointer content text-5xl text-white translate-x-3 w-[530px] h-[446px]">
             Selengkapnya
           </h1>
         </div>
