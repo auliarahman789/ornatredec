@@ -19,7 +19,7 @@ const Tanaman2 = ({
           <p className="w-[56%] text-[27px] text-white mt-2">
             Dapatkan informasi terbaru dan praktis tentang cara merawat ikan,
             burung, dan tanaman hias di sini, dan tingkatkan pengalaman Anda
-            dalam menjaga keindahan dan kesehatan koleksi Anda.
+            dalam menjaga keindahan dan kesehatan koleksi Anda...
           </p>
         </div>
       </div>
@@ -35,9 +35,14 @@ const Tanaman2 = ({
           </li>
         </Link>
         <Link href="/Edukasi/Ikan#ikan">
-          <li className="mx-2 cursor-pointer hover:text-[#89FFD2]" onClick={(e) => {
+          <li
+            className="mx-2 cursor-pointer hover:text-[#89FFD2]"
+            onClick={(e) => {
               setIsAnimated(false);
-            }}>Ikan</li>
+            }}
+          >
+            Ikan
+          </li>
         </Link>
         <Link href="/Edukasi/Burung#burung">
           <li
