@@ -3,17 +3,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-const Produk = () => {
-  const [judul, setJudul] = useState<string>(""); // Inisialisasi dengan string kosong
+const Produk = () => { 
   const [data, setData] = useState<any[]>([]); // State untuk menampung data produk
 
   useEffect(() => {
-    // Panggil fungsi getProduk saat komponen pertama kali dimuat
     getProduk();
   }, []);
 
   async function getProduk() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/getUser`;
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string
@@ -26,7 +24,7 @@ const Produk = () => {
       alert("Terjadi kesalahan saat mengambil data produk.");
     }
   }
-
+  console.log(data);
   return (
     // bg-[#D9FFF0]
     <div className="flex flex-col min-h-[80%] bg-slate-300">
@@ -53,7 +51,7 @@ const Produk = () => {
               </a>
               <div className="px-4 py-2">
                 <h5 className="text-lg font-semibold text-black">
-                  {item.judul_produk}
+                  {item.username }
                 </h5>
                 <div className="flex items-center justify-between mt-auto">
                   <span className="text-xl font-bold text-[#FF0A0A]">

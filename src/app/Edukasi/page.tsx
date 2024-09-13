@@ -54,7 +54,7 @@ const page = ({
                 <p>
                   Dapatkan informasi terbaru dan praktis tentang cara merawat
                   tanaman hias di sini, dan tingkatkan pengalaman Anda dalam
-                  menjaga keindahan dan kesehatan koleksi Anda.
+                  menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <Link
                   href="/Edukasi/Tumbuhan#tumbuhan"
@@ -82,7 +82,7 @@ const page = ({
                 <p>
                   Dapatkan informasi terbaru dan praktis tentang cara merawat
                   Ikan hias di sini, dan tingkatkan pengalaman Anda dalam
-                  menjaga keindahan dan kesehatan koleksi Anda.
+                  menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <Link
                   href="/Edukasi/Ikan#ikan"
@@ -111,7 +111,7 @@ const page = ({
                 <p>
                   Dapatkan informasi terbaru dan praktis tentang cara merawat
                   Burung Hias di sini, dan tingkatkan pengalaman Anda dalam
-                  menjaga keindahan dan kesehatan koleksi Anda.
+                  menjaga keindahan dan kesehatan koleksi Anda.
                 </p>
                 <Link
                   href="/Edukasi/Burung#burung"
