@@ -21,7 +21,7 @@ function Navbar() {
             <Link href="">
               <li>Forum</li>
             </Link>
-            <Link href="">
+            <Link href="/Produk">
               <li>Produk</li>
             </Link>
             <Link href="/Edukasi">
