@@ -11,7 +11,7 @@ const Produk = () => {
   }, []);
 
   async function getProduk() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getUser`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`;
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string
@@ -51,7 +51,7 @@ const Produk = () => {
               </a>
               <div className="px-4 py-2">
                 <h5 className="text-lg font-semibold text-black">
-                  {item.username }
+                  {item.judul_produk}
                 </h5>
                 <div className="flex items-center justify-between mt-auto">
                   <span className="text-xl font-bold text-[#FF0A0A]">
