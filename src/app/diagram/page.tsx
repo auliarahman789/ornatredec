@@ -2,7 +2,7 @@
 import React from 'react'
 import { Pie, PieChart, Tooltip, Cell } from 'recharts'
 
-const Page = () => { 
+const Page = () => {
     const data = [
         { name: "Ice Cream", stock: 100 },
         { name: "Chocolate", stock: 150 },
@@ -26,7 +26,7 @@ const Page = () => {
                 >
                     {data.map((entry, index) => (
                         <Cell key={index} fill={COLORS[index % COLORS.length]} />
-                        ))}
+                    ))}
                 </Pie>
                 <Tooltip />
             </PieChart>
