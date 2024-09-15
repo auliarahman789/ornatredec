@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function Edukasi() {
   return (
@@ -20,7 +21,7 @@ function Edukasi() {
           </h1>
           <div className="flex">
             <Image
-              src="/Bulat.png"
+              src="/img/Bulat.png"
               width={56}
               height={56}
               alt="lingkaran"
@@ -38,7 +39,7 @@ function Edukasi() {
           </div>
           <div className="flex flex-row">
             <Image
-              src="/Bulat.png"
+              src="/img/Bulat.png"
               width={56}
               height={56}
               alt="lingkaran"
@@ -56,7 +57,7 @@ function Edukasi() {
           </div>
           <div className="flex flex-row">
             <Image
-              src="/Bulat.png"
+              src="/img/Bulat.png"
               width={56}
               height={56}
               alt="lingkaran"
@@ -68,7 +69,9 @@ function Edukasi() {
               </span>
               <span className="pl-5 text-[#CCFFEB] text-[20px] ">
                 tips and trick merawat.....
-                <span className="text-white text-2xl">Baca selengkapnya</span>
+                <Link href="/Edukasi">
+                  <span className="text-white text-2xl">Baca selengkapnya</span>
+                </Link>
               </span>
             </div>
           </div>
