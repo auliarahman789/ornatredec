@@ -17,7 +17,7 @@ const Produk = () => {
         // Menggunakan params untuk query string
         withCredentials: true,
       });
-      setData(res.data);
+      setData(res.data.slice(0, 8));
       console.log(res.data); // Simpan data yang diterima ke dalam state
     } catch (error: any) {
       console.log(error);
