@@ -85,6 +85,9 @@ export default function Sidebar() {
                 className="rounded-full"
               />
             </div>
+            <div className="flex justify-center translate-x-[6%] -translate-y-8">
+              <Image src="/img/pensil.png" width={50} height={50} alt="gm" />
+            </div>
             <div className="pb-5">
               <span className="pl-4 text-[#A9A7A7]">Nama Pengguna :</span>
               <div className="flex flex-col">

@@ -112,8 +112,8 @@ export default function ProfilePage() {
         style={{ backgroundImage: "url('/img/bg.jpg')" }}
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-          <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[80%] translate-x-[15%] z-20 relative pointer-events-auto">
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
+          <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[90%] translate-x-[15%] z-20 relative pointer-events-auto ">
+            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[40%]">
               <span className="pl-4">Nama Pengguna :</span>
               <div className="flex flex-col">
                 <input
@@ -124,7 +124,7 @@ export default function ProfilePage() {
                 />
               </div>
             </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
+            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[40%]">
               <span className="pl-4">Email :</span>
               <div className="flex flex-col">
                 <input
@@ -135,7 +135,18 @@ export default function ProfilePage() {
                 />
               </div>
             </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
+            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[40%]">
+              <span className="pl-4">Tanggal Lahir :</span>
+              <div className="flex flex-col">
+                <input
+                  type="password"
+                  value=""
+                  className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+                  readOnly
+                />
+              </div>
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[40%]">
               <span className="pl-4">No Telepon :</span>
               <div className="flex flex-col">
                 <input
@@ -144,7 +155,7 @@ export default function ProfilePage() {
                 />
               </div>
             </div>
-            <div className="text-[#A9A7A7] text-[18px]">
+            <div className="text-[#A9A7A7] text-[18px] -translate-y-[40%]">
               <span className="pl-4">Alamat :</span>
               <div className="flex flex-col">
                 <textarea className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm" />
