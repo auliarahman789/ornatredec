@@ -109,7 +109,7 @@ export default function Sidebar() {
               </div>
             </div>
             <div className="pb-5">
-              <span className="pl-4 text-[#A9A7A7]">Nama Pengguna :</span>
+              <span className="pl-4 text-[#A9A7A7]">Tanggal Lahir :</span>
               <div className="flex flex-col">
                 <input
                   type="text"
