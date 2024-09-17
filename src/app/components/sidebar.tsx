@@ -1,10 +1,33 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import router from "next/router";
 
-export default function Sidebar() {
-  const router = useRouter();
+interface UserData {
+  username: string;
+  email: string;
+  Notelepon: string;
+  alamat: string;
+}
+
+export default function ProfilePage() {
+  const [userData, setUserData] = useState<UserData>({
+    username: "",
+    email: "",
+    Notelepon: "",
+    alamat: "",
+  });
+
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+
+    // Pastikan bahwa storedUserData tidak null sebelum memparsing
+    if (storedUserData) {
+      const parsedUserData: UserData = JSON.parse(storedUserData);
+      setUserData(parsedUserData);
+    }
+  }, []);
 
   return (
     <div className="flex min-h-screen">
@@ -61,15 +84,29 @@ export default function Sidebar() {
               </button>
             </li>
             <li className="mb-2">
+              <button
+                onClick={() => {
+                  localStorage.removeItem("userData");
+                  localStorage.removeItem("token");
+                  router.push("/login");
+                }}
+                className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
+              >
+                Hapus Akun
+              </button>
+            </li>
+            <li className="mb-2">
               <Link href="/">
                 <div className="block py-2 px-4 rounded hover:bg-gray-700">
-                  kembali
+                  Kembali
                 </div>
               </Link>
             </li>
           </ul>
         </nav>
       </div>
+
+      {/* Profile Information */}
       <div
         className="flex-1 bg-cover bg-center"
         style={{ backgroundImage: "url('/img/bg.jpg')" }}
@@ -81,7 +118,7 @@ export default function Sidebar() {
               <div className="flex flex-col">
                 <input
                   type="text"
-                  value="ProDanendra"
+                  value={userData.username}
                   className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
                   readOnly
                 />
@@ -92,7 +129,7 @@ export default function Sidebar() {
               <div className="flex flex-col">
                 <input
                   type="text"
-                  value="ProDanen1928@gmail.com"
+                  value={userData.email}
                   className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
                   readOnly
                 />
@@ -102,21 +139,15 @@ export default function Sidebar() {
               <span className="pl-4">No Telepon :</span>
               <div className="flex flex-col">
                 <input
-                  type="text"
-                  value="+62 815 7254 3776"
+                  type="number"
                   className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-                  readOnly
                 />
               </div>
             </div>
             <div className="text-[#A9A7A7] text-[18px]">
               <span className="pl-4">Alamat :</span>
               <div className="flex flex-col">
-                <textarea
-                  value="isi alamat ketua sedang tidak mood"
-                  className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-                  readOnly
-                />
+                <textarea className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm" />
               </div>
             </div>
             <div className="-translate-y-[180%] flex justify-end">
