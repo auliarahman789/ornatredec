@@ -9,7 +9,7 @@ export default function Sidebar() {
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <div className="w-64 h-screen bg-gray-800 text-white flex flex-col">
+      <div className="w-64 h-[200%] bg-gray-800 text-white flex flex-col fixed top-0">
         <div className="p-4 flex justify-center bg-[#CCFFEB]">
           <Image src="/icon/logo.svg" width={85} height={70} alt="logo" />
         </div>
@@ -72,10 +72,67 @@ export default function Sidebar() {
       </div>
       <div
         className="flex-1 bg-cover bg-center"
-        style={{ backgroundImage: "url('/img/bg.jpg')" }}
+        style={{ backgroundImage: "url('/img/bg.jpg')", height: "170vh" }}
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-          <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[80%] translate-x-[15%] z-20 relative pointer-events-auto"></div>
+          <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[140%] translate-x-[15%] z-20 relative pointer-events-auto translate-y-48">
+            <div className="flex justify-center">
+              <Image
+                src="/img/soekarno.png"
+                width={150}
+                height={150}
+                alt="gm"
+                className="rounded-full"
+              />
+            </div>
+            <div className="pb-5">
+              <span className="pl-4 text-[#A9A7A7]">Nama Pengguna :</span>
+              <div className="flex flex-col">
+                <input
+                  type="text"
+                  placeholder="coba dulu"
+                  className="w-[100%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm "
+                />
+              </div>
+            </div>
+            <div className="pb-5">
+              <span className="pl-4 text-[#A9A7A7]">Nomor Telepon :</span>
+              <div className="flex flex-col">
+                <input
+                  type="text"
+                  placeholder="08574577"
+                  className="w-[100%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+                />
+              </div>
+            </div>
+            <div className="pb-5">
+              <span className="pl-4 text-[#A9A7A7]">Nama Pengguna :</span>
+              <div className="flex flex-col">
+                <input
+                  type="text"
+                  placeholder="coba dulu"
+                  className="w-[100%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+                />
+              </div>
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-5">
+              <span className="pl-4">Alamat pengguna :</span>
+              <div className="flex flex-col">
+                <textarea
+                  placeholder="isi alamat ketua sedang tidak mood"
+                  className="w-[100%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm pr-10"
+                />
+              </div>
+            </div>
+            <div className="mt-20 flex justify-between">
+              <button className="px-7 py-1 rounded-lg bg-[#3F9272] text-[#ffff]">
+                KEMBALI
+              </button>
+              <button className="px-3 py-1 rounded-lg bg-[#CCFFEB] text-[#3F9272]">
+                PERBAHARUI
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
