@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3fb89e4bd94a3ac57fa91dd2028bb37174ea76d4
 import Footer from "@/app/components/homepage/footer";
 import Image from "next/image";
 import React from "react";

@@ -20,7 +20,7 @@ const Register = ({
   const [password, setPassword] = useState<string>("");
 
   async function buatAkun() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/register`;
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/register`;
     try {
       const res = await axios.post(
         url,

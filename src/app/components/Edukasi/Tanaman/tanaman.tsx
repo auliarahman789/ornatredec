@@ -36,7 +36,7 @@ function Tanaman() {
             nyaman. Tak hanya itu, merawat tanaman juga berdampak positif pada
             kesehatan mental dan emosional. Oleh karena itu, tanaman hias tidak
             hanya mempercantik lingkungan, tetapi juga berkontribusi terhadap
-            kualitas hidup akahs
+            kualitas hidup
           </p>
         </div>
         <div
