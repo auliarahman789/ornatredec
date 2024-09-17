@@ -5,7 +5,14 @@ import Navbar from "./homepage/navbar";
 
 const josefinSans = JosefinSans({ subsets: ["latin"] });
 
-const disableNavbar = ["/auths", "/profile", "/profile/post", "/profile/edit", "/Superadmin", "/Superadmin/Dashboard"];
+const disableNavbar = [
+  "/auths",
+  "/profile",
+  "/profile/post",
+  "/profile/edit",
+  "/Superadmin",
+  "/superadmin/Dashboard",
+];
 
 export default function RootLayoutClient({
   children,
