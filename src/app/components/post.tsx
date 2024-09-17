@@ -76,57 +76,19 @@ export default function Sidebar() {
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[80%] translate-x-[15%] z-20 relative pointer-events-auto">
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">Nama Pengguna :</span>
-              <div className="flex flex-col">
-                <input
-                  type="text"
-                  value="ProDanendra"
-                  className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-                  readOnly
-                />
+            <div className="grid grid-cols-2 text-start">
+              <div className="-translate-y-[25%]">
+                <h1 className="text-[#5CD5A6] text-[20px]">
+                  Ulasan Yang Terakhir Dikunjungi
+                </h1>
+                <div className="bg-[#5CD5A6] p-16 rounded-lg shadow-lg w-[90%] h-[280%]"></div>
               </div>
-            </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">Email :</span>
-              <div className="flex flex-col">
-                <input
-                  type="text"
-                  value="ProDanen1928@gmail.com"
-                  className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-                  readOnly
-                />
+              <div className="-translate-y-[25%]">
+                <h1 className="text-[#5CD5A6] text-[20px]">
+                  Ulasan Yang Terakhir Dikunjungi
+                </h1>
+                <div className="bg-[#5CD5A6] p-16 rounded-lg shadow-lg w-[90%] h-[280%]"></div>
               </div>
-            </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">No Telepon :</span>
-              <div className="flex flex-col">
-                <input
-                  type="text"
-                  value="+62 815 7254 3776"
-                  className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-                  readOnly
-                />
-              </div>
-            </div>
-            <div className="text-[#A9A7A7] text-[18px]">
-              <span className="pl-4">Alamat :</span>
-              <div className="flex flex-col">
-                <textarea
-                  value="isi alamat ketua sedang tidak mood"
-                  className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-                  readOnly
-                />
-              </div>
-            </div>
-            <div className="-translate-y-[180%] flex justify-end">
-              <Image
-                src="/img/soekarno.png"
-                width={200}
-                height={200}
-                alt="gm"
-                className="rounded-full"
-              />
             </div>
           </div>
         </div>

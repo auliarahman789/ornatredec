@@ -9,7 +9,6 @@ function Navbar() {
   const [username, setUsername] = useState(""); // State untuk menyimpan nama pengguna nanti muncul di navbar
 
   useEffect(() => {
-    // Cek apakah pengguna sudah login (misal dengan memeriksa localStorage)
     const token = localStorage.getItem("token"); // Cek token untuk menentukan login
     const savedUsername = localStorage.getItem("username"); // Ambil username dari localStorage
     if (token && savedUsername) {
@@ -26,7 +25,6 @@ function Navbar() {
           <Image src={logo} alt="Logo" width={95} height={95} />
         </div>
 
-        {/* Bagian tengah: menu navigasi */}
         <div className="flex-1 flex justify-center text-[#308967]">
           <ul className="flex space-x-10 text-[18px]">
             <Link href="/">
@@ -47,13 +45,12 @@ function Navbar() {
           </ul>
         </div>
 
-        {/* Bagian kanan: login, daftar, atau profil */}
         <div className="flex items-center space-x-3">
           {isLoggedIn ? (
             // Jika sudah login, tampilkan avatar dan nama pengguna
             <Link href="/profile" className="flex items-center">
               <Image
-                src={defaultAvatar} // Avatar default
+                src={defaultAvatar}
                 alt="Profile Avatar"
                 width={40}
                 height={40}
@@ -64,7 +61,7 @@ function Navbar() {
             </Link>
           ) : (
             // Jika belum login, tampilkan tombol login dan daftar
-            <>
+            <div>
               <Link href="/auths">
                 <button className="text-[#308967]">login</button>
               </Link>
@@ -73,7 +70,7 @@ function Navbar() {
                   Daftar
                 </button>
               </Link>
-            </>
+            </div>
           )}
         </div>
       </nav>
