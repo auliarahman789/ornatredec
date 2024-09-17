@@ -1,7 +1,5 @@
-import Image from "next/image";
+"use client";
 import React, { useState } from "react";
-import userIcon from "../../../../public/icon/User_fill.svg";
-import passwordIcon from "../../../../public/icon/Lock_alt_fill.svg";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -27,8 +25,9 @@ const Login = () => {
       );
       console.log(res);
 
-      // Simpan token atau informasi login di localStorage
-      localStorage.setItem("token", res.data.token); // atau gunakan state management global
+      // Simpan username di localStorage setelah login berhasil
+      localStorage.setItem("token", res.data.token); // menyimpan token
+      localStorage.setItem("username", username); // Simpan username
 
       if (role === "user") {
         router.push("/");
@@ -58,13 +57,6 @@ const Login = () => {
                 placeholder="Username"
                 className="w-[320px] pl-14 bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8/ text-[#3F9272] rounded-md"
               />
-              <Image
-                src={userIcon}
-                alt="username"
-                width={25}
-                height={25}
-                className="absolute top-1/2 left-4 -translate-y-1/2"
-              />
             </div>
             <div className="relative">
               <input
@@ -74,18 +66,11 @@ const Login = () => {
                 placeholder="Password"
                 className="w-[320px] pl-14 bg-[#E3FFF3] pb-[13px] mt-6 pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8/ text-[#3F9272] rounded-md"
               />
-              <Image
-                src={passwordIcon}
-                alt="password"
-                width={27}
-                height={27}
-                className="absolute top-1/2 left-4 -translate-y-1/2 mt-3"
-              />
             </div>
           </form>
           <button
             type="submit"
-            onClick={login}
+            onClick={login} // Call the login function here
             className="bg-[#3F9272] text-sm text-white px-12 py-[10px] h-[50px] w-[170px] mt-[30px] rounded-full"
           >
             Masuk
