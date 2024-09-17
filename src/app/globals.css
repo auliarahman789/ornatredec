@@ -33,4 +33,41 @@ body {
     opacity: 1;
     overflow: hidden;
   }
+  .nav ul li {
+    position: relative; 
+    transition: all 0.3s ease-in-out;
+  }
+  .nav ul li:hover{
+    background-color: white;
+    color: #308967;
+    padding: 12px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    transition: all 0.3s ease-in-out;
+  }
+  .nav ul li:hover::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px white;
+  }
+  
+  .nav ul li:hover::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px white;
+  }
+  
 }
+/* hover:bg-white hover:text-[#308967] ms-[10%] rounded-s-2xl */
