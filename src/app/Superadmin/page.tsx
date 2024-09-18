@@ -3,6 +3,8 @@ import Profile from "../../../public/icon/profile.svg";
 import Order from "../../../public/icon/order.svg";
 import Chat from "../../../public/icon/chat.svg";
 import Image from "next/image";
+import Diagram from "../diagram/lingkaran/page";
+import Example from "../diagram/batang/page";
 
 function Page() {
   return (
@@ -97,7 +99,9 @@ function Page() {
               <div
                 className="bg-white w-64 h-52 rounded-lg"
                 style={{ boxShadow: "1px 5px 4px #00000040" }}
-              ></div>
+              >
+                <Diagram />
+              </div>
             </div>
           </div>
           <div
@@ -127,7 +131,9 @@ function Page() {
         <div
           className="w-[73%] h-[500px] ms-[4%] mt-[2%] bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl mb-5"
           style={{ boxShadow: "1px 5px 4px #00000040" }}
-        ></div>
+        >
+          <Example />
+        </div>
         <div className="flex ms-[1.5%] mt-[2%] mb-[2%]">
           <div
             className="flex flex-col items-center py-7 ms-[2.5%] mr-[1.5%] w-[19%] h-[10%] bg-[#CDF4E5] rounded-xl"
