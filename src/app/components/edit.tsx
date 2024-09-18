@@ -129,7 +129,7 @@ export default function EditProfile() {
             <li className="mb-2">
               <Link href="/">
                 <div className="block py-2 px-4 rounded hover:bg-gray-700">
-                  Kembali
+                  Kembalii
                 </div>
               </Link>
             </li>
