@@ -20,6 +20,7 @@ body {
   .nav ul li {
     position: relative; 
     transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s ease, border-radius 0.3s ease;
+    z-index: 1;
   }
   
   .nav ul li:hover {
@@ -40,6 +41,7 @@ body {
     border-radius: 50%;
     box-shadow: 35px 35px 0 10px white;
     transition: box-shadow 0.3s ease;
+    z-index: -1;
   }
 
   .nav ul li:hover::before {
@@ -72,6 +74,7 @@ body {
     border-radius: 50%;
     box-shadow: 35px 35px 0 10px white;
     transition: box-shadow 0.3s ease;
+    z-index: -1;
   }
 
   .nav ul li.active::before {
