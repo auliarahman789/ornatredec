@@ -5,6 +5,7 @@ import Chat from "../../../public/icon/chat.svg";
 import Image from "next/image";
 import Diagram from "../diagram/lingkaran/page";
 import Example from "../diagram/batang/page";
+import DiagramForum from "../diagram/lingkaranforum/page"
 
 function Page() {
   return (
@@ -192,7 +193,7 @@ function Page() {
               <div
                 className="bg-white w-64 h-52 rounded-lg"
                 style={{ boxShadow: "1px 5px 4px #00000040" }}
-              ></div>
+              ><DiagramForum/></div>
             </div>
           </div>
         </div>

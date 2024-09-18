@@ -7,7 +7,7 @@ import { error } from "console";
 const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [role, setRole] = useState<string>("user");
+  const [role, setRole] = useState<string>("");
   const router = useRouter();
 
   async function login() {
@@ -17,26 +17,24 @@ const Login = () => {
         url,
         {
           username,
-          password,
-          role,
+          password
         },
         {
           withCredentials: true,
         }
       );
-      console.log(res);
+      console.log(res.data.user.role);
+      setRole(res.data.user.role);
+      localStorage.setItem("token", res.data.token); 
+      localStorage.setItem("username", username); 
 
-      // Simpan username di localStorage setelah login berhasil
-      localStorage.setItem("token", res.data.token); // menyimpan token
-      localStorage.setItem("username", username); // Simpan username
-
-      if (role.toLowerCase() === "super admin") {
-        router.push("/Superadmin");
-      } 
-
-      if (role.toLowerCase() === "user") {
+      if (role === "user") {
         router.push("/");
-      } 
+      }else if (role === "super admin"){
+        router.push("/Superadmin");
+      } else {
+        alert("aakun tidak ada")
+      }
       alert("Berhasil Login");
     } catch (error: any) {
       console.log(error);
