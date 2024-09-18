@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { error } from "console";
 
 const Login = () => {
   const [username, setUsername] = useState<string>("");
@@ -29,11 +30,13 @@ const Login = () => {
       localStorage.setItem("token", res.data.token); // menyimpan token
       localStorage.setItem("username", username); // Simpan username
 
-      if (role === "user") {
+      if (role.toLowerCase() === "super admin") {
+        router.push("/Superadmin");
+      } 
+
+      if (role.toLowerCase() === "user") {
         router.push("/");
-      } else {
-        router.push("/superadmin");
-      }
+      } 
       alert("Berhasil Login");
     } catch (error: any) {
       console.log(error);

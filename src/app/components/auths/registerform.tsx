@@ -59,7 +59,7 @@ const Register = ({
             <div className="relative">
               <input
                 type="text"
-                value={username} // Menggunakan nilai dari state
+                value={username} 
                 onChange={(e) => setUsername(e.target.value)}
                 name="username"
                 placeholder="Username"
