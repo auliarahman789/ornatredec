@@ -1,6 +1,6 @@
-"use client"
-import React from 'react'
-import { Pie, PieChart, Tooltip, Cell } from 'recharts'
+"use client";
+import React from 'react';
+import { Pie, PieChart, Tooltip, Cell } from 'recharts';
 
 const Page = () => {
     const data = [
@@ -8,8 +8,18 @@ const Page = () => {
         { name: "Chocolate", stock: 150 },
         { name: "Bread", stock: 44 },
         { name: "Soes", stock: 84 },
-    ]
-    const COLORS = ['#F0A8D0', '#FFEBD4', '#D1E9F6', '#E8C5E5'];
+    ];
+
+    // Define a type for the keys of COLORS
+    type ColorKey = "Ice Cream" | "Chocolate" | "Bread" | "Soes";
+
+    // Define COLORS with the specific type for the keys
+    const COLORS: Record<ColorKey, string> = {
+        "Ice Cream": '#F0A8D0',   // Pink
+        "Chocolate": '#8E44AD',   // Purple
+        "Bread": '#3498DB',       // Blue
+        "Soes": '#F1C40F'         // Yellow
+    };
 
     return (
         <div>
@@ -25,13 +35,16 @@ const Page = () => {
                     label
                 >
                     {data.map((entry, index) => (
-                        <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                        <Cell
+                            key={index}
+                            fill={COLORS[entry.name as ColorKey]} // Use type assertion
+                        />
                     ))}
                 </Pie>
                 <Tooltip />
             </PieChart>
         </div>
-    )
+    );
 }
 
-export default Page
+export default Page;
