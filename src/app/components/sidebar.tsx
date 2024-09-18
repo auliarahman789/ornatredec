@@ -2,11 +2,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
 interface UserData {
   username: string;
   email: string;
+  birthday: string;
   Notelepon: string;
   alamat: string;
 }
@@ -15,19 +16,26 @@ export default function ProfilePage() {
   const [userData, setUserData] = useState<UserData>({
     username: "",
     email: "",
+    birthday: "",
     Notelepon: "",
     alamat: "",
   });
 
+  const router = useRouter();
+
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData");
-
-    // Pastikan bahwa storedUserData tidak null sebelum memparsing
     if (storedUserData) {
       const parsedUserData: UserData = JSON.parse(storedUserData);
       setUserData(parsedUserData);
     }
   }, []);
+
+  const handleDeleteAccount = () => {
+    localStorage.removeItem("userData");
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
 
   return (
     <div className="flex min-h-screen">
@@ -85,11 +93,7 @@ export default function ProfilePage() {
             </li>
             <li className="mb-2">
               <button
-                onClick={() => {
-                  localStorage.removeItem("userData");
-                  localStorage.removeItem("token");
-                  router.push("/login");
-                }}
+                onClick={handleDeleteAccount}
                 className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
               >
                 Hapus Akun
@@ -112,8 +116,8 @@ export default function ProfilePage() {
         style={{ backgroundImage: "url('/img/bg.jpg')" }}
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-          <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[90%] translate-x-[15%] z-20 relative pointer-events-auto ">
-            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[40%]">
+          <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[90%] translate-x-[15%] z-20 relative pointer-events-auto">
+            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[35%]">
               <span className="pl-4">Nama Pengguna :</span>
               <div className="flex flex-col">
                 <input
@@ -124,7 +128,7 @@ export default function ProfilePage() {
                 />
               </div>
             </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[40%]">
+            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[35%]">
               <span className="pl-4">Email :</span>
               <div className="flex flex-col">
                 <input
@@ -135,33 +139,39 @@ export default function ProfilePage() {
                 />
               </div>
             </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[40%]">
-              <span className="pl-4">Tanggal Lahir :</span>
+            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[35%]">
+              <span className="pl-4">Tanggal Lahir</span>
               <div className="flex flex-col">
                 <input
-                  type="password"
-                  value=""
+                  type="date"
+                  value={userData.birthday}
                   className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
                   readOnly
                 />
               </div>
             </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[40%]">
+            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[35%]">
               <span className="pl-4">No Telepon :</span>
               <div className="flex flex-col">
                 <input
-                  type="number"
+                  type="text"
+                  value={userData.Notelepon}
                   className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+                  readOnly
                 />
               </div>
             </div>
-            <div className="text-[#A9A7A7] text-[18px] -translate-y-[40%]">
+            <div className="text-[#A9A7A7] text-[18px] pb-4 -translate-y-[35%]">
               <span className="pl-4">Alamat :</span>
               <div className="flex flex-col">
-                <textarea className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm" />
+                <textarea
+                  value={userData.alamat}
+                  className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+                  readOnly
+                />
               </div>
             </div>
-            <div className="-translate-y-[180%] flex justify-end">
+            <div className="flex justify-end -translate-y-[230%]">
               <Image
                 src="/img/soekarno.png"
                 width={200}
