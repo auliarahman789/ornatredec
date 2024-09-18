@@ -44,7 +44,15 @@ export default function Sidebar() {
             <li className="mb-2">
               <Link href="/profile/edit">
                 <div className="block py-2 px-4 rounded hover:bg-gray-700">
-                  Edit Profile
+                  <div className="flex flex-row">
+                    <Image
+                      src="/icon/Rectangle 1.svg"
+                      width={30}
+                      height={30}
+                      alt="post"
+                    />
+                    <span className="ml-3">Edit Profile </span>
+                  </div>
                 </div>
               </Link>
             </li>
@@ -57,13 +65,33 @@ export default function Sidebar() {
                 }}
                 className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
               >
-                Logout
+                <div className="flex flex-row">
+                  {" "}
+                  <Image
+                    src="/icon/Sign_out_squre.svg"
+                    width={30}
+                    height={30}
+                    alt="post"
+                    className="-translate-y-1"
+                  />
+                  <span className="ml-3">Logout</span>
+                </div>
               </button>
             </li>
             <li className="mb-2">
               <Link href="/">
                 <div className="block py-2 px-4 rounded hover:bg-gray-700">
-                  kembali
+                  <div className="flex flex-row">
+                    {" "}
+                    <Image
+                      src="/icon/Sign_out_squre_fill.svg"
+                      width={30}
+                      height={30}
+                      alt="post"
+                      className="-translate-y-1"
+                    />
+                    <span className="ml-3">Kembali</span>
+                  </div>
                 </div>
               </Link>
             </li>
