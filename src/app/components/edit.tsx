@@ -56,10 +56,15 @@ export default function EditProfile() {
     }
   };
 
+  const handleDeleteAccount = () => {
+    localStorage.removeItem("userData");
+    localStorage.removeItem("token");
+  };
+
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <div className="w-64 h-screen bg-gray-800 text-white flex flex-col fixed top-0">
+      <div className="w-64 h-screen bg-gray-800 text-white flex flex-col">
         <div className="p-4 flex justify-center bg-[#CCFFEB]">
           <Image src="/icon/logo.svg" width={85} height={70} alt="logo" />
         </div>
@@ -99,16 +104,27 @@ export default function EditProfile() {
               </Link>
             </li>
             <li className="mb-2">
-              <button
-                onClick={() => {
-                  localStorage.removeItem("userData");
-                  localStorage.removeItem("token");
-                  router.push("/login");
-                }}
-                className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
-              >
-                Logout
-              </button>
+              <Link href="/">
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("userData");
+                    localStorage.removeItem("token");
+                  }}
+                  className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
+                >
+                  Logout
+                </button>
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/">
+                <button
+                  onClick={handleDeleteAccount}
+                  className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
+                >
+                  Hapus Akun
+                </button>
+              </Link>
             </li>
             <li className="mb-2">
               <Link href="/">
