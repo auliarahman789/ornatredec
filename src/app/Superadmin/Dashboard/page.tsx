@@ -7,9 +7,7 @@ import Image from "next/image";
 function Page() {
   return (
     <div className="overflow-x-hidden">
-      <div className="z-10">
-        <SidebarSp />
-      </div>
+      <div className="z-10"></div>
       <div className="text-black  translate-x-64 h-screen pt-[2%]">
         <div className="text-[23px] font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-[2%] mt-4 inline-block text-transparent bg-clip-text">
           Dashboard
