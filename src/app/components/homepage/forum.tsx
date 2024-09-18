@@ -29,45 +29,41 @@ function Forum() {
                   Kategori <span className="text-white">Pembahasan</span>
                 </h1>
                 <div className="grid grid-cols-3 gap-8 pl-4 pr-4">
-                  <div className="bg-white h-40 relative">
+                  <div className="bg-white h-[130%] flex flex-col justify-center">
                     <Image
                       src="/img/tanaman.png"
                       width={100}
                       height={50}
                       alt="bunga"
-                      className="mx-auto absolute top-4 left-32 cursor-pointer"
+                      className="cursor-pointer mx-auto pb-4"
                     />
-                    <div className="relative">
-                      <span className="mx-auto absolute top-32 left-11">
-                        pembahasan tentang tanaman hias
-                      </span>
+                    <div className="flex justify-center text-center ">
+                      <span>pembahasan tentang tanaman hias</span>
                     </div>
                   </div>
 
-                  <div className="bg-white relative">
+                  <div className="bg-white h-[130%] flex flex-col justify-center">
                     <Image
                       src="/img/burung.png"
                       width={100}
                       height={50}
                       alt="burung"
-                      className="absolute top-4 left-32 cursor-pointer"
+                      className="cursor-pointer mx-auto pb-4"
                     />
-                    <div className="relative">
-                      <span className="mx-auto absolute top-32 left-16">
-                        pembahasan tentang ikan hias
-                      </span>
+                    <div className="flex justify-center">
+                      <span className="">pembahasan tentang ikan hias</span>
                     </div>
                   </div>
-                  <div className="bg-white relative">
+                  <div className="bg-white h-[130%] flex flex-col justify-center">
                     <Image
                       src="/img/ikan.png"
                       width={100}
                       height={50}
                       alt="ikan"
-                      className="mx-auto absolute top-4 left-32 cursor-pointer"
+                      className="cursor-pointer mx-auto pb-4"
                     />
-                    <div className="relative">
-                      <span className="mx-auto absolute top-32 left-11">
+                    <div className="flex justify-center">
+                      <span className="flex">
                         pembahasan tentang burung hias
                       </span>
                     </div>
