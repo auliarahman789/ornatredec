@@ -1,8 +1,8 @@
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "../../../../public/icon/logo.svg";
 import defaultAvatar from "../../../../public/img/default-avatar.png";
+import Link from "next/link";
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,7 +15,7 @@ function Navbar() {
       setIsLoggedIn(true); // Tanda pengguna sudah login
       setUsername(savedUsername); // Simpan username di state
     }
-  }, []);
+  }, []); // Kosongkan dependency array untuk hanya menjalankan efek saat mount
 
   return (
     <div>

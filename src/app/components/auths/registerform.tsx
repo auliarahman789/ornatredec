@@ -35,7 +35,15 @@ const Register = ({
           withCredentials: true,
         }
       );
-      console.log(res);
+
+      // Simpan data pengguna ke localStorage
+      const userData = {
+        username: username,
+        email: email,
+        phone: phone,
+      };
+      localStorage.setItem("userData", JSON.stringify(userData));
+
       alert("Berhasil Membuat Akun");
       setUsername("");
       setEmail("");
@@ -59,13 +67,11 @@ const Register = ({
             <div className="relative">
               <input
                 type="text"
-                value={username} 
+                value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 name="username"
                 placeholder="Username"
-                className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px]
-                  placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] 
-                  placeholder:font-light ps-12 text-[#3F9272] rounded-md"
+                className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
               />
               <Image
@@ -79,13 +85,11 @@ const Register = ({
             <div className="relative">
               <input
                 type="email"
-                value={email} // Menggunakan nilai dari state
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 name="email"
                 placeholder="Email"
-                className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] 
-                  placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] 
-                  placeholder:font-light ps-12 text-[#3F9272] rounded-md"
+                className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
               />
               <Image
@@ -99,13 +103,11 @@ const Register = ({
             <div className="relative">
               <input
                 type="password"
-                value={password} // Menggunakan nilai dari state
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 name="password"
                 placeholder="Password"
-                className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px]
-                  placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] 
-                  placeholder:font-light ps-12 text-[#3F9272] rounded-md"
+                className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
               />
               <Image
@@ -119,13 +121,11 @@ const Register = ({
             <div className="relative">
               <input
                 type="tel"
-                value={phone} // Menggunakan nilai dari state
+                value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 name="telephone"
                 placeholder="No Telephone"
-                className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px]
-                  placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] 
-                  placeholder:font-light ps-12 text-[#3F9272] rounded-md"
+                className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
               />
               <Image
