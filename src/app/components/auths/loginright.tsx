@@ -8,7 +8,7 @@ const LoginR = ({
   setIsAnimated: any;
 }) => {
   return (
-    <div
+    <div id="login"
       className="h-[520px] w-[420px] bg-no-repeat bg-center text-white
      flex flex-col items-center justify-center gap-5"
       style={{

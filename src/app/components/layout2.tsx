@@ -14,7 +14,7 @@ const disableNavbar = [
   "/Superadmin",
   "/Superadmin/Dashboard",
   "/Superadmin/Produk",
-  "/Superadmin/Edukasi",
+  "/Superadmin/Akun",
   "/Superadmin/Statistik",
   "/Superadmin/Forum",
 ];
@@ -22,7 +22,7 @@ const superNavbar = [
   "/Superadmin",
   "/Superadmin/Dashboard",
   "/Superadmin/Produk",
-  "/Superadmin/Edukasi",
+  "/Superadmin/Akun",
   "/Superadmin/Statistik",
   "/Superadmin/Forum",
 ]

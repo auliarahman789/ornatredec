@@ -4,7 +4,7 @@ import React from 'react'
 import logo from '../../../../public/icon/logosp.svg'
 import dashboardd from '../../../../public/icon/Order_fill.svg'
 import produkk from '../../../../public/icon/Subtract.svg'
-import edukasii from '../../../../public/icon/Book_open_alt_fill.svg'
+import userr from '../../../../public/icon/User_fill.svg'
 import statistikk from '../../../../public/icon/pie_chart_fill.svg'
 import forumm from '../../../../public/icon/comment_fill.svg'
 import Link from 'next/link'
@@ -32,10 +32,10 @@ function SidebarSp() {
             <Image src={statistikk} className='w-6 h-6 me-5' width={30} height={30} alt='dashboard' />
             Statistik</li>
           </Link>
-          <Link href='/Superadmin/Edukasi'>
-            <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Edukasi' ? 'active' : ''}`}>
-            <Image src={edukasii} className='w-6 h-6 me-5' width={30} height={30} alt='dashboard' />
-            Edukasi</li>
+          <Link href='/Superadmin/Akun'>
+            <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Akun' ? 'active' : ''}`}>
+            <Image src={userr} className='w-6 h-6 me-5' width={30} height={30} alt='dashboard' />
+            Akun</li>
           </Link>
           <Link href='/Superadmin/Forum'>
             <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Forum' ? 'active' : ''}`}>
