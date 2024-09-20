@@ -3,9 +3,13 @@ import Image from 'next/image'
 import React from 'react'
 import logo from '../../../../public/icon/logosp.svg'
 import dashboardd from '../../../../public/icon/Order_fill.svg'
-import produkk from '../../../../public/icon/Subtract.svg'
+import dashboardd2 from '../../../../public/icon/Order_fill (1).svg'
+import produkk from '../../../../public/icon/Boxes_fill (1).svg'
+import produkk2 from '../../../../public/icon/Boxes_fill.svg'
 import userr from '../../../../public/icon/User_fill.svg'
+import userr2 from '../../../../public/icon/User_fill (2).svg'
 import statistikk from '../../../../public/icon/pie_chart_fill.svg'
+import statistikk2 from '../../../../public/icon/pie_chart_fill (1).svg'
 import forumm from '../../../../public/icon/comment_fill.svg'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -19,22 +23,22 @@ function SidebarSp() {
         <ul className='text-[20px] mt-[20%] font-bold text-white ms-[15%]'>  
           <Link href='/Superadmin'>
             <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin' ? 'active' : ''}`}>
-              <Image src={dashboardd} className='w-8 h-8 me-5' width={30} height={30} alt='dashboard' />
+              <Image src={pathname === '/Superadmin' ? dashboardd : dashboardd2}  className='w-8 h-8 me-5' width={30} height={30} alt='dashboard' />
               <span className='mt-1'>Dashboard</span></li>
           </Link>
           <Link href='/Superadmin/Produk'>
             <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Produk' ? 'active' : ''}`}>
-            <Image src={produkk} className='w-5 ms-1 h-6 me-6' width={30} height={30} alt='dashboard' />
+            <Image src={pathname === '/Superadmin/Produk' ? produkk2 : produkk} className='w-5 ms-1 h-6 me-6' width={30} height={30} alt='dashboard' />
             Produk</li>
           </Link>
           <Link href='/Superadmin/Statistik'>
             <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Statistik' ? 'active' : ''}`}>
-            <Image src={statistikk} className='w-6 h-6 me-5' width={30} height={30} alt='dashboard' />
+            <Image src={pathname === '/Superadmin/Statistik' ? statistikk2 : statistikk} className='w-6 h-6 me-5' width={30} height={30} alt='dashboard' />
             Statistik</li>
           </Link>
           <Link href='/Superadmin/Akun'>
             <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Akun' ? 'active' : ''}`}>
-            <Image src={userr} className='w-6 h-6 me-5' width={30} height={30} alt='dashboard' />
+            <Image src={pathname === '/Superadmin/Akun' ? userr : userr2} className='w-6 h-6 me-5' width={30} height={30} alt='dashboard' />
             Akun</li>
           </Link>
           <Link href='/Superadmin/Forum'>
