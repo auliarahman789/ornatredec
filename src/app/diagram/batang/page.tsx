@@ -27,7 +27,7 @@ const data = [
   {
     name: "Maret",
     uv: 2000,
-    pv: 9800,
+    pv: 10000,
     amt: 200,
   },
   {
@@ -79,18 +79,24 @@ export default class Example extends PureComponent {
             dataKey="name"
             scale="point"
             padding={{ left: 50, right: 10 }}
+            stroke="#FFFFFF" // Ubah warna sumbu X menjadi putih
+            tick={{ fill: "#FFFFFF" }} // Ubah warna teks label di sumbu X menjadi putih
           />
-          <YAxis />
+          <YAxis
+            stroke="#FFFFFF" // Ubah warna sumbu Y menjadi putih
+            tick={{ fill: "#FFFFFF" }} // Ubah warna teks label di sumbu Y menjadi putih
+          />
           <Tooltip />
           <Legend />
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid stroke="#399898" vertical={false} />
           <Bar
             dataKey="pv"
-            fill="#44FFC7"
-            background={{ fill: "#eee" }}
+            fill="#44FFC7" // Warna batang menjadi hijau
             style={{
               filter: "drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3))",
             }}
+            radius={[10, 10, 0, 0]}
+            label={{ position: "top", fill: "#FFFFFF" }} // Warna teks label di atas batang menjadi putih
           />
         </BarChart>
       </ResponsiveContainer>
