@@ -6,21 +6,41 @@ import Link from "next/link";
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState(""); // State untuk menyimpan nama pengguna nanti muncul di navbar
+  const [username, setUsername] = useState("");
+  const [avatar, setAvatar] = useState<string>(defaultAvatar.src); // Ubah tipe state menjadi string
 
   useEffect(() => {
-    const token = localStorage.getItem("token"); // Cek token untuk menentukan login
-    const savedUsername = localStorage.getItem("username"); // Ambil username dari localStorage
+    const token = localStorage.getItem("token");
+    const savedUsername = localStorage.getItem("username");
+    const savedAvatar = localStorage.getItem("avatar");
+
     if (token && savedUsername) {
-      setIsLoggedIn(true); // Tanda pengguna sudah login
-      setUsername(savedUsername); // Simpan username di state
+      setIsLoggedIn(true);
+      setUsername(savedUsername);
+      setAvatar(savedAvatar || defaultAvatar.src); // Gunakan src dari defaultAvatar
     }
-  }, []); // Kosongkan dependency array untuk hanya menjalankan efek saat mount
+
+    const handleStorageChange = () => {
+      const updatedUsername = localStorage.getItem("username");
+      const updatedAvatar = localStorage.getItem("avatar");
+      if (updatedUsername) {
+        setUsername(updatedUsername);
+      }
+      if (updatedAvatar) {
+        setAvatar(updatedAvatar); // Tetap sebagai string
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   return (
     <div>
       <nav className="flex justify-between items-center bg-[#DBFFF6] px-14 p-6">
-        {/* Bagian kiri: logo */}
         <div className="flex">
           <Image src={logo} alt="Logo" width={95} height={95} />
         </div>
@@ -47,23 +67,20 @@ function Navbar() {
 
         <div className="flex items-center space-x-3">
           {isLoggedIn ? (
-            // Jika sudah login, tampilkan avatar dan nama pengguna
             <Link href="/profile" className="flex items-center">
               <Image
-                src={defaultAvatar}
+                src={avatar} // Tetap gunakan avatar sebagai string
                 alt="Profile Avatar"
                 width={40}
                 height={40}
                 className="rounded-full"
               />
-              <span className="text-[#308967] ml-2">{username}</span>{" "}
-              {/* Nama pengguna */}
+              <span className="text-[#308967] ml-2">{username}</span>
             </Link>
           ) : (
-            // Jika belum login, tampilkan tombol login dan daftar
             <div>
               <Link href="/auths">
-                <button className="text-[#308967]">login</button>
+                <button className="text-[#308967]">Login</button>
               </Link>
               <Link href="/auths">
                 <button className="text-white bg-green-500 rounded-lg py-1 px-4 ml-2">

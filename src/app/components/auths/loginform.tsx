@@ -2,43 +2,40 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { error } from "console";
 
 const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [role, setRole] = useState<string>("");
+  const [role, setRole] = useState<string>("user");
   const router = useRouter();
 
-  async function login() {
+  async function login(e: React.FormEvent) {
+    e.preventDefault(); // Mencegah reload saat submit form
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/login`;
+
     try {
       const res = await axios.post(
         url,
-        {
-          username,
-          password
-        },
-        {
-          withCredentials: true,
-        }
+        { username, password, role },
+        { withCredentials: true }
       );
-      console.log(res.data.user.role);
-      setRole(res.data.user.role);
-      localStorage.setItem("token", res.data.token); 
-      localStorage.setItem("username", username); 
 
+      // Simpan data pengguna di localStorage setelah login berhasil
+      localStorage.setItem("token", res.data.token); // Menyimpan token
+      localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
+
+      alert("Berhasil Login");
+      // Redirect berdasarkan role
       if (role === "user") {
         router.push("/");
-      }else if (role === "super admin"){
-        router.push("/Superadmin");
       } else {
-        alert("aakun tidak ada")
+        router.push("/superadmin");
       }
-      alert("Berhasil Login");
     } catch (error: any) {
       console.log(error);
-      alert("Terjadi kesalahan saat login.");
+      alert(
+        "Terjadi kesalahan saat login. Silakan periksa username dan password."
+      );
     }
   }
 
@@ -49,7 +46,10 @@ const Login = () => {
           <h1 className="font-bold text-[30px] pt-[60px] text-[#3F9272] mt-16">
             Masuk
           </h1>
-          <form className="pt-[25px] gap-3.5 flex flex-col justify-center items-center">
+          <form
+            className="pt-[25px] gap-3.5 flex flex-col justify-center items-center"
+            onSubmit={login}
+          >
             <div className="relative">
               <input
                 type="text"
@@ -68,14 +68,13 @@ const Login = () => {
                 className="w-[320px] pl-14 bg-[#E3FFF3] pb-[13px] mt-6 pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8/ text-[#3F9272] rounded-md"
               />
             </div>
+            <button
+              type="submit"
+              className="bg-[#3F9272] text-sm text-white px-12 py-[10px] h-[50px] w-[170px] mt-[30px] rounded-full"
+            >
+              Masuk
+            </button>
           </form>
-          <button
-            type="submit"
-            onClick={login} // Call the login function here
-            className="bg-[#3F9272] text-sm text-white px-12 py-[10px] h-[50px] w-[170px] mt-[30px] rounded-full"
-          >
-            Masuk
-          </button>
         </div>
       </div>
     </main>
