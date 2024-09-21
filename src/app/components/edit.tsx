@@ -1,8 +1,10 @@
 "use client";
-import { useState, useEffect, ChangeEvent } from "react";
-import { useRouter } from "next/navigation";
+
+import React, { ChangeEvent, useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import Sidebar from "./sidebar";
 
 interface UserData {
   username: string;
@@ -10,26 +12,30 @@ interface UserData {
   birthday: string;
   Notelepon: string;
   alamat: string;
+  avatar: string; // Properti avatar
 }
 
-export default function EditProfile() {
+const Edit = () => {
   const [formData, setFormData] = useState<UserData>({
     username: "",
     email: "",
     birthday: "",
     Notelepon: "",
     alamat: "",
+    avatar: "/img/default-avatar.png", // Gambar default
   });
 
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
     const storedUserData = localStorage.getItem("userData");
     if (storedUserData) {
-      setFormData(JSON.parse(storedUserData));
+      const userData = JSON.parse(storedUserData);
+      setFormData({
+        ...userData,
+        avatar: userData.avatar || "/img/default-avatar.png",
+      });
     }
   }, []);
 
@@ -43,139 +49,64 @@ export default function EditProfile() {
     }));
   };
 
-  const handleSave = () => {
-    // Simpan data ke localStorage
-    localStorage.setItem("userData", JSON.stringify(formData));
-    // Navigasi ke halaman profil dengan data terbaru
-    router.push("/profile");
-  };
-
-  const handleGoBack = () => {
-    if (mounted) {
-      router.push("/profile");
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prevData) => ({
+          ...prevData,
+          avatar: reader.result as string, // Simpan gambar sebagai URL
+        }));
+      };
+      reader.readAsDataURL(file);
     }
   };
 
-  const handleDeleteAccount = () => {
-    localStorage.removeItem("userData");
-    localStorage.removeItem("token");
+  const handleSave = async () => {
+    try {
+      // Ambil ID pengguna dari localStorage
+      const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
+
+      const response = await axios.put(
+        `https://74gslzvj-8000.asse.devtunnels.ms/api/update/${userId}`, // Ganti :id dengan userId
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Sertakan token jika diperlukan
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        // Jika berhasil, simpan data di localStorage
+        localStorage.setItem("userData", JSON.stringify(formData));
+        localStorage.setItem("username", formData.username);
+        localStorage.setItem("avatar", formData.avatar);
+        router.push("/profile"); // Arahkan kembali ke profil
+      } else {
+        alert("Gagal memperbarui data pengguna.");
+      }
+    } catch (error) {
+      console.error("Kesalahan saat memperbarui data pengguna:", error);
+      alert("Terjadi kesalahan saat memperbarui data Anda.");
+    }
+  };
+
+  const handleGoBack = () => {
+    router.push("/profile");
+  };
+
+  const handleAvatarClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click(); // Trigger file input click
+    }
   };
 
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar */}
-      <div className="w-64 h-screen bg-gray-800 text-white flex flex-col">
-        <div className="p-4 flex justify-center bg-[#CCFFEB]">
-          <Image src="/icon/logo.svg" width={85} height={70} alt="logo" />
-        </div>
-        <nav className="flex-1 p-4 bg-gray-800">
-          <ul>
-            <li className="mb-2">
-              <Link href="/profile">
-                <div className="flex items-center py-2 px-4 rounded hover:bg-gray-700">
-                  <Image
-                    src="/icon/profil.svg"
-                    width={30}
-                    height={30}
-                    alt="profile"
-                  />
-                  <span className="ml-3">Profile</span>
-                </div>
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link href="/profile/post">
-                <div className="flex items-center py-2 px-4 rounded hover:bg-gray-700">
-                  <Image
-                    src="/icon/post.svg"
-                    width={30}
-                    height={30}
-                    alt="post"
-                  />
-                  <span className="ml-3">Riwayat</span>
-                </div>
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link href="/profile/edit">
-                <div className="block py-2 px-4 rounded hover:bg-gray-700">
-                  <div className="flex flex-row">
-                    <Image
-                      src="/icon/Rectangle 1.svg"
-                      width={30}
-                      height={30}
-                      alt="post"
-                    />
-                    <span className="ml-3">Edit Profile </span>
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link href="/">
-                <button
-                  onClick={() => {
-                    localStorage.removeItem("userData");
-                    localStorage.removeItem("token");
-                  }}
-                  className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
-                >
-                  <div className="flex flex-row">
-                    {" "}
-                    <Image
-                      src="/icon/Sign_out_squre.svg"
-                      width={30}
-                      height={30}
-                      alt="post"
-                      className="-translate-y-1"
-                    />
-                    <span className="ml-3">Logout</span>
-                  </div>
-                </button>
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link href="/">
-                <button
-                  onClick={handleDeleteAccount}
-                  className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
-                >
-                  <div className="flex flex-row">
-                    {" "}
-                    <Image
-                      src="/icon/Trash.svg"
-                      width={30}
-                      height={30}
-                      alt="post"
-                      className="-translate-y-1"
-                    />
-                    <span className="ml-3">Hapus Akun</span>
-                  </div>
-                </button>
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link href="/">
-                <div className="block py-2 px-4 rounded hover:bg-gray-700">
-                  <div className="flex flex-row">
-                    {" "}
-                    <Image
-                      src="/icon/Sign_out_squre_fill.svg"
-                      width={30}
-                      height={30}
-                      alt="post"
-                      className="-translate-y-1"
-                    />
-                    <span className="ml-3">Kembali</span>
-                  </div>
-                </div>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-
-      {/* Profile Edit Form */}
+      <Sidebar />
       <div
         className="flex-1 bg-cover bg-center"
         style={{ backgroundImage: "url('/img/bg.jpg')", height: "160vh" }}
@@ -184,88 +115,78 @@ export default function EditProfile() {
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
             <div className="flex justify-center -translate-y-[10%]">
               <Image
-                src="/img/soekarno.png"
+                src={formData.avatar}
                 width={200}
                 height={200}
-                alt="gm"
-                className="rounded-full"
+                alt="Profile Avatar"
+                className="rounded-full cursor-pointer"
+                onClick={handleAvatarClick}
               />
-              <button className="-translate-x-[125%] translate-y-[40%]">
-                <Image
-                  src="/img/pensil.png"
-                  width={50}
-                  height={50}
-                  alt="gm"
-                  className="rounded-full"
-                />
-              </button>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                ref={fileInputRef}
+                className="hidden" // Sembunyikan input file
+              />
             </div>
 
-            <div className="text-[#A9A7A7] text-[18px] pb-4 ">
+            {/* Input fields for user data */}
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
               <span className="pl-4">Nama Pengguna:</span>
-              <div className="flex flex-col ">
-                <input
-                  type="text"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleInputChange}
-                  className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-                />
-              </div>
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
             </div>
             <div className="text-[#A9A7A7] text-[18px] pb-4">
               <span className="pl-4">Email:</span>
-              <div className="flex flex-col">
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-                />
-              </div>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
             </div>
             <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">Tanggal Lahir :</span>
-              <div className="flex flex-col">
-                <input
-                  type="date"
-                  name="birthday"
-                  value={formData.birthday}
-                  onChange={handleInputChange}
-                  className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-                />
-              </div>
+              <span className="pl-4">Tanggal Lahir:</span>
+              <input
+                type="date"
+                name="birthday"
+                value={formData.birthday}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
             </div>
             <div className="pb-5">
-              <span className="pl-4 text-[#A9A7A7]">Nama Pengguna :</span>
-              <div className="flex flex-col">
-                <input
-                  type="text"
-                  name="Notelepon"
-                  value={formData.Notelepon}
-                  onChange={handleInputChange}
-                  className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-                />
-              </div>
+              <span className="pl-4 text-[#A9A7A7]">No Telepon:</span>
+              <input
+                type="text"
+                name="Notelepon"
+                value={formData.Notelepon}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
             </div>
             <div className="text-[#A9A7A7] text-[18px] pb-4">
               <span className="pl-4">Alamat:</span>
-              <div className="flex flex-col">
-                <textarea
-                  name="alamat"
-                  value={formData.alamat}
-                  onChange={handleInputChange}
-                  className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-                />
-              </div>
+              <textarea
+                name="alamat"
+                value={formData.alamat}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
             </div>
 
             <div className="grid grid-cols-3">
               <div className="flex justify-end mt-[20%]">
                 <button
                   onClick={handleGoBack}
-                  className="px-4 py-2 bg-[#3F9272] text-white rounded-lg "
+                  className="px-4 py-2 bg-[#3F9272] text-white rounded-lg"
                 >
                   Kembali
                 </button>
@@ -285,4 +206,6 @@ export default function EditProfile() {
       </div>
     </div>
   );
-}
+};
+
+export default Edit;

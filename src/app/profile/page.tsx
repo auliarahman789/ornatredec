@@ -1,10 +1,10 @@
 import React from "react";
-import Sidebar from "../components/sidebar";
+import Profile from "../components/profile";
 
 function page() {
   return (
     <div>
-      <Sidebar />
+      <Profile />
     </div>
   );
 }

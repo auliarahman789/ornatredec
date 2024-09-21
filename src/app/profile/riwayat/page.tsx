@@ -1,10 +1,10 @@
-import Post from "@/app/components/post";
+import Riwayat from "@/app/components/riwayat";
 import React from "react";
 
 function page() {
   return (
     <div>
-      <Post />
+      <Riwayat />
     </div>
   );
 }
