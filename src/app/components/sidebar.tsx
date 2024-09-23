@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -12,29 +13,36 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch(`https://74gslzvj-8000.asse.devtunnels.ms/api/logout`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.delete(
+        `https://74gslzvj-8000.asse.devtunnels.ms/api/logout`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("userData")}`,
+          },
+        }
+      );
+
+      console.log("Logout Response:", response.data);
 
       // Hapus data pengguna dari localStorage
       localStorage.removeItem("userData");
       localStorage.removeItem("token");
-      router.push("/"); // Redirect ke halaman beranda setelah logout
-    } catch (error) {
+      router.push("/");
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message || "Terjadi kesalahan saat logout.";
       console.error("Logout error:", error);
+      alert("Logout error: " + errorMessage);
     }
   };
 
   const handleDeleteAccount = async () => {
     try {
-      // untuk menghapus akun
-      const response = await fetch(
-        `https://74gslzvj-8000.asse.devtunnels.ms/api/delete/:id`,
+      const userId = localStorage.getItem("userId");
+      const response = await axios.delete(
+        `https://74gslzvj-8000.asse.devtunnels.ms/api/delete/${userId}`,
         {
-          method: "DELETE",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -42,18 +50,20 @@ const Sidebar = () => {
         }
       );
 
-      if (!response.ok) {
-        throw new Error("Gagal menghapus akun");
-      }
+      console.log("Delete Response:", response.data);
 
       // Hapus data pengguna dari localStorage
       localStorage.removeItem("userData");
       localStorage.removeItem("token");
-      alert("Akun Anda telah dihapus secara permanen."); // Pesan konfirmasi
+      alert("Akun Anda telah dihapus secara permanen.");
       router.push("/login"); // Redirect ke halaman login
-    } catch (error) {
+    } catch (error: any) {
+      // Menambahkan pengetikan di sini
+      const errorMessage =
+        error.response?.data?.message ||
+        "Terjadi kesalahan saat menghapus akun.";
       console.error("Delete account error:", error);
-      alert("Terjadi kesalahan saat menghapus akun.");
+      alert("Delete account error: " + errorMessage);
     }
   };
 
@@ -191,7 +201,7 @@ const Sidebar = () => {
               Hapus Akun
             </h2>
             <p className="text-[16px] text-[#308967] text-center">
-              Akun anda akan terhapus selamanya jika anda menghapusnya
+              Akun Anda akan terhapus selamanya jika Anda menghapusnya.
             </p>
             <div className="border-b-2 border-[#80FCCD] mt-[10%]"></div>
             <div className="flex flex-col justify-center mt-4 space-y-4">
