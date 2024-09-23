@@ -11,6 +11,15 @@ const disableNavbar = [
   "/profile/post",
   "/profile/edit",
   "/profile/riwayat",
+<<<<<<< HEAD
+=======
+  "/Superadmin",
+  "/Superadmin/Dashboard",
+  "/Superadmin/Produk",
+  "/Superadmin/Akun",
+  "/Superadmin/Statistik",
+  "/Superadmin/Forum",
+>>>>>>> a31ae0d1fb9484a9403db79e9a8c8b88d9b3246f
 ];
 
 export default function RootLayoutClient({
