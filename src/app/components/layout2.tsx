@@ -11,6 +11,7 @@ const disableNavbar = [
   "/profile",
   "/profile/post",
   "/profile/edit",
+  "/profile/riwayat",
   "/Superadmin",
   "/Superadmin/Dashboard",
   "/Superadmin/Produk",
