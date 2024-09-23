@@ -1,7 +1,5 @@
-import Image from "next/image";
+"use client";
 import React, { useState } from "react";
-import userIcon from "../../../../public/icon/User_fill.svg";
-import passwordIcon from "../../../../public/icon/Lock_alt_fill.svg";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -11,34 +9,33 @@ const Login = () => {
   const [role, setRole] = useState<string>("user");
   const router = useRouter();
 
-  async function login() {
+  async function login(e: React.FormEvent) {
+    e.preventDefault(); // Mencegah reload saat submit form
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/login`;
+
     try {
       const res = await axios.post(
         url,
-        {
-          username,
-          password,
-          role,
-        },
-        {
-          withCredentials: true,
-        }
+        { username, password, role },
+        { withCredentials: true }
       );
-      console.log(res);
 
-      // Simpan token atau informasi login di localStorage
-      localStorage.setItem("token", res.data.token); // atau gunakan state management global
+      // Simpan data pengguna di localStorage setelah login berhasil
+      localStorage.setItem("token", res.data.token); // Menyimpan token
+      localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
 
+      alert("Berhasil Login");
+      // Redirect berdasarkan role
       if (role === "user") {
         router.push("/");
       } else {
         router.push("/superadmin");
       }
-      alert("Berhasil Login");
     } catch (error: any) {
       console.log(error);
-      alert("Terjadi kesalahan saat login.");
+      alert(
+        "Terjadi kesalahan saat login. Silakan periksa username dan password."
+      );
     }
   }
 
@@ -49,7 +46,10 @@ const Login = () => {
           <h1 className="font-bold text-[30px] pt-[60px] text-[#3F9272] mt-16">
             Masuk
           </h1>
-          <form className="pt-[25px] gap-3.5 flex flex-col justify-center items-center">
+          <form
+            className="pt-[25px] gap-3.5 flex flex-col justify-center items-center"
+            onSubmit={login}
+          >
             <div className="relative">
               <input
                 type="text"
@@ -57,13 +57,6 @@ const Login = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username"
                 className="w-[320px] pl-14 bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8/ text-[#3F9272] rounded-md"
-              />
-              <Image
-                src={userIcon}
-                alt="username"
-                width={25}
-                height={25}
-                className="absolute top-1/2 left-4 -translate-y-1/2"
               />
             </div>
             <div className="relative">
@@ -74,22 +67,14 @@ const Login = () => {
                 placeholder="Password"
                 className="w-[320px] pl-14 bg-[#E3FFF3] pb-[13px] mt-6 pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8/ text-[#3F9272] rounded-md"
               />
-              <Image
-                src={passwordIcon}
-                alt="password"
-                width={27}
-                height={27}
-                className="absolute top-1/2 left-4 -translate-y-1/2 mt-3"
-              />
             </div>
+            <button
+              type="submit"
+              className="bg-[#3F9272] text-sm text-white px-12 py-[10px] h-[50px] w-[170px] mt-[30px] rounded-full"
+            >
+              Masuk
+            </button>
           </form>
-          <button
-            type="submit"
-            onClick={login}
-            className="bg-[#3F9272] text-sm text-white px-12 py-[10px] h-[50px] w-[170px] mt-[30px] rounded-full"
-          >
-            Masuk
-          </button>
         </div>
       </div>
     </main>
