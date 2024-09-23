@@ -10,7 +10,7 @@ const Login = () => {
   const router = useRouter();
 
   async function login(e: React.FormEvent) {
-    e.preventDefault(); // Mencegah reload saat submit form
+    e.preventDefault(); // Mencegah reload saat kirim
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/login`;
 
     try {
