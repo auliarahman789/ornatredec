@@ -6,6 +6,7 @@ import Image from "next/image";
 import Diagram from "../diagram/lingkaran/page";
 import Example from "../diagram/batang/page";
 import DiagramForum from "../diagram/lingkaranforum/page";
+import DropdownButton from "../components/super admin/button/page";
 
 function Page() {
   return (
@@ -133,6 +134,7 @@ function Page() {
           className="w-[73%] h-[500px] ms-[4%] mt-[2%] bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl mb-5"
           style={{ boxShadow: "1px 5px 4px #00000040" }}
         >
+          <DropdownButton />
           <Example />
         </div>
         <div className="flex ms-[1.5%] mt-[2%] mb-[2%]">
