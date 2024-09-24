@@ -108,7 +108,7 @@ const Sidebar = () => {
 
   return (
     <div className="flex min-h-screen">
-      <div className="w-64 h-screen fixed bg-gray-800 text-white flex flex-col">
+      <div className="w-64 h-screen fixed text-white flex flex-col">
         <div className="p-4 flex justify-center bg-[#CCFFEB]">
           <Image src="/icon/logo.svg" width={85} height={70} alt="logo" />
         </div>
