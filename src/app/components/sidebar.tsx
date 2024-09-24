@@ -4,7 +4,12 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+
+// Define the expected structure of the error response
+interface ErrorResponse {
+  message: string;
+}
 
 const Sidebar = () => {
   const router = useRouter();
@@ -12,60 +17,94 @@ const Sidebar = () => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   const handleLogout = async () => {
+    // const token = localStorage.getItem("token");
+    // if (!token) {
+    //   alert("Token tidak ditemukan. Silakan login kembali.");
+    //   return;
+    // }
+
     try {
       const response = await axios.delete(
         `https://74gslzvj-8000.asse.devtunnels.ms/api/logout`,
         {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("userData")}`,
-          },
+          withCredentials: true,
         }
       );
 
       console.log("Logout Response:", response.data);
 
       // Hapus data pengguna dari localStorage
-      localStorage.removeItem("userData");
-      localStorage.removeItem("token");
+      // localStorage.removeItem("userData");
+      // localStorage.removeItem("token");
       router.push("/");
-    } catch (error: any) {
-      const errorMessage =
-        error.response?.data?.message || "Terjadi kesalahan saat logout.";
-      console.error("Logout error:", error);
-      alert("Logout error: " + errorMessage);
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      console.error("Logout error:", axiosError.response);
+      // if (axiosError.response) {
+      //   const errorData = axiosError.response.data as ErrorResponse;
+      //   const errorMessage =
+      //     errorData.message || "Terjadi kesalahan saat logout.";
+      //   if (axiosError.response.status === 401) {
+      //     alert("Token tidak valid, silakan login kembali.");
+      //     //router.push("/login");
+      //   } else {
+      //     alert("Logout error: " + errorMessage);
+      //   }
+      // } else {
+      //   alert("Terjadi kesalahan jaringan.");
+      // }
     }
   };
 
-  const handleDeleteAccount = async () => {
-    try {
-      const userId = localStorage.getItem("userId");
-      const response = await axios.delete(
-        `https://74gslzvj-8000.asse.devtunnels.ms/api/delete/${userId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+  // const handleDeleteAccount = async () => {
+  //   const token = localStorage.getItem("token");
+  //   const userId = localStorage.getItem("userId");
 
-      console.log("Delete Response:", response.data);
+  //   if (!token) {
+  //     alert("Token tidak ditemukan. Silakan login kembali.");
+  //     return;
+  //   }
+  //   if (!userId) {
+  //     alert("User ID tidak ditemukan.");
+  //     return;
+  //   }
 
-      // Hapus data pengguna dari localStorage
-      localStorage.removeItem("userData");
-      localStorage.removeItem("token");
-      alert("Akun Anda telah dihapus secara permanen.");
-      router.push("/login"); // Redirect ke halaman login
-    } catch (error: any) {
-      // Menambahkan pengetikan di sini
-      const errorMessage =
-        error.response?.data?.message ||
-        "Terjadi kesalahan saat menghapus akun.";
-      console.error("Delete account error:", error);
-      alert("Delete account error: " + errorMessage);
-    }
-  };
+  //   try {
+  //     const response = await axios.delete(
+  //       `https://74gslzvj-8000.asse.devtunnels.ms/api/delete/${userId}`,
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+
+  //     console.log("Delete Response:", response.data);
+
+  //     // Hapus data pengguna dari localStorage
+  //     localStorage.removeItem("userData");
+  //     localStorage.removeItem("token");
+  //     alert("Akun Anda telah dihapus secara permanen.");
+  //     router.push("/login"); // Redirect ke halaman login
+  //   } catch (error) {
+  //     const axiosError = error as AxiosError; // Type assertion
+  //     console.error("Delete account error:", axiosError.response);
+  //     if (axiosError.response) {
+  //       const errorData = axiosError.response.data as ErrorResponse; // Type assertion
+  //       const errorMessage =
+  //         errorData.message || "Terjadi kesalahan saat menghapus akun.";
+  //       if (axiosError.response.status === 401) {
+  //         alert("Token tidak valid, silakan login kembali.");
+  //         router.push("/login");
+  //       } else {
+  //         alert("Delete account error: " + errorMessage);
+  //       }
+  //     } else {
+  //       alert("Terjadi kesalahan jaringan.");
+  //     }
+  //   }
+  // };
 
   return (
     <div className="flex min-h-screen">
@@ -177,7 +216,7 @@ const Sidebar = () => {
             <div className="border-b-2 border-[#80FCCD] mt-[10%]"></div>
             <div className="flex flex-col justify-center mt-4 space-y-4">
               <button
-                onClick={handleLogout}
+                onClick={() => handleLogout()}
                 className="px-4 py-2 bg-orange-700 text-white rounded hover:bg-red-600"
               >
                 Logout
@@ -194,7 +233,7 @@ const Sidebar = () => {
       )}
 
       {/* Popup untuk Hapus Akun */}
-      {showDeletePopup && (
+      {/* {showDeletePopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white w-[30%] h-[50%] p-4 rounded-lg">
             <h2 className="text-lg text-[#308967] font-semibold text-center mt-[5%]">
@@ -220,7 +259,7 @@ const Sidebar = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
