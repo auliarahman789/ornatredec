@@ -1,0 +1,211 @@
+"use client";
+
+import React, { ChangeEvent, useEffect, useState, useRef } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import Sidebar from "./sidebar";
+
+interface UserData {
+  username: string;
+  email: string;
+  birthday: string;
+  Notelepon: string;
+  alamat: string;
+  avatar: string; // Properti avatar
+}
+
+const Edit = () => {
+  const [formData, setFormData] = useState<UserData>({
+    username: "",
+    email: "",
+    birthday: "",
+    Notelepon: "",
+    alamat: "",
+    avatar: "/img/default-avatar.png", // Gambar default
+  });
+
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      const userData = JSON.parse(storedUserData);
+      setFormData({
+        ...userData,
+        avatar: userData.avatar || "/img/default-avatar.png",
+      });
+    }
+  }, []);
+
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prevData) => ({
+          ...prevData,
+          avatar: reader.result as string, // Simpan gambar sebagai URL
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      // Ambil ID pengguna dari localStorage
+      const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
+
+      const response = await axios.put(
+        `https://74gslzvj-8000.asse.devtunnels.ms/api/update/${userId}`, // Ganti :id dengan userId
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Sertakan token jika diperlukan
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        // Jika berhasil, simpan data di localStorage
+        localStorage.setItem("userData", JSON.stringify(formData));
+        localStorage.setItem("username", formData.username);
+        localStorage.setItem("avatar", formData.avatar);
+        router.push("/profile"); // Arahkan kembali ke profil
+      } else {
+        alert("Gagal memperbarui data pengguna.");
+      }
+    } catch (error) {
+      console.error("Kesalahan saat memperbarui data pengguna:", error);
+      alert("Terjadi kesalahan saat memperbarui data Anda.");
+    }
+  };
+
+  const handleGoBack = () => {
+    router.push("/profile");
+  };
+
+  const handleAvatarClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click(); // Trigger file input click
+    }
+  };
+
+  return (
+    <div className="flex min-h-screen">
+      <Sidebar />
+      <div
+        className="flex-1 bg-cover bg-center"
+        style={{ backgroundImage: "url('/img/bg.jpg')", height: "160vh" }}
+      >
+        <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+          <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
+            <div className="flex justify-center -translate-y-[10%]">
+              <Image
+                src={formData.avatar}
+                width={200}
+                height={200}
+                alt="Profile Avatar"
+                className="rounded-full cursor-pointer"
+                onClick={handleAvatarClick}
+              />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                ref={fileInputRef}
+                className="hidden" // Sembunyikan input file
+              />
+            </div>
+
+            {/* Input fields for user data */}
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Nama Pengguna:</span>
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Email:</span>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Tanggal Lahir:</span>
+              <input
+                type="date"
+                name="birthday"
+                value={formData.birthday}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="pb-5">
+              <span className="pl-4 text-[#A9A7A7]">No Telepon:</span>
+              <input
+                type="text"
+                name="Notelepon"
+                value={formData.Notelepon}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Alamat:</span>
+              <textarea
+                name="alamat"
+                value={formData.alamat}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+
+            <div className="grid grid-cols-3">
+              <div className="flex justify-end mt-[20%]">
+                <button
+                  onClick={handleGoBack}
+                  className="px-4 py-2 bg-[#3F9272] text-white rounded-lg"
+                >
+                  Kembali
+                </button>
+              </div>
+              <div></div>
+              <div className="flex justify-start mt-[20%]">
+                <button
+                  onClick={handleSave}
+                  className="px-4 py-2 bg-[#CCFFEB] text-[#3F9272] rounded-lg"
+                >
+                  Perbaruii
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Edit;
