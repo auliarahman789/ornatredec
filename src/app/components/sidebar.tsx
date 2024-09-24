@@ -171,7 +171,7 @@ const Sidebar = () => {
                 </div>
               </button>
             </li>
-            <li className="mb-2">
+            {/* <li className="mb-2">
               <button
                 onClick={() => setShowDeletePopup(true)}
                 className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
@@ -186,7 +186,7 @@ const Sidebar = () => {
                   <span className="ml-3">Hapus Akun</span>
                 </div>
               </button>
-            </li>
+            </li> */}
             <li className="mb-2">
               <Link href="/">
                 <div className="block py-2 px-4 rounded hover:bg-gray-700">
