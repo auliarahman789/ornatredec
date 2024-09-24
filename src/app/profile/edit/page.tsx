@@ -3,7 +3,7 @@ import React from "react";
 
 function page() {
   return (
-    <div className="bg-slate-500">
+    <div>
       <Edit />
     </div>
   );

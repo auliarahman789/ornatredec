@@ -197,7 +197,7 @@ const Edit = () => {
                   onClick={handleSave}
                   className="px-4 py-2 bg-[#CCFFEB] text-[#3F9272] rounded-lg"
                 >
-                  Perbaruii
+                  Perbarui
                 </button>
               </div>
             </div>
