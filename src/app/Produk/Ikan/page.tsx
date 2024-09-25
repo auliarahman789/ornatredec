@@ -2,12 +2,12 @@
 import Link from "next/link";
 import React from "react";
 
-const Tanaman = ({}) => {
+const Ikan = ({}) => {
   return (
-    <div className="pt-1" id="tanaman">
+    <div className="pt-1" id="ikan">
       <div
-        className="h-[455px] w-[100%] -translate-y-1 bg-cover"
-        style={{ backgroundImage: "url('/img/TanamanProduk1.png')" }}
+        className="h-[460px] w-[100%] -translate-y-1 bg-cover"
+        style={{ backgroundImage: "url('/img/IkanProduk.png')" }}
       ></div>
       <ul className="text-center space-x-10 -translate-y-3 min-h-screen text-[22px] text-white font-semibold flex justify-center mt-5">
         <Link href="/Produk/Tanaman#tanaman">
@@ -39,4 +39,4 @@ const Tanaman = ({}) => {
   );
 };
 
-export default Tanaman;
+export default Ikan;
