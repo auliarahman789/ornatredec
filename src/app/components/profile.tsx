@@ -9,9 +9,9 @@ interface UserData {
   username: string;
   email: string;
   birthday: string;
-  Notelepon: string;
+  no_hp: string;
   alamat: string;
-  avatar: string; // Tambahkan properti avatar
+  photoProfile: string; // Tambahkan properti photoProfile
 }
 
 const Profile = () => {
@@ -19,9 +19,9 @@ const Profile = () => {
     username: "",
     email: "",
     birthday: "",
-    Notelepon: "",
+    no_hp: "",
     alamat: "",
-    avatar: "/img/default-avatar.png", // Gambar default
+    photoProfile: "/img/default-avatar.png", // Gambar default
   });
 
   const router = useRouter();
@@ -65,10 +65,10 @@ const Profile = () => {
             <div className="-translate-y-[6%]">
               <div className="flex justify-end mb-4 translate-y-[50%]">
                 <Image
-                  src={userData.avatar} // Menampilkan gambar dari localStorage
+                  src={userData.photoProfile} // Menampilkan gambar dari localStorage
                   width={200}
                   height={200}
-                  alt="Profile Avatar"
+                  alt=""
                   className="rounded-full"
                 />
               </div>
@@ -111,7 +111,7 @@ const Profile = () => {
                   <div className="flex flex-col">
                     <input
                       type="text"
-                      value={userData.Notelepon}
+                      value={userData.no_hp}
                       className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
                       readOnly
                     />

@@ -17,11 +17,11 @@ const Sidebar = () => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   const handleLogout = async () => {
-    // const token = localStorage.getItem("token");
-    // if (!token) {
-    //   alert("Token tidak ditemukan. Silakan login kembali.");
-    //   return;
-    // }
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Token tidak ditemukan. Silakan login kembali.");
+      return;
+    }
 
     try {
       const response = await axios.delete(

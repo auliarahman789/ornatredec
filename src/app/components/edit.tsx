@@ -10,9 +10,9 @@ interface UserData {
   username: string;
   email: string;
   birthday: string;
-  Notelepon: string;
+  no_hp: string;
   alamat: string;
-  avatar: string; // Properti avatar
+  photoProfile: any; // Properti photoProfile
 }
 
 const Edit = () => {
@@ -20,9 +20,9 @@ const Edit = () => {
     username: "",
     email: "",
     birthday: "",
-    Notelepon: "",
+    no_hp: "",
     alamat: "",
-    avatar: "/img/default-avatar.png", // Gambar default
+    photoProfile: "/img/default-avatar.png", // Gambar default
   });
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -34,7 +34,7 @@ const Edit = () => {
       const userData = JSON.parse(storedUserData);
       setFormData({
         ...userData,
-        avatar: userData.avatar || "/img/default-avatar.png",
+        photoProfile: userData.photoProfile || "/img/default-avatar.png",
       });
     }
   }, []);
@@ -56,10 +56,16 @@ const Edit = () => {
       reader.onloadend = () => {
         setFormData((prevData) => ({
           ...prevData,
-          avatar: reader.result as string, // Simpan gambar sebagai URL
+          photoProfile: reader.result as string, // Simpan gambar sebagai URL
         }));
       };
       reader.readAsDataURL(file);
+    }
+  };
+
+  const handleavatarClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click(); // Trigger file input click
     }
   };
 
@@ -83,8 +89,10 @@ const Edit = () => {
         // Jika berhasil, simpan data di localStorage
         localStorage.setItem("userData", JSON.stringify(formData));
         localStorage.setItem("username", formData.username);
-        localStorage.setItem("avatar", formData.avatar);
-        router.push("/profile"); // Arahkan kembali ke profil
+        localStorage.setItem("photoProfile", formData.photoProfile);
+        localStorage.setItem("no_hp", formData.no_hp);
+
+        router.push("/profile");
       } else {
         alert("Gagal memperbarui data pengguna.");
       }
@@ -98,12 +106,6 @@ const Edit = () => {
     router.push("/profile");
   };
 
-  const handleAvatarClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click(); // Trigger file input click
-    }
-  };
-
   return (
     <div className="flex min-h-screen">
       <Sidebar />
@@ -115,19 +117,19 @@ const Edit = () => {
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
             <div className="flex justify-center -translate-y-[10%]">
               <Image
-                src={formData.avatar}
+                src={formData.photoProfile}
                 width={200}
                 height={200}
-                alt="Profile Avatar"
+                alt="Profile Picture"
                 className="rounded-full cursor-pointer"
-                onClick={handleAvatarClick}
+                onClick={handleavatarClick}
               />
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
                 ref={fileInputRef}
-                className="hidden" // Sembunyikan input file
+                className="hidden"
               />
             </div>
 
@@ -137,7 +139,7 @@ const Edit = () => {
               <input
                 type="text"
                 name="username"
-                value={formData.username}
+                defaultValue={formData.username}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -147,7 +149,7 @@ const Edit = () => {
               <input
                 type="email"
                 name="email"
-                value={formData.email}
+                defaultValue={formData.email}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -157,7 +159,7 @@ const Edit = () => {
               <input
                 type="date"
                 name="birthday"
-                value={formData.birthday}
+                defaultValue={formData.birthday}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -166,8 +168,8 @@ const Edit = () => {
               <span className="pl-4 text-[#A9A7A7]">No Telepon:</span>
               <input
                 type="text"
-                name="Notelepon"
-                value={formData.Notelepon}
+                name="no_hp"
+                defaultValue={formData.no_hp}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -176,7 +178,7 @@ const Edit = () => {
               <span className="pl-4">Alamat:</span>
               <textarea
                 name="alamat"
-                value={formData.alamat}
+                defaultValue={formData.alamat}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -197,7 +199,7 @@ const Edit = () => {
                   onClick={handleSave}
                   className="px-4 py-2 bg-[#CCFFEB] text-[#3F9272] rounded-lg"
                 >
-                  Perbaruii
+                  Perbarui
                 </button>
               </div>
             </div>
