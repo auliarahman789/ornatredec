@@ -3,7 +3,7 @@ import React from 'react'
 const RegisterL = ({ isAnimated, setIsAnimated }:
   { isAnimated: any, setIsAnimated: any }) => {
   return (
-    <div className="h-[520px] w-[420px] bg-no-repeat bg-center text-white
+    <div id='register' className="h-[520px] w-[420px] bg-no-repeat bg-center text-white
      flex flex-col items-center justify-center gap-5"
       style={{
         backgroundImage: "url('/img/registerleft.png')",

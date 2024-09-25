@@ -2,6 +2,7 @@
 import { Josefin_Sans as JosefinSans } from "next/font/google";
 import { usePathname } from "next/navigation";
 import Navbar from "./homepage/navbar";
+import SidebarSp from "./super admin/sidebar1";
 
 const josefinSans = JosefinSans({ subsets: ["latin"] });
 
@@ -11,8 +12,20 @@ const disableNavbar = [
   "/profile/post",
   "/profile/edit",
   "/profile/riwayat",
+  "/Superadmin",
+  "/Superadmin/Dashboard",
+  "/Superadmin/Produk",
+  "/Superadmin/Akun",
+  "/Superadmin/Statistik",
+  "/Superadmin/Forum",
 ];
-
+const superNavbar = [
+  "/Superadmin",
+  "/Superadmin/Produk",
+  "/Superadmin/Akun",
+  "/Superadmin/Statistik",
+  "/Superadmin/Forum",
+];
 export default function RootLayoutClient({
   children,
 }: Readonly<{
@@ -20,11 +33,11 @@ export default function RootLayoutClient({
 }>) {
   const pathname = usePathname();
   const isNavbarDisabled = disableNavbar.includes(pathname);
-
+  const isSuperNavbar = superNavbar.includes(pathname);
   return (
     <div className={josefinSans.className}>
       {!isNavbarDisabled && <Navbar />}
-
+      {isSuperNavbar && <SidebarSp />}
       {children}
     </div>
   );

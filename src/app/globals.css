@@ -16,21 +16,78 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-  .content{
-    top:0;
-    left: 0;
+
+  .nav ul li {
+    position: relative; 
+    transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s ease, border-radius 0.3s ease;
+    z-index: 1;
+  }
+  
+  .nav ul li:hover {
+    background-color: white;
+    color: #308967;
+    padding: 12px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+  
+  .nav ul li:hover::before,
+  .nav ul li:hover::after {
+    content: '';
     position: absolute;
-    background: #00000084;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    opacity: 0;
-    transition: 0.6s;
-    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px white;
+    transition: box-shadow 0.3s ease;
+    z-index: -1;
   }
-  .content:hover{
-    opacity: 1;
-    overflow: hidden;
+
+  .nav ul li:hover::before {
+    top: -50px;
+    right: 0;
+    box-shadow: 35px 35px 0 10px white;
   }
+  
+  .nav ul li:hover::after {
+    bottom: -50px;
+    right: 0;
+    box-shadow: 35px -35px 0 10px white;
+  }
+  
+  .nav ul li.active {
+    background-color: white;
+    color: #308967;
+    padding: 12px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+  
+  .nav ul li.active::before,
+  .nav ul li.active::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px white;
+    transition: box-shadow 0.3s ease;
+    z-index: -1;
+  }
+
+  .nav ul li.active::before {
+    top: -50px;
+    right: 0;
+    box-shadow: 35px 35px 0 10px white;
+  }
+  
+  .nav ul li.active::after {
+    bottom: -50px;
+    right: 0;
+    box-shadow: 35px -35px 0 10px white;
+  }
+  
+  
 }
