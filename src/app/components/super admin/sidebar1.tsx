@@ -27,8 +27,8 @@ function SidebarSp() {
               <span className='mt-1'>Dashboard</span></li>
           </Link>
           <Link href='/Superadmin/Produk'>
-            <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Produk' ? 'active' : ''}`}>
-            <Image src={pathname === '/Superadmin/Produk' ? produkk2 : produkk} className='w-5 ms-1 h-6 me-6' width={30} height={30} alt='dashboard' />
+            <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Produk' || pathname === '/Superadmin/Produk/tambah' ? 'active' : ''}`}>
+            <Image src={pathname === '/Superadmin/Produk' || pathname === '/Superadmin/Produk/tambah' ? produkk2 : produkk} className='w-5 ms-1 h-6 me-6' width={30} height={30} alt='dashboard' />
             Produk</li>
           </Link>
           <Link href='/Superadmin/Statistik'>
