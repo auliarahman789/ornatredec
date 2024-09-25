@@ -29,15 +29,30 @@ const Edit = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const storedUserData = localStorage.getItem("userData");
-    if (storedUserData) {
-      const userData = JSON.parse(storedUserData);
-      setFormData({
-        ...userData,
-        photoProfile: userData.photoProfile || "/img/default-avatar.png",
-      });
-    }
+    getUser();
+    // const storedUserData = localStorage.getItem("userData");
+    // if (storedUserData) {
+    //   const userData = JSON.parse(storedUserData);
+    //   setFormData({
+    //     ...userData,
+    //     photoProfile: userData.photoProfile || "/img/default-avatar.png",
+    //   });
+    // }
   }, []);
+  async function getUser() {
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
+    try {
+      const res = await axios.get(url, {
+        // Menggunakan params untuk query string
+        withCredentials: true,
+      });
+
+      console.log(res.data);
+      setUserData(res.data.user); // Simpan data yang diterima ke dalam state
+    } catch (error: any) {
+      console.log(error);
+    }
+  }
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -47,6 +62,16 @@ const Edit = () => {
       ...prevData,
       [name]: value,
     }));
+    console.log(value);
+  };
+
+  const handleInputImage = (e: any) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      ["photoProfile"]: e.target.files[0],
+    }));
+    console.log(e.target.files);
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,15 +96,22 @@ const Edit = () => {
 
   const handleSave = async () => {
     try {
+      var formData2 = new FormData();
+      formData2.append("username", formData.username);
+      formData2.append("email", formData.email);
+      formData2.append("no_hp", formData.no_hp);
+      formData2.append("alamat", formData.alamat);
+      formData2.append("photoProfile", formData.photoProfile);
+
       // Ambil ID pengguna dari localStorage
       const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
 
       const response = await axios.put(
         `https://74gslzvj-8000.asse.devtunnels.ms/api/update/${userId}`, // Ganti :id dengan userId
-        formData,
+        formData2,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-Data",
             Authorization: `Bearer ${localStorage.getItem("token")}`, // Sertakan token jika diperlukan
           },
         }
@@ -96,6 +128,7 @@ const Edit = () => {
       } else {
         alert("Gagal memperbarui data pengguna.");
       }
+      console.log(formData);
     } catch (error) {
       console.error("Kesalahan saat memperbarui data pengguna:", error);
       alert("Terjadi kesalahan saat memperbarui data Anda.");
@@ -126,8 +159,9 @@ const Edit = () => {
               />
               <input
                 type="file"
+                name="photoProfile"
                 accept="image/*"
-                onChange={handleImageChange}
+                onChange={handleInputImage}
                 ref={fileInputRef}
                 className="hidden"
               />
@@ -211,3 +245,6 @@ const Edit = () => {
 };
 
 export default Edit;
+function setUserData(user: any) {
+  throw new Error("Function not implemented.");
+}
