@@ -58,7 +58,7 @@ const Profile = () => {
       <Sidebar />
       <div
         className="flex-1 bg-cover bg-center"
-        style={{ backgroundImage: "url('/img/bg.jpg')" }}
+        style={{ backgroundImage: "url('/img/bg.jpg')",}}
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[90%] translate-x-[15%] z-20 relative pointer-events-auto">

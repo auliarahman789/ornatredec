@@ -108,41 +108,41 @@ const Sidebar = () => {
 
   return (
     <div className="flex min-h-screen">
-      <div className="w-64 h-screen bg-gray-800 text-white flex flex-col">
+      <div className="w-64 h-screen fixed text-white flex flex-col">
         <div className="p-4 flex justify-center bg-[#CCFFEB]">
           <Image src="/icon/logo.svg" width={85} height={70} alt="logo" />
         </div>
-        <nav className="flex-1 p-4 bg-gray-800">
+        <nav className="flex-1 p-4 bg-white">
           <ul>
             <li className="mb-2">
               <Link href="/profile">
-                <div className="flex items-center py-2 px-4 rounded hover:bg-gray-700">
+                <div className="flex items-center py-2 px-4 rounded hover:bg-[#CCFFEB]">
                   <Image
                     src="/icon/profil.svg"
                     width={30}
                     height={30}
                     alt="profil"
                   />
-                  <span className="ml-3">Profil</span>
+                  <span className="ml-3 text-[#3F9272]">Profil</span>
                 </div>
               </Link>
             </li>
             <li className="mb-2">
               <Link href="/profile/riwayat">
-                <div className="flex items-center py-2 px-4 rounded hover:bg-gray-700">
+                <div className="flex items-center py-2 px-4 rounded hover:bg-[#CCFFEB]">
                   <Image
                     src="/icon/post.svg"
                     width={30}
                     height={30}
                     alt="riwayat"
                   />
-                  <span className="ml-3">Riwayat</span>
+                  <span className="ml-3 text-[#3F9272] ">Riwayat</span>
                 </div>
               </Link>
             </li>
             <li className="mb-2">
               <Link href="/profile/edit">
-                <div className="block py-2 px-4 rounded hover:bg-gray-700">
+                <div className="block py-2 px-4 rounded hover:bg-[#CCFFEB]">
                   <div className="flex flex-row">
                     <Image
                       src="/icon/Rectangle 1.svg"
@@ -150,7 +150,7 @@ const Sidebar = () => {
                       height={30}
                       alt="edit"
                     />
-                    <span className="ml-3">Edit Profil</span>
+                    <span className="ml-3 text-[#3F9272] ">Edit Profil</span>
                   </div>
                 </div>
               </Link>
@@ -158,7 +158,7 @@ const Sidebar = () => {
             <li className="mb-2">
               <button
                 onClick={() => setShowLogoutPopup(true)}
-                className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
+                className="block w-full text-left py-2 px-4 rounded hover:bg-[#CCFFEB]"
               >
                 <div className="flex flex-row">
                   <Image
@@ -167,14 +167,14 @@ const Sidebar = () => {
                     height={30}
                     alt="logout"
                   />
-                  <span className="ml-3">Logout</span>
+                  <span className="ml-3 text-[#3F9272] ">Logout</span>
                 </div>
               </button>
             </li>
             {/* <li className="mb-2">
               <button
                 onClick={() => setShowDeletePopup(true)}
-                className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
+                className="block w-full text-left py-2 px-4 rounded hover:bg-[#CCFFEB]"
               >
                 <div className="flex flex-row">
                   <Image
@@ -183,13 +183,13 @@ const Sidebar = () => {
                     height={30}
                     alt="hapus"
                   />
-                  <span className="ml-3">Hapus Akun</span>
+                  <span className="ml-3 text-[#3F9272] ">Hapus Akun</span>
                 </div>
               </button>
             </li> */}
             <li className="mb-2">
               <Link href="/">
-                <div className="block py-2 px-4 rounded hover:bg-gray-700">
+                <div className="block py-2 px-4 rounded hover:bg-[#CCFFEB]">
                   <div className="flex flex-row">
                     <Image
                       src="/icon/Sign_out_squre_fill.svg"
@@ -197,7 +197,7 @@ const Sidebar = () => {
                       height={30}
                       alt="kembali"
                     />
-                    <span className="ml-3">Kembali</span>
+                    <span className="ml-3 text-[#3F9272] ">Kembali</span>
                   </div>
                 </div>
               </Link>
