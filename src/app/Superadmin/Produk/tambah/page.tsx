@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import foto from '../../../../../public/img/Group 1000004376.png'
+import axios from 'axios';
 
-function Page() {
+const Page = () => {
+    async function tambahProduk() {
+      const url = `${process.env.NEXT_PUBLIC_URL}/api/produk`;
+      try {
+        const res = await axios.post(
+          url,
+          {
+            
+          },
+          {
+            withCredentials: true,
+          }
+        );
+  
+      } catch (error: any) {
+        console.log(error);
+        alert("Terjadi kesalahan saat membuat akun.");
+      }
+    }
   return (
     <div className='overflow-x-hidden min-h-screen '>
           <div className='translate-x-64'>
@@ -15,14 +34,21 @@ function Page() {
                     Tambah Produk
                     </p>        
                   </div>
-                  <div className='bg-[#E2FFF5] min-h-screen w-[62%] ms-[2.5%]'>
+                  <div className='bg-[#E2FFF5] min-h-screen w-[62%] ms-[2.5%] pb-[8%]'>
                       <div className='flex flex-col mx-[10%] mt-[7%]'>
                       <label htmlFor="Nama produk" className='text-[#8EAEA6] text-[20px] font-semibold'>Nama Produk</label>
                       <input
                             type="text"
                             name="Nama produk"
                             className="w-[100%] mt-1 bg-white h-[45px]
-                            text-[20px] ps-3 text-[#3F9272] rounded-md"
+                            text-[20px] px-3 text-[#3F9272] rounded-md"
+                            required
+                          />
+                      <label htmlFor="Deskripsi produk" className='text-[#8EAEA6] mt-[3%] text-[20px] font-semibold'>Deskripsi Produk</label>
+                      <textarea
+                            name="Deskripsi produk"
+                            className="w-[100%] mt-1 bg-white h-[250px]
+                            text-[20px] px-3 py-2 text-[#3F9272] rounded-md"
                             required
                           />
                           <div className='flex w-full mt-[3%]'>
@@ -54,10 +80,87 @@ function Page() {
                             type="text"
                             name="Harga"
                             className="w-[100%] mt-1 bg-white h-[45px]
-                            text-[20px] ps-3 text-[#3F9272] rounded-md"
+                            text-[20px] px-3 text-[#3F9272] rounded-md"
                             required
                           />
-                          
+              <p className='text-[#8EAEA6] text-[20px] font-semibold mt-[3%]'>Variasi Produk</p>
+              <div className="ms-7 mt-3 flex flex-col">
+                      <label htmlFor="nama variasi" className='text-[#8EAEA6] text-[20px] font-semibold mt-[3%]'>Nama Variasi</label>
+                      <input
+                            type="text"
+                            name="nama variasi"
+                            className="w-[40%] mt-1 bg-white h-[45px]
+                            text-[20px] px-3 text-[#3F9272] rounded-md"
+                            required
+                          />
+              </div>
+                <p className='text-[#8EAEA6] ms-12 text-[20px] font-semibold mt-[3%]'>Sub Variasi</p>
+              <div className="grid grid-cols-2 ms-12">
+                <div className='flex flex-col'>
+                  <label htmlFor="nama variasi" className='text-[#8EAEA6] text-sm font-semibold mt-[3%]'>Nama Variasi</label>
+                          <input
+                                type="text"
+                                name="nama variasi"
+                                className="w-[80%] mt-1 bg-white h-[45px]
+                                text-[20px] px-3 text-[#3F9272] rounded-md"
+                                required
+                    />
+                </div>
+                <div className='flex flex-col'>
+                    <label htmlFor="stok" className='text-[#8EAEA6] text-sm font-semibold mt-[3%]'>Stok</label>
+                          <input
+                                type="text"
+                                name="stok"
+                                className="w-[20%] mt-1 bg-white h-[45px]
+                                text-[20px] px-3 text-[#3F9272] rounded-md"
+                                required
+                    />
+                </div>
+                <div className='flex flex-col'>
+                    <label htmlFor="nama variasi" className='text-[#8EAEA6] text-sm font-semibold mt-[3%]'>Nama Variasi</label>
+                          <input
+                                type="text"
+                                name="nama variasi"
+                                className="w-[80%] mt-1 bg-white h-[45px]
+                                text-[20px] px-3 text-[#3F9272] rounded-md"
+                                required
+                    />
+                </div>
+                <div className='flex flex-col'>
+                    <label htmlFor="stok" className='text-[#8EAEA6] text-sm font-semibold mt-[3%]'>Stok</label>
+                          <input
+                                type="text"
+                                name="stok"
+                                className="w-[20%] mt-1 bg-white h-[45px]
+                                text-[20px] px-3 text-[#3F9272] rounded-md"
+                                required
+                    />
+                </div>
+                <div className='flex flex-col'>
+                    <label htmlFor="nama variasi" className='text-[#8EAEA6] text-sm font-semibold mt-[3%]'>Nama Variasi</label>
+                          <input
+                                type="text"
+                                name="nama variasi"
+                                className="w-[80%] mt-1 bg-white h-[45px]
+                                text-[20px] px-3 text-[#3F9272] rounded-md"
+                                required
+                    />
+                </div>
+                <div className='flex flex-col'>
+                    <label htmlFor="stok" className='text-[#8EAEA6] text-sm font-semibold mt-[3%]'>Stok</label>
+                          <input
+                                type="text"
+                                name="stok"
+                                className="w-[20%] mt-1 bg-white h-[45px]
+                                text-[20px] px-3 text-[#3F9272] rounded-md"
+                                required
+                    />
+                </div>
+              </div>
+              <div className="relative">
+              <button className='py-1 absolute right-32 top-5 text-[#8EAEA6] font-semibold text-[19px] w-[20%] bg-white'>
+                Tambah</button>
+              </div>
                     </div>
                   </div>
               </div>

@@ -51,9 +51,9 @@ function Burung() {
             width={400}
             height={434}
           />
-          <h1 className="content cursor-pointer text-5xl text-white w-[543px] h-[448px]">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 cursor-pointer">
+            <span className="text-white text-5xl font-bold">Selengkapnya</span>
+          </div>
         </div>
         <div
           className={`${
@@ -69,9 +69,9 @@ function Burung() {
             width={550}
             height={434}
           />
-          <h1 className="content cursor-pointer text-5xl text-white translate-x-3 w-[527px] h-[445px]">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 translate-x-3 cursor-pointer">
+            <span className="text-white text-5xl font-bold">Selengkapnya</span>
+          </div>
         </div>
         <div
           className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
@@ -128,9 +128,9 @@ function Burung() {
             width={550}
             height={434}
           />
-          <h1 className="content text-5xl cursor-pointer text-white w-[97.5%] h-[100%]">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 cursor-pointer">
+            <span className="text-white text-5xl font-bold">Selengkapnya</span>
+          </div>
         </div>
         <div
           className={`${
@@ -146,12 +146,9 @@ function Burung() {
             width={550}
             height={434}
           />
-          <h1 className="content text-5xl text-white w-[99.5%] h-[100%] translate-x-3">
-            Selengkapnya
-          </h1>
-          <h1 className="content cursor-pointer text-5xl text-white w-[99.5%] h-[100%] translate-x-3">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 translate-x-3 cursor-pointer">
+            <span className="text-white text-5xl font-bold">Selengkapnya</span>
+          </div>
         </div>
         <div
           className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
