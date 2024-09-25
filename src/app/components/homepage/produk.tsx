@@ -1,7 +1,6 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 
 const Produk = () => {
   const [data, setData] = useState<any[]>([]); // State untuk menampung data produk

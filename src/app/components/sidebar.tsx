@@ -17,11 +17,11 @@ const Sidebar = () => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   const handleLogout = async () => {
-    // const token = localStorage.getItem("token");
-    // if (!token) {
-    //   alert("Token tidak ditemukan. Silakan login kembali.");
-    //   return;
-    // }
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Token tidak ditemukan. Silakan login kembali.");
+      return;
+    }
 
     try {
       const response = await axios.delete(
@@ -171,7 +171,7 @@ const Sidebar = () => {
                 </div>
               </button>
             </li>
-            <li className="mb-2">
+            {/* <li className="mb-2">
               <button
                 onClick={() => setShowDeletePopup(true)}
                 className="block w-full text-left py-2 px-4 rounded hover:bg-[#CCFFEB]"
@@ -186,7 +186,7 @@ const Sidebar = () => {
                   <span className="ml-3 text-[#3F9272] ">Hapus Akun</span>
                 </div>
               </button>
-            </li>
+            </li> */}
             <li className="mb-2">
               <Link href="/">
                 <div className="block py-2 px-4 rounded hover:bg-[#CCFFEB]">
