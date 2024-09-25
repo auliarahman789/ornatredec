@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import Profile from "../../../public/icon/profile.svg";
 import Order from "../../../public/icon/order.svg";
 import Chat from "../../../public/icon/chat.svg";
@@ -7,65 +8,84 @@ import Diagram from "../diagram/lingkaran/page";
 import Example from "../diagram/batang/page";
 import DiagramForum from "../diagram/lingkaranforum/page";
 import DropdownButton from "../components/super admin/button/page";
+import axios from "axios";
 
-function Page() {
+type Total = {
+  totalPenggunaUser: number;
+  totalPesanan: number;
+  totalPostingan: number;
+};
+const Page = () => {
+  const [data, setData] = useState<Total | null>();
+
+  useEffect(() => {
+    getTotal();
+  }, []);
+  async function getTotal() {
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/totalKeseluruhan`;
+    try {
+      const res = await axios.get<Total>(url, {
+        withCredentials: true,
+      });
+      setData(res.data); 
+      console.log(res.data);
+    } catch (error: any) {
+      console.log(error);
+      alert('Terjadi kesalahan saat mengambil data total.');
+    }
+  }
   return (
     <div className="overflow-x-hidden min-h-screen">
       <div className="text-black translate-x-64 pt-[2%] min-h-screen">
         <div className="text-[23px] font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-[2%] mt-4 inline-block text-transparent bg-clip-text">
           Dashboard
         </div>
+        {data && (
         <div className="flex space-x-[4%]">
-          <div
-            className="bg-[#198C6F] mt-[4%] ms-[4%] h-[92px] w-[21%] rounded-xl flex"
-            style={{ boxShadow: "1px 5px 4px #00000040" }}
-          >
-            <Image
-              src={Profile}
-              alt={"profile"}
-              className="w-[45%] h-[45%] mt-[10%]"
-            />
-            <div className="border-r-2 bg-slate-100 h-[46px] mt-6"></div>
-            <div className="flex flex-col ms-8 mt-6">
-              <div className="text-white text-[12px]">Total Pengguna</div>
-              <div className="text-[20px] text-white">4554</div>
-            </div>
-          </div>
-
-          <div
-            className="bg-[#D7FFF0] mt-[4%] ms-[4%] h-[92px] w-[21%] rounded-xl flex"
-            style={{ boxShadow: "1px 5px 4px #00000040" }}
-          >
-            <Image
-              src={Order}
-              alt={"profile"}
-              className="w-[45%] h-[45%] mt-[9%]"
-            />
-            <div className="border-r-2 bg-[#308967] h-[46px] mt-6"></div>
-            <div className="flex flex-col ms-8 mt-6">
-              <div className="text-[#308967] text-[12px]">Total Pesanan</div>
-              <div className="text-[20px] text-[#308967]">3664</div>
-            </div>
-          </div>
-
-          <div
-            className="bg-[#D7FFF0] mt-[4%] ms-[4%] h-[92px] w-[21%] rounded-xl flex"
-            style={{ boxShadow: "1px 5px 4px #00000040" }}
-          >
-            <Image
-              src={Chat}
-              alt={"profile"}
-              className="w-[40%] h-[30%] mt-[11%]"
-            />
-            <div className="border-r-2 bg-[#308967] h-[46px] mt-6"></div>
-            <div className="flex flex-col ms-8 mt-6">
-              <div className="text-[#308967] text-[12px]">
-                Total Konten Forum
+            <div
+              className="bg-[#198C6F] mt-[4%] ms-[4%] h-[92px] w-[21%] rounded-xl flex"
+              style={{ boxShadow: "1px 5px 4px #00000040" }}
+            >
+              <Image
+                src={Profile}
+                alt={"profile"}
+                className="w-[45%] h-[45%] mt-[10%]" />
+              <div className="border-r-2 bg-slate-100 h-[46px] mt-6"></div>
+              <div className="flex flex-col ms-8 mt-6">
+                <div className="text-white text-[12px]">Total Pengguna</div>
+                <div className="text-[20px] text-white">{data.totalPenggunaUser}</div>
               </div>
-              <div className="text-[20px] text-[#308967]">3664</div>
+            </div><div
+              className="bg-[#D7FFF0] mt-[4%] ms-[4%] h-[92px] w-[21%] rounded-xl flex"
+              style={{ boxShadow: "1px 5px 4px #00000040" }}
+            >
+                <Image
+                  src={Order}
+                  alt={"profile"}
+                  className="w-[45%] h-[45%] mt-[9%]" />
+                <div className="border-r-2 bg-[#308967] h-[46px] mt-6"></div>
+                <div className="flex flex-col ms-8 mt-6">
+                  <div className="text-[#308967] text-[12px]">Total Pesanan</div>
+                  <div className="text-[20px] text-[#308967]">3664</div>
+                </div>
+              </div><div
+                className="bg-[#D7FFF0] mt-[4%] ms-[4%] h-[92px] w-[21%] rounded-xl flex"
+                style={{ boxShadow: "1px 5px 4px #00000040" }}
+              >
+                <Image
+                  src={Chat}
+                  alt={"profile"}
+                  className="w-[40%] h-[30%] mt-[11%]" />
+                <div className="border-r-2 bg-[#308967] h-[46px] mt-6"></div>
+                <div className="flex flex-col ms-8 mt-6">
+                  <div className="text-[#308967] text-[12px]">
+                    Total Konten Forum
+                  </div>
+                  <div className="text-[20px] text-[#308967]">{data.totalPostingan}</div>
+                </div>
             </div>
           </div>
-        </div>
+        )}
         <div className="flex ms-[4%] mt-[2%]">
           <div
             className="w-[55%] h-[300px] bg-[#D7FFF0] rounded-xl "
