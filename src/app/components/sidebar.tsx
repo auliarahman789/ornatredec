@@ -213,7 +213,7 @@ const Sidebar = () => {
             <h2 className="text-lg text-[#308967] font-semibold text-center mt-[5%]">
               Logout dari akun Anda
             </h2>
-            <div className="border-b-2 border-[#80FCCD] mt-[10%]"></div>
+            <div className=""></div>
             <div className="flex flex-col justify-center mt-4 space-y-4">
               <button
                 onClick={() => handleLogout()}
