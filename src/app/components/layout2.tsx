@@ -18,6 +18,7 @@ const disableNavbar = [
   "/Superadmin/Akun",
   "/Superadmin/Statistik",
   "/Superadmin/Forum",
+  "/Superadmin/Produk/tambah"
 ];
 const superNavbar = [
   "/Superadmin",
@@ -25,7 +26,9 @@ const superNavbar = [
   "/Superadmin/Akun",
   "/Superadmin/Statistik",
   "/Superadmin/Forum",
-];
+  "/Superadmin/Produk/tambah"
+]
+
 export default function RootLayoutClient({
   children,
 }: Readonly<{
