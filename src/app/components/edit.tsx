@@ -10,9 +10,9 @@ interface UserData {
   username: string;
   email: string;
   birthday: string;
-  Notelepon: string;
+  no_hp: string;
   alamat: string;
-  avatar: string; // Properti avatar
+  photoProfile: any; // Properti photoProfile
 }
 
 const Edit = () => {
@@ -20,24 +20,39 @@ const Edit = () => {
     username: "",
     email: "",
     birthday: "",
-    Notelepon: "",
+    no_hp: "",
     alamat: "",
-    avatar: "/img/default-avatar.png", // Gambar default
+    photoProfile: "/img/default-avatar.png", // Gambar default
   });
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const storedUserData = localStorage.getItem("userData");
-    if (storedUserData) {
-      const userData = JSON.parse(storedUserData);
-      setFormData({
-        ...userData,
-        avatar: userData.avatar || "/img/default-avatar.png",
-      });
-    }
+    getUser();
+    // const storedUserData = localStorage.getItem("userData");
+    // if (storedUserData) {
+    //   const userData = JSON.parse(storedUserData);
+    //   setFormData({
+    //     ...userData,
+    //     photoProfile: userData.photoProfile || "/img/default-avatar.png",
+    //   });
+    // }
   }, []);
+  async function getUser() {
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
+    try {
+      const res = await axios.get(url, {
+        // Menggunakan params untuk query string
+        withCredentials: true,
+      });
+
+      console.log(res.data);
+      setUserData(res.data.user); // Simpan data yang diterima ke dalam state
+    } catch (error: any) {
+      console.log(error);
+    }
+  }
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -47,6 +62,16 @@ const Edit = () => {
       ...prevData,
       [name]: value,
     }));
+    console.log(value);
+  };
+
+  const handleInputImage = (e: any) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      ["photoProfile"]: e.target.files[0],
+    }));
+    console.log(e.target.files);
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,24 +81,37 @@ const Edit = () => {
       reader.onloadend = () => {
         setFormData((prevData) => ({
           ...prevData,
-          avatar: reader.result as string, // Simpan gambar sebagai URL
+          photoProfile: reader.result as string, // Simpan gambar sebagai URL
         }));
       };
       reader.readAsDataURL(file);
     }
   };
 
+  const handleavatarClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click(); // Trigger file input click
+    }
+  };
+
   const handleSave = async () => {
     try {
+      var formData2 = new FormData();
+      formData2.append("username", formData.username);
+      formData2.append("email", formData.email);
+      formData2.append("no_hp", formData.no_hp);
+      formData2.append("alamat", formData.alamat);
+      formData2.append("photoProfile", formData.photoProfile);
+
       // Ambil ID pengguna dari localStorage
       const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
 
       const response = await axios.put(
         `https://74gslzvj-8000.asse.devtunnels.ms/api/update/${userId}`, // Ganti :id dengan userId
-        formData,
+        formData2,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-Data",
             Authorization: `Bearer ${localStorage.getItem("token")}`, // Sertakan token jika diperlukan
           },
         }
@@ -83,11 +121,14 @@ const Edit = () => {
         // Jika berhasil, simpan data di localStorage
         localStorage.setItem("userData", JSON.stringify(formData));
         localStorage.setItem("username", formData.username);
-        localStorage.setItem("avatar", formData.avatar);
-        router.push("/profile"); // Arahkan kembali ke profil
+        localStorage.setItem("photoProfile", formData.photoProfile);
+        localStorage.setItem("no_hp", formData.no_hp);
+
+        router.push("/profile");
       } else {
         alert("Gagal memperbarui data pengguna.");
       }
+      console.log(formData);
     } catch (error) {
       console.error("Kesalahan saat memperbarui data pengguna:", error);
       alert("Terjadi kesalahan saat memperbarui data Anda.");
@@ -96,12 +137,6 @@ const Edit = () => {
 
   const handleGoBack = () => {
     router.push("/profile");
-  };
-
-  const handleAvatarClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click(); // Trigger file input click
-    }
   };
 
   return (
@@ -115,19 +150,20 @@ const Edit = () => {
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
             <div className="flex justify-center -translate-y-[10%]">
               <Image
-                src={formData.avatar}
+                src={formData.photoProfile}
                 width={200}
                 height={200}
-                alt="Profile Avatar"
+                alt="Profile Picture"
                 className="rounded-full cursor-pointer"
-                onClick={handleAvatarClick}
+                onClick={handleavatarClick}
               />
               <input
                 type="file"
+                name="photoProfile"
                 accept="image/*"
-                onChange={handleImageChange}
+                onChange={handleInputImage}
                 ref={fileInputRef}
-                className="hidden" // Sembunyikan input file
+                className="hidden"
               />
             </div>
 
@@ -137,7 +173,7 @@ const Edit = () => {
               <input
                 type="text"
                 name="username"
-                value={formData.username}
+                defaultValue={formData.username}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -147,7 +183,7 @@ const Edit = () => {
               <input
                 type="email"
                 name="email"
-                value={formData.email}
+                defaultValue={formData.email}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -157,7 +193,7 @@ const Edit = () => {
               <input
                 type="date"
                 name="birthday"
-                value={formData.birthday}
+                defaultValue={formData.birthday}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -166,8 +202,8 @@ const Edit = () => {
               <span className="pl-4 text-[#A9A7A7]">No Telepon:</span>
               <input
                 type="text"
-                name="Notelepon"
-                value={formData.Notelepon}
+                name="no_hp"
+                defaultValue={formData.no_hp}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -176,7 +212,7 @@ const Edit = () => {
               <span className="pl-4">Alamat:</span>
               <textarea
                 name="alamat"
-                value={formData.alamat}
+                defaultValue={formData.alamat}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -197,7 +233,7 @@ const Edit = () => {
                   onClick={handleSave}
                   className="px-4 py-2 bg-[#CCFFEB] text-[#3F9272] rounded-lg"
                 >
-                  Perbaruii
+                  Perbarui
                 </button>
               </div>
             </div>
@@ -209,3 +245,6 @@ const Edit = () => {
 };
 
 export default Edit;
+function setUserData(user: any) {
+  throw new Error("Function not implemented.");
+}

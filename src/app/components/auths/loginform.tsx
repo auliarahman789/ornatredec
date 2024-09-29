@@ -25,6 +25,9 @@ const Login = () => {
       console.log(res.data.user.role);
       setRole(res.data.user.role);
       localStorage.setItem("token", res.data.token); // Menyimpan token
+
+      // Simpan data pengguna di localStorage setelah login berhasil
+      // localStorage.setItem("token", res.data.token); // Menyimpan token
       localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
 
       alert("Berhasil Login");
@@ -51,9 +54,7 @@ const Login = () => {
           <h1 className="font-bold text-[30px] pt-[60px] text-[#3F9272] mt-16">
             Masuk
           </h1>
-          <div
-            className="pt-[25px] gap-3.5 flex flex-col justify-center items-center"                                                 
-          >
+          <div className="pt-[25px] gap-3.5 flex flex-col justify-center items-center">
             <div className="relative">
               <input
                 type="text"
@@ -78,7 +79,7 @@ const Login = () => {
               type="submit"
               className="bg-[#3F9272] text-sm text-white px-12 py-[10px] h-[50px] w-[170px] mt-[30px] rounded-full"
             >
-               {isLoading ? 'Loading...' : 'Masuk'} 
+              {isLoading ? "Loading..." : "Masuk"}
             </button>
             {isLoading && <Loading />}
           </div>
