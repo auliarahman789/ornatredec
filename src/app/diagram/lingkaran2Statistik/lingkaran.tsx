@@ -32,16 +32,30 @@ export const options = {
 
 export function PieChartStatistik() {
   return (
-    <div className="text-white max-w-[20%] ms-[40%] -translate-y-[100%]">
-      <p className="text-center text-white -mb-10">Penjualan</p>
-      <Chart
-        chartType="PieChart"
-        data={data}
-        options={options}
-        width={"100%"}
-        height={"200px"}
-        className=""
-      />
+    <div className="-translate-y-[90%] -translate-x-[15%]">
+      <div className="text-white items-center mx-auto">
+        <p className="ms-[47%] text-white bg-slate-400 inline-block translate-y-8">
+          Penjualan
+        </p>
+        <Chart
+          chartType="PieChart"
+          data={data}
+          options={options}
+          width={"100%"}
+          height={"200px"}
+          className=""
+        />
+        <div className="text-sm bg-slate-600 flex space-x-5 w-[12%] mt-2 -translate-y-10">
+          <p className="text-white flex items-center">
+            <span className="w-3 h-3 bg-[#6BF8C2]  rounded-full mr-1"></span>
+            Online
+          </p>
+          <p className="text-white flex items-center">
+            <span className="w-3 h-3 bg-white rounded-full mr-1"></span>
+            Offline
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

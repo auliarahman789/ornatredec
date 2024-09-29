@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Burung2 from "./burung2";
+import Link from "next/link";
 
 function Burung() {
   const [isAnimated, setIsAnimated] = useState(false);
@@ -52,7 +53,11 @@ function Burung() {
             height={434}
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 cursor-pointer">
-            <span className="text-white text-5xl font-bold">Selengkapnya</span>
+            <Link href="/Edukasi/Burung/Detail/Detail1#detail1tujuan">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
           </div>
         </div>
         <div
@@ -70,7 +75,11 @@ function Burung() {
             height={434}
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 translate-x-3 cursor-pointer">
-            <span className="text-white text-5xl font-bold">Selengkapnya</span>
+            <Link href="/Edukasi/Burung/Detail/Detail2#detail2cara">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
           </div>
         </div>
         <div
@@ -129,7 +138,11 @@ function Burung() {
             height={434}
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 cursor-pointer">
-            <span className="text-white text-5xl font-bold">Selengkapnya</span>
+            <Link href="/Edukasi/Burung/Detail/Detail3#detail3lingkungan">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
           </div>
         </div>
         <div
@@ -147,7 +160,11 @@ function Burung() {
             height={434}
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 translate-x-3 cursor-pointer">
-            <span className="text-white text-5xl font-bold">Selengkapnya</span>
+            <Link href="/Edukasi/Burung/Detail/Detail4#detail4hal">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
           </div>
         </div>
         <div

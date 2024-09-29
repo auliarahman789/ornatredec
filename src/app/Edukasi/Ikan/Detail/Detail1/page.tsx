@@ -22,7 +22,7 @@ function Page() {
             </div>
           </div>
         </div>
-        <div className="bg-white w-[85%] h-[680px]">
+        <div id="detail1apa" className="bg-white w-[85%] h-[680px]">
           <Image
             src="/img/koi.png"
             className="w-full h-[300px] object-cover"

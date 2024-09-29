@@ -21,7 +21,7 @@ const Produk = () => {
       console.log(res.data); // Simpan data yang diterima ke dalam state
     } catch (error: any) {
       console.log(error);
-      alert("Terjadi kesalahan saat mengambil data produk.");
+      // alert("Terjadi kesalahan saat mengambil data produk.");
     }
   }
   console.log(data);
