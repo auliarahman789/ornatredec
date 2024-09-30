@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Burung2 from "./burung2";
+import Link from "next/link";
 
 function Burung() {
   const [isAnimated, setIsAnimated] = useState(false);
@@ -51,9 +52,13 @@ function Burung() {
             width={400}
             height={434}
           />
-          <h1 className="content cursor-pointer text-5xl text-white w-[543px] h-[448px]">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 cursor-pointer">
+            <Link href="/Edukasi/Burung/Detail/Detail1#detail1tujuan">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
+          </div>
         </div>
         <div
           className={`${
@@ -69,9 +74,13 @@ function Burung() {
             width={550}
             height={434}
           />
-          <h1 className="content cursor-pointer text-5xl text-white translate-x-3 w-[527px] h-[445px]">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 translate-x-3 cursor-pointer">
+            <Link href="/Edukasi/Burung/Detail/Detail2#detail2cara">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
+          </div>
         </div>
         <div
           className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
@@ -128,9 +137,13 @@ function Burung() {
             width={550}
             height={434}
           />
-          <h1 className="content text-5xl cursor-pointer text-white w-[97.5%] h-[100%]">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 cursor-pointer">
+            <Link href="/Edukasi/Burung/Detail/Detail3#detail3lingkungan">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
+          </div>
         </div>
         <div
           className={`${
@@ -146,12 +159,13 @@ function Burung() {
             width={550}
             height={434}
           />
-          <h1 className="content text-5xl text-white w-[99.5%] h-[100%] translate-x-3">
-            Selengkapnya
-          </h1>
-          <h1 className="content cursor-pointer text-5xl text-white w-[99.5%] h-[100%] translate-x-3">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 translate-x-3 cursor-pointer">
+            <Link href="/Edukasi/Burung/Detail/Detail4#detail4hal">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
+          </div>
         </div>
         <div
           className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${

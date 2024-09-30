@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Ikan2 from "./ikan2";
+import Link from "next/link";
 
 function Ikan() {
   const [isAnimated, setIsAnimated] = useState(false);
@@ -49,9 +50,13 @@ function Ikan() {
             width={400}
             height={434}
           />
-          <h1 className="cursor-pointer content text-5xl text-white w-[530px] h-[450px]">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 cursor-pointer">
+            <Link href="/Edukasi/Ikan/Detail/Detail1#detail1apa">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
+          </div>
         </div>
         <div
           className={`${
@@ -67,9 +72,13 @@ function Ikan() {
             width={550}
             height={434}
           />
-          <h1 className="cursor-pointer content text-5xl text-white translate-x-3 w-[527px] h-[448px]">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 translate-x-3 cursor-pointer">
+            <Link href="/Edukasi/Ikan/Detail/Detail2#detail2cara">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
+          </div>
         </div>
         <div
           className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${
@@ -122,9 +131,13 @@ function Ikan() {
             width={550}
             height={434}
           />
-          <h1 className="cursor-pointer content text-5xl text-white w-[520px] h-[450px]">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 cursor-pointer">
+            <Link href="/Edukasi/Ikan/Detail/Detail3#detail3saran">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
+          </div>
         </div>
         <div
           className={`${
@@ -140,9 +153,13 @@ function Ikan() {
             width={550}
             height={434}
           />
-          <h1 className="cursor-pointer content text-5xl text-white translate-x-3 w-[530px] h-[446px]">
-            Selengkapnya
-          </h1>
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 translate-x-3 cursor-pointer">
+            <Link href="/Edukasi/Ikan/Detail/Detail4#detail4menghindari">
+              <span className="text-white text-5xl font-bold">
+                Selengkapnya
+              </span>
+            </Link>
+          </div>
         </div>
         <div
           className={`transition-transform duration-1000 ease-in-out overflow-x-hidden ${

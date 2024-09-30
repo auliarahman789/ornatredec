@@ -1,7 +1,6 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 
 const Produk = () => {
   const [data, setData] = useState<any[]>([]); // State untuk menampung data produk
@@ -11,7 +10,7 @@ const Produk = () => {
   }, []);
 
   async function getProduk() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProduk`;
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string
@@ -21,7 +20,7 @@ const Produk = () => {
       console.log(res.data); // Simpan data yang diterima ke dalam state
     } catch (error: any) {
       console.log(error);
-      alert("Terjadi kesalahan saat mengambil data produk.");
+      // alert("Terjadi kesalahan saat mengambil data produk.");
     }
   }
   console.log(data);

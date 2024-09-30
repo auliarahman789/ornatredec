@@ -2,26 +2,32 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Loading from "./loading";
 
 const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [role, setRole] = useState<string>("user");
+  const [role, setRole] = useState<string>("");
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   async function login(e: React.FormEvent) {
-    e.preventDefault(); // Mencegah reload saat submit form
+    e.preventDefault(); // Mencegah reload saat kirim
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/login`;
 
     try {
+      setIsLoading(true);
       const res = await axios.post(
         url,
         { username, password, role },
         { withCredentials: true }
       );
+      console.log(res.data.user.role);
+      setRole(res.data.user.role);
+      localStorage.setItem("token", res.data.token); // Menyimpan token
 
       // Simpan data pengguna di localStorage setelah login berhasil
-      localStorage.setItem("token", res.data.token); // Menyimpan token
+      // localStorage.setItem("token", res.data.token); // Menyimpan token
       localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
 
       alert("Berhasil Login");
@@ -29,9 +35,11 @@ const Login = () => {
       if (role === "user") {
         router.push("/");
       } else {
-        router.push("/superadmin");
+        router.push("/Superadmin");
       }
+      setIsLoading(false);
     } catch (error: any) {
+      setIsLoading(false);
       console.log(error);
       alert(
         "Terjadi kesalahan saat login. Silakan periksa username dan password."
@@ -46,10 +54,7 @@ const Login = () => {
           <h1 className="font-bold text-[30px] pt-[60px] text-[#3F9272] mt-16">
             Masuk
           </h1>
-          <form
-            className="pt-[25px] gap-3.5 flex flex-col justify-center items-center"
-            onSubmit={login}
-          >
+          <div className="pt-[25px] gap-3.5 flex flex-col justify-center items-center">
             <div className="relative">
               <input
                 type="text"
@@ -69,12 +74,15 @@ const Login = () => {
               />
             </div>
             <button
+              disabled={isLoading}
+              onClick={login}
               type="submit"
               className="bg-[#3F9272] text-sm text-white px-12 py-[10px] h-[50px] w-[170px] mt-[30px] rounded-full"
             >
-              Masuk
+              {isLoading ? "Loading..." : "Masuk"}
             </button>
-          </form>
+            {isLoading && <Loading />}
+          </div>
         </div>
       </div>
     </main>

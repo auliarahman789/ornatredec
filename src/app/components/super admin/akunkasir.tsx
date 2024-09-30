@@ -28,7 +28,7 @@ const Akunkasir = () => {
                 }
             );
             console.log(res);
-            alert("Berhasil Membuat Akun Admin");
+            alert("Berhasil Membuat Akun Kasir");
             setUsername("");
             setEmail("");
             setPassword("");
