@@ -32,17 +32,10 @@ function Page() {
           />
           <div className="mx-[8%] mt-[3%]">
             <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
+              Tujuan Merawat Tanaman
             </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Merawat tanaman hias memiliki tujuan yang penting, seperti memperindah ruangan dan menghadirkan nuansa alami yang menenangkan. Selain itu, tanaman hias berperan dalam meningkatkan kualitas udara dengan menyaring polutan, sehingga udara di sekitar menjadi lebih bersih dan segar. Kegiatan ini juga memberikan efek relaksasi, membantu mengurangi stres, dan menciptakan lingkungan yang lebih nyaman. Tak hanya itu, merawat tanaman juga berdampak positif pada kesehatan mental dan emosional.`}
             </p>
           </div>
         </div>
@@ -55,18 +48,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Merawat tanaman memiliki tujuan utama untuk menjaga kesehatan dan pertumbuhan optimal tanaman tersebut. Dengan merawat tanaman secara rutin, seperti menyiram, memberikan pupuk, dan memastikan tanaman mendapatkan cahaya matahari yang cukup, kita dapat membantu tanaman tumbuh lebih subur dan kuat. Selain itu, perawatan yang baik juga dapat mencegah tanaman dari serangan hama dan penyakit yang dapat merusak tanaman. Dalam lingkungan yang terkontrol, tanaman dapat berkembang dengan baik, menghasilkan bunga yang lebih indah atau hasil panen yang lebih melimpah.`}
             </p>
           </div>
         </div>
@@ -79,18 +62,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Oleh karena itu, tanaman hias tidak hanya mempercantik lingkungan, tetapi juga berkontribusi terhadap kualitas hidup`}
             </p>
           </div>
         </div>
