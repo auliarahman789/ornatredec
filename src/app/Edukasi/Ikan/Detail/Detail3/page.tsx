@@ -32,17 +32,10 @@ function Page() {
           />
           <div className="mx-[8%] mt-[3%]">
             <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
+              Makanan Yang Cocok Untuk Ikan Hias
             </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Pelet atau Flakes Makanan komersial yang mudah didapat dan seimbang nutrisi. Cacing Sutera Sumber protein tinggi untuk pertumbuhan ikan. Artemia Makanan hidup yang kaya nutrisi untuk ikan kecil. Sayuran Seperti bayam atau selada, cocok untuk ikan herbivora. Daphnia Pakan hidup yang baik untuk menjaga kesehatan ikan.`}
             </p>
           </div>
         </div>
@@ -55,18 +48,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Makanan yang cocok untuk ikan hias sangat bergantung pada jenis ikan yang dipelihara, namun secara umum, pakan ikan hias dibagi menjadi dua kategori: makanan kering dan makanan hidup. Makanan kering, seperti pelet dan serpihan (flakes), adalah pilihan paling umum dan praktis. Pelet biasanya mengandung nutrisi lengkap dan mudah disimpan. Pelet tenggelam cocok untuk ikan dasar, sementara pelet mengapung baik untuk ikan yang berenang di permukaan. Serpihan sering kali diberikan kepada ikan kecil atau ikan dengan mulut yang lebih kecil. Penting untuk memilih ukuran pelet atau serpihan yang sesuai dengan ukuran ikan agar mereka dapat memakannya dengan mudah.`}
             </p>
           </div>
         </div>
@@ -79,18 +62,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Selain makanan kering, makanan hidup atau beku seperti cacing darah, daphnia, atau udang kecil (brine shrimp) adalah sumber protein yang baik dan membantu menstimulasi perilaku alami ikan. Makanan hidup cocok untuk ikan karnivora atau omnivora, sementara untuk ikan herbivora, pakan seperti spirulina atau sayuran rebus, seperti bayam atau selada, bisa diberikan. Variasi pakan sangat penting untuk menjaga kesehatan dan kecerahan warna ikan hias. Memberikan makanan yang sesuai dan bergizi akan mendukung pertumbuhan ikan dan memperkuat daya tahan tubuh mereka terhadap penyakit.`}
             </p>
           </div>
         </div>

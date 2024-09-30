@@ -32,17 +32,10 @@ function Page() {
           />
           <div className="mx-[8%] mt-[3%]">
             <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
+              Apa Itu Ikan Hias?
             </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Ikan hias adalah jenis ikan yang dipelihara oleh pecinta akuarium atau penghobi sebagai dekorasi hidup karena keindahan yang dimilikinya, baik dari segi warna, bentuk tubuh, maupun pola unik yang terdapat pada sisik atau siripnya. Biasanya, ikan hias dipelihara di akuarium dalam ruangan, kolam hias di taman, atau bahkan tangki khusus dengan sistem yang dirancang untuk menciptakan ekosistem air yang nyaman bagi mereka.`}
             </p>
           </div>
         </div>
@@ -55,18 +48,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Ikan hias adalah jenis ikan yang dipelihara bukan untuk konsumsi, melainkan untuk dinikmati keindahannya. Ikan-ikan ini biasanya memiliki bentuk tubuh, warna, dan pola yang menarik, sehingga sering dijadikan pelengkap dekorasi di akuarium atau kolam. Beberapa spesies ikan hias berasal dari air tawar, seperti ikan guppy, koi, atau cupang.`}
             </p>
           </div>
         </div>
@@ -79,18 +62,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Ikan hias membutuhkan perawatan khusus, seperti air yang bersih, suhu yang sesuai, serta pemberian pakan yang teratur. Kualitas air sangat penting untuk menjaga kesehatan ikan, karena ikan hias sangat sensitif terhadap perubahan lingkungan. Akuarium juga perlu dilengkapi dengan sistem filtrasi dan pencahayaan yang baik agar ikan dapat hidup dengan nyaman. Selain itu, pemilik juga harus memahami jenis makanan yang cocok untuk setiap spesies ikan hias agar mereka tumbuh sehat dan tetap berwarna cerah.`}
             </p>
           </div>
         </div>
