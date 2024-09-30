@@ -14,6 +14,14 @@ export const options = {
   backgroundColor: "transparent", // Membuat background chart transparan
   colors: ["#FFFFFF", "#6BF8C2"], // Hijau untuk Offline, Biru untuk Online
   pieSliceText: "percentage", // Menampilkan teks persentase di dalam slice
+  chartArea: {
+    left: 0, // Hilangkan padding kiri
+    top: 0, // Hilangkan padding atas
+    right: 0, // Hilangkan padding kanan
+    bottom: 0, // Hilangkan padding bawah
+    width: "100%", // Atur lebar chart
+    height: "100%", // Atur tinggi chart
+  },
   slices: {
     0: {
       textStyle: {
@@ -32,21 +40,19 @@ export const options = {
 
 export function PieChartStatistik() {
   return (
-    <div className="-translate-y-[90%] -translate-x-[15%]">
-      <div className="text-white items-center mx-auto">
-        <p className="ms-[47%] text-white bg-slate-400 inline-block translate-y-8">
-          Penjualan
-        </p>
+    <div className="w-[20%] ms-[35%] -translate-y-[130%]">
+      <div className="">
+        <p className="text-center text-white">Penjualan</p>
         <Chart
           chartType="PieChart"
           data={data}
           options={options}
-          width={"100%"}
-          height={"200px"}
-          className=""
+          width={200}
+          height={100}
+          className="-ms-[3.5%]"
         />
-        <div className="text-sm bg-slate-600 flex space-x-5 w-[12%] mt-2 -translate-y-10">
-          <p className="text-white flex items-center">
+        <div className="flex text-sm space-x-9">
+          <p className="ms-4 text-white flex items-center">
             <span className="w-3 h-3 bg-[#6BF8C2]  rounded-full mr-1"></span>
             Online
           </p>
