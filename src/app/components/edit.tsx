@@ -9,17 +9,17 @@ import Sidebar from "./sidebar";
 interface UserData {
   username: string;
   email: string;
-  birthday: string;
+  tanggalLahir: any;
   no_hp: string;
   alamat: string;
-  photoProfile: any; // Properti photoProfile
+  photoProfile: any;
 }
 
 const Edit = () => {
   const [formData, setFormData] = useState<UserData>({
     username: "",
     email: "",
-    birthday: "",
+    tanggalLahir: "",
     no_hp: "",
     alamat: "",
     photoProfile: "/img/default-avatar.png", // Gambar default
@@ -30,15 +30,16 @@ const Edit = () => {
 
   useEffect(() => {
     getUser();
-    // const storedUserData = localStorage.getItem("userData");
-    // if (storedUserData) {
-    //   const userData = JSON.parse(storedUserData);
-    //   setFormData({
-    //     ...userData,
-    //     photoProfile: userData.photoProfile || "/img/default-avatar.png",
-    //   });
-    // }
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      const userData = JSON.parse(storedUserData);
+      setFormData({
+        ...userData,
+        photoProfile: userData.photoProfile || "/img/default-avatar.png", // Gunakan default jika kosong
+      });
+    }
   }, []);
+
   async function getUser() {
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
     try {
@@ -99,6 +100,7 @@ const Edit = () => {
       var formData2 = new FormData();
       formData2.append("username", formData.username);
       formData2.append("email", formData.email);
+      formData2.append("tanggalLahir", formData.tanggalLahir);
       formData2.append("no_hp", formData.no_hp);
       formData2.append("alamat", formData.alamat);
       formData2.append("photoProfile", formData.photoProfile);
@@ -121,6 +123,7 @@ const Edit = () => {
         // Jika berhasil, simpan data di localStorage
         localStorage.setItem("userData", JSON.stringify(formData));
         localStorage.setItem("username", formData.username);
+        localStorage.setItem("tanggalLahir", formData.tanggalLahir);
         localStorage.setItem("photoProfile", formData.photoProfile);
         localStorage.setItem("no_hp", formData.no_hp);
 
@@ -150,13 +153,14 @@ const Edit = () => {
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
             <div className="flex justify-center -translate-y-[10%]">
               <Image
-                src={formData.photoProfile}
+                src={formData.photoProfile || "/img/default-avatar.png"} // Tampilkan gambar jika ada, gunakan default jika tidak
                 width={200}
                 height={200}
                 alt="Profile Picture"
                 className="rounded-full cursor-pointer"
                 onClick={handleavatarClick}
               />
+
               <input
                 type="file"
                 name="photoProfile"
@@ -192,8 +196,8 @@ const Edit = () => {
               <span className="pl-4">Tanggal Lahir:</span>
               <input
                 type="date"
-                name="birthday"
-                defaultValue={formData.birthday}
+                name="tanggalLahir"
+                defaultValue={formData.tanggalLahir}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
