@@ -10,7 +10,6 @@ import passwordIcon from "../../../../public/icon/Lock_alt_fill.svg";
 const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [role, setRole] = useState<string>("");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,23 +21,25 @@ const Login = () => {
       setIsLoading(true);
       const res = await axios.post(
         url,
-        { username, password, role },
+        { username, password },
         { withCredentials: true }
       );
-      console.log(res.data.user.role);
-      setRole(res.data.user.role);
-      localStorage.setItem("token", res.data.token); // Menyimpan token
 
       // Simpan data pengguna di localStorage setelah login berhasil
       // localStorage.setItem("token", res.data.token); // Menyimpan token
       localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
+      const userRole = res.data.user.role; // Simpan role dari response
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
 
       alert("Berhasil Login");
       // Redirect berdasarkan role
-      if (role === "user") {
+      if (userRole === "user") {
         router.push("/");
-      } else {
+      } else if (userRole === "super admin") {
         router.push("/Superadmin");
+      } else {
+        alert("tidak boleh kogin");
       }
       setIsLoading(false);
     } catch (error: any) {
