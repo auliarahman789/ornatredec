@@ -16,7 +16,7 @@ const Burung = ({}) => {
         />
       </div>
       <ul className="text-center space-x-10 -translate-y-3 min-h-screen text-[22px] text-white font-semibold flex justify-center mt-5">
-        <Link href="/Produk/Tanaman#tanaman">
+        <Link href="/Produk/#produk">
           <li
             className="mx-2 text-3xl cursor-pointer hover:text-[#308967] text-[#B3E8D5]"
             onClick={(e) => {}}
