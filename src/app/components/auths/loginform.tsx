@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Loading from "./loading";
+import Image from "next/image";
+import userIcon from "../../../../public/icon/User_fill.svg";
+import passwordIcon from "../../../../public/icon/Lock_alt_fill.svg";
 
 const Login = () => {
   const [username, setUsername] = useState<string>("");
@@ -62,6 +65,13 @@ const Login = () => {
                 placeholder="Username"
                 className="w-[320px] pl-14 bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8/ text-[#3F9272] rounded-md"
               />
+              <Image
+                src={userIcon}
+                alt="username"
+                width={25}
+                height={25}
+                className="absolute top-1/2 left-4 -translate-y-1/2"
+              />
             </div>
             <div className="relative">
               <input
@@ -70,6 +80,13 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 className="w-[320px] pl-14 bg-[#E3FFF3] pb-[13px] mt-6 pt-[15px] placeholder:text-[#3F9272] placeholder:text-[18px] text-[19px] placeholder:font-light ps-8/ text-[#3F9272] rounded-md"
+              />
+              <Image
+                src={passwordIcon}
+                alt="password"
+                width={27}
+                height={27}
+                className="absolute top-1/2 mt-3 left-4 -translate-y-1/2"
               />
             </div>
             <button

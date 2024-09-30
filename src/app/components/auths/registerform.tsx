@@ -6,6 +6,8 @@ import messageIcon from "../../../../public/icon/Message_alt_fill.svg";
 import passwordIcon from "../../../../public/icon/Lock_alt_fill.svg";
 import phoneIcon from "../../../../public/icon/Phone_fill.svg";
 import axios from "axios";
+import Loading from "./loading";
+import LoadingRegis from "./loadingRegis";
 
 const Register = ({
   isAnimated,
@@ -18,10 +20,12 @@ const Register = ({
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function buatAkun() {
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/register`;
     try {
+      setIsLoading(true);
       const res = await axios.post(
         url,
         {
@@ -50,7 +54,9 @@ const Register = ({
       setPhone("");
       setPassword("");
       setIsAnimated(!isAnimated);
+     setIsLoading(false);
     } catch (error: any) {
+      setIsLoading(false);
       console.log(error);
       alert("Terjadi kesalahan saat membuat akun.");
     }
@@ -138,11 +144,13 @@ const Register = ({
             </div>
             <button
               type="submit"
+              disabled={isLoading}
               onClick={buatAkun}
               className="bg-[#3F9272] text-sm text-white px-12 py-[10px] mt-[30px] rounded-full"
             >
-              Buat
+              {isLoading ? 'Loading...' : 'Buat'} 
             </button>
+            {isLoading && <LoadingRegis />}
           </div>
         </div>
       </div>

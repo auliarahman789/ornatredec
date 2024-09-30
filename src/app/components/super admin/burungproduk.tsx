@@ -18,7 +18,7 @@ const Burungproduk = () => {
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
-      alert('Terjadi kesalahan saat mengambil data produk tanaman.');
+      alert('Terjadi kesalahan saat mengambil data produk burung.');
     }
   }
 
