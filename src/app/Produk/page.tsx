@@ -3,21 +3,21 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Tanaman = ({}) => {
+const Produk = ({}) => {
   const [data, setData] = useState<any[]>([]); // State untuk menampung data produk
 
   useEffect(() => {
-    getTanaman();
+    getProduk();
   }, []);
 
-  async function getTanaman() {
+  async function getProduk() {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`;
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string
         withCredentials: true,
       });
-      setData(res.data.slice(0, 8));
+      setData(res.data.slice(0, 12));
       console.log(res.data); // Simpan data yang diterima ke dalam state
     } catch (error: any) {
       console.log(error);
@@ -66,7 +66,7 @@ const Tanaman = ({}) => {
             </li>
           </Link>
         </ul>
-        <div className="grid grid-cols-4 mx-auto -translate-y-[90%] bg-[#EBFFF8] justify-between ml-[5%] mr-[5%]">
+        <div className="grid grid-cols-4 mx-auto -translate-y-[70%] bg-[#EBFFF8] justify-between ml-[5%] mr-[5%]">
           {data.map((item: any, i: number) => (
             <div
               className="w-[70%] h-[95%] bg-white shadow-[2px_8px_10px] shadow-[#0000002e] ml-[15%]"
@@ -100,4 +100,4 @@ const Tanaman = ({}) => {
   );
 };
 
-export default Tanaman;
+export default Produk;

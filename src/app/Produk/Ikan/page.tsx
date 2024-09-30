@@ -1,8 +1,30 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Ikan = ({}) => {
+  const [data, setData] = useState<any[]>([]); // State untuk menampung data produk
+
+  useEffect(() => {
+    getIkan();
+  }, []);
+
+   async function getIkan() {
+     const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`;
+     try {
+       const res = await axios.get(url, {
+         // Menggunakan params untuk query string
+         withCredentials: true,
+       });
+       setData(res.data.slice(0, 12));
+       console.log(res.data); // Simpan data yang diterima ke dalam state
+     } catch (error: any) {
+       console.log(error);
+       alert("Terjadi kesalahan saat mengambil data produk.");
+     }
+   }
+
   return (
     <div className="pt-1" id="ikan">
       <div
@@ -42,6 +64,35 @@ const Ikan = ({}) => {
           </li>
         </Link>
       </ul>
+      <div className="grid grid-cols-4 mx-auto -translate-y-[70%] bg-[#EBFFF8] justify-between ml-[5%] mr-[5%]">
+        {data.map((item: any, i: number) => (
+          <div
+            className="w-[70%] h-[95%] bg-white shadow-[2px_8px_10px] shadow-[#0000002e] ml-[15%]"
+            key={item.id}
+          >
+            <a href="#">
+              <img
+                className="mx-auto mt-5 h-[70%] w-[150%]"
+                alt="Produk Gambar"
+                src={
+                  "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
+                  item.foto_produk
+                }
+              />
+            </a>
+            <div className="px-4 py-2">
+              <h5 className="text-lg font-semibold text-black">
+                {item.judul_produk}
+              </h5>
+              <div className="flex items-center justify-between mt-auto">
+                <span className="text-xl font-bold text-[#FF0A0A]">
+                  Rp {item.harga}
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+    </div>
     </div>
   );
 };
