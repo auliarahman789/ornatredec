@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import Sidebar from "./sidebar";
-import { useRouter } from "next/navigation"; // Gunakan import ini untuk app router
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import axios from "axios";
 
 interface UserData {
   username: string;
   email: string;
-  birthday: string;
+  tanggalLahir: any;
   no_hp: string;
   alamat: string;
   photoProfile: string; // Tambahkan properti photoProfile
@@ -22,24 +22,24 @@ const Profile = () => {
 
   useEffect(() => {
     getUser();
-    // const updateUserData = () => {
-    //   const storedUserData = localStorage.getItem("userData");
-    //   if (storedUserData) {
-    //     const parsedUserData: UserData = JSON.parse(storedUserData);
-    //     setUserData(parsedUserData);
-    //   }
-    // };
+    const updateUserData = () => {
+      const storedUserData = localStorage.getItem("userData");
+      if (storedUserData) {
+        const parsedUserData: UserData = JSON.parse(storedUserData);
+        setUserData(parsedUserData);
+      }
+    };
 
-    // // Panggil updateUserData saat komponen di-mount
-    // updateUserData();
+    // Panggil updateUserData saat komponen di-mount
+    updateUserData();
 
-    // // Tambahkan event listener untuk update data jika ada perubahan
-    // window.addEventListener("storage", updateUserData);
+    // Tambahkan event listener untuk update data jika ada perubahan
+    window.addEventListener("storage", updateUserData);
 
-    // return () => {
-    //   // Hapus event listener saat komponen di-unmount
-    //   window.removeEventListener("storage", updateUserData);
-    // };
+    return () => {
+      // Hapus event listener saat komponen di-unmount
+      window.removeEventListener("storage", updateUserData);
+    };
   }, []);
   async function getUser() {
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
@@ -109,7 +109,7 @@ const Profile = () => {
                   <div className="flex flex-col">
                     <input
                       type="date"
-                      value={userData?.birthday}
+                      value={userData?.tanggalLahir}
                       className="w-[60%] p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
                       readOnly
                     />
