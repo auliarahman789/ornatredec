@@ -6,13 +6,17 @@ import Loading from "./loading";
 import Image from "next/image";
 import userIcon from "../../../../public/icon/User_fill.svg";
 import passwordIcon from "../../../../public/icon/Lock_alt_fill.svg";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-
+  const [show, setShow] = useState(false);
+  const handleClickShow = () => {
+    setShow(!show)
+  }
   async function login(e: React.FormEvent) {
     e.preventDefault(); // Mencegah reload saat kirim
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/login`;
@@ -77,7 +81,7 @@ const Login = () => {
             </div>
             <div className="relative">
               <input
-                type="password"
+                type={ show ? "text" : "password"}
                 name="password"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
@@ -88,8 +92,9 @@ const Login = () => {
                 alt="password"
                 width={27}
                 height={27}
-                className="absolute top-1/2 mt-3 left-4 -translate-y-1/2"
+                className="absolute top-1/2  mt-3 left-4 -translate-y-1/2"
               />
+              <p className="text-[#3F9272] absolute right-4  top-1/2" onClick={handleClickShow}>{ show ? <FaEye className="w-[22px] h-[22px]"/> : <FaEyeSlash className="w-[22px] h-[22px]" /> }</p>
             </div>
             <button
               disabled={isLoading}
