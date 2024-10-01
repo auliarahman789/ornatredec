@@ -32,17 +32,10 @@ function Page() {
           />
           <div className="mx-[8%] mt-[3%]">
             <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
+              Lingkungan Yang Baik Untuk Burung Hias
             </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Untuk merawat burung dengan baik, diperlukan lingkungan yang nyaman, bersih, dan aman. Kandang yang luas dan berventilasi baik adalah hal utama, memungkinkan burung bergerak bebas dan mendapatkan sirkulasi udara yang cukup. Tempatkan kandang di area yang terhindar dari angin kencang, panas matahari berlebih, dan kebisingan yang dapat membuat burung stres. Selain itu, lingkungan harus menyediakan akses air bersih dan pakan yang teratur, serta mainan atau ranting untuk memenuhi kebutuhan bermain dan eksplorasi burung.`}
             </p>
           </div>
         </div>
@@ -55,18 +48,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Lingkungan yang baik untuk burung hias harus dirancang sedemikian rupa agar memenuhi kebutuhan fisik dan psikologis mereka. Pertama, penting untuk menyediakan kandang atau sangkar yang cukup luas, sehingga burung dapat bergerak dengan leluasa, terbang, dan melakukan aktivitas alaminya seperti memanjat atau bermain. Ukuran sangkar harus disesuaikan dengan ukuran burung, dan materialnya harus aman tanpa bahan-bahan beracun. Selain itu, pastikan sangkar memiliki ventilasi yang baik, namun terlindungi dari angin kencang atau perubahan suhu ekstrem yang bisa membahayakan kesehatan burung.`}
             </p>
           </div>
         </div>
@@ -79,18 +62,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Selain aspek fisik, lingkungan burung hias juga harus menyediakan stimulasi mental yang cukup. Tambahkan mainan, ranting, atau tempat bertengger di dalam kandang untuk menjaga burung tetap aktif dan tidak bosan. Lokasi kandang sebaiknya berada di tempat yang tenang, jauh dari kebisingan atau gangguan, namun tetap memungkinkan burung melihat aktivitas manusia untuk interaksi sosial. Paparan sinar matahari yang cukup juga penting, namun burung harus tetap dilindungi dari panas berlebihan. Dengan lingkungan yang bersih, aman, dan stimulatif, burung hias dapat hidup lebih sehat dan merasa nyaman.`}
             </p>
           </div>
         </div>

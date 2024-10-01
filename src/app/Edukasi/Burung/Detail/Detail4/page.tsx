@@ -32,17 +32,10 @@ function Page() {
           />
           <div className="mx-[8%] mt-[3%]">
             <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
+              Hal Yang Menyebabkan Kesehatan Burung Menurun
             </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Merawat burung hias tentu saja akan memerlukan perhatian khusus, karena ada beberapa hal yang bisa menyebabkan mereka sakit jika tidak dihindari. Sebagai pemilik burung hias, penting untuk mengetahui apa yang tidak boleh dilakukan agar burung Anda tetap sehat dan aktif. Di T-trana, kami ingin berbagi informasi tentang apa saja yang perlu dihindari dalam merawat burung hias.`}
             </p>
           </div>
         </div>
@@ -55,18 +48,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Kesehatan burung dapat menurun karena berbagai faktor, salah satunya adalah kebersihan lingkungan yang kurang terjaga. Jika kandang atau sangkar tidak dibersihkan secara rutin, kotoran, sisa makanan, dan bulu rontok dapat menjadi tempat berkembang biaknya bakteri, virus, dan parasit. Hal ini dapat menyebabkan burung terinfeksi penyakit seperti infeksi saluran pernapasan, diare, atau kutu burung. Selain itu, kualitas udara di sekitar kandang juga perlu diperhatikan. Paparan asap rokok, parfum, atau bahan kimia berbahaya dapat merusak saluran pernapasan burung, yang berakibat pada penurunan kesehatan secara signifikan.`}
             </p>
           </div>
         </div>
@@ -79,18 +62,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Faktor lainnya adalah pola makan yang tidak seimbang. Memberikan makanan yang kurang bergizi atau tidak sesuai dengan kebutuhan spesifik jenis burung dapat menyebabkan defisiensi vitamin dan mineral, yang pada akhirnya menurunkan daya tahan tubuh burung. Kurangnya variasi makanan juga dapat memicu masalah kesehatan, seperti obesitas atau malnutrisi. Selain itu, stres yang disebabkan oleh lingkungan yang tidak mendukung, seperti kebisingan berlebihan, kurangnya interaksi sosial, atau perubahan mendadak dalam rutinitas, juga bisa mengakibatkan burung menjadi sakit. Stres berkepanjangan dapat melemahkan sistem kekebalan tubuh burung, membuatnya lebih rentan terhadap berbagai penyakit.`}
             </p>
           </div>
         </div>
