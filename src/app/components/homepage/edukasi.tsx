@@ -33,7 +33,7 @@ function Edukasi() {
               </span>
               <span className="pl-5 text-[#CCFFEB] text-[20px] ">
                 tips and trick merawat.....
-                <Link href="/Edukasi/Tumbuhan">
+                <Link href="/Edukasi/Tanaman">
                   <span className="text-white text-2xl cursor-pointer">
                     Baca selengkapnya
                   </span>
@@ -77,7 +77,7 @@ function Edukasi() {
               </span>
               <span className="pl-5 text-[#CCFFEB] text-[20px] ">
                 tips and trick merawat.....
-                <Link href="/Edukasi">
+                <Link href="/Edukasi/Burung">
                   <span className="text-white text-2xl cursor-pointer">
                     Baca selengkapnya
                   </span>
