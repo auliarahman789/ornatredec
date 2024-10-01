@@ -66,28 +66,35 @@ const Edit = () => {
     console.log(value);
   };
 
-  const handleInputImage = (e: any) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      ["photoProfile"]: e.target.files[0],
-    }));
-    console.log(e.target.files);
-  };
-
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputImage = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    console.log("Selected file:", file); // Periksa apakah file sudah dipilih
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
+        console.log("File loaded:", reader.result); // Log hasil FileReader
         setFormData((prevData) => ({
           ...prevData,
-          photoProfile: reader.result as string, // Simpan gambar sebagai URL
+          photoProfile: reader.result as string, // Simpan hasil ke photoProfile
         }));
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); // Membaca file sebagai Data URL
     }
   };
+
+  // const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setFormData((prevData) => ({
+  //         ...prevData,
+  //         photoProfile: reader.result as string, // Simpan gambar sebagai URL
+  //       }));
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   const handleavatarClick = () => {
     if (fileInputRef.current) {
@@ -153,12 +160,13 @@ const Edit = () => {
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
             <div className="flex justify-center -translate-y-[10%]">
               <Image
-                src={formData.photoProfile || "/img/default-avatar.png"} // Tampilkan gambar jika ada, gunakan default jika tidak
+                src={formData.photoProfile || "/img/default-avatar.png"} // Jika tidak ada gambar, gunakan default avatar
                 width={200}
                 height={200}
                 alt="Profile Picture"
                 className="rounded-full cursor-pointer"
                 onClick={handleavatarClick}
+                unoptimized // Menghindari optimisasi yang mungkin menyebabkan masalah pada data URL
               />
 
               <input
