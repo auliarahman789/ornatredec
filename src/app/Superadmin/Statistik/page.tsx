@@ -32,8 +32,16 @@ function Page() {
             Total terjual : <span>145</span>
           </div>
 
-          <div className="grid grid-cols-2 bg-white absolute right-[5%] top-[58%] h-[40%] w-[30%]">
-            <div className="col-span-1 bg-blue-300">jbabsjd</div>
+          <div className="text-white grid grid-cols-2 bg-white absolute right-[5%] top-[62%] h-[35%] w-[30%]">
+            <div className="col-span-1 bg-blue-300 text-[15px] space-y-3">
+              Tanaman : <span>43</span>
+              <div>
+                Ikan : <span>70</span>
+              </div>
+              <div>
+                Burung : <span>30</span>
+              </div>
+            </div>
             <div className="col span-2 bg-orange-500">njfsdjnf</div>
           </div>
 
