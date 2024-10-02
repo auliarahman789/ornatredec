@@ -88,7 +88,7 @@ const Produk = () => {
             >
               <a href="#">
                 <img
-                  className="mx-auto mt-5 h-[70%] w-[150%]"
+                  className="mx-auto mt-5 h-auto w-auto"
                   alt="Produk Gambar"
                   src={
                     "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
