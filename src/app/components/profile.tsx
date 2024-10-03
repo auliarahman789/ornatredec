@@ -11,7 +11,7 @@ interface UserData {
   tanggalLahir: any;
   no_hp: string;
   alamat: string;
-  photoProfile: string;
+  photoProfile: any;
 }
 
 const Profile = () => {
@@ -39,14 +39,18 @@ const Profile = () => {
       window.removeEventListener("storage", updateUserData);
     };
   }, []);
+
   async function getUser() {
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
     try {
-      const res = await axios.get(url, {
-        withCredentials: true,
-      });
-      console.log(res.data);
-      setUserData(res.data.user); // Simpan data yang diterima ke dalam state
+      const res = await axios.get(url, { withCredentials: true });
+
+      // Pastikan data user ada sebelum disimpan ke state
+      if (res.data && res.data.user) {
+        setUserData(res.data.user); // Simpan data user ke state
+      } else {
+        console.error("User data is null or undefined");
+      }
     } catch (error: any) {
       console.log(error);
     }
@@ -72,7 +76,7 @@ const Profile = () => {
                 <img
                   src={
                     userData?.photoProfile
-                      ? `https://74gslzvj-8000.asse.devtunnels.ms${userData?.photoProfile}`
+                      ? `https://74gslzvj-8000.asse.devtunnels.ms/${userData.photoProfile}`
                       : "/img/default-avatar.png"
                   }
                   width={200}

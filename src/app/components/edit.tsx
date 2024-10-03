@@ -66,20 +66,15 @@ const Edit = () => {
     console.log(value);
   };
 
-  const handleInputImage = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    console.log("Selected file:", file); // Periksa apakah file sudah dipilih
+  const handleInputImage = (e: any) => {
+    const file = e.target.files?.[0]; // Ambil file dari input
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        console.log("File loaded:", reader.result); // Log hasil FileReader
-        setFormData((prevData) => ({
-          ...prevData,
-          photoProfile: reader.result as string, // Simpan hasil ke photoProfile
-        }));
-      };
-      reader.readAsDataURL(file); // Membaca file sebagai Data URL
+      setFormData((prevData) => ({
+        ...prevData,
+        photoProfile: URL.createObjectURL(file), // Ubah file menjadi URL untuk preview
+      }));
     }
+    console.log(e.target.files);
   };
 
   // const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
