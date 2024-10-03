@@ -46,18 +46,12 @@ const Ikan = () => {
   return (
     <div className="pt-1" id="ikan">
       <div
-        className="h-[460px] w-[100%] -translate-y-1 bg-cover"
-        style={{ backgroundImage: "url('/img/IkanProduk.png')" }}
+        className="h-[500px] w-[100%] -translate-y-1 bg-cover"
+        style={{
+          backgroundImage: "url('/img/IkanProduk.png')",
+          height: "85vh",
+        }}
       ></div>
-      <div className="text-[#8EAEA6] text-[18px] pb-4">
-        <input
-          type="text"
-          placeholder="Cari produk..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
-          className="w-96 p-3 border bg-[#FFFBFB] translate-x-[133%] mt-10 shadow-sm"
-        />
-      </div>
       <ul className="text-center space-x-10 -translate-y-3 min-h-screen text-[22px] text-white font-semibold flex justify-center mt-5">
         <Link href="/Produk/#produk">
           <li className="mx-2 text-3xl cursor-pointer hover:text-[#308967] text-[#B3E8D5]">
@@ -74,6 +68,15 @@ const Ikan = () => {
           </li>
         </Link>
       </ul>
+      <div className="text-[#8EAEA6] text-[18px] pb-4 -translate-y-[500%]">
+        <input
+          type="text"
+          placeholder="Cari produk..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
+          className="w-96 p-3 border bg-[#FFFBFB] translate-x-[115%] mt-10 shadow-sm"
+        />
+      </div>
       <div
         className="grid grid-cols-4 mx-auto -translate-y-[65%] bg-[#EBFFF8] justify-between ml-[5%] mr-[5%]"
         ref={productRef} // Attach ref here
