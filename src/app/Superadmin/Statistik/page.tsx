@@ -28,13 +28,30 @@ function Page() {
             </div>
           </div>
 
-          <div className="absolute right-[27%] top-[53%] bg-blue-700 text-white text-[10px]">
+          <div className="absolute right-[23%] top-[53%] text-white text-[12px]">
             Total terjual : <span>145</span>
           </div>
 
-          <div className="grid grid-cols-2 bg-white absolute right-[5%] top-[58%] h-[40%] w-[30%]">
-            <div className="col-span-1 bg-blue-300">jbabsjd</div>
-            <div className="col span-2 bg-orange-500">njfsdjnf</div>
+          <div className="text-white grid grid-cols-2  absolute right-[3%] top-[62%] h-[20%] w-[30%]">
+            <div className="col-span-1  text-[15px] space-y-3">
+              Tanaman : <span>43</span>
+              <div>
+                Ikan : <span>70</span>
+              </div>
+              <div>
+                Burung : <span>30</span>
+              </div>
+            </div>
+            <div className="col span-2 text-[15px] space-y-3">
+              <div>Rp.20.500.000</div>
+              <div>Rp.55.700.000</div>
+              <div>Rp.13.100.000</div>
+            </div>
+          </div>
+
+          <div className="flex text-white text-[15px] absolute right-[3%] top-[85%] h-[10%] w-[30%] items-center">
+            <div>TOTAL :</div>
+            <div className="ml-[30%]">Rp.89.300.000</div>
           </div>
 
           {/* Teks di atas div putih */}
@@ -50,6 +67,64 @@ function Page() {
           </div>
           <BarKecilStatistik />
           <PieChartStatistik />
+        </div>
+      </div>
+
+      <div className="ms-[25.5%] mt-[4%] text-[20px] font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] text-transparent bg-clip-text">
+        Forum
+      </div>
+
+      <div className="w-[73%] ms-[24.5%] grid grid-cols-2 gap-6 ">
+        <div className="col-span-1 bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl h-[491px] mb-[5%]">
+          <div className="grid grid-cols-2">
+            <div className="">sd</div>
+
+            <div className="bg-white mt-[8%] w-[90%] h-[145px] rounded-xl items-center">
+              {/* Lingkaran 1 dan Teks */}
+              <div className="text-[13px] ml-[10%]">
+                <div className=" mt-3 flex items-center gap-x-6">
+                  {" "}
+                  {/* Ganti gap-x-12 menjadi gap-x-2 */}
+                  <div className="w-3 h-3 bg-[#309494] rounded-full"></div>
+                  <div className="text-black">Tanaman</div>
+                  <div className="text-[#4CC2AD] ml-4">156</div>{" "}
+                  {/* Tambahkan ml-2 untuk jarak */}
+                </div>
+
+                {/* Lingkaran 2 dan Teks */}
+                <div className=" flex items-center gap-x-6">
+                  {/* Ganti gap-x-12 menjadi gap-x-2 */}
+                  <div className="w-3 h-3 bg-[#4CC2AD] rounded-full"></div>
+                  <div className="text-black">Ikan</div>
+                  <div className="text-[#4CC2AD] ml-12">78</div>
+                  {/* Tambahkan ml-2 untuk jarak */}
+                </div>
+
+                {/* Lingkaran 3 dan Teks */}
+                <div className=" flex items-center gap-x-6">
+                  {/* Ganti gap-x-12 menjadi gap-x-2 */}
+                  <div className="w-3 h-3 bg-[#6BF8C2] rounded-full"></div>
+                  <div className="text-black">Burung</div>
+                  <div className="text-[#4CC2AD] ml-[16.5%]">26</div>
+                  {/* Tambahkan ml-2 untuk jarak */}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 text-center">
+                <div className="h-[155%] flex justify-center items-center mt-2 ml-2 text-[#4CC2AD] text-[15px]">
+                  260 konten
+                </div>
+
+                <div className="mt-2 ml-3 bg-white  w-[81%] h-[155%] shadow-top shadow-bottom">
+                  <div className="mt-2 text-[#3DAFEF] text-[16px] bg-slate-200 inline-block">
+                    120
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-span-1 bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl h-[338px]">
+          asdasd
         </div>
       </div>
     </div>

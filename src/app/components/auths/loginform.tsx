@@ -6,14 +6,17 @@ import Loading from "./loading";
 import Image from "next/image";
 import userIcon from "../../../../public/icon/User_fill.svg";
 import passwordIcon from "../../../../public/icon/Lock_alt_fill.svg";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [role, setRole] = useState<string>("");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-
+  const [show, setShow] = useState(false);
+  const handleClickShow = () => {
+    setShow(!show)
+  }
   async function login(e: React.FormEvent) {
     e.preventDefault(); // Mencegah reload saat kirim
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/login`;
@@ -22,23 +25,25 @@ const Login = () => {
       setIsLoading(true);
       const res = await axios.post(
         url,
-        { username, password, role },
+        { username, password },
         { withCredentials: true }
       );
-      console.log(res.data.user.role);
-      setRole(res.data.user.role);
-      localStorage.setItem("token", res.data.token); // Menyimpan token
 
       // Simpan data pengguna di localStorage setelah login berhasil
       // localStorage.setItem("token", res.data.token); // Menyimpan token
       localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
+      const userRole = res.data.user.role; // Simpan role dari response
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
 
       alert("Berhasil Login");
       // Redirect berdasarkan role
-      if (role === "user") {
+      if (userRole === "user") {
         router.push("/");
-      } else {
+      } else if (userRole === "super admin") {
         router.push("/Superadmin");
+      } else {
+        alert("tidak boleh kogin");
       }
       setIsLoading(false);
     } catch (error: any) {
@@ -76,7 +81,7 @@ const Login = () => {
             </div>
             <div className="relative">
               <input
-                type="password"
+                type={ show ? "text" : "password"}
                 name="password"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
@@ -87,8 +92,9 @@ const Login = () => {
                 alt="password"
                 width={27}
                 height={27}
-                className="absolute top-1/2 mt-3 left-4 -translate-y-1/2"
+                className="absolute top-1/2  mt-3 left-4 -translate-y-1/2"
               />
+              <p className="text-[#3F9272] absolute right-4  top-1/2" onClick={handleClickShow}>{ show ? <FaEye className="w-[22px] h-[22px]"/> : <FaEyeSlash className="w-[22px] h-[22px]" /> }</p>
             </div>
             <button
               disabled={isLoading}

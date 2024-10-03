@@ -32,17 +32,10 @@ function Page() {
           />
           <div className="mx-[8%] mt-[3%]">
             <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
+              Tujuan Merawat Burung Hias
             </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Merawat burung hias menambah keindahan dan kenyamanan di rumah dengan warna bulu yang cerah dan kicauan merdu. Kegiatan ini tidak hanya memberikan kesenangan visual dan auditori, tetapi juga membantu relaksasi, mengurangi stres, serta menciptakan suasana yang lebih tenang. Memelihara burung hias mengajarkan tanggung jawab dan kepedulian, yang berdampak positif pada kesehatan mental dan emosional. Dengan demikian, burung hias tidak hanya memperindah lingkungan, tetapi juga meningkatkan kualitas hidup secara keseluruhan.`}
             </p>
           </div>
         </div>
@@ -55,18 +48,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Pertama, tujuan utama merawat burung hias adalah untuk memastikan kondisi fisik dan psikologisnya tetap optimal. Ini meliputi memberikan makanan yang seimbang dan bergizi sesuai dengan jenis burungnya, memperhatikan kebersihan kandang atau sangkar, serta menyediakan lingkungan yang aman dan stimulatif untuk aktivitas sehari-hari mereka. Selain itu, tujuan merawat burung hias juga termasuk untuk membangun ikatan yang baik antara pemilik dan burung, melalui interaksi yang positif dan perawatan yang konsisten, sehingga burung dapat merasa aman dan nyaman di lingkungannya.`}
             </p>
           </div>
         </div>
@@ -79,18 +62,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Kedua, merawat burung hias juga bertujuan untuk mempromosikan kehidupan yang panjang dan berkualitas bagi mereka. Ini mencakup pemantauan kesehatan secara teratur, mengidentifikasi tanda-tanda penyakit atau stres secara dini, dan memberikan perawatan medis jika diperlukan. Pemberian perhatian dan kasih sayang juga menjadi bagian integral dari tujuan merawat burung hias, karena interaksi positif ini dapat meningkatkan kebahagiaan dan kesejahteraan mereka secara keseluruhan. Dengan memahami dan memenuhi kebutuhan dasar serta emosional burung hias, pemilik dapat memastikan bahwa burung dapat hidup dengan bahagia dan sehat dalam lingkungan yang dirawat dengan baik.`}
             </p>
           </div>
         </div>

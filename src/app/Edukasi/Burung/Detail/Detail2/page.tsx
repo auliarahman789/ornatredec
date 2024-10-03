@@ -32,17 +32,10 @@ function Page() {
           />
           <div className="mx-[8%] mt-[3%]">
             <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
+              Cara Merawat Burung Hias
             </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Memiliki burung hias di rumah tidak hanya menambah keindahan visual yang memikat, tetapi juga membawa tanggung jawab besar untuk memastikan kesejahteraan mereka. Setiap burung hias membutuhkan perhatian khusus dan perawatan yang teliti untuk memastikan mereka hidup dengan sehat. Perawatan yang baik mencakup berbagai aspek, mulai dari pemilihan kandang yang sesuai, pemberian makanan yang seimbang, hingga perawatan kebersihan yang rutin.`}
             </p>
           </div>
         </div>
@@ -55,18 +48,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Merawat burung hias memerlukan perhatian khusus terhadap kebutuhan dasar mereka agar tetap sehat dan bahagia. Langkah pertama yang harus dilakukan adalah menyediakan makanan yang berkualitas dan seimbang sesuai dengan jenis burungnya. Setiap spesies burung memiliki kebutuhan nutrisi yang berbeda, sehingga penting untuk memberikan pakan yang mengandung biji-bijian, buah-buahan, sayuran, atau pelet yang dirancang khusus. Selain itu, kebersihan tempat makan dan minum harus dijaga setiap hari untuk mencegah infeksi atau penyakit. Pastikan juga burung memiliki akses ke air bersih setiap saat.`}
             </p>
           </div>
         </div>
@@ -79,18 +62,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Langkah kedua dalam merawat burung hias adalah menjaga kebersihan dan kesehatan lingkungannya. Kandang atau sangkar perlu dibersihkan secara rutin untuk menghilangkan kotoran, bulu rontok, dan sisa makanan. Memberikan mainan atau alat untuk stimulasi mental juga sangat penting, karena burung hias membutuhkan aktivitas fisik dan mental untuk menghindari stres. Selain itu, penting untuk memastikan burung mendapatkan sinar matahari yang cukup atau pencahayaan yang tepat, serta memantau kesehatannya dengan mengamati perilaku sehari-hari. Jika burung menunjukkan tanda-tanda sakit, segera konsultasikan dengan dokter hewan.`}
             </p>
           </div>
         </div>

@@ -32,17 +32,10 @@ function Page() {
           />
           <div className="mx-[8%] mt-[3%]">
             <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
+              Tips Menghindari Ikan Tidak Cepat Mati
             </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`agar ikan hias tidak cepat mati, pastikan untuk menjaga kualitas air dengan rutin menggantinya, mengatur suhu yang sesuai, memberikan makanan yang seimbang, tidak menaruh terlalu banyak ikan dalam satu akuarium, memilih ikan yang sehat saat membeli, serta memantau pH air agar sesuai dengan kebutuhan ikan.`}
             </p>
           </div>
         </div>
@@ -55,18 +48,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Salah satu tips terpenting adalah menjaga kualitas air di akuarium. Ikan hias sangat sensitif terhadap perubahan lingkungan, sehingga penting untuk memastikan bahwa air selalu bersih dan memiliki kadar pH serta suhu yang sesuai dengan kebutuhan jenis ikan yang dipelihara. Rutin mengganti air sekitar 20-30% setiap minggu dapat membantu menjaga kualitas air tanpa mengganggu ekosistem akuarium. Selain itu, pastikan sistem filtrasi berfungsi dengan baik untuk menyaring kotoran dan menjaga kadar oksigen tetap stabil. Hindari memasukkan terlalu banyak ikan dalam satu akuarium karena bisa meningkatkan stres dan memicu penyakit.`}
             </p>
           </div>
         </div>
@@ -79,18 +62,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Selain menjaga kualitas air, penting juga untuk memberikan makanan yang tepat dan dalam jumlah yang sesuai. Memberi makan berlebihan dapat menyebabkan sisa makanan menumpuk di dasar akuarium, yang kemudian memicu pertumbuhan bakteri berbahaya dan merusak kualitas air. Cukup beri makan 1-2 kali sehari dengan porsi yang bisa habis dalam beberapa menit. Perhatikan juga tanda-tanda ikan stres, seperti ikan sering bersembunyi, berenang tidak normal, atau warna tubuhnya memudar. Jika tanda-tanda ini muncul, segera periksa kondisi akuarium dan lakukan tindakan perbaikan, seperti mengontrol suhu air atau memisahkan ikan yang sakit.`}
             </p>
           </div>
         </div>

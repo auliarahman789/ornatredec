@@ -32,17 +32,10 @@ function Page() {
           />
           <div className="mx-[8%] mt-[3%]">
             <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
+              Penyebab Tanaman Sakit
             </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Tanaman bisa layu atau mati karena beberapa penyebab utama. Kekurangan air atau penyiraman yang tidak konsisten dapat membuat tanaman dehidrasi dan akarnya membusuk. Penyiraman berlebihan juga dapat merusak akar dan menyebabkan pembusukan. Kelebihan atau kekurangan cahaya mempengaruhi kesehatan tanaman; terlalu banyak atau terlalu sedikit cahaya bisa menghambat pertumbuhan. Penyakit dan hama, seperti jamur atau serangga, juga dapat merusak tanaman. Selain itu, kualitas tanah dan drainase yang buruk dapat menambah masalah bagi kesehatan tanaman.`}
             </p>
           </div>
         </div>
@@ -55,18 +48,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Tanaman hias bisa mengalami sakit karena berbagai faktor, salah satu penyebab utamanya adalah penyiraman yang tidak tepat. Terlalu banyak atau terlalu sedikit air dapat mengganggu keseimbangan pertumbuhan tanaman. Jika tanaman terlalu sering disiram, akarnya bisa membusuk karena kelembapan berlebih, menyebabkan daun layu dan batang menjadi lemah. Sebaliknya, jika tanaman kekurangan air, daun bisa mengering, menggulung, atau bahkan rontok. Oleh karena itu, penting untuk menyesuaikan penyiraman sesuai kebutuhan spesifik tanaman hias tersebut.`}
             </p>
           </div>
         </div>
@@ -79,18 +62,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Penyebab lain tanaman hias sakit adalah serangan hama dan penyakit. Hama seperti kutu daun, tungau, atau kutu putih sering menyerang tanaman hias dan menghisap cairan dari daunnya, membuat tanaman menjadi lemah. Selain itu, penyakit seperti jamur atau bakteri bisa menyebar dengan cepat pada tanaman yang tidak mendapatkan sirkulasi udara yang baik atau terkena kelembapan berlebih. Tanda-tanda umum dari serangan penyakit adalah bercak hitam, busuk akar, atau perubahan warna pada daun. Untuk mengatasi ini, pemantauan rutin dan tindakan preventif seperti membersihkan daun serta penggunaan pestisida alami dapat membantu menjaga kesehatan tanaman.`}
             </p>
           </div>
         </div>

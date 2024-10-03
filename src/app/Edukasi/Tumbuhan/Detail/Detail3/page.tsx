@@ -32,17 +32,10 @@ function Page() {
           />
           <div className="mx-[8%] mt-[3%]">
             <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
+              Waktu Yang Baik Untuk Merawat Tanaman
             </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Merawat tanaman hias memerlukan perhatian pada waktu yang tepat untuk setiap kegiatan. Penyiraman sebaiknya dilakukan pagi atau sore hari untuk menghindari penguapan yang cepat. Pemupukan biasanya dilakukan setiap beberapa minggu sekali, tergantung jenis tanaman dan pupuk yang digunakan. Pemangkasan dapat dilakukan saat tanaman sedang aktif tumbuh, biasanya di awal musim semi. Pastikan juga memeriksa tanaman secara rutin untuk hama atau penyakit. Perawatan yang tepat waktu akan mendukung pertumbuhan tanaman yang sehat dan optimal.`}
             </p>
           </div>
         </div>
@@ -55,18 +48,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Waktu yang baik untuk merawat tanaman hias sangat tergantung pada aktivitas harian dan kebutuhan spesifik tanaman. Pada umumnya, pagi hari adalah waktu terbaik untuk menyiram tanaman karena udara masih sejuk dan tanaman dapat menyerap air dengan baik sebelum terkena panas matahari. Selain itu, menyiram di pagi hari memungkinkan air terserap lebih sempurna oleh akar dan mengurangi risiko kelembapan berlebihan yang dapat memicu pertumbuhan jamur atau hama. Sinar matahari pagi yang tidak terlalu terik juga ideal untuk tanaman yang membutuhkan cahaya sedang hingga terang.`}
             </p>
           </div>
         </div>
@@ -79,18 +62,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Selain pagi hari, waktu sore menjelang matahari terbenam juga bisa menjadi saat yang tepat untuk merawat tanaman, terutama dalam hal penyiraman atau pemupukan. Pada sore hari, suhu udara sudah mulai turun, sehingga tanaman tidak akan terlalu terkejut dengan perubahan suhu yang ekstrem. Namun, pastikan tidak menyiram terlalu malam karena kelembapan yang berlebihan di malam hari dapat memicu munculnya penyakit atau hama. Perawatan rutin seperti pemangkasan atau pembersihan daun dapat dilakukan kapan saja, tetapi pastikan tanaman tidak terkena sinar matahari langsung saat melakukan kegiatan ini agar tanaman tidak stres.`}
             </p>
           </div>
         </div>

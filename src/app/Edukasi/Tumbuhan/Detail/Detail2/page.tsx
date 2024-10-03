@@ -32,17 +32,10 @@ function Page() {
           />
           <div className="mx-[8%] mt-[3%]">
             <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
+              Cara Merawat Tanaman Hias
             </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Merawat tanaman hias melibatkan beberapa langkah kunci untuk pertumbuhannya yang optimal. Pastikan tanaman mendapatkan cahaya yang sesuai dan penyiraman yang tepat, menjaga tanah tetap lembab namun tidak basah. Berikan pupuk secara berkala dan pastikan drainase yang baik. Selalu periksa tanaman untuk hama atau penyakit, dan lakukan pemangkasan untuk menghilangkan bagian yang mati. Dengan perawatan yang konsisten, tanaman hias akan tumbuh sehat dan indah.`}
             </p>
           </div>
         </div>
@@ -55,18 +48,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Merawat tanaman hias membutuhkan perhatian khusus agar tanaman tetap tumbuh sehat dan indah. Hal pertama yang harus diperhatikan adalah kebutuhan air dan cahaya tanaman. Setiap tanaman memiliki kebutuhan air yang berbeda-beda, ada yang membutuhkan penyiraman rutin, sementara yang lain cukup sekali-sekali. Selain itu, pencahayaan sangat penting untuk fotosintesis. Beberapa tanaman hias membutuhkan sinar matahari langsung, sementara yang lain lebih cocok di tempat yang teduh. Menempatkan tanaman di lokasi yang sesuai dengan kebutuhan cahaya akan membantu pertumbuhannya secara optimal.`}
             </p>
           </div>
         </div>
@@ -79,18 +62,8 @@ function Page() {
             height={100}
           />
           <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Memilih media tanam: Pilih media tanam yang sesuai dengan tanaman.
-            </h1>
             <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim ve
+              {`Selain air dan cahaya, pemupukan dan pemangkasan juga penting dalam merawat tanaman hias. Pupuk memberi nutrisi yang dibutuhkan tanaman untuk tumbuh dengan baik, sementara pemangkasan membantu menjaga bentuk dan kesehatan tanaman. Bersihkan daun tanaman dari debu secara berkala agar dapat menyerap cahaya lebih baik. Jangan lupa untuk memantau tanda-tanda adanya hama atau penyakit yang dapat merusak tanaman. Dengan memberikan perawatan yang sesuai, tanaman hias akan tumbuh subur dan mempercantik ruangan Anda.`}
             </p>
           </div>
         </div>
