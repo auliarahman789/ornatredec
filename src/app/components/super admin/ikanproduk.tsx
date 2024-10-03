@@ -9,7 +9,7 @@ const Ikanproduk = () => {
   }, []);
 
   async function getIkan() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterKategori?kategori=ikan`;
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=ikan`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -35,7 +35,7 @@ const Ikanproduk = () => {
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
                 src={
-                  "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
+                  "https://74gslzvj-8000.asse.devtunnels.ms" +
                   item.foto_produk
                 }
               />

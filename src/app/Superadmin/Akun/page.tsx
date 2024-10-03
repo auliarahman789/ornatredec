@@ -1,53 +1,46 @@
 'use client'
 import { useState } from 'react';
-import Akunadmin from '@/app/components/super admin/akunadmin';
-import Akunkasir from '@/app/components/super admin/akunkasir';
 import Link from 'next/link';
 import React from 'react';
+import Akun from '@/app/components/super admin/akun';
+import { usePathname } from 'next/navigation';
+import Data from '@/app/components/super admin/datapengguna';
 
 function Page() {
-  const [activeFormulir, setActiveFormulir] = useState('akun admin'); 
-
+  const [active, setActive] = useState('data pengguna'); 
   return (
     <div className='overflow-x-hidden min-h-screen '>
       <div className='translate-x-64 pt-[2%]'>
+        <div className="flex">
         <div className="text-[23px] font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-[2%] mt-4 inline-block text-transparent bg-clip-text">
-          Akun Pengelola
-        </div>
-        <div className='w-[42%] mx-[18%] mt-[2%]'>
-          <div className="flex justify-between mx-[18%]">
+          {active === 'akun' ? 'Akun Pengelola' : 'Data Pengguna'}
+          </div>
+          <div className='mt-4 ms-[4%] space-x-4'>
             <button
-              onClick={() => setActiveFormulir('akun admin')}
-              className={`text-sm px-3 pt-1 text-[#308967] rounded-full ${activeFormulir === 'akun admin' ? 'bg-gradient-to-b from-[#0D6734] to-[#247E55] text-white' : ''}`}
-              style={{ boxShadow: "0.5px 0.5px 3px #00000040" }}
+              onClick={() => setActive('data pengguna')}
+              className={`text-[17px] px-5 pt-1 text-[#308967] border-[#3F9272] border-[1.5px] rounded-full ${active === 'data pengguna' ? 'bg-gradient-to-b from-[#0D6734] to-[#247E55] text-white' : ''}`}
             >
-              Akun Admin
+              Data Pengguna
             </button>
 
             <button
-              onClick={() => setActiveFormulir('akun kasir')}
-              className={`text-sm px-3 pt-1 text-[#308967] rounded-full ${activeFormulir === 'akun kasir' ? 'bg-gradient-to-b from-[#0D6734] to-[#247E55] text-white' : ''}`}
-              style={{ boxShadow: "0.5px 0.5px 3px #00000040" }}
+              onClick={() => setActive('akun')}
+              className={`text-[17px] px-5 pt-1 text-[#308967] border-[#3F9272] border-[1.5px] rounded-full ${active === 'akun' ? 'bg-gradient-to-b from-[#0D6734] to-[#247E55] text-white' : ''}`}
             >
-              Akun Kasir
+              Buat Akun Pengelola
             </button>
           </div>
-          
-          <div className='mt-[7%] pb-24'>
-          <div
-              className={` transition-opacity ease-in-out duration-[1500ms] ${activeFormulir === 'akun admin' ? 'opacity-100' : 'opacity-50'}`}
-            >
-              {activeFormulir === 'akun admin' && <Akunadmin />}
-            </div>
-
-            <div
-              className={` transition-opacity ease-in-out duration-[1500ms] ${activeFormulir === 'akun kasir' ? 'opacity-100' : 'opacity-50'}`}
-            >
-              {activeFormulir === 'akun kasir' && <Akunkasir />}
-            </div>
           </div>
-        </div>
       </div>
+          <div className='pb-24'>
+          <div className='translate-x-[18%] mt-[2%]'>
+              {active === 'data pengguna' && <Data />}
+            </div>
+
+            <div className='w-[42%] mx-[18%] translate-x-64 mt-[6%]'>
+              {active === 'akun' && <Akun />}
+            </div>
+          </div>
     </div>
   );
 }

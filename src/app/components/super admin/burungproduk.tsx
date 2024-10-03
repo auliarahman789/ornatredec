@@ -1,3 +1,4 @@
+'use client'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
@@ -9,7 +10,7 @@ const Burungproduk = () => {
   }, []);
 
   async function getBurung() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterKategori?kategori=burung`;
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=burung`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -35,7 +36,7 @@ const Burungproduk = () => {
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
                 src={
-                  "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
+                  "https://74gslzvj-8000.asse.devtunnels.ms" +
                   item.foto_produk
                 }
               />
