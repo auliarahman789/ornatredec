@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./sidebar";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import axios from "axios";
 
 interface UserData {
@@ -12,12 +11,11 @@ interface UserData {
   tanggalLahir: any;
   no_hp: string;
   alamat: string;
-  photoProfile: string; // Tambahkan properti photoProfile
+  photoProfile: string;
 }
 
 const Profile = () => {
   const [userData, setUserData] = useState<any>(null);
-
   const router = useRouter();
 
   useEffect(() => {
@@ -45,10 +43,8 @@ const Profile = () => {
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
     try {
       const res = await axios.get(url, {
-        // Menggunakan params untuk query string
         withCredentials: true,
       });
-
       console.log(res.data);
       setUserData(res.data.user); // Simpan data yang diterima ke dalam state
     } catch (error: any) {
@@ -56,11 +52,11 @@ const Profile = () => {
     }
   }
 
-  const handleDeleteAccount = () => {
-    localStorage.removeItem("userData");
-    localStorage.removeItem("token");
-    router.push("/"); //akan pindah setelah hapus akun
-  };
+  // const handleDeleteAccount = () => {
+  //   localStorage.removeItem("userData");
+  //   localStorage.removeItem("token");
+  //   router.push("/"); //akan pindah setelah hapus akun
+  // };
 
   return (
     <div className="flex min-h-screen">
@@ -74,7 +70,11 @@ const Profile = () => {
             <div className="-translate-y-[6%]">
               <div className="flex justify-end mb-4 translate-y-[50%]">
                 <img
-                  src={`https://74gslzvj-8000.asse.devtunnels.ms${userData?.photoProfile}`} // Menampilkan gambar dari localStorage
+                  src={
+                    userData?.photoProfile
+                      ? `https://74gslzvj-8000.asse.devtunnels.ms${userData?.photoProfile}`
+                      : "/img/default-avatar.png"
+                  }
                   width={200}
                   height={200}
                   alt=""
