@@ -1,9 +1,28 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 const Datakasir = () => {
   const [data, setData] = useState<any[]>([]);
+  const [isOnline, setOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    function handleOnlineStatus() {
+      setOnline(true);
+    }
+    function handleOfflineStatus() {
+      setOnline(false);
+    }
+
+    window.addEventListener("online", handleOnlineStatus);
+    window.addEventListener("offline", handleOfflineStatus);
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("online", handleOnlineStatus);
+      window.removeEventListener("offline", handleOfflineStatus);
+    };
+  }, []); // Hanya dijalankan sekali saat komponen dipasang
 
   useEffect(() => {
     getDatakasir();
@@ -22,6 +41,7 @@ const Datakasir = () => {
       alert('Terjadi kesalahan saat mengambil data user.');
     }
   }
+
   return (
     <div>
       <ul className='flex text-[#00663F] font-semibold space-x-7 mt-[2%] ms-[2%]'>
@@ -36,14 +56,22 @@ const Datakasir = () => {
           {data.map((item: any) => (
             <div key={item.id} className='bg-white flex w-[100%] h-[20%] mt-[2%] py-4 px-5'>
               <div className='w-[37%] flex'>
-                <img src={item.photoProfile ? "https://74gslzvj-8000.asse.devtunnels.ms" + item.photoProfile : "/img/default-avatar.png"} alt='' width={70} height={70} className='ms-2 rounded-full' />
+                <img 
+                  src={item.photoProfile ? "https://74gslzvj-8000.asse.devtunnels.ms" + item.photoProfile : "/img/default-avatar.png"} 
+                  alt='' 
+                  width={70} 
+                  height={70} 
+                  className='ms-2 rounded-full' 
+                />
                 <ul className='ms-5 mt-2'>
                   <li className="text-[20px]">{item.username}</li>
                   <li className="font-light">{item.email}</li>
                 </ul>
               </div>
-              <p className='text-[#51CB9F] text-sm mt-[3%] w-[15%]'>Aktif</p>
-              <p className=' text-sm text-black mt-[3%] w-[16%]'>alamat</p>
+              <p className=' text-sm mt-[3%] w-[15%] -translate-x-4'>
+                {isOnline ? <span className='text-[#51CB9F]'>Aktif</span> : <span className='text-[#FF0A0A]'>Tidak Aktif</span>}
+              </p>
+              <p className=' text-sm text-black mt-[3%] w-[16%]'>{item.alamats.map}</p>
               <p className=' text-sm text-[#3F9272] mt-[3%] w-[22%]'>{item.no_hp}</p>
               <button className='bg-[#308967] w-[10%] h-[1%] py-2 text-sm text-white rounded-full mt-[2%]'>Hubungi</button>
             </div>
@@ -51,7 +79,7 @@ const Datakasir = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Datakasir
+export default Datakasir;

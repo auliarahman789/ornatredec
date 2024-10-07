@@ -3,7 +3,12 @@ import React, { useEffect, useState } from 'react';
 
 const Ikanproduk = () => {
   const [data, setData] = useState<any[]>([]);
-
+  const formatHarga = (itung : number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+    }).format(itung);
+  };
   useEffect(() => {
     getIkan();
   }, []);
@@ -46,7 +51,7 @@ const Ikanproduk = () => {
               </h5>
               <div className="flex items-center justify-between mt-auto">
                 <span className="text-sm font-bold text-[#FF0A0A]">
-                  Rp {item.harga}
+                  {formatHarga(item.harga)}
                 </span>
               </div>
             </div>

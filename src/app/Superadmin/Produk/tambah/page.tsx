@@ -4,6 +4,7 @@ import Image from 'next/image'
 import foto from '../../../../../public/img/Group 1000004376 (1).png'
 import axios from 'axios';
 import tambahicon from '../../../../../public/icon/dell_square.svg'
+import { useRouter } from 'next/navigation';
 
 interface Produk {
           judul_produk: string,
@@ -46,6 +47,7 @@ const Page = () => {
     kategori_produk: '',
     variasi: []
   });
+  const router = useRouter();
 
 const handleImageClick = () => {
   if (inputRef.current) {
@@ -119,11 +121,11 @@ const handleImageClick = () => {
     deletesvariasi.splice(i,1)
     setVariasi(deletesvariasi)
   }
-  // const handleDeleteSub = (ii:number) => {
-  //   const deletesvariasi = [...variasi];
-  //   deletesvariasi.splice(ii,1)
-  //   setVariasi(deletesvariasi)
-  // }
+  const handleDeleteSub = (i: number, ii: number) => {
+    const deletesvariasi = [...variasi];
+    deletesvariasi[i].sub_variasi.splice(ii, 1);
+    setVariasi(deletesvariasi);
+  };
 
   // const handleAdd2 = () => {
   //   setSubVariasi2([
@@ -163,6 +165,8 @@ const handleImageClick = () => {
       const res = await axios.post(url, formData2, {
         withCredentials: true,
       });
+      router.push('/Superadmin/Produk');
+      alert('Berhasil menambahkan produk')
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
@@ -281,7 +285,7 @@ const handleImageClick = () => {
                       {data.sub_variasi.map((data2: any, ii: number) => {
                         return (
                          <>
-                          <div key={i} className='flex flex-col'>
+                          <div key={ii} className='flex flex-col'>
                             <div className="grid grid-cols-5 space-x-12 mb-4">
                               <div>
                                 <label htmlFor='nama_variasi' className='text-[#8EAEA6] text-sm mt-2 font-semibold'>Nama Variasi</label>
@@ -323,7 +327,7 @@ const handleImageClick = () => {
                                   required
                                 />
                               </div>
-                                <button className='px-4 bg-[#8EAEA6] h-[45px] mt-7 font-bold text-white rounded-md' onClick={() => handleDeleteSub(ii)}>
+                                <button className='px-4 bg-[#8EAEA6] h-[45px] mt-7 font-bold text-white rounded-md' onClick={() => handleDeleteSub(i,ii)}>
                                   X</button>
                             </div>
                           </div>

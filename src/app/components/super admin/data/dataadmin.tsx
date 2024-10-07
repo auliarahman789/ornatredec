@@ -4,6 +4,23 @@ import Image from 'next/image';
 
 const Dataadmin = () => {
   const [data, setData] = useState<any[]>([]);
+  const [isOnline, setOnline] = useState(false);
+
+  useEffect(() => {
+    function handleOnlineStatus() {
+      setOnline(true)
+    }
+    function handleOfflineStatus() {
+      setOnline(false)
+    }
+    window.addEventListener("online", handleOnlineStatus)
+    window.addEventListener("offline", handleOfflineStatus)
+
+    return () => {
+      window.addEventListener("online", handleOnlineStatus)
+    window.addEventListener("offline", handleOfflineStatus)
+    }
+  })
 
   useEffect(() => {
     getDataadmin();
@@ -42,8 +59,12 @@ const Dataadmin = () => {
                   <li className="font-light">{item.email}</li>
                 </ul>
               </div>
-              <p className='text-[#51CB9F] text-sm mt-[3%] w-[15%]'>Aktif</p>
-              <p className=' text-sm text-black mt-[3%] w-[16%]'>alamat</p>
+              <p className=' text-sm mt-[3%] w-[15%] -translate-x-4'>{isOnline == true ? <p className='text-[#51CB9F]'>Aktif</p>: <p className='text-[#FF0A0A]'>Tidak Aktif</p>}</p>
+              {item.alamats.map((item:any) => (
+                <div key={item.id}>
+                  <p className=' text-sm text-black mt-[3%] w-[16%]'>{item.alamats.kota_kabupaten}</p>
+                </div>
+              ))}
               <p className=' text-sm text-[#3F9272] mt-[3%] w-[22%]'>{item.no_hp}</p>
               <button className='bg-[#308967] w-[10%] h-[1%] py-2 text-sm text-white rounded-full mt-[2%]'>Hubungi</button>
             </div>

@@ -4,6 +4,23 @@ import Image from 'next/image';
 
 const Datauser = () => {
   const [data, setData] = useState<any[]>([]);
+  const [isOnline, setOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    function handleOnlineStatus() {
+      setOnline(true)
+    }
+    function handleOfflineStatus() {
+      setOnline(false)
+    }
+    window.addEventListener("online", handleOnlineStatus)
+    window.addEventListener("offline", handleOfflineStatus)
+
+    return () => {
+      window.addEventListener("online", handleOnlineStatus)
+    window.addEventListener("offline", handleOfflineStatus)
+    }
+  }, [])
 
   useEffect(() => {
     getDatauser();
@@ -42,8 +59,8 @@ const Datauser = () => {
                   <li className="font-light">{item.email}</li>
                 </ul>
               </div>
-              <p className='text-[#51CB9F] text-sm mt-[3%] w-[15%]'>Aktif</p>
-              <p className=' text-sm text-black mt-[3%] w-[16%]'>alamat</p>
+              <p className=' text-sm mt-[3%] w-[15%] -translate-x-4'>{isOnline == true ? <p className='text-[#51CB9F]'>Aktif</p>: <p className='text-[#FF0A0A]'>Tidak Aktif</p>}</p>
+              <p className=' text-sm text-black mt-[3%] w-[16%]'>{item.alamats.kota_kabupaten}</p>
               <p className=' text-sm text-[#3F9272] mt-[3%] w-[22%]'>{item.no_hp}</p>
               <button className='bg-[#308967] w-[10%] h-[1%] py-2 text-sm text-white rounded-full mt-[2%]'>Hubungi</button>
             </div>
