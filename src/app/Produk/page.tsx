@@ -46,7 +46,7 @@ const Produk = () => {
     <div className="bg-white">
       <div className="pt-1" id="tanaman">
         <div
-          className="h-[500%] w-[100%] -translate-y-1 bg-cover"
+          className="h-[500px] w-[100%] -translate-y-1 bg-cover"
           style={{ backgroundImage: "url('/img/TanamanProduk1.png')" }}
         ></div>
         <div className="text-[#8EAEA6] text-[18px] pb-4">
