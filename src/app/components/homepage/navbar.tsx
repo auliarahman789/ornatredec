@@ -50,19 +50,49 @@ function Navbar() {
         <div className="flex-1 flex justify-center">
           <ul className="flex space-x-10 text-[18px]">
             <Link href="/">
-              <li className={`${pathname === '/' ? 'text-[#27BFB6]' : 'text-[#308967]'}`}>Home</li>
+              <li
+                className={`${
+                  pathname === "/" ? "text-[#27BFB6]" : "text-[#308967]"
+                }`}
+              >
+                Home
+              </li>
             </Link>
             <Link href="">
-              <li className={`${pathname === '/Forum' ? 'text-[#27BFB6]' : 'text-[#308967]'}`}>Forum</li>
+              <li
+                className={`${
+                  pathname === "/Forum" ? "text-[#27BFB6]" : "text-[#308967]"
+                }`}
+              >
+                Forum
+              </li>
             </Link>
             <Link href="/Produk">
-              <li className={`${pathname === '/Produk' ? 'text-[#27BFB6]' : 'text-[#308967]'}`}>Produk</li>
+              <li
+                className={`${
+                  pathname === "/Produk" ? "text-[#27BFB6]" : "text-[#308967]"
+                }`}
+              >
+                Produk
+              </li>
             </Link>
             <Link href="/Edukasi">
-              <li className={`${pathname === '/Edukasi' ? 'text-[#27BFB6]' : 'text-[#308967]'}`}>Edukasi</li>
+              <li
+                className={`${
+                  pathname === "/Edukasi" ? "text-[#27BFB6]" : "text-[#308967]"
+                }`}
+              >
+                Edukasi
+              </li>
             </Link>
-            <Link href="/about">
-              <li className={`${pathname === '/About' ? 'text-[#27BFB6]' : 'text-[#308967]'}`}>About</li>
+            <Link href="/About">
+              <li
+                className={`${
+                  pathname === "/About" ? "text-[#27BFB6]" : "text-[#308967]"
+                }`}
+              >
+                About
+              </li>
             </Link>
           </ul>
         </div>
