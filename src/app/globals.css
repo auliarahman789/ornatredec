@@ -119,10 +119,10 @@ body {
     font-weight: bold;
   }
   .shadow-top {
-    box-shadow: 0 -6px 10px rgba(20, 0, 0, 00.3); /* Pertebal shadow atas */
+    box-shadow: 0 -6px 10px rgba(20, 0, 0, 00.4); /* Pertebal shadow atas */
   }
 
   .shadow-bottom {
-    box-shadow: 0 6px 30px rgba(20, 0, 0, 00.3); /* Pertebal shadow bawah */
+    box-shadow: 0 6px 30px rgba(20, 0, 0, 00.4); /* Pertebal shadow bawah */
   }
 }

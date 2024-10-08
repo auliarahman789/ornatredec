@@ -1,5 +1,5 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const Ikanproduk = () => {
   const [data, setData] = useState<any[]>([]);
@@ -9,16 +9,16 @@ const Ikanproduk = () => {
   }, []);
 
   async function getIkan() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterKategori?kategori=ikan`;
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filter?kategori=ikan`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
       });
-      setData(res.data); 
+      setData(res.data);
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
-      alert('Terjadi kesalahan saat mengambil data produk ikan.');
+      alert("Terjadi kesalahan saat mengambil data produk ikan.");
     }
   }
 
