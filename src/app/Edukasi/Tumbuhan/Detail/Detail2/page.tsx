@@ -4,7 +4,7 @@ import Footer from "@/app/components/homepage/footer";
 
 function page() {
   return (
-    <div>
+    <div className="bg-[#E4FFF2]">
       <div className="pt-1" id="tumbuhan">
         <div
           className="relative mt-[40px] mx-[100px] w-[84%] h-[415px] bg-cover"
@@ -13,9 +13,9 @@ function page() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#000000] to-[#d9d9d970] ps-8 pt-[10%]">
             <h1 className="text-5xl font-bold text-white">Tujuan</h1>
             <p className="w-[56%] text-[27px] text-white mt-2">
-              Tujuan utama merawat tanaman hias adalah untuk menjaga keindahan
-              dan kesehatannya, sehingga dapat memberikan manfaat estetika serta
-              meningkatkan kualitas udara di sekitar.
+              Dapatkan informasi terbaru dan praktis tentang cara merawat
+              tanaman hias di sini, dan tingkatkan pengalaman Anda dalam menjaga
+              keindahan dan kesehatan koleksi Anda.
             </p>
           </div>
         </div>
@@ -23,7 +23,7 @@ function page() {
       <div className="grid grid-cols-2 justify-between ml-[8%] mr-[8%]">
         <div className="mt-[5%] -translate-x-2">
           <Image
-            src="/img/Daun hias.png"
+            src="/img/tan2.png"
             className="w-full h-auto rounded-lg"
             alt={"daun"}
             width={390}
@@ -31,72 +31,130 @@ function page() {
           />
         </div>
 
-        <div className="ml-4 -translate-x-2 mt-[5%] text-justify">
+        <div className="ml-4 -translate-x-2 mt-[10%] text-justify">
           <h1 className="text-[#3F9272] font-bold text-4xl">
-            Tujuan Merawat Tanaman Hias
+            Cara Merawat Tanaman
           </h1>
-          <p className="text-[#54A082] text-[21px]">
-            Tujuan utama merawat tanaman hias adalah untuk menjaga keindahan dan
-            kesehatannya, sehingga dapat memberikan manfaat estetika serta
-            meningkatkan kualitas udara di sekitar. Dengan perawatan yang tepat,
-            tanaman hias mampu tumbuh subur, mempercantik ruangan, dan
-            menciptakan suasana yang lebih segar serta nyaman. Selain itu,
-            merawat tanaman hias juga membantu mengurangi stres dan meningkatkan
-            kesejahteraan emosional, karena berinteraksi dengan alam dapat
-            memberikan efek menenangkan. Perawatan yang konsisten, seperti
-            penyiraman, pemberian nutrisi, dan penempatan di lingkungan yang
-            sesuai, akan memastikan tanaman hias tetap sehat dan tahan lama.
+          <p className="text-[#54A082] text-2xl text-[21px]">
+            Lakukan Pemeriksaan Rutin: Luangkan waktu beberapa menit setiap
+            minggu untuk memeriksa tanaman Anda. Ini termasuk memeriksa
+            pencahayaan, kelembaban tanah, dan kesehatan tanaman secara
+            umum.Sesuaikan Perawatan: Berdasarkan pemeriksaan, lakukan
+            penyesuaian yang diperlukan, seperti memindahkan tanaman ke tempat
+            yang lebih terang atau lebih gelap, menyiram jika tanah kering, atau
+            menambah kelembaban jika diperlukan.
           </p>
         </div>
       </div>
       <div>
-        <p className="text-center text-2xl ml-[8%] mr-[8%] mt-[5%] text-[#54A082]">
-          "Berikut adalah contoh tumbuhan yang tumbuh subur dan sehat berkat
-          perawatan yang tepat. Dengan memberikan perhatian yang konsisten
-          seperti penyiraman yang cukup, pemupukan teratur, serta penempatan di
-          lingkungan yang sesuai, tumbuhan ini mampu berkembang dengan optimal.
-          Perawatan yang baik memastikan dedaunan tetap hijau, batang kokoh, dan
-          pertumbuhan yang terus berlanjut, sehingga tumbuhan ini bisa
-          menghadirkan keindahan alami yang memukau di sekitarnya."
+        <p className="text-center text-2xl ml-[8%] mr-[8%] mt-[5%] mb-[5%] text-[#54A082]">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam
+          exercitationem itaque vel aspernatur qui molestiae nobis laudantium
+          facere deserunt dolores, voluptatem excepturi voluptatum veniam
+          consequuntur at labore enim voluptatibus cupiditate? Lorem ipsum dolor
+          sit amet, consectetur adipisicing elit. Incidunt cumque consectetur
+          temporibus dicta rerum beatae eos recusandae harum, eligendi, maxime
+          aut! Labore similique commodi accusantium impedit autem repellendus
+          amet! Quibusdam!
         </p>
       </div>
-      <div className="flex flex-row space-x-[2%] justify-center mt-4">
+      <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-4">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group1.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
         <Image
-          src="/img/bun1.jpg"
+          src="/img/tus hisa.png"
           className="rounded-lg"
           alt={"daun"}
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/img/bun2.jpg"
-          className="rounded-lg"
-          alt={"daun"}
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/img/bun3.jpg"
-          className="rounded-lg"
-          alt={"daun"}
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/img/bun4.jpg"
-          className="rounded-lg"
-          alt={"daun"}
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/img/bun5.jpg"
-          className="rounded-lg"
-          alt={"daun"}
-          width={200}
-          height={200}
+          width={400}
+          height={350}
         />
       </div>
+      <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+      <div className="flex flex-row  text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group3.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+      <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group4.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+
       <div className="mt-6">
         <Footer />
       </div>

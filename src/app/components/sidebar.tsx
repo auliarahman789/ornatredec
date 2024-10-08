@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import logo from "../../../public/icon/logosp.svg"; 
 import axios, { AxiosError } from "axios";
+import { usePathname } from "next/navigation";
 
 // Define the expected structure of the error response
 interface ErrorResponse {
@@ -13,6 +14,7 @@ interface ErrorResponse {
 }
 
 const Sidebar = () => {
+  const pathname = usePathname();
   const router = useRouter();
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
