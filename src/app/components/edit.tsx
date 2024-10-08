@@ -13,6 +13,12 @@ interface UserData {
   no_hp: string;
   alamat: string;
   photoProfile: any;
+  provinsi: string;
+  kotakabupaten: string;
+  kecamatan: string;
+  kelurahanDesa: string; 
+  jalan: string;
+  RtRw: string;
 }
 
 const Edit = () => {
@@ -23,6 +29,12 @@ const Edit = () => {
     no_hp: "",
     alamat: "",
     photoProfile: "/img/default-avatar.png", // Gambar default
+    provinsi: "",
+    kotakabupaten: "",
+    kecamatan: "",
+    kelurahanDesa: "",
+    jalan: "",
+    RtRw: "",
   });
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -111,6 +123,12 @@ const Edit = () => {
       formData2.append("no_hp", formData.no_hp);
       formData2.append("alamat", formData.alamat);
       formData2.append("photoProfile", formData.photoProfile);
+      formData2.append("provinsi", formData.provinsi);
+      formData2.append("kotakabupaten", formData.kotakabupaten);
+      formData2.append("kecamatan", formData.kecamatan);
+      formData2.append("kelurahanDesa", formData.kelurahanDesa);
+      formData2.append("jalan", formData.jalan);
+      formData2.append("RtRw", formData.RtRw);
 
       // Ambil ID pengguna dari localStorage
       const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
@@ -133,6 +151,12 @@ const Edit = () => {
         localStorage.setItem("tanggalLahir", formData.tanggalLahir);
         localStorage.setItem("photoProfile", formData.photoProfile);
         localStorage.setItem("no_hp", formData.no_hp);
+        localStorage.setItem("provinsi", formData.provinsi);
+        localStorage.setItem("kotakabupaten", formData.kotakabupaten);
+        localStorage.setItem("kecamatan", formData.kecamatan);
+        localStorage.setItem("kelurahanDesa", formData.kelurahanDesa);
+        localStorage.setItem("jalan", formData.jalan);
+        localStorage.setItem("RtRw", formData.RtRw);
 
         router.push("/profile");
       } else {
@@ -150,11 +174,11 @@ const Edit = () => {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-white">
       <Sidebar />
       <div
-        className="flex-1 bg-cover bg-center"
-        style={{ backgroundImage: "url('/img/bg.jpg')", height: "160vh" }}
+      // className="flex-1 bg-cover bg-center"
+      // style={{ backgroundImage: "url('/img/bg.jpg')", height: "160vh" }}
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
@@ -229,7 +253,60 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
             </div>
-
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Provinsi:</span>
+              <textarea
+                name="provinsi"
+                defaultValue={formData.provinsi}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Kota/Kabupaten:</span>
+              <textarea
+                name="kotakabupaten"
+                defaultValue={formData.kotakabupaten}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Kecamatan:</span>
+              <textarea
+                name="kecamatan"
+                defaultValue={formData.kecamatan}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Kelurahan/Desa:</span>
+              <textarea
+                name="KelurahanDesa"
+                defaultValue={formData.kelurahanDesa}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Jalan:</span>
+              <textarea
+                name="jalan"
+                defaultValue={formData.jalan}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">RT/RW:</span>
+              <textarea
+                name="RtRw"
+                defaultValue={formData.RtRw}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
             <div className="grid grid-cols-3">
               <div className="flex justify-end mt-[20%]">
                 <button

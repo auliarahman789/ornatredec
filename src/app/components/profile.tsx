@@ -62,8 +62,8 @@ const Profile = () => {
     <div className="flex min-h-screen">
       <Sidebar />
       <div
-        className="flex-1 bg-cover bg-center"
-        style={{ backgroundImage: "url('/img/bg.jpg')", height: "130vh" }}
+        // className="flex-1 bg-cover bg-center"
+        // style={{ backgroundImage: "url('/img/bg.jpg')", height: "130vh" }}
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[90%] translate-x-[15%] z-20 relative pointer-events-auto">

@@ -9,7 +9,7 @@ const Produk = () => {
   const productRef = useRef<HTMLDivElement | null>(null); // Ref for the product section
 
   useEffect(() => {
-    getProduk();
+    fetchProducts();
 
     // Check if the URL contains the #tanaman hash
     if (window.location.hash === "#produk") {
@@ -17,19 +17,17 @@ const Produk = () => {
     }
   }, []);
 
-  async function getProduk() {
+  const fetchProducts = async () => {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`;
     try {
-      const res = await axios.get(url, {
-        withCredentials: true,
-      });
-      setData(res.data.slice(0, 12)); // Save received data to state
-      console.log(res.data);
+      const response = await axios.get(url, { withCredentials: true });
+      setData(response.data.slice(0, 12)); // Save received data to state
+      console.log(response.data);
     } catch (error: any) {
-      console.log(error);
+      console.error("Error fetching products:", error);
       alert("Terjadi kesalahan saat mengambil data produk.");
     }
-  }
+  };
 
   // Filter products based on search term
   const filteredData = data.filter((item) =>
@@ -52,6 +50,15 @@ const Produk = () => {
             height: "85vh",
           }}
         ></div>
+        <div className="text-[#8EAEA6] text-[18px] pb-4">
+          <input
+            type="text"
+            placeholder="Cari produk..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
+            className="w-96 p-3 border bg-[#FFFBFB] translate-x-[115%] mt-10 shadow-sm"
+          />
+        </div>
 
         <ul className="text-center space-x-10 -translate-y-3 min-h-screen text-[22px] text-white font-semibold flex justify-center mt-5">
           <Link href="/Produk/#produk">
@@ -72,16 +79,6 @@ const Produk = () => {
           </Link>
         </ul>
 
-        <div className="text-[#8EAEA6] text-[18px] pb-4 -translate-y-[500%]">
-          <input
-            type="text"
-            placeholder="Cari produk..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
-            className="w-96 p-3 border bg-[#FFFBFB] translate-x-[115%] mt-10 shadow-sm"
-          />
-        </div>
-
         <div
           className="grid grid-cols-4 mx-auto -translate-y-[65%] bg-[#EBFFF8] justify-between ml-[5%] mr-[5%]"
           ref={productRef} // Attach ref here
@@ -93,12 +90,9 @@ const Produk = () => {
             >
               <a href="#">
                 <img
-                  className="mx-auto mt-5 h-auto w-auto"
+                  className="mx-auto mt-5 h-[70%] w-[150%]"
                   alt="Produk Gambar"
-                  src={
-                    "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
-                    item.foto_produk
-                  }
+                  src={`https://74gslzvj-8000.asse.devtunnels.ms/uploads/${item.foto_produk}`}
                 />
               </a>
               <div className="px-4 py-2">
