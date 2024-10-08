@@ -62,35 +62,35 @@ function page() {
       </div>
       <div className="flex flex-row space-x-[2%] justify-center mt-4">
         <Image
-          src="/img/Daun hias.png"
+          src="/img/bun1.jpg"
           className="rounded-lg"
           alt={"daun"}
           width={200}
           height={200}
         />
         <Image
-          src="/img/Daun hias.png"
+          src="/img/bun2.jpg"
           className="rounded-lg"
           alt={"daun"}
           width={200}
           height={200}
         />
         <Image
-          src="/img/Daun hias.png"
+          src="/img/bun3.jpg"
           className="rounded-lg"
           alt={"daun"}
           width={200}
           height={200}
         />
         <Image
-          src="/img/Daun hias.png"
+          src="/img/bun4.jpg"
           className="rounded-lg"
           alt={"daun"}
           width={200}
           height={200}
         />
         <Image
-          src="/img/Daun hias.png"
+          src="/img/bun5.jpg"
           className="rounded-lg"
           alt={"daun"}
           width={200}
