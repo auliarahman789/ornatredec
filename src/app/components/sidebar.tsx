@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import logo from "../../../public/icon/logosp.svg"; 
 import axios, { AxiosError } from "axios";
 
 // Define the expected structure of the error response
@@ -106,43 +107,52 @@ const Sidebar = () => {
   //   }
   // };
 
+  
   return (
     <div className="flex min-h-screen">
-      <div className="w-64 h-screen fixed text-white flex flex-col">
-        <div className="p-4 flex justify-center bg-[#CCFFEB]">
-          <Image src="/icon/logo.svg" width={85} height={70} alt="logo" />
-        </div>
-        <nav className="flex-1 p-4 bg-white">
-          <ul>
-            <li className="mb-2">
+      <div className="fixed top-0 left-0">
+        <nav className="nav bg-gradient-to-b from-[#167960] to-[#28DFB1] w-64 h-screen flex flex-col">
+          <div className="p-4 flex mb-10 justify-center">
+            <Image
+              src={logo}
+              className="w-[150px] mx-auto"
+              width={300}
+              height={100}
+              alt="logo"
+            />
+          </div>
+          <ul className="text-[20px] font-bold text-white ms-[15%]">
+            <li className="mb-3">
               <Link href="/profile">
-                <div className="flex items-center py-2 px-4 rounded hover:bg-[#CCFFEB]">
+                <div className="flex items-center py-2 rounded">
                   <Image
                     src="/icon/profil.svg"
                     width={30}
                     height={30}
                     alt="profil"
                   />
-                  <span className="ml-3 text-[#3F9272]">Profil</span>
+                  <span className="ml-8 text-[#ffff] hover:text-[#167960] ">
+                    Profil
+                  </span>
                 </div>
               </Link>
             </li>
-            <li className="mb-2">
+            <li className="mb-2 mt-8">
               <Link href="/profile/riwayat">
-                <div className="flex items-center py-2 px-4 rounded hover:bg-[#CCFFEB]">
+                <div className="flex items-center py-2 rounded">
                   <Image
-                    src="/icon/post.svg"
+                    src="/icon/logo riwayat.svg"
                     width={30}
                     height={30}
                     alt="riwayat"
                   />
-                  <span className="ml-3 text-[#3F9272] ">Riwayat</span>
+                  <span className="ml-8 text-[#ffff] ">Riwayat</span>
                 </div>
               </Link>
             </li>
-            <li className="mb-2">
+            <li className="mb-2 mt-8">
               <Link href="/profile/edit">
-                <div className="block py-2 px-4 rounded hover:bg-[#CCFFEB]">
+                <div className="block py-2 rounded">
                   <div className="flex flex-row">
                     <Image
                       src="/icon/Rectangle 1.svg"
@@ -150,15 +160,15 @@ const Sidebar = () => {
                       height={30}
                       alt="edit"
                     />
-                    <span className="ml-3 text-[#3F9272] ">Edit Profil</span>
+                    <span className="ml-8 text-[#ffff] ">Edit Profil</span>
                   </div>
                 </div>
               </Link>
             </li>
-            <li className="mb-2">
+            <li className="mb-2 mt-8">
               <button
                 onClick={() => setShowLogoutPopup(true)}
-                className="block w-full text-left py-2 px-4 rounded hover:bg-[#CCFFEB]"
+                className="block w-full text-left py-2 rounded"
               >
                 <div className="flex flex-row">
                   <Image
@@ -167,7 +177,7 @@ const Sidebar = () => {
                     height={30}
                     alt="logout"
                   />
-                  <span className="ml-3 text-[#3F9272] ">Logout</span>
+                  <span className="ml-8 text-[#ffff] ">Logout</span>
                 </div>
               </button>
             </li>
@@ -187,9 +197,9 @@ const Sidebar = () => {
                 </div>
               </button>
             </li> */}
-            <li className="mb-2">
+            <li className="mb-2 mt-8">
               <Link href="/">
-                <div className="block py-2 px-4 rounded hover:bg-[#CCFFEB]">
+                <div className="block py-2 rounded">
                   <div className="flex flex-row">
                     <Image
                       src="/icon/Sign_out_squre_fill.svg"
@@ -197,7 +207,7 @@ const Sidebar = () => {
                       height={30}
                       alt="kembali"
                     />
-                    <span className="ml-3 text-[#3F9272] ">Kembali</span>
+                    <span className="ml-8 text-[#ffff] ">Kembali</span>
                   </div>
                 </div>
               </Link>
