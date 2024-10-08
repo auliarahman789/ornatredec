@@ -16,7 +16,7 @@ interface UserData {
   provinsi: string;
   kotakabupaten: string;
   kecamatan: string;
-  kelurahanDesa: string; 
+  kelurahanDesa: string;
   jalan: string;
   RtRw: string;
 }
@@ -176,7 +176,7 @@ const Edit = () => {
       // style={{ backgroundImage: "url('/img/bg.jpg')", height: "160vh" }}
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-          <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
+          <div className="bg-white p-16 rounded-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
             <div className="flex justify-center -translate-y-[10%]">
               <Image
                 src={formData.photoProfile || "/img/default-avatar.png"} // Jika tidak ada gambar, gunakan default avatar
