@@ -33,7 +33,7 @@ function page() {
 
         <div className="ml-4 -translate-x-2 mt-[10%] text-justify">
           <h1 className="text-[#3F9272] font-bold text-4xl">
-            Cara Merawat Tanaman
+            Waktu Yang Baik Untuk Merawat Tanaman
           </h1>
           <p className="text-[#54A082] text-2xl text-[21px]">
             Lakukan Pemeriksaan Rutin: Luangkan waktu beberapa menit setiap

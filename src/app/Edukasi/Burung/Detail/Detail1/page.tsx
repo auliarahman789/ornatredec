@@ -51,14 +51,6 @@ function page() {
         </div>
       </div>
       <div>
-        <p className="text-center text-2xl ml-[8%] mr-[8%] mt-[5%] text-[#54A082]">
-          Berikut adalah contoh tumbuhan yang tumbuh subur dan sehat berkat
-          perawatan yang tepat. Dengan memberikan perhatian yang konsisten
-          seperti penyiraman yang cukup, pemupukan teratur, serta penempatan di
-          lingkungan yang sesuai, tumbuhan ini mampu berkembang dengan optimal.
-          Perawatan yang baik memastikan dedaunan tetap hijau, batang kokoh, dan
-          pertumbuhan yang terus berlanjut, sehingga tumbuhan ini bisa
-          menghadirkan keindahan alami yang memukau di sekitarnya.
         <p className="text-center text-2xl ml-[8%] mr-[8%] mt-[5%] text-[#54A082] mb-4">
           Berikut adalah burung sehat yang menunjukkan hasil perawatan yang
           sesuai dan baik. Dengan pakan bergizi yang disusun secara seimbang,

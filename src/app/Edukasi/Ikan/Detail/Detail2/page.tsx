@@ -1,76 +1,164 @@
-import Footer from "@/app/components/homepage/footer";
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import Footer from "@/app/components/homepage/footer";
 
-function Page() {
+function page() {
   return (
     <div className="bg-[#E4FFF2]">
-      <div className="flex flex-col items-center justify-center space-y-16 pb-16">
+      <div className="pt-1" id="tumbuhan">
         <div
-          className="h-[400px] w-[85%] bg-cover bg-center"
+          className="relative mt-[40px] mx-[100px] w-[84%] h-[415px] bg-cover"
           style={{ backgroundImage: "url('/img/koi.png')" }}
         >
-          <div className=" h-[400px] w-full bg-gradient-to-r from-[#000000] to-[#d9d9d970] opacity-85">
-            <div className="ms-[3%] py-[7%]">
-              <h1 className="text-5xl font-bold text-white">Edukasi</h1>
-              <p className="w-[56%] text-[27px] text-white mt-2">
-                Dapatkan informasi terbaru dan praktis tentang cara merawat
-                ikan, burung, dan tanaman hias di sini, dan tingkatkan
-                pengalaman Anda dalam menjaga keindahan dan kesehatan koleksi
-                Anda.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div id="detail2cara" className="bg-white w-[85%] h-[680px]">
-          <Image
-            src="/img/koi.png"
-            className="w-full h-[300px] object-cover"
-            alt="1"
-            width={100}
-            height={100}
-          />
-          <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Cara Merawat Merawat Ikan Hias
-            </h1>
-            <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              {`Merawat ikan hias bukan hanya soal memberi makan setiap hari, tetapi juga menciptakan lingkungan yang sehat dan nyaman bagi mereka. Di T-trana, kami menyediakan panduan praktis untuk membantu Anda merawat ikan hias agar tetap sehat dan memperindah akuarium Anda. Berikut adalah beberapa cara efektif untuk merawat ikan hias dengan baik`}
-            </p>
-          </div>
-        </div>
-        <div className="bg-white w-[85%] h-[680px]">
-          <Image
-            src="/img/koi.png"
-            className="w-full h-[300px] object-cover"
-            alt="1"
-            width={100}
-            height={100}
-          />
-          <div className="mx-[8%] mt-[3%]">
-            <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              {`Merawat ikan hias membutuhkan perhatian khusus, terutama dalam menjaga kualitas air akuarium. Pastikan air di akuarium selalu bersih dan bebas dari kotoran, karena kualitas air yang buruk dapat menyebabkan stres dan penyakit pada ikan. Gunakan sistem filtrasi yang baik untuk menyaring kotoran dan menjaga kadar oksigen tetap stabil. Selain itu, rutin mengganti sebagian air akuarium setiap minggu (sekitar 20-30%) agar lingkungan air tetap sehat tanpa mengganggu keseimbangan ekosistem di dalamnya. Suhu air juga harus diperhatikan sesuai dengan jenis ikan yang dipelihara, karena ikan hias air tawar dan air laut memiliki kebutuhan suhu yang berbeda.`}
-            </p>
-          </div>
-        </div>
-        <div className="bg-white w-[85%] h-[680px]">
-          <Image
-            src="/img/koi.png"
-            className="w-full h-[300px] object-cover"
-            alt="1"
-            width={100}
-            height={100}
-          />
-          <div className="mx-[8%] mt-[3%]">
-            <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              {`Selain menjaga kualitas air, pemberian pakan juga penting dalam perawatan ikan hias. Berikan makanan yang sesuai dengan jenis ikan, seperti pelet, cacing beku, atau makanan hidup. Jangan memberi makan secara berlebihan, karena sisa makanan yang tidak dimakan dapat mencemari air dan memicu pertumbuhan bakteri. Cukup beri makan 1-2 kali sehari dengan porsi yang bisa habis dalam waktu beberapa menit. Jika akuarium memiliki berbagai spesies ikan, pastikan semua ikan mendapatkan cukup makanan, karena beberapa jenis ikan bisa lebih agresif dalam berebut pakan. Dengan perawatan yang tepat, ikan hias akan tumbuh sehat dan mempertahankan warna yang indah.`}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#000000] to-[#d9d9d970] ps-8 pt-[10%]">
+            <h1 className="text-5xl font-bold text-white">Tujuan</h1>
+            <p className="w-[56%] text-[27px] text-white mt-2">
+              Dapatkan informasi terbaru dan praktis tentang cara merawat
+              tanaman hias di sini, dan tingkatkan pengalaman Anda dalam menjaga
+              keindahan dan kesehatan koleksi Anda.
             </p>
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="grid grid-cols-2 justify-between ml-[8%] mr-[8%]">
+        <div className="mt-[5%] -translate-x-2">
+          <Image
+            src="/img/beri makan ikan.png"
+            className="w-full h-auto rounded-lg"
+            alt={"daun"}
+            width={390}
+            height={434}
+          />
+        </div>
+
+        <div className="ml-4 -translate-x-2 mt-[10%] text-justify">
+          <h1 className="text-[#3F9272] font-bold text-4xl">
+            Cara Merawat Ikan Hias
+          </h1>
+          <p className="text-[#54A082] text-2xl text-[21px]">
+            Lakukan Pemeriksaan Rutin: Luangkan waktu beberapa menit setiap
+            minggu untuk memeriksa tanaman Anda. Ini termasuk memeriksa
+            pencahayaan, kelembaban tanah, dan kesehatan tanaman secara
+            umum.Sesuaikan Perawatan: Berdasarkan pemeriksaan, lakukan
+            penyesuaian yang diperlukan, seperti memindahkan tanaman ke tempat
+            yang lebih terang atau lebih gelap, menyiram jika tanah kering, atau
+            menambah kelembaban jika diperlukan.
+          </p>
+        </div>
+      </div>
+      <div>
+        <p className="text-center text-2xl ml-[8%] mr-[8%] mt-[5%] mb-[5%] text-[#54A082]">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam
+          exercitationem itaque vel aspernatur qui molestiae nobis laudantium
+          facere deserunt dolores, voluptatem excepturi voluptatum veniam
+          consequuntur at labore enim voluptatibus cupiditate? Lorem ipsum dolor
+          sit amet, consectetur adipisicing elit. Incidunt cumque consectetur
+          temporibus dicta rerum beatae eos recusandae harum, eligendi, maxime
+          aut! Labore similique commodi accusantium impedit autem repellendus
+          amet! Quibusdam!
+        </p>
+      </div>
+      <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-4">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group1.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+      <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+      <div className="flex flex-row  text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group3.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+      <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group4.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+
+      <div className="mt-6">
+        <Footer />
+      </div>
     </div>
   );
 }
-
-export default Page;
+export default page;
