@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import logo from "../../../public/icon/logosp.svg"; 
+import { usePathname, useRouter } from "next/navigation";
+import logo from "../../../public/icon/logosp.svg";
 import axios, { AxiosError } from "axios";
 import { usePathname } from "next/navigation";
 
@@ -17,7 +17,8 @@ const Sidebar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
-  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const pathname = usePathname();
+  // const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   const handleLogout = async () => {
     const token = localStorage.getItem("token");
@@ -109,7 +110,6 @@ const Sidebar = () => {
   //   }
   // };
 
-  
   return (
     <div className="flex min-h-screen">
       <div className="fixed top-0 left-0">
@@ -133,7 +133,13 @@ const Sidebar = () => {
                     height={30}
                     alt="profil"
                   />
-                  <span className="ml-8 text-[#ffff] hover:text-[#167960] ">
+                  <span
+                    className={`ml-8 hover:text-[#167960] ${
+                      pathname === "/profile"
+                        ? "text-[#167960]"
+                        : "text-[#ffff]"
+                    }`}
+                  >
                     Profil
                   </span>
                 </div>
@@ -148,7 +154,15 @@ const Sidebar = () => {
                     height={30}
                     alt="riwayat"
                   />
-                  <span className="ml-8 text-[#ffff] ">Riwayat</span>
+                  <span
+                    className={`ml-8 hover:text-[#167960] ${
+                      pathname === "/profile/riwayat"
+                        ? "text-[#167960]"
+                        : "text-[#ffff]"
+                    }`}
+                  >
+                    Riwayat
+                  </span>
                 </div>
               </Link>
             </li>
@@ -162,7 +176,15 @@ const Sidebar = () => {
                       height={30}
                       alt="edit"
                     />
-                    <span className="ml-8 text-[#ffff] ">Edit Profil</span>
+                    <span
+                      className={`ml-8 hover:text-[#167960] ${
+                        pathname === "/profile/edit"
+                          ? "text-[#167960]"
+                          : "text-[#ffff]"
+                      }`}
+                    >
+                      Edit Profil
+                    </span>
                   </div>
                 </div>
               </Link>
@@ -179,7 +201,15 @@ const Sidebar = () => {
                     height={30}
                     alt="logout"
                   />
-                  <span className="ml-8 text-[#ffff] ">Logout</span>
+                  <span
+                    className={`ml-8 hover:text-[#167960] ${
+                      pathname === "/profile/logout"
+                        ? "text-[#167960]"
+                        : "text-[#ffff]"
+                    }`}
+                  >
+                    Logout
+                  </span>
                 </div>
               </button>
             </li>
@@ -209,7 +239,15 @@ const Sidebar = () => {
                       height={30}
                       alt="kembali"
                     />
-                    <span className="ml-8 text-[#ffff] ">Kembali</span>
+                    <span
+                      className={`ml-8 hover:text-[#167960] ${
+                        pathname === "/profile/kembali"
+                          ? "text-[#167960]"
+                          : "text-[#ffff]"
+                      }`}
+                    >
+                      Kembali
+                    </span>
                   </div>
                 </div>
               </Link>
