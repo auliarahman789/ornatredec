@@ -11,11 +11,11 @@ function page() {
           style={{ backgroundImage: "url('/img/judul.png')" }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-[#000000] to-[#d9d9d970] ps-8 pt-[10%]">
-            <h1 className="text-5xl font-bold text-white">Tujuan</h1>
+            <h1 className="text-5xl font-bold text-white">Cara Merawat</h1>
             <p className="w-[56%] text-[27px] text-white mt-2">
               Dapatkan informasi terbaru dan praktis tentang cara merawat
               tanaman hias di sini, dan tingkatkan pengalaman Anda dalam menjaga
-              keindahan dan kesehatan koleksi Anda.
+              keindahan dan kesehatan koleksi Anda.
             </p>
           </div>
         </div>
@@ -31,39 +31,39 @@ function page() {
           />
         </div>
 
-        <div className="ml-4 -translate-x-2 mt-[10%] text-justify">
+        <div className="ml-4 -translate-x-2 mt-5 text-justify">
           <h1 className="text-[#3F9272] font-bold text-4xl">
             Cara Merawat Tanaman
           </h1>
-          <p className="text-[#54A082] text-2xl text-[21px]">
-            Lakukan Pemeriksaan Rutin: Luangkan waktu beberapa menit setiap
-            minggu untuk memeriksa tanaman Anda. Ini termasuk memeriksa
-            pencahayaan, kelembaban tanah, dan kesehatan tanaman secara
-            umum.Sesuaikan Perawatan: Berdasarkan pemeriksaan, lakukan
-            penyesuaian yang diperlukan, seperti memindahkan tanaman ke tempat
-            yang lebih terang atau lebih gelap, menyiram jika tanah kering, atau
-            menambah kelembaban jika diperlukan.
+          <p className="text-[#54A082] text-2xl text-[21px] mt-4">
+            Dapatkan informasi terbaru dan praktis tentang cara merawat tanaman
+            hias di sini, dan tingkatkan pengalaman Anda dalam menjaga keindahan
+            dan kesehatan koleksi Anda. Temukan tips berkala mulai dari
+            penyiraman, pencahayaan yang ideal, hingga cara menangani hama
+            secara alami. Kami juga membagikan rekomendasi pemupukan yang tepat
+            untuk berbagai jenis tanaman hias, serta panduan dalam memilih pot
+            dan media tanam yang sesuai. Dengan langkah-langkah perawatan yang
+            sederhana namun efektif, Anda bisa menjaga tanaman hias tetap segar,
+            sehat, dan memancarkan pesona yang luar biasa sepanjang waktu.
+            Dengan langkah-langkah perawatan yang sederhana namun efektif.
           </p>
         </div>
       </div>
       <div>
         <p className="text-center text-2xl ml-[8%] mr-[8%] mt-[5%] mb-[5%] text-[#54A082]">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam
-          exercitationem itaque vel aspernatur qui molestiae nobis laudantium
-          facere deserunt dolores, voluptatem excepturi voluptatum veniam
-          consequuntur at labore enim voluptatibus cupiditate? Lorem ipsum dolor
-          sit amet, consectetur adipisicing elit. Incidunt cumque consectetur
-          temporibus dicta rerum beatae eos recusandae harum, eligendi, maxime
-          aut! Labore similique commodi accusantium impedit autem repellendus
-          amet! Quibusdam!
+          Berikut adalah tutorial merawat tanaman hias anda agar tanaman hias
+          anda tumbuh sehat dan panjang umur serta dapat membuat lingkungan
+          rumah anda menjadi indah dan menyehatkan untuk keluarga anda
         </p>
       </div>
       <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-4">
         <p className="text-[#3F9272]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
-          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
-          iste iure cumque facere optio neque magni quis nihil consequuntur
-          aperiam! lor
+          <span className="text-2xl text-[#3F9272] font-bold">
+            Penyiraman Tanaman Yang Tepat
+          </span>
+          <br />
+          Siram tanaman secara rutin sesuai dengan kebutuhannya. Pastikan tanah
+          tetap lembap, namun hindari genangan air agar akar tidak membusuk.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
           <Image
@@ -84,10 +84,13 @@ function page() {
       </div>
       <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
         <p className="text-[#3F9272]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
-          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
-          iste iure cumque facere optio neque magni quis nihil consequuntur
-          aperiam! lor
+          <span className="text-2xl text-[#3F9272] font-bold">
+            Pencahayaan yang Cukup
+          </span>
+          <br />
+          Letakkan tanaman di tempat yang mendapatkan cahaya matahari sesuai
+          jenisnya, apakah sinar langsung atau cahaya tidak langsung, untuk
+          mendukung pertumbuhannya.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
           <Image
@@ -108,10 +111,12 @@ function page() {
       </div>
       <div className="flex flex-row  text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
         <p className="text-[#3F9272]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
-          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
-          iste iure cumque facere optio neque magni quis nihil consequuntur
-          aperiam! lor
+          <span className="text-2xl text-[#3F9272] font-bold">
+            Pemupukan Rutin
+          </span>
+          <br />
+          Berikan pupuk sesuai dengan jenis tanaman, idealnya sebulan sekali,
+          untuk memastikan tanaman mendapatkan nutrisi yang dibutuhkan.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
           <Image
@@ -132,10 +137,39 @@ function page() {
       </div>
       <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
         <p className="text-[#3F9272]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
-          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
-          iste iure cumque facere optio neque magni quis nihil consequuntur
-          aperiam! lor
+          <span className="text-2xl text-[#3F9272] font-bold">
+            Pemangkasan Daun Kering
+          </span>
+          <br />
+          Pangkas daun atau batang yang kering dan layu secara berkala untuk
+          merangsang pertumbuhan baru dan menjaga tanaman tetap sehat.
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group4.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+      <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
+        <p className="text-[#3F9272]">
+          <span className="text-2xl text-[#3F9272] font-bold">
+            Pengendalian Hama
+          </span>
+          <br />
+          Periksa tanaman secara rutin untuk mendeteksi adanya hama atau
+          penyakit. Jika ditemukan, segera atasi dengan cara yang tepat agar
+          tanaman tetap terjaga kesehatannya.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
           <Image
