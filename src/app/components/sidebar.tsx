@@ -6,6 +6,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import logo from "../../../public/icon/logosp.svg";
 import axios, { AxiosError } from "axios";
+import profile from "../../../../public/icon/profile.svg";
+import profile2 from "../../../../public/icon/profile (1).svg";
 
 
 // Define the expected structure of the error response
@@ -131,12 +133,12 @@ const Sidebar = () => {
                     width={30}
                     height={30}
                     alt="profil"
-                  />
+                  />  
                   <span
                     className={`ml-8 hover:text-[#167960] ${
                       pathname === "/profile"
-                        ? "text-[#167960]"
-                        : "text-[#ffff]"
+                        ? 'active'
+                        : ""
                     }`}
                   >
                     Profil
@@ -156,8 +158,8 @@ const Sidebar = () => {
                   <span
                     className={`ml-8 hover:text-[#167960] ${
                       pathname === "/profile/riwayat"
-                        ? "text-[#167960]"
-                        : "text-[#ffff]"
+                        ? "active"
+                        : ""
                     }`}
                   >
                     Riwayat
@@ -178,8 +180,8 @@ const Sidebar = () => {
                     <span
                       className={`ml-8 hover:text-[#167960] ${
                         pathname === "/profile/edit"
-                          ? "text-[#167960]"
-                          : "text-[#ffff]"
+                          ? "active"
+                          : ""
                       }`}
                     >
                       Edit Profil
@@ -203,8 +205,8 @@ const Sidebar = () => {
                   <span
                     className={`ml-8 hover:text-[#167960] ${
                       pathname === "/profile/logout"
-                        ? "text-[#167960]"
-                        : "text-[#ffff]"
+                        ? "active"
+                        : ""
                     }`}
                   >
                     Logout
@@ -241,8 +243,8 @@ const Sidebar = () => {
                     <span
                       className={`ml-8 hover:text-[#167960] ${
                         pathname === "/profile/kembali"
-                          ? "text-[#167960]"
-                          : "text-[#ffff]"
+                          ? "active"
+                          : ""
                       }`}
                     >
                       Kembali
