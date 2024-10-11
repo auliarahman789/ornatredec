@@ -1,7 +1,9 @@
 'use client'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import edit from '../edit';
 const Burungproduk = () => {
   const [data, setData] = useState<any[]>([]);
   const formatHarga = (itung : number) => {
@@ -14,6 +16,10 @@ const Burungproduk = () => {
     getBurung();
   }, []);
 
+  const router = useRouter();
+  const handleEdit = () => {
+    router.push('/Superadmin/Produk/edit')
+  }
   async function getBurung() {
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=burung`;
     try {
@@ -56,6 +62,10 @@ const Burungproduk = () => {
                 </span>
               </div>
             </div>
+            <div className="relative">
+            <Image className='absolute top-[98%%] left-[90%]' src={edit} width={25} height={25} alt='edit'
+            onClick={handleEdit}/>
+          </div>
           </div>
         ))}
       </div>

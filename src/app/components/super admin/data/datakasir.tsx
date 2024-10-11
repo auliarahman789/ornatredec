@@ -6,23 +6,23 @@ const Datakasir = () => {
   const [data, setData] = useState<any[]>([]);
   const [isOnline, setOnline] = useState(navigator.onLine);
 
-  useEffect(() => {
-    function handleOnlineStatus() {
-      setOnline(true);
-    }
-    function handleOfflineStatus() {
-      setOnline(false);
-    }
+  // useEffect(() => {
+  //   function handleOnlineStatus() {
+  //     setOnline(true);
+  //   }
+  //   function handleOfflineStatus() {
+  //     setOnline(false);
+  //   }
 
-    window.addEventListener("online", handleOnlineStatus);
-    window.addEventListener("offline", handleOfflineStatus);
+  //   window.addEventListener("online", handleOnlineStatus);
+  //   window.addEventListener("offline", handleOfflineStatus);
 
-    // Cleanup function
-    return () => {
-      window.removeEventListener("online", handleOnlineStatus);
-      window.removeEventListener("offline", handleOfflineStatus);
-    };
-  }, []); // Hanya dijalankan sekali saat komponen dipasang
+  //   // Cleanup function
+  //   return () => {
+  //     window.removeEventListener("online", handleOnlineStatus);
+  //     window.removeEventListener("offline", handleOfflineStatus);
+  //   };
+  // }, []); // Hanya dijalankan sekali saat komponen dipasang
 
   useEffect(() => {
     getDatakasir();
@@ -68,10 +68,8 @@ const Datakasir = () => {
                   <li className="font-light">{item.email}</li>
                 </ul>
               </div>
-              <p className=' text-sm mt-[3%] w-[15%] -translate-x-4'>
-                {isOnline ? <span className='text-[#51CB9F]'>Aktif</span> : <span className='text-[#FF0A0A]'>Tidak Aktif</span>}
-              </p>
-              <p className=' text-sm text-black mt-[3%] w-[16%]'>{item.alamats.map}</p>
+              <p className={`text-sm mt-[3%] w-[15%] -translate-x-4} ${item.statusAktif === 'aktif' ? 'text-[#51CB9F]' : 'text-[#FF0A0A]'}`}>{item.statusAktif}</p>
+              <p className=' text-sm text-black mt-[3%] w-[16%]'>{item.alamats && item.alamats.length > 0 ? item.alamats[0].kota_kabupaten : 'Tidak tersedia'}</p>
               <p className=' text-sm text-[#3F9272] mt-[3%] w-[22%]'>{item.no_hp}</p>
               <button className='bg-[#308967] w-[10%] h-[1%] py-2 text-sm text-white rounded-full mt-[2%]'>Hubungi</button>
             </div>

@@ -1,10 +1,10 @@
 'use client'
-import React, { ChangeEvent, useRef, useState } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import foto from '../../../../../public/img/Group 1000004376 (1).png'
+import foto from '../../../../../../public/img/Group 1000004376 (1).png'
 import axios from 'axios';
-import tambahicon from '../../../../../public/icon/dell_square.svg'
-import { useRouter } from 'next/navigation';
+import tambahicon from '../../../../../../public/icon/dell_square.svg'
+import { useParams, useRouter } from 'next/navigation';
 import LoadingProduk from '@/app/components/super admin/loadingProduk';
 
 interface Produk {
@@ -16,11 +16,10 @@ interface Produk {
           variasi: any 
 }
 
-const Page = () => {
+const Page = ({ params }: { params: { id: number } }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [image, setImage] = useState<string>();
   const [variasi, setVariasi] = useState([
-    
     {
       nama_variasi: '',       
       sub_variasi: [
@@ -64,7 +63,7 @@ const handleImageClick = () => {
     }));
     console.log(e.target.files);
   };
-
+  
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -152,50 +151,122 @@ const handleImageClick = () => {
   //   deletesSubVariasi.splice(i, 1) 
   //   setSubVariasi2(deletesSubVariasi)
   // }
-  
-  async function tambahProduk() {
-    const formData2 = new FormData();
-    formData2.append("judul_produk", formData.judul_produk);
-    formData2.append("deskripsi_produk", formData.deskripsi_produk);
-    formData2.append("harga", formData.harga.toString());
-    formData2.append("foto_produk", formData.foto_produk);
-    formData2.append("kategori_produk", formData.kategori_produk);
-    formData2.append("variasi", JSON.stringify(variasi)); 
-  
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/produk`;
+  const { id } = params;
+
+  useEffect(() => {
+    getProduk();
+  }, []);
+
+  const getProduk = async () => {
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getProdukId/${id}`; 
     try {
-      setIsLoading(true);
-      const res = await axios.post(url, formData2, {
+      const res = await axios.get(url, {
         withCredentials: true,
       });
-      router.push('/Superadmin/Produk');
-      alert('Berhasil menambahkan produk')
-      console.log(res.data);
-      setIsLoading(false);
+      setFormData(res.data.produk || {});
+      setVariasi(res.data.variasi || []); 
+      setImage(res.data.foto_produk);
     } catch (error: any) {
-      setIsLoading(false);
       console.log(error);
     }
-  }
+  };
+
+  const handleEdit = async () => {
+    try {
+      const formData2 = new FormData();
+      formData2.append('judul_produk', formData.judul_produk);
+      formData2.append('deskripsi_produk', formData.deskripsi_produk);
+      formData2.append('harga', formData.harga.toString());
+      formData2.append('foto_produk', formData.foto_produk);
+      formData2.append('variasi', JSON.stringify(variasi));
+
+      const response = await axios.put(
+        `https://74gslzvj-8000.asse.devtunnels.ms/api/editProduk/${id}`, 
+        formData2,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      alert('Produk berhasil diedit');
+      router.push('/Superadmin/Produk');
+    } catch (error: any) {
+      console.log(error);
+      alert('Terjadi kesalahan saat mengedit produk');
+    }
+  };
+  
+  // async function tambahProduk() {
+  //   const formData2 = new FormData();
+  //   formData2.append("judul_produk", formData.judul_produk);
+  //   formData2.append("deskripsi_produk", formData.deskripsi_produk);
+  //   formData2.append("harga", formData.harga.toString());
+  //   formData2.append("foto_produk", formData.foto_produk);
+  //   formData2.append("kategori_produk", formData.kategori_produk);
+  //   formData2.append("variasi", JSON.stringify(variasi)); 
+  
+  //   const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/produk`;
+  //   try {
+  //     setIsLoading(true);
+  //     const res = await axios.post(url, formData2, {
+  //       withCredentials: true,
+  //     });
+  //     router.push('/Superadmin/Produk');
+  //     alert('Berhasil menambahkan produk')
+  //     console.log(res.data);
+  //     setIsLoading(false);
+  //   } catch (error: any) {
+  //     setIsLoading(false);
+  //     console.log(error);
+  //   }
+  // }
+
+  // const handleEdit = async () => {
+  //   try {
+  //     const formData2 = new FormData();
+  //     formData2.append("judul_produk", formData.judul_produk);
+  //     formData2.append("deskripsi_produk", formData.deskripsi_produk);
+  //     formData2.append("harga", formData.harga.toString());
+  //     formData2.append("foto_produk", formData.foto_produk);
+  //     formData2.append("kategori_produk", formData.kategori_produk);
+  //     formData2.append("variasi", JSON.stringify(variasi)); 
+  //     const id = 
+  //     const response = await axios.put(
+  //       `https://74gslzvj-8000.asse.devtunnels.ms/api/editProduk/${id}`,
+  //       formData2,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-Data", 
+  //         },
+  //       }
+  //     );
+  //   }
+  // }
   
   
   return (
     <div className='overflow-x-hidden min-h-screen '>
-          <div className='translate-x-64'>
-              <div className='flex'>    
-                <div className='flex flex-col mt-[3%]'>
-                    <p className="text-[23px] font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-6 inline-block text-transparent bg-clip-text">
-                    Produk
-                    </p>
-                    <p className="text-sm font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-4  mt-1 inline-block text-transparent bg-clip-text">
-                    Tambah Produk
-                    </p>        
-                  </div>
+              <div className='flex justify-center'>    
                   <div className='bg-[#E2FFF5] min-h-screen w-[62%] ms-[2.5%] pb-[8%]'>
-                      <div className='flex flex-col mx-[10%] mt-[7%]'>
-                      <label htmlFor="Nama produk" className='text-[#8EAEA6] text-[20px] font-semibold'>Nama Produk</label>
+          <div className='flex flex-col mx-[10%] mt-[7%]'>
+            <div className='relative'>
+                        <button className="bg-[#3F9272] absolute top-3 right-0 text-white rounded-full py-1 px-2 w-[16%] text-[11px] font-bold">Hapus Produk</button>
+            </div>
+                              <div className="w-[50%] mx-auto mb-[6%]">
+                                  <div onClick={handleImageClick} className='ms-[3%]'>
+                                    {image ? (
+                                      <Image src={image} alt='foto' width={250} height={200}/>
+                                    ):(
+                                      <Image src={foto} alt='foto' width={250} height={200}/>
+                                    )}
+                                    <input type="file" name='foto' ref={inputRef} accept="image/x-png,image/gif,image/jpeg" onChange={handleInputImage} className='mt-3' style={{ display: 'none' }} />
+                                    </div>
+                              </div>
+                      <label htmlFor="Nama produk" className='text-[#8EAEA6] mt-[4%] text-[20px] font-semibold'>Nama Produk</label>
                       <input
                             type="text"
+                            value={formData.judul_produk}
                             onChange={handleInputChange}
                             name="judul_produk"
                             className="w-[100%] mt-1 bg-white h-[45px]
@@ -205,24 +276,14 @@ const handleImageClick = () => {
                       <label htmlFor="Deskripsi produk" className='text-[#8EAEA6] mt-[3%] text-[20px] font-semibold'>Deskripsi Produk</label>
                       <textarea
                             name="deskripsi_produk"
+                            value={formData.deskripsi_produk}
                             onChange={handleInputChange}
                             className="w-[100%] mt-1 bg-white h-[210px]
                             text-[20px] px-3 py-2 text-[#3F9272] rounded-md"
                             maxLength={300}
                             required
                           />
-                          <div className='flex w-full mt-[3%]'>
-                              <div className="w-[50%]">
-                                  <label htmlFor="foto" className='text-[#8EAEA6] text-[20px] font-semibold mt-[3%]'>Detail Gambar</label>
-                                  <div onClick={handleImageClick}>
-                                    {image ? (
-                                      <Image src={image} alt='foto' width={250} height={200}/>
-                                    ):(
-                                      <Image src={foto} alt='foto' width={250} height={200}/>
-                                    )}
-                                    <input type="file" name='foto' ref={inputRef} accept="image/x-png,image/gif,image/jpeg" onChange={handleInputImage} className='mt-3' style={{ display: 'none' }} />
-                                    </div>
-                              </div>
+                          {/* <div className='flex w-full mt-[3%]'>
                               <div className="w-[50%] mt-6">
                                   <label htmlFor="foto" className='text-[#8EAEA6] text-[25px] mt-[3%]'>Pilih Kategori</label>
                                   <div className="flex flex-col space-y-6 mt-[5%] ">
@@ -246,30 +307,27 @@ const handleImageClick = () => {
                                       </div>
                                   </div>
                               </div>
-                          </div>
+                          </div> */}
                       <label htmlFor="Harga" className='text-[#8EAEA6] text-[20px] font-semibold mt-[3%]'>Harga Produk</label>
                       <input
                       onChange={handleInputChange}
                             type="text"
                             name="harga"
-                            
+                            value={formData.harga}
                             className="w-[100%] mt-1 bg-white h-[45px]
                             text-[20px] px-3 text-[#3F9272] rounded-md"
                             required
                           />
               <p className='text-[#8EAEA6] text-[20px] font-semibold mt-[3%]'>Variasi Produk</p>
-                    <div className="relative">
-                <button onClick={handleAdd}
-                  > <Image src={tambahicon} width={20} height={20} alt='add' className='absolute right-[100%] top-0 translate-y-8 me-2' /></button>
-                    </div>
               {variasi.map((data, i) => (
                 <>
-                  <div className="flex flex-row">
+                  <div className="flex flex-row mt-[5%]" key={i}>
                     <div className="ms-7 -translate-y-4 w-[83%] mt-2 flex-col">
-                      <label htmlFor="nama variasi" className='text-[#8EAEA6] text-[20px] font-semibold mt-[3%]'>Nama Variasi</label>
+                      <label htmlFor="nama_variasi" className='text-[#8EAEA6] text-[20px] font-semibold mt-[3%]'>Nama Variasi</label>
                       <input
                         type="text"
                         name="nama_variasi"
+                        value={formData.variasi}
                         onChange={(e) => handleChangeField(e, i)}
                         className="w-[100%] mt-1 bg-white h-[45px]
                               text-[20px] px-3 text-[#3F9272] rounded-md"
@@ -282,9 +340,6 @@ const handleImageClick = () => {
                       </div>
                   </div>
                   <p className='text-[#8EAEA6] ms-12 text-[20px] font-semibold mt-[3%]'>Sub Variasi</p>
-                  <div className="relative">
-                      <button onClick={() => handleAddSub(i)}><Image src={tambahicon} width={20} height={20} alt='add' className='absolute right-[100%] top-0 translate-y-8 me-2' /></button>
-                    </div>
                   <div className=" ms-12">
                     <div>
                       {data.sub_variasi.map((data2: any, ii: number) => {
@@ -294,7 +349,8 @@ const handleImageClick = () => {
                             <div className="grid grid-cols-5 space-x-12 mb-4">
                               <div>
                                 <label htmlFor='nama_variasi' className='text-[#8EAEA6] text-sm mt-2 font-semibold'>Nama Variasi</label>
-                                <input
+                                  <input
+                                    value={data.nama_variasi}
                                   onChange={(e) => handleChangeFieldSub(e, i, ii)}
                                   type="text"
                                   name='nama_sub_variasi'
@@ -347,14 +403,13 @@ const handleImageClick = () => {
               
               <div className="relative">
                 <button className='py-1 absolute right-0 top-12 text-[#8EAEA6] font-semibold text-[19px] w-[20%] bg-white'
-                  disabled={isLoading} onClick={() => tambahProduk()}>
+                  disabled={isLoading} onClick={handleEdit}>
                   {isLoading ? 'Loading...' : 'Tambah'} </button>
                   {isLoading && <LoadingProduk />}
               </div>
                     </div>
                   </div>
               </div>
-     </div>
     </div>
   )
 }

@@ -7,6 +7,8 @@ import { usePathname } from 'next/navigation';
 import Data from '@/app/components/super admin/datapengguna';
 
 function Page() {
+  const pathname = usePathname();
+  const id = pathname.split('/').pop();
   const [active, setActive] = useState('data pengguna'); 
   return (
     <div className='overflow-x-hidden min-h-screen '>
@@ -34,7 +36,7 @@ function Page() {
       </div>
           <div className='pb-24'>
           <div className='translate-x-[18%] mt-[2%]'>
-              {active === 'data pengguna' && <Data />}
+              {active === 'data pengguna' && <Data /> || `/Superadmin/Akun/Detail/${id}`}
             </div>
 
             <div className='w-[42%] mx-[18%] translate-x-64 mt-[6%]'>
