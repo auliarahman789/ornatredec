@@ -21,6 +21,7 @@ type Total = {
   totalForumTanaman: number;
   totalForumIkan: number;
   totalForumBurung: number;
+  totalPemesanan: number;
 };
 const Page = () => {
   const [data, setData] = useState<Total | null>();
@@ -78,7 +79,9 @@ const Page = () => {
               <div className="border-r-2 bg-[#308967] h-[46px] mt-6"></div>
               <div className="flex flex-col ms-8 mt-6">
                 <div className="text-[#308967] text-[12px]">Total Pesanan</div>
-                <div className="text-[20px] text-[#308967]">3664</div>
+                <div className="text-[20px] text-[#308967]">
+                  {data.totalPemesanan}
+                </div>
               </div>
             </div>
             <div
