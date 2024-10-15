@@ -18,7 +18,7 @@ const Produk = () => {
   }, []);
 
   const fetchProducts = async () => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
     try {
       const response = await axios.get(url, { withCredentials: true });
       setData(response.data.slice(0, 12)); // Save received data to state
@@ -92,7 +92,7 @@ const Produk = () => {
                 <img
                   className="mx-auto mt-5 h-[70%] w-[150%]"
                   alt="Produk Gambar"
-                  src={`https://74gslzvj-8000.asse.devtunnels.ms/uploads/${item.foto_produk}`}
+                  src={`https://74gslzvj-8000.asse.devtunnels.ms${item.foto_produk}`}
                 />
               </a>
               <div className="px-4 py-2">

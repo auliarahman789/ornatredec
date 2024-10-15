@@ -128,11 +128,11 @@ function page() {
           />
         </div>
         <Image
-          src="/img/Pemupukan Rutin.jpeg"
+          src="/img/pemupukan.jpeg"
           className="rounded-lg"
           alt={"daun"}
-          width={500}
-          height={150}
+          width={580}
+          height={350}
         />
       </div>
       <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
@@ -157,8 +157,8 @@ function page() {
           src="/img/Pemangkasan Daun Kering.jpg"
           className="rounded-lg"
           alt={"daun"}
-          width={300}
-          height={300}
+          width={270}
+          height={200}
         />
       </div>
       <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">

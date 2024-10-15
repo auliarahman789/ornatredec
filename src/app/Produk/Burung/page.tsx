@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import Cards from "@/app/components/cards";
 
 const Burung = () => {
   const [data, setData] = useState<any[]>([]); // State for storing product data
@@ -18,7 +19,7 @@ const Burung = () => {
   }, []);
 
   async function getBurung() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -47,7 +48,10 @@ const Burung = () => {
     <div className="pt-1" id="burung">
       <div
         className="h-[500px] w-[100%] -translate-y-1 bg-cover"
-        style={{ backgroundImage: "url('/img/BurungProduk.png')", height: '85vh' }}
+        style={{
+          backgroundImage: "url('/img/BurungProduk.png')",
+          height: "85vh",
+        }}
       ></div>
       <div className="text-[#8EAEA6] text-[18px] pb-4">
         <input
@@ -89,10 +93,7 @@ const Burung = () => {
               <img
                 className="mx-auto mt-5 h-[70%] w-[150%]"
                 alt="Produk Gambar"
-                src={
-                  "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
-                  item.foto_produk
-                }
+                src={`https://74gslzvj-8000.asse.devtunnels.ms${item.foto_produk}`}
               />
             </a>
             <div className="px-4 py-2">
