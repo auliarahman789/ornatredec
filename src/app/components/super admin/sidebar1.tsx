@@ -27,7 +27,7 @@ function SidebarSp() {
               <span className='mt-1'>Dashboard</span></li>
           </Link>
           <Link href='/Superadmin/Produk'>
-            <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Produk' || pathname === '/Superadmin/Produk/tambah' ||  pathname === '/Superadmin/Produk/pesanan' ||  pathname === '/Superadmin/Produk/pesanan/daftar'  ? 'active' : ''}`}>
+            <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Produk' || pathname === '/Superadmin/Produk/tambah' ||  pathname === '/Superadmin/Produk/pesanan' ||  pathname === '/Superadmin/Produk/pesanan/daftar'   ? 'active' : ''}`}>
             <Image src={pathname === '/Superadmin/Produk' || pathname === '/Superadmin/Produk/tambah' ? produkk2 : produkk} className='w-5 ms-1 h-6 me-6' width={30} height={30} alt='dashboard' />
             Produk</li>
           </Link>
@@ -37,7 +37,7 @@ function SidebarSp() {
             Statistik</li>
           </Link>
           <Link href='/Superadmin/Akun'>
-            <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Akun' ? 'active' : ''}`}>
+            <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Akun' || pathname === '/Superadmin/Akun/Detail/${id}' ? 'active' : ''}`}>
             <Image src={pathname === '/Superadmin/Akun' ? userr : userr2} className='w-6 h-6 me-5' width={30} height={30} alt='dashboard' />
             Akun</li>
           </Link>
