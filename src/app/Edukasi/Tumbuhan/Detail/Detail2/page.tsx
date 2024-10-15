@@ -31,7 +31,7 @@ function page() {
           />
         </div>
 
-        <div className="ml-4 -translate-x-2 mt-5 text-justify">
+        <div className="ml-4 -translate-x-2 mt-10 text-justify">
           <h1 className="text-[#3F9272] font-bold text-4xl">
             Cara Merawat Tanaman
           </h1>
@@ -70,16 +70,16 @@ function page() {
             src="/icon/group1.svg"
             className="rounded-lg"
             alt={"daun"}
-            width={250}
-            height={250}
+            width={150}
+            height={150}
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
+          src="/img/Penyiraman Tanaman Yang Tepat.jpg"
           className="rounded-lg"
           alt={"daun"}
-          width={400}
-          height={350}
+          width={270}
+          height={150}
         />
       </div>
       <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
@@ -92,21 +92,21 @@ function page() {
           jenisnya, apakah sinar langsung atau cahaya tidak langsung, untuk
           mendukung pertumbuhannya.
         </p>
-        <div className="-translate-y-[25%] translate-x-[85%]">
+        <div className="-translate-y-[20%] translate-x-[85%]">
           <Image
             src="/icon/group.svg"
             className="rounded-lg"
             alt={"daun"}
-            width={250}
-            height={250}
+            width={170}
+            height={170}
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
+          src="/img/Pencahayaan yang Cukup.jpg"
           className="rounded-lg"
           alt={"daun"}
-          width={400}
-          height={350}
+          width={270}
+          height={150}
         />
       </div>
       <div className="flex flex-row  text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
@@ -123,16 +123,16 @@ function page() {
             src="/icon/group3.svg"
             className="rounded-lg"
             alt={"daun"}
-            width={250}
-            height={250}
+            width={150}
+            height={150}
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
+          src="/img/Pemupukan Rutin.jpeg"
           className="rounded-lg"
           alt={"daun"}
-          width={400}
-          height={350}
+          width={500}
+          height={150}
         />
       </div>
       <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
@@ -149,16 +149,16 @@ function page() {
             src="/icon/group4.svg"
             className="rounded-lg"
             alt={"daun"}
-            width={250}
-            height={250}
+            width={180}
+            height={180}
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
+          src="/img/Pemangkasan Daun Kering.jpg"
           className="rounded-lg"
           alt={"daun"}
-          width={400}
-          height={350}
+          width={300}
+          height={300}
         />
       </div>
       <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
@@ -173,19 +173,19 @@ function page() {
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
           <Image
-            src="/icon/group4.svg"
+            src="/icon/group5.svg"
             className="rounded-lg"
             alt={"daun"}
-            width={250}
-            height={250}
+            width={200}
+            height={200}
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
+          src="/img/Pengendalian Hama.jpg"
           className="rounded-lg"
           alt={"daun"}
-          width={400}
-          height={350}
+          width={280}
+          height={150}
         />
       </div>
 
