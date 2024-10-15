@@ -29,7 +29,7 @@ function Edukasi() {
             />
             <div className="flex flex-col">
               <span className="pl-4 pt-4 text-[32px] text-white font-bold">
-                Ikan Hias
+                Tanaman Hias
               </span>
               <span className="pl-5 text-[#CCFFEB] text-[20px] ">
                 tips and trick merawat.....

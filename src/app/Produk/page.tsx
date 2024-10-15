@@ -44,11 +44,8 @@ const Produk = () => {
     <div className="bg-white">
       <div className="pt-1" id="tanaman">
         <div
-          className="w-[100%] -translate-y-1 bg-cover"
-          style={{
-            backgroundImage: "url('/img/TanamanProduk1.png')",
-            height: "85vh",
-          }}
+          className="h-[500%] w-[100%] -translate-y-1 bg-cover"
+          style={{ backgroundImage: "url('/img/TanamanProduk1.png')" }}
         ></div>
         <div className="text-[#8EAEA6] text-[18px] pb-4">
           <input

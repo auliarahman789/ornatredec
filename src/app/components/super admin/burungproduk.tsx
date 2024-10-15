@@ -1,24 +1,30 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+"use client";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const Burungproduk = () => {
   const [data, setData] = useState<any[]>([]);
-
+  const formatHarga = (itung: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(itung);
+  };
   useEffect(() => {
     getBurung();
   }, []);
 
   async function getBurung() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterKategori?kategori=burung`;
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=burung`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
       });
-      setData(res.data); 
+      setData(res.data);
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
-      alert('Terjadi kesalahan saat mengambil data produk burung.');
+      alert("Terjadi kesalahan saat mengambil data produk burung.");
     }
   }
 
@@ -35,8 +41,7 @@ const Burungproduk = () => {
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
                 src={
-                  "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
-                  item.foto_produk
+                  "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
                 }
               />
             </a>
@@ -46,7 +51,7 @@ const Burungproduk = () => {
               </h5>
               <div className="flex items-center justify-between mt-auto">
                 <span className="text-sm font-bold text-[#FF0A0A]">
-                  Rp {item.harga}
+                  {formatHarga(item.harga)}
                 </span>
               </div>
             </div>

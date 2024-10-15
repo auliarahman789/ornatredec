@@ -43,8 +43,6 @@ const Login = () => {
         router.push("/");
       } else if (userRole === "super admin") {
         router.push("/Superadmin");
-      } else {
-        alert("tidak boleh kogin");
       }
       setIsLoading(false);
     } catch (error: any) {

@@ -11,7 +11,7 @@ interface UserData {
   email: string;
   tanggalLahir: any;
   no_hp: string;
-  alamat: string;
+  // alamat: string;
   photoProfile: any;
   provinsi: string;
   kotakabupaten: string;
@@ -27,7 +27,7 @@ const Edit = () => {
     email: "",
     tanggalLahir: "",
     no_hp: "",
-    alamat: "",
+    // alamat: "",
     photoProfile: "/img/default-avatar.png", // Gambar default
     provinsi: "",
     kotakabupaten: "",
@@ -116,7 +116,7 @@ const Edit = () => {
       formData2.append("email", formData.email);
       formData2.append("tanggalLahir", formData.tanggalLahir);
       formData2.append("no_hp", formData.no_hp);
-      formData2.append("alamat", formData.alamat);
+      // formData2.append("alamat", formData.alamat);
       formData2.append("photoProfile", formData.photoProfile);
       formData2.append("provinsi", formData.provinsi);
       formData2.append("kotakabupaten", formData.kotakabupaten);
@@ -239,7 +239,7 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
             </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
+            {/* <div className="text-[#A9A7A7] text-[18px] pb-4">
               <span className="pl-4">Alamat:</span>
               <textarea
                 name="alamat"
@@ -248,60 +248,7 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
             </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">Provinsi:</span>
-              <textarea
-                name="provinsi"
-                defaultValue={formData.provinsi}
-                onChange={handleInputChange}
-                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-              />
-            </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">Kota/Kabupaten:</span>
-              <textarea
-                name="kotakabupaten"
-                defaultValue={formData.kotakabupaten}
-                onChange={handleInputChange}
-                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-              />
-            </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">Kecamatan:</span>
-              <textarea
-                name="kecamatan"
-                defaultValue={formData.kecamatan}
-                onChange={handleInputChange}
-                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-              />
-            </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">Kelurahan/Desa:</span>
-              <textarea
-                name="KelurahanDesa"
-                defaultValue={formData.kelurahanDesa}
-                onChange={handleInputChange}
-                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-              />
-            </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">Jalan:</span>
-              <textarea
-                name="jalan"
-                defaultValue={formData.jalan}
-                onChange={handleInputChange}
-                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-              />
-            </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">RT/RW:</span>
-              <textarea
-                name="RtRw"
-                defaultValue={formData.RtRw}
-                onChange={handleInputChange}
-                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-              />
-            </div>
+
             <div className="grid grid-cols-3">
               <div className="flex justify-end mt-[20%]">
                 <button
