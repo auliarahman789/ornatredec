@@ -33,7 +33,7 @@ function page() {
 
         <div className="ml-4 -translate-x-2 mt-5 text-justify">
           <h1 className="text-[#3F9272] font-bold text-4xl">
-            Cara Merawat Tanaman
+            Cara Merawat Tanaman Hias
           </h1>
           <p className="text-[#54A082] text-2xl text-[21px] mt-4">
             Waktu yang baik untuk merawat tanaman hias adalah di pagi hari atau

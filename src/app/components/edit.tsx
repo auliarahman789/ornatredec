@@ -60,10 +60,10 @@ const Edit = () => {
         withCredentials: true,
       });
 
-      console.log(res.data);
+      console.log("AA", res.data);
       setUserData(res.data.user); // Simpan data yang diterima ke dalam state
     } catch (error: any) {
-      console.log(error);
+      console.log("AAA", error);
     }
   }
 
