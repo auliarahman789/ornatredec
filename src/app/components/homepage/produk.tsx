@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const Produk = () => {
@@ -46,7 +47,7 @@ const Produk = () => {
               key={item.id}
             >
               <a href="#">
-                <img
+                <Image
                   className="mx-auto mt-5 h-[65%] w-[85%]"
                   alt="Produk Gambar"
                   src={

@@ -26,7 +26,8 @@ const disableNavbar = [
   "/Superadmin/Produk/pesanan",
   "/Superadmin/Produk/pesanan/daftar",
   "/Superadmin/Produk/pesanan/detail",
-         "/Superadmin/Produk/pesanan/daftar/detail"
+  "/Superadmin/Produk/pesanan/daftar/detail",
+  "/Superadmin/Forum/detailreportUlasan",
 ];
 const superNavbar = [
   "/Superadmin",
@@ -34,10 +35,11 @@ const superNavbar = [
   "/Superadmin/Akun",
   "/Superadmin/Statistik",
   "/Superadmin/Forum",
+  "/Superadmin/Forum/detailreportUlasan",
   "/Superadmin/Produk/tambah",
   "/Superadmin/Produk/pesanan",
-    "/Superadmin/Produk/pesanan/daftar"
-]
+  "/Superadmin/Produk/pesanan/daftar",
+];
 
 export default function RootLayoutClient({
   children,
@@ -45,11 +47,13 @@ export default function RootLayoutClient({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const isNavbarDisabled = 
-  disableNavbar.includes(pathname) || 
-  pathname.startsWith("/Superadmin/Produk/edit/") || 
-  pathname.startsWith("/Superadmin/Akun/Detail/");
-  const isSuperNavbar = superNavbar.includes(pathname) || pathname.startsWith("/Superadmin/Akun/Detail/");
+  const isNavbarDisabled =
+    disableNavbar.includes(pathname) ||
+    pathname.startsWith("/Superadmin/Produk/edit/") ||
+    pathname.startsWith("/Superadmin/Akun/Detail/");
+  const isSuperNavbar =
+    superNavbar.includes(pathname) ||
+    pathname.startsWith("/Superadmin/Akun/Detail/");
   return (
     <div className={josefinSans.className}>
       {!isNavbarDisabled && <Navbar />}

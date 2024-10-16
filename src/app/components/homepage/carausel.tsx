@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React, { useEffect, useState } from "react";
@@ -28,6 +28,7 @@ const Carausel1: NextPage = () => {
     return array;
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getRandomImageKeys = (): string[] => {
     const keys = Object.keys(imageMap);
     return shuffleArray(keys);
@@ -36,7 +37,7 @@ const Carausel1: NextPage = () => {
   useEffect(() => {
     const randomKeys = getRandomImageKeys();
     setShuffledKeys(randomKeys); // Simpan array yang sudah diacak dalam state
-  }, []); // Hanya diacak sekali saat komponen pertama kali di-render
+  }, [getRandomImageKeys]); // Hanya diacak sekali saat komponen pertama kali di-render
 
   const settings = {
     dots: false,
@@ -55,9 +56,7 @@ const Carausel1: NextPage = () => {
         {shuffledKeys.map((key) => (
           <div key={key} className="mt-[12%] mx-[6%]">
             <Image
-
               className={`w-[75%] h-[400px] ${key === "2" ? "mt-10 ms-5" : ""}`} // Menambahkan class 'custom-class' hanya pada gambar ke-14
-
               src={imageMap[key]}
               alt="Gambar Acak"
               width={1000}

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
@@ -86,7 +87,7 @@ const Burung = () => {
             key={item.id}
           >
             <a href="#">
-              <img
+              <Image
                 className="mx-auto mt-5 h-[70%] w-[150%]"
                 alt="Produk Gambar"
                 src={
