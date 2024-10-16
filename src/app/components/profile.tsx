@@ -15,7 +15,7 @@ interface UserData {
 }
 
 const Profile = () => {
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const Profile = () => {
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
     try {
       const res = await axios.get(url, { withCredentials: true });
-
+      console.log("AA", res.data);
       // Pastikan data user ada sebelum disimpan ke state
       if (res.data && res.data.user) {
         setUserData(res.data.user); // Simpan data user ke state
@@ -52,23 +52,14 @@ const Profile = () => {
         console.error("User data is null or undefined");
       }
     } catch (error: any) {
-      console.log(error);
+      console.log("AAA", error);
     }
   }
-
-  // const handleDeleteAccount = () => {
-  //   localStorage.removeItem("userData");
-  //   localStorage.removeItem("token");
-  //   router.push("/"); //akan pindah setelah hapus akun
-  // };
 
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <div
-        // className="flex-1 bg-cover bg-center"
-        // style={{ backgroundImage: "url('/img/bg.jpg')", height: "130vh" }}
-      >
+      <div>
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[90%] translate-x-[15%] z-20 relative pointer-events-auto">
             <div className="-translate-y-[6%]">
@@ -81,7 +72,7 @@ const Profile = () => {
                   }
                   width={200}
                   height={200}
-                  alt=""
+                  alt="Profile"
                   className="rounded-full"
                 />
               </div>
@@ -150,6 +141,3 @@ const Profile = () => {
 };
 
 export default Profile;
-function getUser() {
-  throw new Error("Function not implemented.");
-}

@@ -200,7 +200,7 @@ const Edit = () => {
 
             {/* Input fields for user data */}
             <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">Nama Penggunaa:</span>
+              <span className="pl-4">Nama Pengguna:</span>
               <input
                 type="text"
                 name="username"
