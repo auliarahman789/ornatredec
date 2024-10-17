@@ -27,7 +27,7 @@ const Produk = () => {
   console.log(data);
   return (
     // bg-[#D9FFF0]
-    <div className="flex flex-col min-h-[80%] bg-slate-300">
+    <div className="flex flex-col min-h-[80%] bg-[#DBFFF6]">
       <div className="bg-white my-[69px] mx-[98px] h-[800px] shadow-[12px_12px_15px] shadow-[#0000002e]">
         <div className="font-bold inline-block p-1 mt-[43px] ms-[50px]">
           <span className="text-[#308967] text-[40px]">Produk </span>

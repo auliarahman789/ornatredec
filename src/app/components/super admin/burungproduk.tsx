@@ -1,15 +1,12 @@
-'use client'
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import edit from '../edit';
+"use client";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 const Burungproduk = () => {
   const [data, setData] = useState<any[]>([]);
-  const formatHarga = (itung : number) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
+  const formatHarga = (itung: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
     }).format(itung);
   };
   useEffect(() => {
@@ -26,11 +23,11 @@ const Burungproduk = () => {
       const res = await axios.get(url, {
         withCredentials: true,
       });
-      setData(res.data); 
+      setData(res.data);
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
-      alert('Terjadi kesalahan saat mengambil data produk burung.');
+      alert("Terjadi kesalahan saat mengambil data produk burung.");
     }
   }
 
@@ -47,8 +44,7 @@ const Burungproduk = () => {
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
                 src={
-                  "https://74gslzvj-8000.asse.devtunnels.ms" +
-                  item.foto_produk
+                  "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
                 }
               />
             </a>
