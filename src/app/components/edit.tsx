@@ -53,7 +53,7 @@ const Edit = () => {
   }, []);
 
   async function getUser() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getMe`;
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string
@@ -129,7 +129,7 @@ const Edit = () => {
       const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
 
       const response = await axios.put(
-        `https://74gslzvj-8000.asse.devtunnels.ms/api/update/${userId}`, // Ganti :id dengan userId
+        `${process.env.NEXT_PUBLIC_URL}api/update/${userId}`, // Ganti :id dengan userId
         formData2,
         {
           headers: {

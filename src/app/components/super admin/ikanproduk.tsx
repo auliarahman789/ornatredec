@@ -22,7 +22,7 @@ const Ikanproduk = () => {
     router.push("/Superadmin/Produk/edit");
   };
   async function getIkan() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=ikan`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet?kategori=ikan`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,

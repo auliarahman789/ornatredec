@@ -42,7 +42,7 @@ const Profile = () => {
   }, []);
 
   async function getUser() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getMe`;
     try {
       const res = await axios.get(url, { withCredentials: true });
       console.log("AA", res.data);
@@ -68,7 +68,7 @@ const Profile = () => {
                 <Image
                   src={
                     userData?.photoProfile
-                      ? `https://74gslzvj-8000.asse.devtunnels.ms/${userData.photoProfile}`
+                      ? `https://74gslzvj-8000.asse.devtunnels.ms${userData.photoProfile}`
                       : "/img/default-avatar.png"
                   }
                   width={200}

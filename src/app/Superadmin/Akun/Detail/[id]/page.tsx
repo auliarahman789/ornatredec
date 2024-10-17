@@ -183,7 +183,7 @@ function Page() {
                               <img
                                 src={
                                   data.user.photoProfile
-                                    ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                                    ? "${process.env.NEXT_PUBLIC_URL}" +
                                       data.user.photoProfile
                                     : "/img/default-avatar.png"
                                 }

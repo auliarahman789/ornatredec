@@ -23,7 +23,7 @@ const Tanamanproduk = () => {
     router.push("/Superadmin/Produk/edit");
   };
   async function getTanaman() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=tanaman`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet?kategori=tanaman`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -48,6 +48,8 @@ const Tanamanproduk = () => {
               <Image
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
+                width={85}
+                height={84}
                 src={
                   "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
                 }

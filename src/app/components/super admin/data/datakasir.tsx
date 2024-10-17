@@ -38,7 +38,7 @@ const Datakasir = () => {
   }, []);
 
   async function getDatakasir() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getdanFilterUser?role=kasir`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getdanFilterUser?role=kasir`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,

@@ -35,7 +35,7 @@ const Dataadmin = () => {
   }, []);
 
   async function getDataadmin() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getdanFilterUser?role=admin`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getdanFilterUser?role=admin`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,

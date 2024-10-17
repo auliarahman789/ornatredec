@@ -30,7 +30,7 @@ const Page = () => {
     getTotal();
   }, []);
   async function getTotal() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/totalKeseluruhan`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/totalKeseluruhan`;
     try {
       const res = await axios.get<Total>(url, {
         withCredentials: true,
