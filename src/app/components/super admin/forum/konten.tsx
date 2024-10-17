@@ -3,8 +3,9 @@ import Image from "next/image";
 import Search from "../../../../../public/icon/search.svg";
 import Dropdown1 from "./dropdown1";
 import Dropdown2 from "./dropdown2";
-import Card1 from "./card1";
+import Card1 from "./card1Tanaman";
 import Card2 from "./card2";
+import Card1tanaman from "./card1Tanaman";
 
 function Konten() {
   return (
@@ -36,7 +37,7 @@ function Konten() {
           </div>
 
           <div className="overflow-y-auto h-[85%] overflow-x-hidden">
-            <Card1 />
+            <Card1tanaman />
           </div>
         </div>
         <div className="w-[55%] min-h-screen mt-[5%] overflow-y-auto">

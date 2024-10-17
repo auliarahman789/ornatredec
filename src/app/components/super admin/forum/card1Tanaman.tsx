@@ -4,7 +4,7 @@ import mata from "../../../../../public/icon/mata.svg";
 import chat2 from "../../../../../public/icon/chat2.svg";
 import Image from "next/image";
 
-function Card1() {
+function Card1tanaman() {
   return (
     <div className="space-y-10">
       <div className="w-[83%] h-[190px] bg-white ml-[4%] shadow-[3px_4px_4px,-3px_6px_4px] shadow-[#0000002d]">
@@ -402,4 +402,4 @@ function Card1() {
   );
 }
 
-export default Card1;
+export default Card1tanaman;
