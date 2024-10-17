@@ -10,7 +10,7 @@ const Produk = () => {
   const productRef = useRef<HTMLDivElement | null>(null); // Ref for the product section
 
   useEffect(() => {
-    getProduk();
+    fetchProducts();
 
     // Check if the URL contains the #tanaman hash
     if (window.location.hash === "#produk") {
@@ -18,19 +18,17 @@ const Produk = () => {
     }
   }, []);
 
-  async function getProduk() {
+  const fetchProducts = async () => {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`;
     try {
-      const res = await axios.get(url, {
-        withCredentials: true,
-      });
-      setData(res.data.slice(0, 12)); // Save received data to state
-      console.log(res.data);
+      const response = await axios.get(url, { withCredentials: true });
+      setData(response.data.slice(0, 12)); // Save received data to state
+      console.log(response.data);
     } catch (error: any) {
-      console.log(error);
+      console.error("Error fetching products:", error);
       alert("Terjadi kesalahan saat mengambil data produk.");
     }
-  }
+  };
 
   // Filter products based on search term
   const filteredData = data.filter((item) =>
@@ -47,7 +45,7 @@ const Produk = () => {
     <div className="bg-white">
       <div className="pt-1" id="tanaman">
         <div
-          className="h-[500px] w-[100%] -translate-y-1 bg-cover"
+          className="h-[500%] w-[100%] -translate-y-1 bg-cover"
           style={{ backgroundImage: "url('/img/TanamanProduk1.png')" }}
         ></div>
         <div className="text-[#8EAEA6] text-[18px] pb-4">
@@ -56,7 +54,7 @@ const Produk = () => {
             placeholder="Cari produk..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
-            className="w-96 p-3 border bg-[#FFFBFB] translate-x-[133%] mt-10 shadow-sm"
+            className="w-96 p-3 border bg-[#FFFBFB] translate-x-[115%] mt-10 shadow-sm"
           />
         </div>
 
@@ -78,6 +76,7 @@ const Produk = () => {
             </li>
           </Link>
         </ul>
+
         <div
           className="grid grid-cols-4 mx-auto -translate-y-[65%] bg-[#EBFFF8] justify-between ml-[5%] mr-[5%]"
           ref={productRef} // Attach ref here
@@ -88,13 +87,10 @@ const Produk = () => {
               key={item.id}
             >
               <a href="#">
-                <Image
-                  className="mx-auto mt-5 h-auto w-auto"
+                <img
+                  className="mx-auto mt-5 h-[70%] w-[150%]"
                   alt="Produk Gambar"
-                  src={
-                    "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
-                    item.foto_produk
-                  }
+                  src={`https://74gslzvj-8000.asse.devtunnels.ms/uploads/${item.foto_produk}`}
                 />
               </a>
               <div className="px-4 py-2">

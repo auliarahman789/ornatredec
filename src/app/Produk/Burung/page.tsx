@@ -47,8 +47,8 @@ const Burung = () => {
   return (
     <div className="pt-1" id="burung">
       <div
-        className="h-[455px] w-[100%] -translate-y-1 bg-cover"
-        style={{ backgroundImage: "url('/img/BurungProduk.png')" }}
+        className="h-[500px] w-[100%] -translate-y-1 bg-cover"
+        style={{ backgroundImage: "url('/img/BurungProduk.png')", height: '85vh' }}
       ></div>
       <div className="text-[#8EAEA6] text-[18px] pb-4">
         <input
@@ -56,7 +56,7 @@ const Burung = () => {
           placeholder="Cari produk..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
-          className="w-96 p-3 border bg-[#FFFBFB] translate-x-[133%] mt-10 shadow-sm"
+          className="w-96 p-3 border bg-[#FFFBFB] translate-x-[115%] mt-10 shadow-sm"
         />
       </div>
       <ul className="text-center space-x-10 -translate-y-3 min-h-screen text-[22px] text-white font-semibold flex justify-center mt-5">

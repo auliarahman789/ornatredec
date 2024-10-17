@@ -1,76 +1,164 @@
-import Footer from "@/app/components/homepage/footer";
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import Footer from "@/app/components/homepage/footer";
 
-function Page() {
+function page() {
   return (
     <div className="bg-[#E4FFF2]">
-      <div className="flex flex-col items-center justify-center space-y-16 pb-16">
+      <div className="pt-1" id="tumbuhan">
         <div
-          className="h-[400px] w-[85%] bg-cover bg-center"
-          style={{ backgroundImage: "url('/img/burung1.png')" }}
+          className="relative mt-[40px] mx-[100px] w-[84%] h-[415px] bg-cover"
+          style={{ backgroundImage: "url('/img/bgburung.png')" }}
         >
-          <div className=" h-[400px] w-full bg-gradient-to-r from-[#000000] to-[#d9d9d970] opacity-85">
-            <div className="ms-[3%] py-[7%]">
-              <h1 className="text-5xl font-bold text-white">Edukasi</h1>
-              <p className="w-[56%] text-[27px] text-white mt-2">
-                Dapatkan informasi terbaru dan praktis tentang cara merawat
-                ikan, burung, dan tanaman hias di sini, dan tingkatkan
-                pengalaman Anda dalam menjaga keindahan dan kesehatan koleksi
-                Anda.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div id="detail3lingkungan" className="bg-white w-[85%] h-[680px]">
-          <Image
-            src="/img/burung1.png"
-            className="w-full h-[300px] object-cover"
-            alt="1"
-            width={100}
-            height={100}
-          />
-          <div className="mx-[8%] mt-[3%]">
-            <h1 className="text-[35px] font-bold text-[#3F9272] leading-10">
-              Lingkungan Yang Baik Untuk Burung Hias
-            </h1>
-            <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              {`Untuk merawat burung dengan baik, diperlukan lingkungan yang nyaman, bersih, dan aman. Kandang yang luas dan berventilasi baik adalah hal utama, memungkinkan burung bergerak bebas dan mendapatkan sirkulasi udara yang cukup. Tempatkan kandang di area yang terhindar dari angin kencang, panas matahari berlebih, dan kebisingan yang dapat membuat burung stres. Selain itu, lingkungan harus menyediakan akses air bersih dan pakan yang teratur, serta mainan atau ranting untuk memenuhi kebutuhan bermain dan eksplorasi burung.`}
-            </p>
-          </div>
-        </div>
-        <div className="bg-white w-[85%] h-[680px]">
-          <Image
-            src="/img/burung1.png"
-            className="w-full h-[300px] object-cover"
-            alt="1"
-            width={100}
-            height={100}
-          />
-          <div className="mx-[8%] mt-[3%]">
-            <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              {`Lingkungan yang baik untuk burung hias harus dirancang sedemikian rupa agar memenuhi kebutuhan fisik dan psikologis mereka. Pertama, penting untuk menyediakan kandang atau sangkar yang cukup luas, sehingga burung dapat bergerak dengan leluasa, terbang, dan melakukan aktivitas alaminya seperti memanjat atau bermain. Ukuran sangkar harus disesuaikan dengan ukuran burung, dan materialnya harus aman tanpa bahan-bahan beracun. Selain itu, pastikan sangkar memiliki ventilasi yang baik, namun terlindungi dari angin kencang atau perubahan suhu ekstrem yang bisa membahayakan kesehatan burung.`}
-            </p>
-          </div>
-        </div>
-        <div className="bg-white w-[85%] h-[680px]">
-          <Image
-            src="/img/burung1.png"
-            className="w-full h-[300px] object-cover"
-            alt="1"
-            width={100}
-            height={100}
-          />
-          <div className="mx-[8%] mt-[3%]">
-            <p className="text-[#3F9272] text-xl me-[20%] mt-[2%]">
-              {`Selain aspek fisik, lingkungan burung hias juga harus menyediakan stimulasi mental yang cukup. Tambahkan mainan, ranting, atau tempat bertengger di dalam kandang untuk menjaga burung tetap aktif dan tidak bosan. Lokasi kandang sebaiknya berada di tempat yang tenang, jauh dari kebisingan atau gangguan, namun tetap memungkinkan burung melihat aktivitas manusia untuk interaksi sosial. Paparan sinar matahari yang cukup juga penting, namun burung harus tetap dilindungi dari panas berlebihan. Dengan lingkungan yang bersih, aman, dan stimulatif, burung hias dapat hidup lebih sehat dan merasa nyaman.`}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#000000] to-[#d9d9d970] ps-8 pt-[10%]">
+            <h1 className="text-5xl font-bold text-white">Tujuan</h1>
+            <p className="w-[56%] text-[27px] text-white mt-2">
+              Dapatkan informasi terbaru dan praktis tentang cara merawat
+              tanaman hias di sini, dan tingkatkan pengalaman Anda dalam menjaga
+              keindahan dan kesehatan koleksi Anda.
             </p>
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="grid grid-cols-2 justify-between ml-[8%] mr-[8%]">
+        <div className="mt-[5%] -translate-x-2">
+          <Image
+            src="/img/pakanburung.png"
+            className="w-full h-auto rounded-lg"
+            alt={"daun"}
+            width={390}
+            height={434}
+          />
+        </div>
+
+        <div className="ml-4 -translate-x-2 mt-[10%] text-justify">
+          <h1 className="text-[#3F9272] font-bold text-4xl">
+            Cara Merawat Burung Hias
+          </h1>
+          <p className="text-[#54A082] text-2xl text-[21px]">
+            Lakukan Pemeriksaan Rutin: Luangkan waktu beberapa menit setiap
+            minggu untuk memeriksa tanaman Anda. Ini termasuk memeriksa
+            pencahayaan, kelembaban tanah, dan kesehatan tanaman secara
+            umum.Sesuaikan Perawatan: Berdasarkan pemeriksaan, lakukan
+            penyesuaian yang diperlukan, seperti memindahkan tanaman ke tempat
+            yang lebih terang atau lebih gelap, menyiram jika tanah kering, atau
+            menambah kelembaban jika diperlukan.
+          </p>
+        </div>
+      </div>
+      <div>
+        <p className="text-center text-2xl ml-[8%] mr-[8%] mt-[5%] mb-[5%] text-[#54A082]">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam
+          exercitationem itaque vel aspernatur qui molestiae nobis laudantium
+          facere deserunt dolores, voluptatem excepturi voluptatum veniam
+          consequuntur at labore enim voluptatibus cupiditate? Lorem ipsum dolor
+          sit amet, consectetur adipisicing elit. Incidunt cumque consectetur
+          temporibus dicta rerum beatae eos recusandae harum, eligendi, maxime
+          aut! Labore similique commodi accusantium impedit autem repellendus
+          amet! Quibusdam!
+        </p>
+      </div>
+      <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-4">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group1.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+      <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+      <div className="flex flex-row  text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group3.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+      <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
+        <p className="text-[#3F9272]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+          laboriosam aut velit dolorum doloribus ut nulla ipsam veritatis ea
+          iste iure cumque facere optio neque magni quis nihil consequuntur
+          aperiam! lor
+        </p>
+        <div className="-translate-y-[25%] translate-x-[85%]">
+          <Image
+            src="/icon/group4.svg"
+            className="rounded-lg"
+            alt={"daun"}
+            width={250}
+            height={250}
+          />
+        </div>
+        <Image
+          src="/img/tus hisa.png"
+          className="rounded-lg"
+          alt={"daun"}
+          width={400}
+          height={350}
+        />
+      </div>
+
+      <div className="mt-6">
+        <Footer />
+      </div>
     </div>
   );
 }
-
-export default Page;
+export default page;

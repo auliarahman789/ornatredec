@@ -11,8 +11,14 @@ interface UserData {
   email: string;
   tanggalLahir: any;
   no_hp: string;
-  // alamat: string;
+  alamat: string;
   photoProfile: any;
+  provinsi: string;
+  kotakabupaten: string;
+  kecamatan: string;
+  kelurahanDesa: string;
+  jalan: string;
+  RtRw: string;
 }
 
 const Edit = () => {
@@ -21,8 +27,14 @@ const Edit = () => {
     email: "",
     tanggalLahir: "",
     no_hp: "",
-    // alamat: "",
+    alamat: "",
     photoProfile: "/img/default-avatar.png", // Gambar default
+    provinsi: "",
+    kotakabupaten: "",
+    kecamatan: "",
+    kelurahanDesa: "",
+    jalan: "",
+    RtRw: "",
   });
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -48,10 +60,10 @@ const Edit = () => {
         withCredentials: true,
       });
 
-      console.log(res.data);
+      console.log("AA", res.data);
       setUserData(res.data.user); // Simpan data yang diterima ke dalam state
     } catch (error: any) {
-      console.log(error);
+      console.log("AAA", error);
     }
   }
 
@@ -66,20 +78,15 @@ const Edit = () => {
     console.log(value);
   };
 
-  const handleInputImage = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    console.log("Selected file:", file); // Periksa apakah file sudah dipilih
+  const handleInputImage = (e: any) => {
+    const file = e.target.files?.[0]; // Ambil file dari input
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        console.log("File loaded:", reader.result); // Log hasil FileReader
-        setFormData((prevData) => ({
-          ...prevData,
-          photoProfile: reader.result as string, // Simpan hasil ke photoProfile
-        }));
-      };
-      reader.readAsDataURL(file); // Membaca file sebagai Data URL
+      setFormData((prevData) => ({
+        ...prevData,
+        photoProfile: URL.createObjectURL(file), // Ubah file menjadi URL untuk preview
+      }));
     }
+    console.log(e.target.files);
   };
 
   // const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -109,8 +116,14 @@ const Edit = () => {
       formData2.append("email", formData.email);
       formData2.append("tanggalLahir", formData.tanggalLahir);
       formData2.append("no_hp", formData.no_hp);
-      // formData2.append("alamat", formData.alamat);
+      formData2.append("alamat", formData.alamat);
       formData2.append("photoProfile", formData.photoProfile);
+      formData2.append("provinsi", formData.provinsi);
+      formData2.append("kotakabupaten", formData.kotakabupaten);
+      formData2.append("kecamatan", formData.kecamatan);
+      formData2.append("kelurahanDesa", formData.kelurahanDesa);
+      formData2.append("jalan", formData.jalan);
+      formData2.append("RtRw", formData.RtRw);
 
       // Ambil ID pengguna dari localStorage
       const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
@@ -133,6 +146,12 @@ const Edit = () => {
         localStorage.setItem("tanggalLahir", formData.tanggalLahir);
         localStorage.setItem("photoProfile", formData.photoProfile);
         localStorage.setItem("no_hp", formData.no_hp);
+        localStorage.setItem("provinsi", formData.provinsi);
+        localStorage.setItem("kotakabupaten", formData.kotakabupaten);
+        localStorage.setItem("kecamatan", formData.kecamatan);
+        localStorage.setItem("kelurahanDesa", formData.kelurahanDesa);
+        localStorage.setItem("jalan", formData.jalan);
+        localStorage.setItem("RtRw", formData.RtRw);
 
         router.push("/profile");
       } else {
@@ -150,14 +169,14 @@ const Edit = () => {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-white">
       <Sidebar />
       <div
-        className="flex-1 bg-cover bg-center"
-        style={{ backgroundImage: "url('/img/bg.jpg')", height: "160vh" }}
+      // className="flex-1 bg-cover bg-center"
+      // style={{ backgroundImage: "url('/img/bg.jpg')", height: "160vh" }}
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-          <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
+          <div className="bg-white p-16 rounded-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
             <div className="flex justify-center -translate-y-[10%]">
               <Image
                 src={formData.photoProfile || "/img/default-avatar.png"} // Jika tidak ada gambar, gunakan default avatar
@@ -220,7 +239,7 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
             </div>
-            {/* <div className="text-[#A9A7A7] text-[18px] pb-4">
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
               <span className="pl-4">Alamat:</span>
               <textarea
                 name="alamat"
@@ -228,7 +247,7 @@ const Edit = () => {
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
-            </div> */}
+            </div>
 
             <div className="grid grid-cols-3">
               <div className="flex justify-end mt-[20%]">

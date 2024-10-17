@@ -3,11 +3,11 @@ import Sidebar from "./sidebar";
 
 function Riwayat() {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-white">
       <Sidebar />
       <div
-        className="flex-1 bg-cover bg-center"
-        style={{ backgroundImage: "url('/img/bg.jpg')", height: "110vh" }}
+        // className="flex-1 bg-cover bg-center"
+        // style={{ backgroundImage: "url('/img/bg.jpg')", height: "110vh" }}
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[105%] translate-x-[15%] z-20 relative pointer-events-auto mt-[5%]">
