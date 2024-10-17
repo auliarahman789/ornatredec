@@ -4,6 +4,7 @@ import Search from "../../../../../public/icon/search.svg";
 import Dropdown1 from "./dropdown1";
 import Dropdown2 from "./dropdown2";
 import Card1 from "./card1";
+import Card2 from "./card2";
 
 function Konten() {
   return (
@@ -40,11 +41,11 @@ function Konten() {
         </div>
         <div className="w-[55%] min-h-screen mt-[5%] overflow-y-auto">
           <div className="bg-[#1AE5CC] rounded-lg h-[45%] mb-4">
-            Kolom Kanan (Lebih Kecil)
+            <div className="pt-4">
+              <Card2 />
+            </div>
           </div>
-          <div className="bg-[#1AE5CC] rounded-lg h-[45%]">
-            Kolom Kanan (Lebih Kecil)
-          </div>
+          {/* <div className="bg-[#1AE5CC] rounded-lg h-[45%]"></div> */}
         </div>
       </div>
     </div>
