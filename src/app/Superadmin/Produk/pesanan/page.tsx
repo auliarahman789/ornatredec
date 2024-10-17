@@ -119,7 +119,7 @@ function Page() {
                                     <p className='text-[20px] mt-[1.7%]'>{item.alamat.nama_penerima}</p>
                                     <p className="whitespace-nowrap overflow-x-hidden mt-[2%] max-w-[12%] text-[15px] text-ellipsis">{item.alamat.jalan_namagedung}</p>
                                     <Link href={`/Superadmin/Produk/pesanan/detail/${item.id}`}>
-                                    <button className='bg-gradient-to-b h-6 rounded-full mt-[2%] pt-1 pb-2 px-3 from-[#308967] to-[#06612B] text-white text-[13px]' onClick={handleDetail}>Lihat</button>
+                                    <button className='bg-gradient-to-b h-6 rounded-full translate-y-[100%] pt-1 pb-2 px-3 from-[#308967] to-[#06612B] text-white text-[13px]' onClick={handleDetail}>Lihat</button>
                                     </Link>
                                 </div>
                             ))

@@ -158,14 +158,15 @@ const handleImageClick = () => {
   }, []);
 
   const getProduk = async () => {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${id}`; 
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getProdukId/${id}`; 
     try {
       const res = await axios.get(url, {
         withCredentials: true,
       });
-      setFormData(res.data.produk || {});
-      setVariasi(res.data.variasi || []); 
+      setFormData(res.data.produk);
+      setVariasi(res.data.variasi); 
       setImage(res.data.foto_produk);
+      console.log(res.data)
     } catch (error: any) {
       console.log(error);
     }
@@ -401,8 +402,9 @@ const handleImageClick = () => {
               
               <div className="relative">
                 <button className='py-1 absolute right-0 top-12 text-[#8EAEA6] font-semibold text-[19px] w-[20%] bg-white'
-                  disabled={isLoading} onClick={handleEdit}>
-                  {isLoading ? 'Loading...' : 'Tambah'} </button>
+                disabled={isLoading}
+                onClick={handleEdit}>
+                  {isLoading ? 'Loading...' : 'Edit'} </button>
                   {isLoading && <LoadingProduk />}
               </div>
                     </div>
