@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 
 const Produk = () => {
   const [data, setData] = useState<any[]>([]); // State untuk menampung data produk
-
   useEffect(() => {
     getProduk();
   }, []);

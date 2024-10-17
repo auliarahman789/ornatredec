@@ -158,7 +158,7 @@ const handleImageClick = () => {
   }, []);
 
   const getProduk = async () => {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getProdukId/${id}`; 
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${id}`; 
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -266,7 +266,7 @@ const handleImageClick = () => {
                       <label htmlFor="Nama produk" className='text-[#8EAEA6] mt-[4%] text-[20px] font-semibold'>Nama Produk</label>
                       <input
                             type="text"
-                            value={formData.judul_produk}
+                            defaultValue={formData.judul_produk}
                             onChange={handleInputChange}
                             name="judul_produk"
                             className="w-[100%] mt-1 bg-white h-[45px]
@@ -276,7 +276,7 @@ const handleImageClick = () => {
                       <label htmlFor="Deskripsi produk" className='text-[#8EAEA6] mt-[3%] text-[20px] font-semibold'>Deskripsi Produk</label>
                       <textarea
                             name="deskripsi_produk"
-                            value={formData.deskripsi_produk}
+                            defaultValue={formData.deskripsi_produk}
                             onChange={handleInputChange}
                             className="w-[100%] mt-1 bg-white h-[210px]
                             text-[20px] px-3 py-2 text-[#3F9272] rounded-md"
@@ -327,7 +327,6 @@ const handleImageClick = () => {
                       <input
                         type="text"
                         name="nama_variasi"
-                        value={formData.variasi}
                         onChange={(e) => handleChangeField(e, i)}
                         className="w-[100%] mt-1 bg-white h-[45px]
                               text-[20px] px-3 text-[#3F9272] rounded-md"
@@ -350,7 +349,6 @@ const handleImageClick = () => {
                               <div>
                                 <label htmlFor='nama_variasi' className='text-[#8EAEA6] text-sm mt-2 font-semibold'>Nama Variasi</label>
                                   <input
-                                    value={data.nama_variasi}
                                   onChange={(e) => handleChangeFieldSub(e, i, ii)}
                                   type="text"
                                   name='nama_sub_variasi'

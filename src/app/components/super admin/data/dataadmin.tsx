@@ -21,7 +21,15 @@ const Dataadmin = () => {
   //   window.addEventListener("offline", handleOfflineStatus)
   //   }
   // })
-
+  const hubungi = document.getElementById('hubungi') as HTMLButtonElement;
+  function handleEmailClick(recipient:string) {
+      // const recipient = data?.user.email;
+      // const subject = '';
+      // const body = '';
+      const mailtoLink = `mailto:${recipient}`
+      window.location.href = mailtoLink
+  }
+  
   useEffect(() => {
     getDataadmin();
   }, []);
@@ -60,7 +68,7 @@ const Dataadmin = () => {
               </div>
               <p className={`text-sm mt-[3%] w-[25%] ms-2 ${item.statusAktif === 'aktif' ? 'text-[#51CB9F]' : 'text-[#FF0A0A]'}`}>{item.statusAktif}</p>
               <p className=' text-sm text-[#3F9272] w-[25%] mt-[3%]'>{item.no_hp}</p>
-              <button className='bg-[#308967] h-[1%] py-2 px-[3%] text-sm text-white rounded-full mt-[2%]'>Hubungi</button>
+              <button id='hubungi' className='bg-[#308967] px-[5%] h-10 text-sm translate-x-64 text-white rounded-full mt-[3%]' onClick={() => handleEmailClick(item.email)}>Hubungi</button>
             </div>
           ))}
         </div>
