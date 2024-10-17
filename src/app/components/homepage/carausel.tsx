@@ -28,7 +28,6 @@ const Carausel1: NextPage = () => {
     return array;
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getRandomImageKeys = (): string[] => {
     const keys = Object.keys(imageMap);
     return shuffleArray(keys);
@@ -37,7 +36,7 @@ const Carausel1: NextPage = () => {
   useEffect(() => {
     const randomKeys = getRandomImageKeys();
     setShuffledKeys(randomKeys); // Simpan array yang sudah diacak dalam state
-  }, [getRandomImageKeys]); // Hanya diacak sekali saat komponen pertama kali di-render
+  }, []); // Hanya diacak sekali saat komponen pertama kali di-render
 
   const settings = {
     dots: false,

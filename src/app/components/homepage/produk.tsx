@@ -6,6 +6,13 @@ import React, { useEffect, useState } from "react";
 const Produk = () => {
   const [data, setData] = useState<any[]>([]); // State untuk menampung data produk
 
+  const formatHarga = (itung: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(itung);
+  };
+
   useEffect(() => {
     getProduk();
   }, []);
