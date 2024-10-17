@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./sidebar";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-
 interface UserData {
   username: string;
   email: string;
