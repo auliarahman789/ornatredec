@@ -1,11 +1,10 @@
-'use client'
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import edit from '../../../../public/icon/Group 1000004435.svg'
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-
+"use client";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import edit from "../../../../public/icon/Group 1000004435.svg";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 const Tanamanproduk = () => {
   const [data, setData] = useState<any[]>([]);
   const formatHarga = (itung: number) => {
@@ -21,8 +20,8 @@ const Tanamanproduk = () => {
 
   const router = useRouter();
   const handleEdit = () => {
-    router.push('/Superadmin/Produk/edit')
-  }
+    router.push("/Superadmin/Produk/edit");
+  };
   async function getTanaman() {
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=tanaman`;
     try {
@@ -64,17 +63,22 @@ const Tanamanproduk = () => {
                 </span>
               </div>
             </div>
+            <div className="relative">
+              {item.id ? (
+                <Link href={`/Superadmin/Produk/edit/${item.id}`}>
+                  <Image
+                    className="absolute top-[98%%] left-[90%]"
+                    src={edit}
+                    width={25}
+                    height={25}
+                    alt="edit"
+                  />
+                </Link>
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
           </div>
-          <div className="relative">
-          {item.id ? (
-              <Link href={`/Superadmin/Produk/edit/${item.id}`}>
-                <Image className='absolute top-[98%%] left-[90%]' src={edit} width={25} height={25} alt='edit' />
-              </Link>
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>
-       
         ))}
       </div>
     </div>
