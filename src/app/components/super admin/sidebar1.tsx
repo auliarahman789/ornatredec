@@ -16,6 +16,9 @@ import { usePathname } from "next/navigation";
 
 function SidebarSp() {
   const pathname = usePathname();
+  const isAkun =
+    pathname.startsWith("/Superadmin/Akun/Detail/") ||
+    pathname.startsWith("/Superadmin/Akun");
   return (
     <div className="fixed top-0 left-0">
       <nav className="nav bg-gradient-to-b from-[#167960] to-[#28DFB1] w-64 h-screen flex flex-col">
@@ -43,6 +46,7 @@ function SidebarSp() {
               <span className="mt-1">Dashboard</span>
             </li>
           </Link>
+
           <Link href="/Superadmin/Produk">
             <li
               className={`cursor-pointer flex mb-12 ${
@@ -91,12 +95,10 @@ function SidebarSp() {
           </Link>
           <Link href="/Superadmin/Akun">
             <li
-              className={`cursor-pointer flex mb-12 ${
-                pathname === "/Superadmin/Akun" ? "active" : ""
-              }`}
+              className={`cursor-pointer flex mb-12 ${isAkun ? "active" : ""}`}
             >
               <Image
-                src={pathname === "/Superadmin/Akun" ? userr : userr2}
+                src={isAkun ? userr : userr2}
                 className="w-6 h-6 me-5"
                 width={30}
                 height={30}

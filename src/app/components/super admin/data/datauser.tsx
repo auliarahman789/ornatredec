@@ -7,7 +7,6 @@ import Link from "next/link";
 const Datauser = () => {
   const [data, setData] = useState<any[]>([]);
   const [isOnline, setOnline] = useState(false);
-
   // useEffect(() => {
   //   function handleOnlineStatus() {
   //     setOnline(true)
@@ -23,13 +22,21 @@ const Datauser = () => {
   //   window.addEventListener("offline", handleOfflineStatus)
   //   }
   // }, [])
+  const hubungi = document.getElementById("hubungi") as HTMLButtonElement;
+  function handleEmailClick(recipient: string) {
+    // const recipient = data?.user.email;
+    // const subject = '';
+    // const body = '';
+    const mailtoLink = `mailto:${recipient}`;
+    window.location.href = mailtoLink;
+  }
 
   useEffect(() => {
     getDatauser();
   }, []);
 
   async function getDatauser() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getdanFilterUser?role=user`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getdanFilterUser?role=user`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -49,11 +56,11 @@ const Datauser = () => {
   };
   return (
     <div>
-      <ul className="flex text-[#00663F] font-semibold space-x-7 mt-[2%] ms-[2%]">
-        <li className="pe-[20%]">User</li>
-        <li className="pe-[5%]">Status</li>
-        <li className="pe-[5%]">Lokasi</li>
-        <li className="pe-[6%]">No Contact</li>
+      <ul className="flex text-[#00663F] font-semibold space-x-[7%] mt-[2%] ms-[2%]">
+        <li className="">User</li>
+        <li className="ps-[14%]">Status</li>
+        <li className="">Lokasi</li>
+        <li className="">No Contact</li>
         <li className="">Hubungi</li>
       </ul>
       <div className="bg-[#E4FFF2] p-5 w-[72%] mt-4 rounded-md min-h-screen">
@@ -68,8 +75,8 @@ const Datauser = () => {
                   href={`/Superadmin/Akun/Detail/${item.id}`}
                   className="flex"
                 >
-                  <div className="w-[37%] flex">
-                    <Image
+                  <div className="flex w-80">
+                    <img
                       src={
                         item.photoProfile
                           ? "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -87,24 +94,28 @@ const Datauser = () => {
                     </ul>
                   </div>
                   <p
-                    className={`text-sm mt-[3%] w-[15%] -translate-x-4} ${
+                    className={`text-sm mt-[5%] translate-x-5 w-10 ${
                       item.statusAktif === "aktif"
                         ? "text-[#51CB9F]"
-                        : "text-[#FF0A0A]"
+                        : "text-[#FF0A0A] whitespace-nowrap"
                     }`}
                   >
                     {item.statusAktif}
                   </p>
-                  <p className=" text-sm text-black mt-[3%] w-[16%]">
+                  <p className=" text-sm text-black mt-[5%] translate-x-24 w-20 whitespace-nowrap">
                     {" "}
                     {item.alamats && item.alamats.length > 0
                       ? item.alamats[0].kota_kabupaten
                       : "Tidak tersedia"}
                   </p>
-                  <p className=" text-sm text-[#3F9272] mt-[3%] w-[22%]">
+                  <p className=" text-sm text-[#3F9272] mt-[5%] w-14 translate-x-40">
                     {item.no_hp}
                   </p>
-                  <button className="bg-[#308967] w-[10%] h-[1%] py-2 text-sm text-white rounded-full mt-[2%]">
+                  <button
+                    id="hubungi"
+                    className="bg-[#308967] px-[5%] h-10 text-sm translate-x-64 text-white rounded-full mt-[3%]"
+                    onClick={() => handleEmailClick(item.email)}
+                  >
                     Hubungi
                   </button>
                 </Link>

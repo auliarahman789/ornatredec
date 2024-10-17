@@ -160,7 +160,7 @@ const Page = ({ params }: { params: { id: number } }) => {
   }, []);
 
   const getProduk = async () => {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getProdukId/${id}`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${id}`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -282,7 +282,7 @@ const Page = ({ params }: { params: { id: number } }) => {
             </label>
             <input
               type="text"
-              value={formData.judul_produk}
+              defaultValue={formData.judul_produk}
               onChange={handleInputChange}
               name="judul_produk"
               className="w-[100%] mt-1 bg-white h-[45px]
@@ -297,9 +297,10 @@ const Page = ({ params }: { params: { id: number } }) => {
             </label>
             <textarea
               name="deskripsi_produk"
-              value={formData.deskripsi_produk}
+              defaultValue={formData.deskripsi_produk}
               onChange={handleInputChange}
               className="w-[100%] mt-1 bg-white h-[210px]
+>>>>>>> a54f53ed06ad504a7ad25d0ead1c4ec63b8a3c46
                             text-[20px] px-3 py-2 text-[#3F9272] rounded-md"
               maxLength={300}
               required
@@ -360,9 +361,9 @@ const Page = ({ params }: { params: { id: number } }) => {
                     <input
                       type="text"
                       name="nama_variasi"
-                      value={formData.variasi}
                       onChange={(e) => handleChangeField(e, i)}
                       className="w-[100%] mt-1 bg-white h-[45px]
+>>>>>>> a54f53ed06ad504a7ad25d0ead1c4ec63b8a3c46
                               text-[20px] px-3 text-[#3F9272] rounded-md"
                       required
                     />
@@ -394,7 +395,6 @@ const Page = ({ params }: { params: { id: number } }) => {
                                   Nama Variasi
                                 </label>
                                 <input
-                                  value={data.nama_variasi}
                                   onChange={(e) =>
                                     handleChangeFieldSub(e, i, ii)
                                   }
