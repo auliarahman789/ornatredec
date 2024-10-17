@@ -165,9 +165,11 @@ const Page = ({ params }: { params: { id: number } }) => {
       const res = await axios.get(url, {
         withCredentials: true,
       });
-      setFormData(res.data.produk || {});
-      setVariasi(res.data.variasi || []);
+
+      setFormData(res.data.produk);
+      setVariasi(res.data.variasi); 
       setImage(res.data.foto_produk);
+      console.log(res.data)
     } catch (error: any) {
       console.log(error);
     }
@@ -463,9 +465,25 @@ const Page = ({ params }: { params: { id: number } }) => {
                               </button>
                             </div>
                           </div>
-                        </>
-                      );
-                    })}
+
+                         </>
+                        )
+                      })}
+                    </div>
+                    </div>
+                    </>
+))}
+             
+              
+              <div className="relative">
+                <button className='py-1 absolute right-0 top-12 text-[#8EAEA6] font-semibold text-[19px] w-[20%] bg-white'
+                disabled={isLoading}
+                onClick={handleEdit}>
+                  {isLoading ? 'Loading...' : 'Edit'} </button>
+                  {isLoading && <LoadingProduk />}
+              </div>
+                    </div>
+
                   </div>
                 </div>
               </>

@@ -166,7 +166,7 @@ function Page() {
                   </p>
                   <Link href={`/Superadmin/Produk/pesanan/detail/${item.id}`}>
                     <button
-                      className="bg-gradient-to-b h-6 rounded-full mt-[2%] pt-1 pb-2 px-3 from-[#308967] to-[#06612B] text-white text-[13px]"
+                      className="bg-gradient-to-b h-6 rounded-full mt-[2%] pt-1 pb-2 px-3 from-[#308967] to-[#06612B] text-white text-[13px]  translate-y-[100%]"
                       onClick={handleDetail}
                     >
                       Lihat

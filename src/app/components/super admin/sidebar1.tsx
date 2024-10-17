@@ -47,32 +47,6 @@ function SidebarSp() {
             </li>
           </Link>
 
-          <Link href="/Superadmin/Produk">
-            <li
-              className={`cursor-pointer flex mb-12 ${
-                pathname === "/Superadmin/Produk" ||
-                pathname === "/Superadmin/Produk/tambah" ||
-                pathname === "/Superadmin/Produk/pesanan" ||
-                pathname === "/Superadmin/Produk/pesanan/daftar"
-                  ? "active"
-                  : ""
-              }`}
-            >
-              <Image
-                src={
-                  pathname === "/Superadmin/Produk" ||
-                  pathname === "/Superadmin/Produk/tambah"
-                    ? produkk2
-                    : produkk
-                }
-                className="w-5 ms-1 h-6 me-6"
-                width={30}
-                height={30}
-                alt="dashboard"
-              />
-              Produk
-            </li>
-          </Link>
           <Link href="/Superadmin/Statistik">
             <li
               className={`cursor-pointer flex mb-12 ${
