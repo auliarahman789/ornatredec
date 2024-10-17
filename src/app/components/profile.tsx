@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./sidebar";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+
+import Image from "next/image";
+
 interface UserData {
   username: string;
   email: string;
@@ -41,7 +44,7 @@ const Profile = () => {
   }, []);
 
   async function getUser() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getMe`;
     try {
       const res = await axios.get(url, { withCredentials: true });
       console.log("Data pengguna:", res.data); // Log data pengguna
@@ -67,10 +70,10 @@ const Profile = () => {
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[90%] translate-x-[15%] z-20 relative pointer-events-auto">
             <div className="-translate-y-[6%]">
               <div className="flex justify-end mb-4 translate-y-[50%]">
-                <img
+                <Image
                   src={
                     userData?.photoProfile
-                      ? `https://74gslzvj-8000.asse.devtunnels.ms/${userData.photoProfile}`
+                      ? `https://74gslzvj-8000.asse.devtunnels.ms${userData.photoProfile}`
                       : "/img/default-avatar.png"
                   }
                   width={200}

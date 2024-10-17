@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
+import profile from "../../../../public/icon/profile.svg";
+import profile2 from "../../../../public/icon/profile (1).svg";
 
 interface ErrorResponse {
   message: string;
@@ -26,7 +28,7 @@ const Sidebar = () => {
 
     try {
       const response = await axios.delete(
-        `https://74gslzvj-8000.asse.devtunnels.ms/api/logout`,
+        `${process.env.NEXT_PUBLIC_URL}api/logout`,
         {
           withCredentials: true,
         }

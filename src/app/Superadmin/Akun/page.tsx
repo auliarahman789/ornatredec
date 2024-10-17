@@ -7,6 +7,8 @@ import { usePathname } from 'next/navigation';
 import Data from '@/app/components/super admin/datapengguna';
 
 function Page() {
+  const pathname = usePathname();
+  const id = pathname.split('/').pop();
   const [active, setActive] = useState('data pengguna'); 
   return (
     <div className='overflow-x-hidden min-h-screen '>

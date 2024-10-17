@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
@@ -18,7 +19,7 @@ const Ikan = () => {
   }, []);
 
   async function getIkan() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -47,7 +48,10 @@ const Ikan = () => {
     <div className="pt-1" id="ikan">
       <div
         className="h-[500px] w-[100%] -translate-y-1 bg-cover"
-        style={{ backgroundImage: "url('/img/IkanProduk.png')", height: '85vh' }}
+        style={{
+          backgroundImage: "url('/img/IkanProduk.png')",
+          height: "85vh",
+        }}
       ></div>
       <div className="text-[#8EAEA6] text-[18px] pb-4">
         <input
@@ -84,13 +88,10 @@ const Ikan = () => {
             key={item.id}
           >
             <a href="#">
-              <img
-                className="mx-auto mt-5 h-auto w-auto"
+              <Image
+                className="mx-auto mt-5 h-[70%] w-[150%]"
                 alt="Produk Gambar"
-                src={
-                  "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
-                  item.foto_produk
-                }
+                src={`https://74gslzvj-8000.asse.devtunnels.ms${item.foto_produk}`}
               />
             </a>
             <div className="px-4 py-2">

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Datakasir from './data/datakasir';
 import Dataadmin from './data/dataadmin';
 import Datauser from './data/datauser';
+import Detailuser from './data/detail/detailuser';
 
 function Data() {
     const [data, setData] = useState('user');
@@ -31,14 +32,14 @@ function Data() {
           </div>
           <div className=' pb-24 translate-x-20'>
           <div>
-              {data === 'user' && <Datauser />}
+              {data === 'user' && <Datauser /> }
             </div>
             <div>
               {data === 'admin' && <Dataadmin />}
               </div>
               <div>
               {data === 'kasir' && <Datakasir />}
-            </div>
+        </div>
           </div>
         </div >
   )

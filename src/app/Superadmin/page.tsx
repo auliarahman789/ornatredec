@@ -21,6 +21,7 @@ type Total = {
   totalForumTanaman: number;
   totalForumIkan: number;
   totalForumBurung: number;
+  totalPemesanan: number;
 };
 const Page = () => {
   const [data, setData] = useState<Total | null>();
@@ -29,7 +30,7 @@ const Page = () => {
     getTotal();
   }, []);
   async function getTotal() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/totalKeseluruhan`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/totalKeseluruhan`;
     try {
       const res = await axios.get<Total>(url, {
         withCredentials: true,
@@ -78,7 +79,9 @@ const Page = () => {
               <div className="border-r-2 bg-[#308967] h-[46px] mt-6"></div>
               <div className="flex flex-col ms-8 mt-6">
                 <div className="text-[#308967] text-[12px]">Total Pesanan</div>
-                <div className="text-[20px] text-[#308967]">3664</div>
+                <div className="text-[20px] text-[#308967]">
+                  {data.totalPemesanan}
+                </div>
               </div>
             </div>
             <div

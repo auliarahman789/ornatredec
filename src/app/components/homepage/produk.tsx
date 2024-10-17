@@ -1,16 +1,24 @@
 "use client";
 import axios from "axios";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const Produk = () => {
   const [data, setData] = useState<any[]>([]); // State untuk menampung data produk
+
+  const formatHarga = (itung: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(itung);
+  };
 
   useEffect(() => {
     getProduk();
   }, []);
 
   async function getProduk() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getProduk`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string
@@ -39,13 +47,10 @@ const Produk = () => {
               key={item.id}
             >
               <a href="#">
-                <img
+                <Image
                   className="mx-auto mt-5 h-[65%] w-[85%]"
                   alt="Produk Gambar"
-                  src={
-                    "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
-                    item.foto_produk
-                  }
+                  src={"${process.env.NEXT_PUBLIC_URL}" + item.foto_produk}
                 />
               </a>
               <div className="px-4 py-2">
@@ -54,7 +59,7 @@ const Produk = () => {
                 </h5>
                 <div className="flex items-center justify-between mt-auto">
                   <span className="text-xl font-bold text-[#FF0A0A]">
-                    Rp {item.harga}
+                    Rp {formatHarga(item.harga)}
                   </span>
                 </div>
               </div>
