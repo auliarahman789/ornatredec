@@ -9,20 +9,32 @@ import Sidebar from "./sidebar";
 interface UserData {
   username: string;
   email: string;
-  birthday: string;
+  tanggalLahir: any;
   no_hp: string;
   alamat: string;
-  photoProfile: any; // Properti photoProfile
+  photoProfile: any;
+  provinsi: string;
+  kotakabupaten: string;
+  kecamatan: string;
+  kelurahanDesa: string;
+  jalan: string;
+  RtRw: string;
 }
 
 const Edit = () => {
   const [formData, setFormData] = useState<UserData>({
     username: "",
     email: "",
-    birthday: "",
+    tanggalLahir: "",
     no_hp: "",
     alamat: "",
     photoProfile: "/img/default-avatar.png", // Gambar default
+    provinsi: "",
+    kotakabupaten: "",
+    kecamatan: "",
+    kelurahanDesa: "",
+    jalan: "",
+    RtRw: "",
   });
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -30,27 +42,28 @@ const Edit = () => {
 
   useEffect(() => {
     getUser();
-    // const storedUserData = localStorage.getItem("userData");
-    // if (storedUserData) {
-    //   const userData = JSON.parse(storedUserData);
-    //   setFormData({
-    //     ...userData,
-    //     photoProfile: userData.photoProfile || "/img/default-avatar.png",
-    //   });
-    // }
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      const userData = JSON.parse(storedUserData);
+      setFormData({
+        ...userData,
+        photoProfile: userData.photoProfile || "/img/default-avatar.png", // Gunakan default jika kosong
+      });
+    }
   }, []);
+
   async function getUser() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getMe`;
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string
         withCredentials: true,
       });
 
-      console.log(res.data);
+      console.log("AA", res.data);
       setUserData(res.data.user); // Simpan data yang diterima ke dalam state
     } catch (error: any) {
-      console.log(error);
+      console.log("AAA", error);
     }
   }
 
@@ -66,27 +79,29 @@ const Edit = () => {
   };
 
   const handleInputImage = (e: any) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      ["photoProfile"]: e.target.files[0],
-    }));
+    const file = e.target.files?.[0]; // Ambil file dari input
+    if (file) {
+      setFormData((prevData) => ({
+        ...prevData,
+        photoProfile: URL.createObjectURL(file), // Ubah file menjadi URL untuk preview
+      }));
+    }
     console.log(e.target.files);
   };
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData((prevData) => ({
-          ...prevData,
-          photoProfile: reader.result as string, // Simpan gambar sebagai URL
-        }));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  // const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setFormData((prevData) => ({
+  //         ...prevData,
+  //         photoProfile: reader.result as string, // Simpan gambar sebagai URL
+  //       }));
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   const handleavatarClick = () => {
     if (fileInputRef.current) {
@@ -99,15 +114,22 @@ const Edit = () => {
       var formData2 = new FormData();
       formData2.append("username", formData.username);
       formData2.append("email", formData.email);
+      formData2.append("tanggalLahir", formData.tanggalLahir);
       formData2.append("no_hp", formData.no_hp);
       formData2.append("alamat", formData.alamat);
       formData2.append("photoProfile", formData.photoProfile);
+      formData2.append("provinsi", formData.provinsi);
+      formData2.append("kotakabupaten", formData.kotakabupaten);
+      formData2.append("kecamatan", formData.kecamatan);
+      formData2.append("kelurahanDesa", formData.kelurahanDesa);
+      formData2.append("jalan", formData.jalan);
+      formData2.append("RtRw", formData.RtRw);
 
       // Ambil ID pengguna dari localStorage
       const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
 
       const response = await axios.put(
-        `https://74gslzvj-8000.asse.devtunnels.ms/api/update/${userId}`, // Ganti :id dengan userId
+        `${process.env.NEXT_PUBLIC_URL}api/update/${userId}`, // Ganti :id dengan userId
         formData2,
         {
           headers: {
@@ -121,8 +143,15 @@ const Edit = () => {
         // Jika berhasil, simpan data di localStorage
         localStorage.setItem("userData", JSON.stringify(formData));
         localStorage.setItem("username", formData.username);
+        localStorage.setItem("tanggalLahir", formData.tanggalLahir);
         localStorage.setItem("photoProfile", formData.photoProfile);
         localStorage.setItem("no_hp", formData.no_hp);
+        localStorage.setItem("provinsi", formData.provinsi);
+        localStorage.setItem("kotakabupaten", formData.kotakabupaten);
+        localStorage.setItem("kecamatan", formData.kecamatan);
+        localStorage.setItem("kelurahanDesa", formData.kelurahanDesa);
+        localStorage.setItem("jalan", formData.jalan);
+        localStorage.setItem("RtRw", formData.RtRw);
 
         router.push("/profile");
       } else {
@@ -140,23 +169,25 @@ const Edit = () => {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-white">
       <Sidebar />
       <div
-        className="flex-1 bg-cover bg-center"
-        style={{ backgroundImage: "url('/img/bg.jpg')", height: "160vh" }}
+      // className="flex-1 bg-cover bg-center"
+      // style={{ backgroundImage: "url('/img/bg.jpg')", height: "160vh" }}
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-          <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
+          <div className="bg-white p-16 rounded-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
             <div className="flex justify-center -translate-y-[10%]">
               <Image
-                src={formData.photoProfile}
+                src={formData.photoProfile || "/img/default-avatar.png"} // Jika tidak ada gambar, gunakan default avatar
                 width={200}
                 height={200}
                 alt="Profile Picture"
                 className="rounded-full cursor-pointer"
                 onClick={handleavatarClick}
+                unoptimized // Menghindari optimisasi yang mungkin menyebabkan masalah pada data URL
               />
+
               <input
                 type="file"
                 name="photoProfile"
@@ -169,6 +200,7 @@ const Edit = () => {
 
             {/* Input fields for user data */}
             <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Nama Penggunaa:</span>
               <span className="pl-4">Nama Pengguna:</span>
               <input
                 type="text"
@@ -192,8 +224,8 @@ const Edit = () => {
               <span className="pl-4">Tanggal Lahir:</span>
               <input
                 type="date"
-                name="birthday"
-                defaultValue={formData.birthday}
+                name="tanggalLahir"
+                defaultValue={formData.tanggalLahir}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -208,15 +240,17 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
             </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
+
+            {/* <div className="text-[#A9A7A7] text-[18px] pb-4">
+>>>>>>> 7f414a6b07d4e513fc4cb820ab9f17dbd8fde0ca
               <span className="pl-4">Alamat:</span>
               <textarea
                 name="alamat"
                 defaultValue={formData.alamat}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-              />
-            </div>
+
+              /> */}
 
             <div className="grid grid-cols-3">
               <div className="flex justify-end mt-[20%]">

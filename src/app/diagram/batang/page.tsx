@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
+const dataBulan = [
   {
     name: "Januari",
     uv: 4000,
@@ -66,7 +66,7 @@ export default class Example extends PureComponent {
         <BarChart
           width={500}
           height={500}
-          data={data}
+          data={dataBulan}
           margin={{
             top: 20,
             right: 40,

@@ -23,15 +23,13 @@ const page = ({
               Di Edukasi dasar merawat keindahan
             </h1>
             <div className="text-center pr-[15%] pl-[15%] text-white text-[22px]">
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim ve
+              <span className="text-white ">
+                Melalui platform web ini, Anda dapat mempelajari berbagai jenis
+                ikan, tumbuhan, dan burung hias, kebutuhan khusus, serta cara
+                merawat mereka dengan baik. Informasi yang diberikan mencakup
+                panduan tentang cara merawat ikan, cara menanam dan merawat
+                tumbuhan hias, hingga tips menjaga kesehatan burung hias agar
+                tetap aktif dan sehat.
               </span>
             </div>
           </div>
@@ -46,7 +44,7 @@ const page = ({
                   height={434}
                   alt="bunga"
                 />
-                <h1 className="text-[40px] text-[#3F9272] font-bold text-end pl-[7.5%] pt-6">
+                <h1 className="text-[40px] text-[#0a0e0c] font-bold text-end pl-[7.5%] pt-6">
                   Edukasi Tanaman Hias
                 </h1>
               </div>
@@ -66,7 +64,7 @@ const page = ({
                 </Link>
               </div>
             </div>
-            <div className="bg-white w-[80%] h-[338px] mx-auto mt-9  shadow-[3px_5px_4px] shadow-[#0000002e]">
+            <div className="bg-white w-[80%] h-[338px] mx-auto mt-9 shadow-[3px_5px_4px] shadow-[#0000002e]">
               <div className="flex">
                 <Image
                   src="/img/ikan hias 1.png"

@@ -6,9 +6,14 @@ import Tanamanproduk from '@/app/components/super admin/tanamanproduk';
 import Burungproduk from '@/app/components/super admin/burungproduk';
 import Ikanproduk from '@/app/components/super admin/ikanproduk';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 function Page() {
-  const [activeProduk, setActiveProduk] = useState('Tanaman Hias');  
+  const [activeProduk, setActiveProduk] = useState('Tanaman Hias'); 
+  const router = useRouter();
+  const handleNext = () => {
+    router.push('/Superadmin/Produk/pesanan')
+  }
   return (
     <div className='overflow-x-hidden min-h-screen '>
       <div className='translate-x-64 pt-[2%]'>
@@ -37,7 +42,7 @@ function Page() {
               </button>
           </div>
               <button
-                    onClick={() => setActiveProduk('pesanan')}
+                    onClick={handleNext}
                     className={`text-lg px-3 pt-1 mt-5 ms-[28.5%] text-[#308967] rounded-full`}
                   > Pesanan
                 </button>

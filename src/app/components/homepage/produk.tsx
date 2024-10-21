@@ -1,16 +1,24 @@
 "use client";
 import axios from "axios";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const Produk = () => {
   const [data, setData] = useState<any[]>([]); // State untuk menampung data produk
+
+  const formatHarga = (itung: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(itung);
+  };
 
   useEffect(() => {
     getProduk();
   }, []);
 
   async function getProduk() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getProduk`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string
@@ -26,7 +34,7 @@ const Produk = () => {
   console.log(data);
   return (
     // bg-[#D9FFF0]
-    <div className="flex flex-col min-h-[80%] bg-slate-300">
+    <div className="flex flex-col min-h-[80%] bg-[#DBFFF6]">
       <div className="bg-white my-[69px] mx-[98px] h-[800px] shadow-[12px_12px_15px] shadow-[#0000002e]">
         <div className="font-bold inline-block p-1 mt-[43px] ms-[50px]">
           <span className="text-[#308967] text-[40px]">Produk </span>
@@ -39,11 +47,11 @@ const Produk = () => {
               key={item.id}
             >
               <a href="#">
-                <img
+                <Image
                   className="mx-auto mt-5 h-[65%] w-[85%]"
                   alt="Produk Gambar"
                   src={
-                    "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
+                    "https://74gslzvj-8000.asse.devtunnels.ms" +
                     item.foto_produk
                   }
                 />
@@ -54,7 +62,7 @@ const Produk = () => {
                 </h5>
                 <div className="flex items-center justify-between mt-auto">
                   <span className="text-xl font-bold text-[#FF0A0A]">
-                    Rp {item.harga}
+                    Rp {formatHarga(item.harga)}
                   </span>
                 </div>
               </div>

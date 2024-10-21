@@ -28,12 +28,16 @@ function Edukasi() {
               className="pb-8 pt-6"
             />
             <div className="flex flex-col">
-              <span className="pl-4 pt-[13px] text-[32px] text-white font-bold cursor-pointer">
+              <span className="pl-4 pt-4 text-[32px] text-white font-bold">
                 Tanaman Hias
               </span>
               <span className="pl-5 text-[#CCFFEB] text-[20px] ">
                 tips and trick merawat.....
-                <span className="text-white text-2xl">Baca selengkapnya</span>
+                <Link href="/Edukasi/Tanaman">
+                  <span className="text-white text-2xl cursor-pointer">
+                    Baca selengkapnya
+                  </span>
+                </Link>
               </span>
             </div>
           </div>
@@ -46,12 +50,16 @@ function Edukasi() {
               className="pt-6 pb-8"
             />
             <div className="flex flex-col">
-              <span className="pl-4 pt-4 text-[32px] text-white font-bold cursor-pointer">
+              <span className="pl-4 pt-4 text-[32px] text-white font-bold">
                 Ikan Hias
               </span>
               <span className="pl-5 text-[#CCFFEB] text-[20px] ">
                 tips and trick merawat.....
-                <span className="text-white text-2xl">Baca selengkapnya</span>
+                <Link href="/Edukasi/Ikan">
+                  <span className="text-white text-2xl cursor-pointer">
+                    Baca selengkapnya
+                  </span>
+                </Link>
               </span>
             </div>
           </div>
@@ -64,13 +72,15 @@ function Edukasi() {
               className="pt-6 pb-8"
             />
             <div className="flex flex-col">
-              <span className="pl-4 text-[32px] text-white font-bold cursor-pointer pt-6">
+              <span className="pl-4 text-[32px] text-white font-bold pt-6">
                 Burung Hias
               </span>
               <span className="pl-5 text-[#CCFFEB] text-[20px] ">
                 tips and trick merawat.....
-                <Link href="/Edukasi">
-                  <span className="text-white text-2xl">Baca selengkapnya</span>
+                <Link href="/Edukasi/Burung">
+                  <span className="text-white text-2xl cursor-pointer">
+                    Baca selengkapnya
+                  </span>
                 </Link>
               </span>
             </div>

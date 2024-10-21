@@ -3,6 +3,7 @@ import { Josefin_Sans as JosefinSans } from "next/font/google";
 import { usePathname } from "next/navigation";
 import Navbar from "./homepage/navbar";
 import SidebarSp from "./super admin/sidebar1";
+import path from "node:path/win32";
 
 const josefinSans = JosefinSans({ subsets: ["latin"] });
 
@@ -18,7 +19,16 @@ const disableNavbar = [
   "/Superadmin/Akun",
   "/Superadmin/Statistik",
   "/Superadmin/Forum",
-  "/Superadmin/Produk/tambah"
+  "/Superadmin/Produk/tambah",
+  // "/Superadmin/Produk/edit",
+  // "/Superadmin/Produk/edit/${id}",
+  "/Superadmin/Produk/pesanan/detail",
+  "/Superadmin/Produk/pesanan",
+  "/Superadmin/Produk/pesanan/daftar",
+  "/Superadmin/Produk/pesanan/detail",
+  "/Superadmin/Produk/pesanan/daftar/detail",
+  "/Superadmin/Forum/detailreportUlasan",
+  "/Superadmin/Forum/ReportUlasan2",
 ];
 const superNavbar = [
   "/Superadmin",
@@ -26,8 +36,12 @@ const superNavbar = [
   "/Superadmin/Akun",
   "/Superadmin/Statistik",
   "/Superadmin/Forum",
-  "/Superadmin/Produk/tambah"
-]
+  "/Superadmin/Forum/detailreportUlasan",
+  "/Superadmin/Forum/ReportUlasan2",
+  "/Superadmin/Produk/tambah",
+  "/Superadmin/Produk/pesanan",
+  "/Superadmin/Produk/pesanan/daftar",
+];
 
 export default function RootLayoutClient({
   children,
@@ -35,8 +49,13 @@ export default function RootLayoutClient({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const isNavbarDisabled = disableNavbar.includes(pathname);
-  const isSuperNavbar = superNavbar.includes(pathname);
+  const isNavbarDisabled =
+    disableNavbar.includes(pathname) ||
+    pathname.startsWith("/Superadmin/Produk/edit/") ||
+    pathname.startsWith("/Superadmin/Akun/Detail/");
+  const isSuperNavbar =
+    superNavbar.includes(pathname) ||
+    pathname.startsWith("/Superadmin/Akun/Detail/");
   return (
     <div className={josefinSans.className}>
       {!isNavbarDisabled && <Navbar />}

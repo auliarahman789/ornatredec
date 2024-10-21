@@ -6,6 +6,9 @@ import messageIcon from "../../../../public/icon/Message_alt_fill.svg";
 import passwordIcon from "../../../../public/icon/Lock_alt_fill.svg";
 import phoneIcon from "../../../../public/icon/Phone_fill.svg";
 import axios from "axios";
+import Loading from "./loading";
+import LoadingRegis from "./loadingRegis";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = ({
   isAnimated,
@@ -18,10 +21,15 @@ const Register = ({
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleClickShow = () => {
+    setShow(!show)
+  }
   async function buatAkun() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/register`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/register`;
     try {
+      setIsLoading(true);
       const res = await axios.post(
         url,
         {
@@ -50,7 +58,9 @@ const Register = ({
       setPhone("");
       setPassword("");
       setIsAnimated(!isAnimated);
+     setIsLoading(false);
     } catch (error: any) {
+      setIsLoading(false);
       console.log(error);
       alert("Terjadi kesalahan saat membuat akun.");
     }
@@ -102,10 +112,11 @@ const Register = ({
             </div>
             <div className="relative">
               <input
-                type="password"
+                type={ show ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 name="password"
+                maxLength={15}
                 placeholder="Password"
                 className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
@@ -117,6 +128,7 @@ const Register = ({
                 height={27}
                 className="absolute top-1/2 left-4 -translate-y-1/2"
               />
+               <p className="text-[#3F9272] absolute top-[18px] right-4" onClick={handleClickShow}>{ show ? <FaEye className="w-[22px] h-[22px]"/> : <FaEyeSlash className="w-[22px] h-[22px]" /> }</p>
             </div>
             <div className="relative">
               <input
@@ -124,6 +136,7 @@ const Register = ({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 name="telephone"
+                maxLength={13}
                 placeholder="No Telephone"
                 className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
@@ -138,11 +151,13 @@ const Register = ({
             </div>
             <button
               type="submit"
+              disabled={isLoading}
               onClick={buatAkun}
               className="bg-[#3F9272] text-sm text-white px-12 py-[10px] mt-[30px] rounded-full"
             >
-              Buat
+              {isLoading ? 'Loading...' : 'Buat'} 
             </button>
+            {isLoading && <LoadingRegis />}
           </div>
         </div>
       </div>

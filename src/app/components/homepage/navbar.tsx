@@ -3,40 +3,67 @@ import Image from "next/image";
 import logo from "../../../../public/icon/logo.svg";
 import defaultAvatar from "../../../../public/img/default-avatar.png";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import axios from "axios"; // Import axios untuk request API
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState<string>(defaultAvatar.src); // Ubah tipe state menjadi string
+  const pathname = usePathname();
+
+  // Fungsi untuk mengambil data pengguna terbaru dari server
+  const fetchUserData = async () => {
+    try {
+      const token = localStorage.getItem("token"); // Ambil token dari localStorage
+      if (!token) {
+        setIsLoggedIn(false);
+        return;
+      }
+
+      // Panggil API untuk mengambil data pengguna
+      const response = await axios.get("/api/user/me", {
+        headers: {
+          Authorization: `Bearer ${token}`, // Kirim token dalam header
+        },
+      });
+
+      const user = response.data;
+
+      if (user) {
+        setIsLoggedIn(true); // Update status login
+        setUsername(user.username); // Update username dengan data terbaru
+        setAvatar(user.avatar || defaultAvatar.src); // Update avatar jika ada, jika tidak gunakan default
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      setIsLoggedIn(false); // Jika ada error, anggap belum login
+    }
+  };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const savedUsername = localStorage.getItem("username");
-    const savedAvatar = localStorage.getItem("avatar");
+    fetchUserData(); // Panggil API saat komponen di-mount untuk mendapatkan data terbaru
 
-    if (token && savedUsername) {
-      setIsLoggedIn(true);
-      setUsername(savedUsername);
-      setAvatar(savedAvatar || defaultAvatar.src); // Gunakan src dari defaultAvatar
-    }
-
+    // Event listener untuk perubahan localStorage, jika misalnya user login/logout
     const handleStorageChange = () => {
-      const updatedUsername = localStorage.getItem("username");
-      const updatedAvatar = localStorage.getItem("avatar");
-      if (updatedUsername) {
-        setUsername(updatedUsername);
-      }
-      if (updatedAvatar) {
-        setAvatar(updatedAvatar); // Tetap sebagai string
-      }
+      fetchUserData(); // Panggil ulang data user jika ada perubahan
     };
 
     window.addEventListener("storage", handleStorageChange);
 
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("storage", handleStorageChange); // Bersihkan listener saat komponen di-unmount
     };
-  }, []);
+  }, []); // Hanya panggil sekali saat komponen pertama kali dimuat
+
+  // Fungsi untuk logout, membersihkan token dan data pengguna
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("avatar");
+    setIsLoggedIn(false); // Update state menjadi belum login
+    window.location.reload(); // Reload halaman untuk memastikan state navbar ter-reset
+  };
 
   return (
     <div>
@@ -45,38 +72,76 @@ function Navbar() {
           <Image src={logo} alt="Logo" width={95} height={95} />
         </div>
 
-        <div className="flex-1 flex justify-center text-[#308967]">
+        <div className="flex-1 flex justify-center">
           <ul className="flex space-x-10 text-[18px]">
             <Link href="/">
-              <li>Home</li>
+              <li
+                className={`${
+                  pathname === "/" ? "text-[#27BFB6]" : "text-[#308967]"
+                }`}
+              >
+                Home
+              </li>
             </Link>
-            <Link href="">
-              <li>Forum</li>
+            <Link href="/Forum">
+              <li
+                className={`${
+                  pathname === "/Forum" ? "text-[#27BFB6]" : "text-[#308967]"
+                }`}
+              >
+                Forum
+              </li>
             </Link>
             <Link href="/Produk">
-              <li>Produk</li>
+              <li
+                className={`${
+                  pathname === "/Produk" ? "text-[#27BFB6]" : "text-[#308967]"
+                }`}
+              >
+                Produk
+              </li>
             </Link>
             <Link href="/Edukasi">
-              <li>Edukasi</li>
+              <li
+                className={`${
+                  pathname === "/Edukasi" ? "text-[#27BFB6]" : "text-[#308967]"
+                }`}
+              >
+                Edukasi
+              </li>
             </Link>
             <Link href="/About">
-              <li>About</li>
+              <li
+                className={`${
+                  pathname === "/About" ? "text-[#27BFB6]" : "text-[#308967]"
+                }`}
+              >
+                About
+              </li>
             </Link>
           </ul>
         </div>
 
         <div className="flex items-center space-x-3">
           {isLoggedIn ? (
-            <Link href="/profile" className="flex items-center">
-              <Image
-                src={avatar} // Tetap gunakan avatar sebagai string
-                alt="Profile Avatar"
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
-              <span className="text-[#308967] ml-2">{username}</span>
-            </Link>
+            <>
+              <Link href="/profile" className="flex items-center">
+                <Image
+                  src={avatar} // Tetap gunakan avatar sebagai string
+                  alt="Profile Avatar"
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+                <span className="text-[#308967] ml-2">{username}</span>
+              </Link>
+              <button
+                className="text-red-500 bg-white border border-red-500 rounded-lg py-1 px-4 ml-4"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <div>
               <Link href="/auths">

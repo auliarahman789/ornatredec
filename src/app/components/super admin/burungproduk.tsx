@@ -1,24 +1,37 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+"use client";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 const Burungproduk = () => {
   const [data, setData] = useState<any[]>([]);
-
+  const formatHarga = (itung: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(itung);
+  };
   useEffect(() => {
     getBurung();
   }, []);
 
+  const router = useRouter();
+  const handleEdit = () => {
+    router.push("/Superadmin/Produk/edit");
+  };
   async function getBurung() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterKategori?kategori=burung`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet?kategori=burung`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
       });
-      setData(res.data); 
+      setData(res.data);
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
-      alert('Terjadi kesalahan saat mengambil data produk tanaman.');
+      alert("Terjadi kesalahan saat mengambil data produk burung.");
     }
   }
 
@@ -35,8 +48,7 @@ const Burungproduk = () => {
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
                 src={
-                  "https://74gslzvj-8000.asse.devtunnels.ms/uploads/" +
-                  item.foto_produk
+                  "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
                 }
               />
             </a>
@@ -46,9 +58,19 @@ const Burungproduk = () => {
               </h5>
               <div className="flex items-center justify-between mt-auto">
                 <span className="text-sm font-bold text-[#FF0A0A]">
-                  Rp {item.harga}
+                  {formatHarga(item.harga)}
                 </span>
               </div>
+            </div>
+            <div className="relative">
+              <Image
+                className="absolute top-[98%%] left-[90%]"
+                src="edit"
+                width={25}
+                height={25}
+                alt="edit"
+                onClick={handleEdit}
+              />
             </div>
           </div>
         ))}
