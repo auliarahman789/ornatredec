@@ -11,7 +11,7 @@ interface UserData {
   email: string;
   tanggalLahir: any;
   no_hp: string;
-  // alamat: string;
+  alamat: string;
   photoProfile: any;
   provinsi: string;
   kotakabupaten: string;
@@ -27,7 +27,7 @@ const Edit = () => {
     email: "",
     tanggalLahir: "",
     no_hp: "",
-    // alamat: "",
+    alamat: "",
     photoProfile: "/img/default-avatar.png", // Gambar default
     provinsi: "",
     kotakabupaten: "",
@@ -60,10 +60,10 @@ const Edit = () => {
         withCredentials: true,
       });
 
-      console.log(res.data);
+      console.log("AA", res.data);
       setUserData(res.data.user); // Simpan data yang diterima ke dalam state
     } catch (error: any) {
-      console.log(error);
+      console.log("AAA", error);
     }
   }
 
@@ -116,7 +116,7 @@ const Edit = () => {
       formData2.append("email", formData.email);
       formData2.append("tanggalLahir", formData.tanggalLahir);
       formData2.append("no_hp", formData.no_hp);
-      // formData2.append("alamat", formData.alamat);
+      formData2.append("alamat", formData.alamat);
       formData2.append("photoProfile", formData.photoProfile);
       formData2.append("provinsi", formData.provinsi);
       formData2.append("kotakabupaten", formData.kotakabupaten);
@@ -200,6 +200,7 @@ const Edit = () => {
 
             {/* Input fields for user data */}
             <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Nama Penggunaa:</span>
               <span className="pl-4">Nama Pengguna:</span>
               <input
                 type="text"
@@ -240,13 +241,18 @@ const Edit = () => {
               />
             </div>
              {/* <div className="text-[#A9A7A7] text-[18px] pb-4">
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
               <span className="pl-4">Alamat:</span>
               <textarea
                 name="alamat"
                 defaultValue={formData.alamat}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+
               /> */}
+
+              
+            </div>
 
             <div className="grid grid-cols-3">
               <div className="flex justify-end mt-[20%]">
@@ -270,7 +276,7 @@ const Edit = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 

@@ -15,8 +15,8 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
   const handleClickShow = () => {
-    setShow(!show)
-  }
+    setShow(!show);
+  };
   async function login(e: React.FormEvent) {
     e.preventDefault(); // Mencegah reload saat kirim
     const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/login`;
@@ -33,6 +33,7 @@ const Login = () => {
       // localStorage.setItem("token", res.data.token); // Menyimpan token
       localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
       const userRole = res.data.user.role; // Simpan role dari response
+
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
 
@@ -46,10 +47,9 @@ const Login = () => {
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
+
       console.log(error);
-      alert(
-        "Terjadi kesalahan saat login. Silakan periksa username dan password."
-      );
+      alert(error);
     }
   }
 
@@ -79,7 +79,7 @@ const Login = () => {
             </div>
             <div className="relative">
               <input
-                type={ show ? "text" : "password"}
+                type={show ? "text" : "password"}
                 name="password"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
@@ -92,7 +92,16 @@ const Login = () => {
                 height={27}
                 className="absolute top-1/2  mt-3 left-4 -translate-y-1/2"
               />
-              <p className="text-[#3F9272] absolute right-4  top-1/2" onClick={handleClickShow}>{ show ? <FaEye className="w-[22px] h-[22px]"/> : <FaEyeSlash className="w-[22px] h-[22px]" /> }</p>
+              <p
+                className="text-[#3F9272] absolute right-4  top-1/2"
+                onClick={handleClickShow}
+              >
+                {show ? (
+                  <FaEye className="w-[22px] h-[22px]" />
+                ) : (
+                  <FaEyeSlash className="w-[22px] h-[22px]" />
+                )}
+              </p>
             </div>
             <button
               disabled={isLoading}
