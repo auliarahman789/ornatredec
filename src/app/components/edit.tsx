@@ -240,15 +240,17 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
             </div>
-            <div className="text-[#A9A7A7] text-[18px] pb-4">
+
+            {/* <div className="text-[#A9A7A7] text-[18px] pb-4">
+>>>>>>> 7f414a6b07d4e513fc4cb820ab9f17dbd8fde0ca
               <span className="pl-4">Alamat:</span>
               <textarea
                 name="alamat"
                 defaultValue={formData.alamat}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-              />
-            </div>
+
+              /> */}
 
             <div className="grid grid-cols-3">
               <div className="flex justify-end mt-[20%]">

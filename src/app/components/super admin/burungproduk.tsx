@@ -1,9 +1,10 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+
+import { useRouter } from "next/router";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import edit from "../edit";
+
 const Burungproduk = () => {
   const [data, setData] = useState<any[]>([]);
   const formatHarga = (itung: number) => {

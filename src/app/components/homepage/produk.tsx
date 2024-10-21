@@ -50,7 +50,10 @@ const Produk = () => {
                 <Image
                   className="mx-auto mt-5 h-[65%] w-[85%]"
                   alt="Produk Gambar"
-                  src={"${process.env.NEXT_PUBLIC_URL}" + item.foto_produk}
+                  src={
+                    "https://74gslzvj-8000.asse.devtunnels.ms" +
+                    item.foto_produk
+                  }
                 />
               </a>
               <div className="px-4 py-2">
