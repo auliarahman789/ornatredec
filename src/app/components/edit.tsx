@@ -262,7 +262,6 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
             </div>
-             {/* <div className="text-[#A9A7A7] text-[18px] pb-4">
             <div className="text-[#A9A7A7] text-[18px] pb-4">
               <span className="pl-4">Alamat:</span>
               <textarea
@@ -270,10 +269,7 @@ const Edit = () => {
                 defaultValue={formData.alamat}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
-
-              /> */}
-
-              
+              />
             </div>
 
             <div className="grid grid-cols-3">
@@ -298,7 +294,7 @@ const Edit = () => {
           </div>
         </div>
       </div>
-    
+    </div>
   );
 };
 

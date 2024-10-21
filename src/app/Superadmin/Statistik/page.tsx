@@ -4,7 +4,10 @@ import BarKecilStatistik from "@/app/diagram/BarKecilStatistik/page";
 import DiagramBarStatistik from "@/app/diagram/BarStatistik/page";
 import { PieChartStatistik } from "@/app/diagram/lingkaran2Statistik/lingkaran";
 import ForumStatistik from "@/app/diagram/lingkaranforumstatistik/page";
+import Tranding from "../../../../public/icon/arrowTranding.svg";
+import Image from "next/image";
 import React from "react";
+import Trending from "@/app/components/super admin/statistik/card";
 
 function Page() {
   return (
@@ -133,7 +136,25 @@ function Page() {
             <BarBesarForumStatistik />
           </div>
         </div>
-        <div className="col-span-1 bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl h-[338px]"></div>
+
+        <div className="col-span-1 bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl h-[491px]">
+          <div className="flex space-x-14">
+            <div className="text-white mt-[6%] ms-[8%] text-[22px]">
+              Ulasan terpopular
+            </div>
+            <div className="border-r-2 bg-[#308967] h-[47px] mt-5"></div>
+            <>
+              <Image
+                src={Tranding}
+                alt={"profile"}
+                className="w-[12%] h-[12%] mt-[3.5%]"
+              />
+            </>
+          </div>
+          <div className="mt-2 text-white">
+            <Trending />
+          </div>
+        </div>
       </div>
     </div>
   );

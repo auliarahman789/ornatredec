@@ -86,6 +86,7 @@ const Burung = () => {
           filteredData.length === 0 ? "bg-transparent" : "bg-[#EBFFF8]"
         }`}
         ref={productRef} // Attach ref here
+
       ></div>
 
       {filteredData.length > 0 ? (
@@ -109,9 +110,34 @@ const Burung = () => {
                 <span className="text-xl font-bold text-[#FF0A0A]">
                   Rp. {item.harga}
                 </span>
+
+      
+        {filteredData.length > 0 ? (
+          filteredData.map((item: any) => (
+            <div
+              className="w-[239px] h-[319px] rounded-3xl bg-white shadow-[2px_8px_10px] shadow-[#0000002e]"
+              key={item.id}
+            >
+              <a href="#">
+                <img
+                  className="mx-auto mt-5 h-[70%] w-[150%]"
+                  alt="Produk Gambar"
+                  src={`https://74gslzvj-8000.asse.devtunnels.ms${item.foto_produk}`}
+                />
+              </a>
+              <div className="px-4 py-2">
+                <h5 className="text-lg font-semibold text-black">
+                  {item.judul_produk}
+                </h5>
+                <div className="flex items-center justify-between mt-auto">
+                  <span className="text-xl font-bold text-[#FF0A0A]">
+                    Rp. {item.harga}
+                  </span>
+                </div>
+
               </div>
             </div>
-          </div>
+          
         ))
       ) : (
         <div className="col-span-4 text-center text-3xl -translate-y-[1200%] text-[#308967]">

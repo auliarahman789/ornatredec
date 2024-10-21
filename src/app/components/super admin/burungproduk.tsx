@@ -1,8 +1,10 @@
 "use client";
 import axios from "axios";
+
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+
 import edit from "../edit";
 
 const Burungproduk = () => {
@@ -44,7 +46,7 @@ const Burungproduk = () => {
             key={item.id}
           >
             <a href="#">
-              <Image
+              <img
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
                 src={
