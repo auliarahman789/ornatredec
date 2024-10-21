@@ -5,8 +5,6 @@ import Sidebar from "./sidebar";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-import Image from "next/image";
-
 interface UserData {
   username: string;
   email: string;
@@ -44,7 +42,7 @@ const Profile = () => {
   }, []);
 
   async function getUser() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getMe`;
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
     try {
       const res = await axios.get(url, { withCredentials: true });
       console.log("Data pengguna:", res.data); // Log data pengguna

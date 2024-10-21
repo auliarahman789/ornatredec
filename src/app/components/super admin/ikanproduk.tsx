@@ -36,6 +36,8 @@ const Ikanproduk = () => {
   }
 
   return (
+    <div className="pt-14 px-7">
+<<<<<<<<< Temporary merge branch 1
     <div className="grid grid-cols-5 gap-5">
       {data.map((item: any) => (
         <div

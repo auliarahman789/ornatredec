@@ -92,7 +92,13 @@ const Sidebar = () => {
                   />
                   <span
                     className={`ml-8 hover:text-[#167960] ${
+<<<<<<<<< Temporary merge branch 1
+                      pathname === "/profile"
+                        ? 'active'
+                        : ""
+=========
                       pathname === "/profile" ? "active" : ""
+>>>>>>>>> Temporary merge branch 2
                     }`}
                   >
                     Profil
@@ -111,7 +117,13 @@ const Sidebar = () => {
                   />
                   <span
                     className={`ml-8 hover:text-[#167960] ${
+<<<<<<<<< Temporary merge branch 1
+                      pathname === "/profile/riwayat"
+                        ? "active"
+                        : ""
+=========
                       pathname === "/profile/riwayat" ? "active" : ""
+>>>>>>>>> Temporary merge branch 2
                     }`}
                   >
                     Riwayat
@@ -131,7 +143,13 @@ const Sidebar = () => {
                     />
                     <span
                       className={`ml-8 hover:text-[#167960] ${
+<<<<<<<<< Temporary merge branch 1
+                        pathname === "/profile/edit"
+                          ? "active"
+                          : ""
+=========
                         pathname === "/profile/edit" ? "active" : ""
+>>>>>>>>> Temporary merge branch 2
                       }`}
                     >
                       Edit Profil
@@ -154,7 +172,13 @@ const Sidebar = () => {
                   />
                   <span
                     className={`ml-8 hover:text-[#167960] ${
+<<<<<<<<< Temporary merge branch 1
+                      pathname === "/profile/logout"
+                        ? "active"
+                        : ""
+=========
                       pathname === "/profile/logout" ? "active" : ""
+>>>>>>>>> Temporary merge branch 2
                     }`}
                   >
                     Logout
@@ -174,7 +198,13 @@ const Sidebar = () => {
                     />
                     <span
                       className={`ml-8 hover:text-[#167960] ${
+<<<<<<<<< Temporary merge branch 1
+                        pathname === "/profile/kembali"
+                          ? "active"
+                          : ""
+=========
                         pathname === "/profile/kembali" ? "active" : ""
+>>>>>>>>> Temporary merge branch 2
                       }`}
                     >
                       Kembali
