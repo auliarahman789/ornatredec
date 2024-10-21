@@ -95,7 +95,6 @@ const Sidebar = () => {
                       pathname === "/profile"
                         ? 'active'
                         : ""
-                      pathname === "/profile" ? "active" : ""
                     }`}
                   >
                     Profil
@@ -117,7 +116,6 @@ const Sidebar = () => {
                       pathname === "/profile/riwayat"
                         ? "active"
                         : ""
-                      pathname === "/profile/riwayat" ? "active" : ""
                     }`}
                   >
                     Riwayat
@@ -140,8 +138,6 @@ const Sidebar = () => {
                         pathname === "/profile/edit"
                           ? "active"
                           : ""
-
-                        pathname === "/profile/edit" ? "active" : ""
                       }`}
                     >
                       Edit Profil
@@ -164,12 +160,9 @@ const Sidebar = () => {
                   />
                   <span
                     className={`ml-8 hover:text-[#167960] ${
-
                       pathname === "/profile/logout"
                         ? "active"
                         : ""
-
-                      pathname === "/profile/logout" ? "active" : ""
                     }`}
                   >
                     Logout
@@ -189,13 +182,9 @@ const Sidebar = () => {
                     />
                     <span
                       className={`ml-8 hover:text-[#167960] ${
-
                         pathname === "/profile/kembali"
                           ? "active"
                           : ""
-
-                        pathname === "/profile/kembali" ? "active" : ""
-
                       }`}
                     >
                       Kembali
