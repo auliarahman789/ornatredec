@@ -19,7 +19,7 @@ const Login = () => {
   };
   async function login(e: React.FormEvent) {
     e.preventDefault(); // Mencegah reload saat kirim
-    const url = `${process.env.NEXT_PUBLIC_URL}api/login`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/login`;
 
     try {
       setIsLoading(true);
