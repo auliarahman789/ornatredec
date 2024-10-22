@@ -1,13 +1,46 @@
 "use client";
-import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-function Page() {
+const Page = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState({
+    totalProdukTanaman: 10,
+    totalProdukBurung: 5,
+    totalProdukIkan: 15,
+  });
+
+  // Simulasi pengambilan data
+  useEffect(() => {
+    const fetchData = () => {
+      // Simulasi loading
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000); // misalnya 2 detik untuk loading
+    };
+
+    fetchData();
+  }, []);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  // Jika loading masih true, tampilkan skeleton loading
+  if (loading) {
+    return (
+      <div className="relative ms-[85%] inline-block text-left">
+        <Skeleton
+          height={25}
+          width={100}
+          borderRadius={10}
+          className="rounded-xl mt-3 z-20"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="relative ms-[85%] inline-block text-left">
@@ -46,29 +79,24 @@ function Page() {
           aria-labelledby="menu-button"
         >
           <div className="py-1" role="none">
-            <Link
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700"
-              role="menuitem"
-              id="menu-item-0"
-            >
-              Produk
-            </Link>
+            <p className="block px-4 py-2 text-sm text-gray-700">
+              Produk Tanaman: {data.totalProdukTanaman}
+            </p>
           </div>
           <div className="py-1" role="none">
-            <Link
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700"
-              role="menuitem"
-              id="menu-item-2"
-            >
-              User Forum
-            </Link>
+            <p className="block px-4 py-2 text-sm text-gray-700">
+              Produk Burung: {data.totalProdukBurung}
+            </p>
+          </div>
+          <div className="py-1" role="none">
+            <p className="block px-4 py-2 text-sm text-gray-700">
+              Produk Ikan: {data.totalProdukIkan}
+            </p>
           </div>
         </div>
       )}
     </div>
   );
-}
+};
 
 export default Page;

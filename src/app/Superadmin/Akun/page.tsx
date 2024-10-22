@@ -36,7 +36,7 @@ function Page() {
       </div>
           <div className='pb-24'>
           <div className='translate-x-[18%] mt-[2%]'>
-              {active === 'data pengguna' && <Data /> || `/Superadmin/Akun/Detail/${id}`}
+              {active === 'data pengguna' && <Data />}
             </div>
 
             <div className='w-[42%] mx-[18%] translate-x-64 mt-[6%]'>

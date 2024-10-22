@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React, { useEffect, useState } from "react";
@@ -55,9 +55,7 @@ const Carausel1: NextPage = () => {
         {shuffledKeys.map((key) => (
           <div key={key} className="mt-[12%] mx-[6%]">
             <Image
-
               className={`w-[75%] h-[400px] ${key === "2" ? "mt-10 ms-5" : ""}`} // Menambahkan class 'custom-class' hanya pada gambar ke-14
-
               src={imageMap[key]}
               alt="Gambar Acak"
               width={1000}

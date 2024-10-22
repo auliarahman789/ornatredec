@@ -53,7 +53,7 @@ const Edit = () => {
   }, []);
 
   async function getUser() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/getMe`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getMe`;
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string
@@ -88,6 +88,28 @@ const Edit = () => {
     }
     console.log(e.target.files);
   };
+  // const handleInputImage = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   console.log("Selected file:", file); // Periksa apakah file sudah dipilih
+  // const handleInputImage = (e: any) => {
+  //   const file = e.target.files?.[0]; // Ambil file dari input
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       console.log("File loaded:", reader.result); // Log hasil FileReader
+  //       setFormData((prevData) => ({
+  //         ...prevData,
+  //         photoProfile: reader.result as string, // Simpan hasil ke photoProfile
+  //       }));
+  //     };
+  //     reader.readAsDataURL(file); // Membaca file sebagai Data URL
+  //     setFormData((prevData) => ({
+  //       ...prevData,
+  //       photoProfile: URL.createObjectURL(file), // Ubah file menjadi URL untuk preview
+  //     }));
+  //   }
+  //   console.log(e.target.files);
+  // };
 
   // const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
   //   const file = e.target.files?.[0];
@@ -129,7 +151,7 @@ const Edit = () => {
       const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
 
       const response = await axios.put(
-        `https://74gslzvj-8000.asse.devtunnels.ms/api/update/${userId}`, // Ganti :id dengan userId
+        `${process.env.NEXT_PUBLIC_URL}api/update/${userId}`, // Ganti :id dengan userId
         formData2,
         {
           headers: {
@@ -201,7 +223,7 @@ const Edit = () => {
             {/* Input fields for user data */}
             <div className="text-[#A9A7A7] text-[18px] pb-4">
               <span className="pl-4">Nama Penggunaa:</span>
-              <span className="pl-4">Nama Pengguna:</span>
+
               <input
                 type="text"
                 name="username"

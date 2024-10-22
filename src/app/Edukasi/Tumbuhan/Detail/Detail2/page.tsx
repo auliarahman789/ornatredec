@@ -45,7 +45,6 @@ function page() {
             dan media tanam yang sesuai. Dengan langkah-langkah perawatan yang
             sederhana namun efektif, Anda bisa menjaga tanaman hias tetap segar,
             sehat, dan memancarkan pesona yang luar biasa sepanjang waktu.
-            Dengan langkah-langkah perawatan yang sederhana namun efektif.
           </p>
         </div>
       </div>

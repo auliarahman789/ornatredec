@@ -1,9 +1,9 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
+import edit from "../edit";
 const Burungproduk = () => {
   const [data, setData] = useState<any[]>([]);
   const formatHarga = (itung: number) => {
@@ -18,10 +18,10 @@ const Burungproduk = () => {
 
   const router = useRouter();
   const handleEdit = () => {
-    router.push('/Superadmin/Produk/edit')
-  }
+    router.push("/Superadmin/Produk/edit");
+  };
   async function getBurung() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=burung`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet?kategori=burung`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -43,7 +43,7 @@ const Burungproduk = () => {
             key={item.id}
           >
             <a href="#">
-              <img
+              <Image
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
                 src={
@@ -65,7 +65,15 @@ const Burungproduk = () => {
             <Image className='absolute top-[98%%] left-[90%]' src='edit' width={25} height={25} alt='edit'
             onClick={handleEdit}/>
           </div>
-          </div>
+              <Image
+                className="absolute top-[98%%] left-[90%]"
+                src="edit"
+                width={25}
+                height={25}
+                alt="edit"
+                onClick={handleEdit}
+              />
+            </div>
         ))}
       </div>
     </div>

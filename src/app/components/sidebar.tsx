@@ -28,7 +28,7 @@ const Sidebar = () => {
 
     try {
       const response = await axios.delete(
-        `https://74gslzvj-8000.asse.devtunnels.ms/api/logout`,
+        `${process.env.NEXT_PUBLIC_URL}api/logout`,
         {
           withCredentials: true,
         }
@@ -89,7 +89,7 @@ const Sidebar = () => {
                     width={30}
                     height={30}
                     alt="profil"
-                  />  
+                  />
                   <span
                     className={`ml-8 hover:text-[#167960] ${
                       pathname === "/profile"

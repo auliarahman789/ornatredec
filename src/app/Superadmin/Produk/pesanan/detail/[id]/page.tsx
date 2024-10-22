@@ -1,13 +1,16 @@
+"use client"
 import React from 'react'
-import contoh from '../../../../../../public/img/daun puring 1.png'
+import contoh from '../../../../../../../public/img/daun puring 1.png'
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 function Page() {
     const formatHarga = (itung : number) => {
         return new Intl.NumberFormat('id-ID', {
           style: 'currency',
           currency: 'IDR',
         }).format(itung);
-      };
+    };
+    const { id } = useParams();
   return (
       <div className='overflow-x-hidden'>
           <div className='flex'>

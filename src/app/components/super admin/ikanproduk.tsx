@@ -22,7 +22,7 @@ const Ikanproduk = () => {
     router.push("/Superadmin/Produk/edit");
   };
   async function getIkan() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=ikan`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet?kategori=ikan`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -34,7 +34,7 @@ const Ikanproduk = () => {
       alert("Terjadi kesalahan saat mengambil data produk tanaman.");
     }
   }
-return (
+  return (
     <div className="grid grid-cols-5 gap-5">
       {data.map((item: any) => (
         <div
@@ -42,7 +42,7 @@ return (
           key={item.id}
         >
           <a href="#">
-            <img
+            <Image
               className="mx-auto mt-5 h-[55%] w-[85%]"
               alt="Produk Gambar"
               src={

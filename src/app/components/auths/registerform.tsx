@@ -27,7 +27,7 @@ const Register = ({
     setShow(!show)
   }
   async function buatAkun() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/register`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/register`;
     try {
       setIsLoading(true);
       const res = await axios.post(
@@ -116,6 +116,7 @@ const Register = ({
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 name="password"
+                maxLength={15}
                 placeholder="Password"
                 className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
@@ -135,6 +136,7 @@ const Register = ({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 name="telephone"
+                maxLength={13}
                 placeholder="No Telephone"
                 className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
