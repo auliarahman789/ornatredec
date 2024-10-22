@@ -6,7 +6,7 @@ import SidebarSp from "./super admin/sidebar1";
 import path from "node:path/win32";
 
 const josefinSans = JosefinSans({ subsets: ["latin"] });
-
+      
 const disableNavbar = [
   "/auths",
   "/profile",
@@ -52,7 +52,9 @@ export default function RootLayoutClient({
   const isNavbarDisabled =
     disableNavbar.includes(pathname) ||
     pathname.startsWith("/Superadmin/Produk/edit/") ||
-    pathname.startsWith("/Superadmin/Akun/Detail/");
+    pathname.startsWith("/Superadmin/Akun/Detail/") ||
+    pathname.startsWith("/Superadmin/Produk/pesanan/detail/") || 
+    pathname.startsWith("/Superadmin/Produk/pesanan/daftar/detail/");
   const isSuperNavbar =
     superNavbar.includes(pathname) ||
     pathname.startsWith("/Superadmin/Akun/Detail/");
