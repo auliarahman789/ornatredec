@@ -2,8 +2,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import { useRouter } from "next/router";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import edit from "../edit";
 
 const Burungproduk = () => {
   const [data, setData] = useState<any[]>([]);
@@ -72,6 +73,15 @@ const Burungproduk = () => {
                 onClick={handleEdit}
               />
             </div>
+
+            <Image
+              className="absolute top-[98%%] left-[90%]"
+              src="edit"
+              width={25}
+              height={25}
+              alt="edit"
+              onClick={handleEdit}
+            />
           </div>
         ))}
       </div>

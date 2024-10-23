@@ -35,6 +35,7 @@ const Produk = () => {
       productRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   return (
     <div className="bg-white">
       <div className="pt-1" id="tanaman">
@@ -83,7 +84,7 @@ const Produk = () => {
                 <img
                   className="mx-auto mt-5 h-[65%] w-[85%]"
                   alt="Produk Gambar"
-                  src={`https://74gslzvj-8000.asse.devtunnels.ms${item.foto_produk}`}
+                  src={`https://74gslzvj-8000.asse.devtunnels.ms/uploads/${item.foto_produk}`}
                 />
               </a>
               <div className="px-4 py-2">
