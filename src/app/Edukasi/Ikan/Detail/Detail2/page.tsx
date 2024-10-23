@@ -77,7 +77,7 @@ function page() {
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
+          src="/img/Siapkan Akuarium yang Sesuai.jpg"
           className="rounded-lg"
           alt={"daun"}
           width={400}
@@ -104,7 +104,7 @@ function page() {
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
+          src="/img/Ganti Air Secara Berkala.jpg"
           className="rounded-lg"
           alt={"daun"}
           width={400}

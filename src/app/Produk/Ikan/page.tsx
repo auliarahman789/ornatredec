@@ -110,7 +110,7 @@ const Ikan = () => {
           ))
         ) : (
           <div className="col-span-4 text-center text-3xl -translate-y-[1200%] text-[#308967]">
-            Produk ini tidak tersedia.
+            Maaf,produk ini tidak tersedia.
           </div>
         )}
       </div>
