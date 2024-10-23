@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import Gagal from "@/app/components/gagal";
 
 const Ikan = () => {
   const [data, setData] = useState<any[]>([]);
@@ -100,8 +101,8 @@ const Ikan = () => {
             </div>
           ))
         ) : (
-          <div className="col-span-4 text-center text-3xl -translate-y-[1200%] text-[#308967]">
-            Produk ini tidak tersedia.
+          <div>
+            <Gagal />
           </div>
         )}
       </div>
