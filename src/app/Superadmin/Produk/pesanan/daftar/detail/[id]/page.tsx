@@ -2,12 +2,11 @@
 import React, { useEffect, useState } from 'react'
 import contoh from '../../../../../../../public/img/daun puring 1.png'
 import Image from 'next/image';
-import { useParams , useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import axios from 'axios';
 
-type DetailPesanan = {
-    jumlah: number;
-    status: string;
+type Detaildaftar = {
+        jumlah: number;
         produk: {
             judul_produk: string;
             harga: number;
@@ -22,7 +21,7 @@ type DetailPesanan = {
             kota_kabupaten: string;
             kecamatan: string;
             kelurahan_desa: string;
-    }
+        }
     }
 
 function Page() {
@@ -34,45 +33,26 @@ function Page() {
     };
 
     const { id } = useParams();
-    const [data, setData] = useState<DetailPesanan | null>(null);
+    const [data, setData] = useState<Detaildaftar | null>(null);
 
     useEffect(() => {
-        getDetailPesanan();
+        getDetaildaftar();
     }, []);
 
-    async function getDetailPesanan() {
+    async function getDetaildaftar() {
         const url = `${process.env.NEXT_PUBLIC_URL}api/getDetail/${id}`;
         try {
-            const res = await axios.get<DetailPesanan>(url, {
+            const res = await axios.get<Detaildaftar>(url, {
                 withCredentials: true,
             });
             setData(res.data);
             console.log("data yang diterima: ", res.data);
-            console.log(
-                "status:", res.data.status
-            )
         } catch (error: any) {
             console.log(error);
             alert("Terjadi kesalahan saat mengambil data detail pesanan");
         }
     }
-    const router = useRouter();
-    async function KemasStatus() {
-        const url = `${process.env.NEXT_PUBLIC_URL}api/dipesan/order/${id}`;
-        try {
-            const res = await axios.get(url, {
-                withCredentials: true,
-            });
-            getDetailPesanan();
-            console.log(res.data)
-            alert('pesanan berhasil dikemas')
-            router.push('/Superadmin/Produk/pesanan')
-        } catch (error: any) {
-            console.log(error);
-            alert("Terjadi kesalahan saat mengirim status");
-        }
-    }
-    
+
     return (
         <div className='overflow-x-hidden'>
             <div className='flex'>
@@ -121,17 +101,17 @@ function Page() {
                             </div>
                             <div className='space-y-[1%]'>
                                 <p className="text-[#18856A] text-[15px]">Nama Pembeli</p>
-                                <p className="text-[18px]">{data?.alamat?.nama_penerima}</p>
+                                <p className="text-[18px]">{data.alamat.nama_penerima}</p>
                             </div>
                             <div className='space-y-[1%]'>
                                 <p className="text-[#18856A] text-[15px]">Alamat Pembeli</p>
                                 <p className="text-[#00663F] font-bold text-[16px]">
-                                    {(data?.alamat?.jalan_namagedung) + ' ' +
-                                    (data?.alamat?.rtrw) + ' ' +
-                                    (data?.alamat?.kelurahan_desa) + ' ' +
-                                    (data?.alamat?.kecamatan) + ' ' +
-                                    (data?.alamat?.kota_kabupaten) + ' ' +
-                                    (data?.alamat?.provinsi)}
+                                    {(data.alamat.jalan_namagedung) + ' ' +
+                                    (data.alamat.rtrw) + ' ' +
+                                    (data.alamat.kelurahan_desa) + ' ' +
+                                    (data.alamat.kecamatan) + ' ' +
+                                    (data.alamat.kota_kabupaten) + ' ' +
+                                    (data.alamat.provinsi)}
                                 </p>
                             </div>
                             <div className='space-y-[1%] pt-[10%]'>
@@ -159,8 +139,8 @@ function Page() {
                     </div>
                 }
                 <div className="relative">
-                    <p onClick={KemasStatus} className=' cursor-pointer text-[#00663F] absolute -translate-x-[80%] bottom-10 font-bold'>
-                        Kemas
+                    <p className='text-[#00663F] absolute -translate-x-[80%] bottom-10 font-bold'>
+                        Konfirmasi
                     </p>
                 </div>
             </div>
