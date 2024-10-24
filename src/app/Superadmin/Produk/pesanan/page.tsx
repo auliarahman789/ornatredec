@@ -172,15 +172,15 @@ const Page = () => {
                       item.produk.foto_produk
                         ? "https://74gslzvj-8000.asse.devtunnels.ms" +
                           item.produk.foto_produk
-                        : "/img/default-avatar.png"
+                        : ""
                     }
                     className="rounded-full w-[70px] h-[70px]"
                     height={70}
                     width={70}
                     alt="foto pesanan"
                   />
-                   <div className="flex-col mt-[1%]">
-                    <p className="text-[20px]">{item.produk.judul_produk}</p>
+                   <div className="flex-col w-[12%]  mt-[1%]">
+                    <p className="text-[20px] whitespace-nowrap">{item.produk.judul_produk}</p>
                     <div className="flex space-x-6">
                       <p className="text-[#FF0A0A] font-medium text-[12px]">
                         {formatHarga(item.produk.harga)}

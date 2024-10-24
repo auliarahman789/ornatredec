@@ -58,20 +58,21 @@ function Page() {
     }
     const router = useRouter();
     async function KemasStatus() {
-        const url = `${process.env.NEXT_PUBLIC_URL}api/dipesan/order/${id}`;
+        const url = `${process.env.NEXT_PUBLIC_URL}api/dipesanByid/${id}`;
         try {
             const res = await axios.get(url, {
                 withCredentials: true,
             });
-            getDetailPesanan();
-            console.log(res.data)
-            alert('pesanan berhasil dikemas')
-            router.push('/Superadmin/Produk/pesanan')
+            await getDetailPesanan();  // Pastikan data di-fetch ulang setelah update
+            console.log('Status setelah Kemas:', data?.status); // Log status baru
+            alert('pesanan berhasil dikemas');
+            router.push('/Superadmin/Produk/pesanan');
         } catch (error: any) {
             console.log(error);
             alert("Terjadi kesalahan saat mengirim status");
         }
     }
+    
     
     return (
         <div className='overflow-x-hidden'>

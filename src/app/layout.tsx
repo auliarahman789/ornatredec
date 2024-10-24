@@ -6,7 +6,7 @@ import RootLayout2 from "./components/layout2";
 const josefinSans = JosefinSans({
   subsets: ["latin"],
   weight: "400",
-});
+}); 
 
 export const metadata: Metadata = {
   title: "T-Trana",

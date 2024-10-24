@@ -1,8 +1,8 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
-import { useRouter } from "next/router";
+import edit from "../../../../public/icon/Group 1000004435.svg";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const Burungproduk = () => {
@@ -65,7 +65,7 @@ const Burungproduk = () => {
             <div className="relative">
               <Image
                 className="absolute top-[98%%] left-[90%]"
-                src="edit"
+                src={edit}
                 width={25}
                 height={25}
                 alt="edit"
