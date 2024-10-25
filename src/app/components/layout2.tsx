@@ -6,7 +6,7 @@ import SidebarSp from "./super admin/sidebar1";
 import path from "node:path/win32";
 
 const josefinSans = JosefinSans({ subsets: ["latin"] });
-      
+
 const disableNavbar = [
   "/auths",
   "/profile",
@@ -29,7 +29,7 @@ const disableNavbar = [
   "/Superadmin/Produk/pesanan/detail",
   "/Superadmin/Produk/pesanan/daftar/detail",
   "/Superadmin/Forum/detailreportUlasan",
-  "/Superadmin/Forum/ReportUlasan2",
+  "/Superadmin/Forum/detailreportUlasan/ReportUlasan2",
 ];
 const superNavbar = [
   "/Superadmin",
@@ -54,15 +54,17 @@ export default function RootLayoutClient({
     disableNavbar.includes(pathname) ||
     pathname.startsWith("/Superadmin/Produk/edit/") ||
     pathname.startsWith("/Superadmin/Akun/Detail/") ||
-    pathname.startsWith("/Superadmin/Produk/pesanan/detail/") || 
-    pathname.startsWith("/Superadmin/Produk/pesanan/daftar/detail/");
-  const isSuperNavbar =
+    pathname.startsWith("/Superadmin/Produk/pesanan/detail/") ||
+    pathname.startsWith("/Superadmin/Produk/pesanan/daftar/detail/") ||
+    pathname.startsWith("/Superadmin/Forum/detailreportUlasan/ReportUlasan2/");
+  const isSuperSidebar =
     superNavbar.includes(pathname) ||
-    pathname.startsWith("/Superadmin/Akun/Detail/");
+    pathname.startsWith("/Superadmin/Akun/Detail/") ||
+    pathname.startsWith("/Superadmin/Forum/detailreportUlasan/ReportUlasan2/");
   return (
     <div className={josefinSans.className}>
       {!isNavbarDisabled && <Navbar />}
-      {isSuperNavbar && <SidebarSp />}
+      {isSuperSidebar && <SidebarSp />}
       {children}
     </div>
   );
