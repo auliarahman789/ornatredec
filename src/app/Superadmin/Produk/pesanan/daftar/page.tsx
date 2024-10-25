@@ -162,13 +162,13 @@ function Page() {
               data.map((item) => (
                 <div key={item.id} className="flex space-x-[4.5%]">
                   <img
-                    src={item.produk.foto_produk ? "https://74gslzvj-8000.asse.devtunnels.ms" + item.produk.foto_produk : "/img/default-avatar.png"}
+                    src={item.produk.foto_produk ? "https://74gslzvj-8000.asse.devtunnels.ms" + item.produk.foto_produk : ""}
                     className="rounded-full w-[70px] h-[70px]"
                     height={70}
                     width={70}
                     alt="foto pesanan"
                   />
-                  <div className="flex-col mt-[1%]">
+                  <div className="flex-col mt-[1%] w-[12%]">
                     <p className="text-[20px]">{item.produk.judul_produk}</p>
                     <div className="flex space-x-6">
                       <p className="text-[#FF0A0A] font-medium text-[12px]">
@@ -187,10 +187,9 @@ function Page() {
                   <p className="whitespace-nowrap overflow-x-hidden mt-[2%] max-w-[12%] text-[15px] text-ellipsis">
                     {item.alamat.jalan_namagedung}
                   </p>
-                  <Link href={`/Superadmin/Produk/pesanan/detail/${item.id}`}>
+                  <Link href={`/Superadmin/Produk/pesanan/daftar/detail/${item.id}`}>
                     <button
                       className="bg-gradient-to-b h-6 rounded-full translate-y-7 pt-1 pb-2 px-3 from-[#308967] to-[#06612B] text-white text-[13px]"
-                      onClick={handleDetail}
                     >
                       Lihat
                     </button>

@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from 'react'
 import contoh from '../../../../../../../public/img/daun puring 1.png'
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter} from 'next/navigation';
 import axios from 'axios';
 
 type Detaildaftar = {
-        jumlah: number;
+    jumlah: number;
+    status: string;
         produk: {
             judul_produk: string;
             harga: number;
@@ -39,6 +40,22 @@ function Page() {
         getDetaildaftar();
     }, []);
 
+    const router = useRouter()
+    async function KirimStatus() {
+        const url = `${process.env.NEXT_PUBLIC_URL}api/dipesan/order/${id}`;
+        try {
+            const res = await axios.get(url, {
+                withCredentials: true,
+            });
+            await getDetaildaftar();  // Pastikan data di-fetch ulang setelah update
+            console.log('Status setelah Kemas:', data?.status); // Log status baru
+            alert('pesanan berhasil dikirim');
+            router.push('/Superadmin/Produk/pesanan/daftar');
+        } catch (error: any) {
+            console.log(error);
+            alert("Terjadi kesalahan saat mengirim status");
+        }
+    }
     async function getDetaildaftar() {
         const url = `${process.env.NEXT_PUBLIC_URL}api/getDetail/${id}`;
         try {
@@ -139,7 +156,7 @@ function Page() {
                     </div>
                 }
                 <div className="relative">
-                    <p className='text-[#00663F] absolute -translate-x-[80%] bottom-10 font-bold'>
+                    <p onClick={KirimStatus} className='text-[#00663F] absolute -translate-x-[80%] bottom-10 font-bold'>
                         Konfirmasi
                     </p>
                 </div>
