@@ -1,41 +1,33 @@
 "use client";
+
 import Link from "next/link";
-import Image from "next/image";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Gagal from "../components/gagal";
+
 const Produk = () => {
-  const [data, setData] = useState<any[]>([]); // State for storing product data
-  const [searchTerm, setSearchTerm] = useState(""); // State for search input
-  const productRef = useRef<HTMLDivElement | null>(null); // Ref for the product section
+  const [data, setData] = useState<any[]>([]);
+  const [searchTerm, setSearchTerm] = useState(""); // State untuk pencarian produk
 
   useEffect(() => {
     fetchProducts();
-    // Check if the URL contains the #tanaman hash
-    if (window.location.hash === "#produk") {
-      scrollToProducts();
-    }
   }, []);
+
   const fetchProducts = async () => {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
     try {
       const response = await axios.get(url, { withCredentials: true });
-      setData(response.data.slice(0, 12)); // Save received data to state
       console.log(response.data);
-    } catch (error: any) {
+      setData(response.data.slice(0, 12));
+    } catch (error) {
       console.error("Error fetching products:", error);
       alert("Terjadi kesalahan saat mengambil data produk.");
     }
   };
-  // Filter products based on search term
+
+  // Menyaring produk berdasarkan input pencarian
   const filteredData = data.filter((item) =>
     item.judul_produk.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  const scrollToProducts = () => {
-    if (productRef.current) {
-      productRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <div className="bg-white">
@@ -63,31 +55,30 @@ const Produk = () => {
             </li>
           </Link>
         </ul>
+
         <div className="text-[#8EAEA6] text-[18px] pb-4 -translate-y-[500%]">
           <input
             type="text"
             placeholder="Cari produk..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
+            onChange={(e) => setSearchTerm(e.target.value)} // Mengupdate state pencarian
             className="w-96 p-3 border bg-[#FFFBFB] translate-x-[115%] mt-10 shadow-sm"
           />
         </div>
-        <div
-          className="px-10 py-10 grid grid-cols-4 gap-6 ml-[5%] mr-[5%] -translate-y-[50%] bg-[#EBFFF8]"
-          ref={productRef} // Attach ref here
-        >
+
+        <div className="px-10 py-10 grid grid-cols-4 gap-6 ml-[5%] mr-[5%] -translate-y-[50%] bg-[#EBFFF8]">
           {filteredData.map((item: any) => (
             <div
               className="w-[239px] h-[319px] rounded-3xl bg-white shadow-[2px_8px_10px] shadow-[#0000002e]"
               key={item.id}
             >
-              <a href="#">
+              <Link href={`/Produk/${item.id}`}>
                 <img
-                  className="mx-auto mt-5 h-[65%] w-[85%]"
+                  className="mx-auto mt-5 h-[65%] w-[85%] cursor-pointer"
                   alt="Produk Gambar"
                   src={`https://74gslzvj-8000.asse.devtunnels.ms${item.foto_produk}`}
                 />
-              </a>
+              </Link>
               <div className="px-4 py-2">
                 <h5 className="text-lg font-semibold text-black">
                   {item.judul_produk}
@@ -105,4 +96,5 @@ const Produk = () => {
     </div>
   );
 };
+
 export default Produk;
