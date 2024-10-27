@@ -101,9 +101,7 @@ const Ikan = () => {
             </div>
           ))
         ) : (
-          <div>
-            <Gagal />
-          </div>
+          <div></div>
         )}
       </div>
     </div>
