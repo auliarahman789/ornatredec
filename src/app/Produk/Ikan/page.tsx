@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import Gagal from "@/app/components/gagal";
 
 const Ikan = () => {
   const [data, setData] = useState<any[]>([]);
@@ -67,18 +68,9 @@ const Ikan = () => {
           </li>
         </Link>
       </ul>
-      <div className="text-[#8EAEA6] text-[18px] pb-4 -translate-y-[500%]">
-        <input
-          type="text"
-          placeholder="Cari produk..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-96 p-3 border bg-[#FFFBFB] translate-x-[115%] mt-10 shadow-sm"
-        />
-      </div>
       <div
-        className="px-10 py-10 grid grid-cols-4 gap-6 ml-[5%] mr-[5%] -translate-y-[50%] bg-[#EBFFF8]"
-        ref={productRef}
+        className="grid grid-cols-4 mx-auto -translate-y-[65%] bg-[#EBFFF8] justify-between ml-[5%] mr-[5%]"
+        ref={productRef} // Attach ref here
       >
         {filteredData.length > 0 ? (
           filteredData.map((item: any) => (
@@ -111,6 +103,8 @@ const Ikan = () => {
         ) : (
           <div className="col-span-4 text-center text-3xl -translate-y-[1200%] text-[#308967]">
             Maaf,produk ini tidak tersedia.
+          <div>
+            <Gagal />
           </div>
         )}
       </div>

@@ -45,7 +45,7 @@ const Tanamanproduk = () => {
             key={item.id}
           >
             <a href="#">
-              <Image
+              <img
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
                 width={85}

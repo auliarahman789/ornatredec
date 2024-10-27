@@ -6,6 +6,8 @@ import Dropdown2 from "./dropdown2";
 import Card1 from "./card1Tanaman";
 import Card2 from "./card2";
 import Card1tanaman from "./card1Tanaman";
+import Card2burung from "./card1burung";
+import Card1ikan from "./card2Ikan";
 
 function Konten() {
   return (

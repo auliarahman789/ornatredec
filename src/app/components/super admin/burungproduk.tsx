@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import edit from "../edit";
+
 const Burungproduk = () => {
   const [data, setData] = useState<any[]>([]);
   const formatHarga = (itung: number) => {
@@ -43,7 +44,7 @@ const Burungproduk = () => {
             key={item.id}
           >
             <a href="#">
-              <Image
+              <img
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
                 src={

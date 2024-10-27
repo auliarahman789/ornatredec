@@ -13,7 +13,7 @@ const disableNavbar = [
   "/profile/post",
   "/profile/edit",
   "/profile/riwayat",
-  "/Produk/paymentgateway",
+  "/Produk/detail",
   "/Superadmin",
   "/Superadmin/Dashboard",
   "/Superadmin/Produk",
@@ -29,6 +29,7 @@ const disableNavbar = [
   "/Superadmin/Produk/pesanan/detail",
   "/Superadmin/Produk/pesanan/daftar/detail",
   "/Superadmin/Forum/detailreportUlasan",
+  "/Superadmin/Forum/ReportUlasan2",
 ];
 const superNavbar = [
   "/Superadmin",
@@ -37,6 +38,7 @@ const superNavbar = [
   "/Superadmin/Statistik",
   "/Superadmin/Forum",
   "/Superadmin/Forum/detailreportUlasan",
+  "/Superadmin/Forum/ReportUlasan2",
   "/Superadmin/Produk/tambah",
   "/Superadmin/Produk/pesanan",
   "/Superadmin/Produk/pesanan/daftar",

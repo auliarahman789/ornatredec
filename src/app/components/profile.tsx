@@ -42,7 +42,7 @@ const Profile = () => {
   }, []);
 
   async function getUser() {
-    
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getMe`;
     try {
 
       const url = `${process.env.NEXT_PUBLIC_URL}/api/getMe`;
