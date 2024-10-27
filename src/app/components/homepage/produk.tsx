@@ -18,7 +18,7 @@ const Produk = () => {
   }, []);
 
   async function getProduk() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getProduk`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string

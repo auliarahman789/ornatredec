@@ -37,53 +37,37 @@ const Ikanproduk = () => {
   }
 
   return (
-    <div className="pt-14 px-7">
-      <div className="grid grid-cols-5 gap-5">
-        {data.map((item: any) => (
-          <div
-            className="w-[160px] h-[200px] bg-white rounded-xl border-[1.5px] border-[#A9A7A7] "
-            key={item.id}
-          >
-            <a href="#">
-              <img
-                className="mx-auto mt-5 h-[55%] w-[85%]"
-                alt="Produk Gambar"
-                width={85}
-                height={84}
-                src={
-                  "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
-                }
-              />
-            </a>
-            <div className="px-4 py-2">
-              <h5 className="text-sm font-semibold text-black">
-                {item.judul_produk}
-              </h5>
-              <div className="flex items-center justify-between mt-auto">
-                <span className="text-sm font-bold text-[#FF0A0A]">
-                  {formatHarga(item.harga)}
-                </span>
-              </div>
-            </div>
-            <div className="relative">
-              {item.id ? (
-                <Link href={`/Superadmin/Produk/edit/${item.id}`}>
-                  <Image
-                    className="absolute top-[98%%] left-[90%]"
-                    src={edit}
-                    width={25}
-                    height={25}
-                    alt="edit"
-                  />
-                </Link>
-              ) : (
-                <p>Loading...</p>
-              )}
+    <div className="grid grid-cols-5 gap-5">
+      {data.map((item: any) => (
+        <div
+          className="w-[160px] h-[200px] bg-white rounded-xl border-[1.5px] border-[#A9A7A7] "
+          key={item.id}
+        >
+          <a href="#">
+            <img
+              className="mx-auto mt-5 h-[55%] w-[85%]"
+              alt="Produk Gambar"
+              width={100}
+              height={100}
+              src={
+                "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
+              }
+            />
+          </a>
+          <div className="px-4 py-2">
+            <h5 className="text-sm font-semibold text-black">
+              {item.judul_produk}
+            </h5>
+            <div className="flex items-center justify-between mt-auto">
+              <span className="text-sm font-bold text-[#FF0A0A]">
+                {formatHarga(item.harga)}
+              </span>
             </div>
           </div>
         ))}
       </div>
     </div>
+  
   );
 };
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios"; // Import axios
 import Image from "next/image";
 import logo from "../../../../public/icon/logo.svg";
 import defaultAvatar from "../../../../public/img/default-avatar.png";
@@ -8,36 +9,35 @@ import { usePathname } from "next/navigation";
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  const [avatar, setAvatar] = useState<string>(defaultAvatar.src); // Ubah tipe state menjadi string
+  const [avatar, setAvatar] = useState<string>(defaultAvatar.src);
   const pathname = usePathname();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const savedUsername = localStorage.getItem("username");
-    const savedAvatar = localStorage.getItem("avatar");
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) return; // Jika tidak ada token, keluar dari fungsi
 
-    if (token && savedUsername) {
-      setIsLoggedIn(true);
-      setUsername(savedUsername);
-      setAvatar(savedAvatar || defaultAvatar.src); // Gunakan src dari defaultAvatar
-    }
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_URL}/api/getMe`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-    const handleStorageChange = () => {
-      const updatedUsername = localStorage.getItem("username");
-      const updatedAvatar = localStorage.getItem("avatar");
-      if (updatedUsername) {
-        setUsername(updatedUsername);
-      }
-      if (updatedAvatar) {
-        setAvatar(updatedAvatar); // Tetap sebagai string
+        if (response.data) {
+          setIsLoggedIn(true);
+          setUsername(response.data.username);
+          setAvatar(response.data.avatar || defaultAvatar.src); // Gunakan avatar dari response
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
       }
     };
 
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
+    fetchUserData();
   }, []);
 
   return (
@@ -58,7 +58,7 @@ function Navbar() {
                 Home
               </li>
             </Link>
-            <Link href="">
+            <Link href="/Forum">
               <li
                 className={`${
                   pathname === "/Forum" ? "text-[#27BFB6]" : "text-[#308967]"
@@ -100,11 +100,11 @@ function Navbar() {
         <div className="flex items-center space-x-3">
           {isLoggedIn ? (
             <Link href="/profile" className="flex items-center">
-              <Image
-                src={avatar} // Tetap gunakan avatar sebagai string
+              <img
+                src={avatar} // Gunakan avatar dari API atau default
                 alt="Profile Avatar"
-                width={40}
-                height={40}
+                width={40} 
+                height={40} 
                 className="rounded-full"
               />
               <span className="text-[#308967] ml-2">{username}</span>

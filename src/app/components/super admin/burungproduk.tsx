@@ -5,6 +5,8 @@ import Image from "next/image";
 import edit from "../../../../public/icon/Group 1000004435.svg";
 import { useRouter } from "next/navigation";
 
+
+
 const Burungproduk = () => {
   const [data, setData] = useState<any[]>([]);
   const formatHarga = (itung: number) => {
@@ -50,6 +52,8 @@ const Burungproduk = () => {
                 src={
                   "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
                 }
+                width={100}
+                height={100}
               />
             </a>
             <div className="px-4 py-2">
@@ -63,6 +67,7 @@ const Burungproduk = () => {
               </div>
             </div>
             <div className="relative">
+
               <Image
                 className="absolute top-[98%%] left-[90%]"
                 src={edit}
@@ -72,10 +77,9 @@ const Burungproduk = () => {
                 onClick={handleEdit}
               />
             </div>
-          </div>
+
         ))}
       </div>
-    </div>
   );
 };
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import Gagal from "../components/gagal";
 const Produk = () => {
   const [data, setData] = useState<any[]>([]); // State for storing product data
   const [searchTerm, setSearchTerm] = useState(""); // State for search input
@@ -84,7 +85,7 @@ const Produk = () => {
                 <img
                   className="mx-auto mt-5 h-[65%] w-[85%]"
                   alt="Produk Gambar"
-                  src={`https://74gslzvj-8000.asse.devtunnels.ms/uploads/${item.foto_produk}`}
+                  src={`https://74gslzvj-8000.asse.devtunnels.ms${item.foto_produk}`}
                 />
               </a>
               <div className="px-4 py-2">
