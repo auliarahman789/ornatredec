@@ -50,6 +50,8 @@ const Burungproduk = () => {
                 src={
                   "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
                 }
+                width={100}
+                height={100}
               />
             </a>
             <div className="px-4 py-2">

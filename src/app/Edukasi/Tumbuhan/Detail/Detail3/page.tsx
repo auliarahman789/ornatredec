@@ -23,7 +23,7 @@ function page() {
       <div className="grid grid-cols-2 justify-between ml-[8%] mr-[8%]">
         <div className="mt-[5%] -translate-x-2">
           <Image
-            src="/img/tan2.png"
+            src="/img/tan3.png"
             className="w-full h-auto rounded-lg"
             alt={"daun"}
             width={390}
@@ -78,11 +78,11 @@ function page() {
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
-          className="rounded-lg"
+          src="/img/cahaya yang cukup.jpeg"
+          className="rounded-lg w-[85%] h-[85%]"
           alt={"daun"}
-          width={400}
-          height={350}
+          width={100}
+          height={100}
         />
       </div>
       <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
@@ -106,11 +106,11 @@ function page() {
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
-          className="rounded-lg"
+          src="/img/Suhu yang Stabil.jpg"
+          className="rounded-lg w-[80%] h-[80%]"
           alt={"daun"}
-          width={400}
-          height={350}
+          width={100}
+          height={100}
         />
       </div>
       <div className="flex flex-row  text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
@@ -134,8 +134,8 @@ function page() {
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
-          className="rounded-lg"
+          src="/img/lembab.jpeg"
+          className="rounded-lg w-[85%] h-[85%]"
           alt={"daun"}
           width={400}
           height={350}
@@ -161,11 +161,11 @@ function page() {
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
-          className="rounded-lg"
+          src="/img/Sirkulasi Udara yang Baik.jpg"
+          className="rounded-lg w-[75%] h-[75%]"
           alt={"daun"}
-          width={400}
-          height={350}
+          width={150}
+          height={150}
         />
       </div>
       <div className="flex flex-row text-2xl space-x-[2%] justify-center ml-[8%] mr-[8%] mt-[6%]">
@@ -189,11 +189,11 @@ function page() {
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
-          className="rounded-lg"
+          src="/img/Media Tanam yang Berkualitas.jpg"
+          className="rounded-lg w-[85%] h-[85%]"
           alt={"daun"}
-          width={400}
-          height={350}
+          width={100}
+          height={100}
         />
       </div>
 

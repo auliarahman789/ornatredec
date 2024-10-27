@@ -45,6 +45,8 @@ const Ikanproduk = () => {
             <img
               className="mx-auto mt-5 h-[55%] w-[85%]"
               alt="Produk Gambar"
+              width={100}
+              height={100}
               src={
                 "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
               }

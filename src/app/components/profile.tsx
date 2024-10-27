@@ -42,11 +42,9 @@ const Profile = () => {
   }, []);
 
   async function getUser() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getMe`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/getMe`;
     try {
-
       const url = `${process.env.NEXT_PUBLIC_URL}/api/getMe`;
-
       const res = await axios.get(url, { withCredentials: true });
       console.log("Data pengguna:", res.data.user); // Log data pengguna
 

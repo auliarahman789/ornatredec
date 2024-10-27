@@ -387,7 +387,6 @@ const Edit = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

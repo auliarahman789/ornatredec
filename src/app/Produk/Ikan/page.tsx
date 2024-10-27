@@ -68,8 +68,19 @@ const Ikan = () => {
           </li>
         </Link>
       </ul>
+      <div className="text-[#8EAEA6] text-[18px] pb-4 -translate-y-[500%]">
+        <input
+          type="text"
+          placeholder="Cari produk..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
+          className="w-96 p-3 border bg-[#FFFBFB] translate-x-[115%] mt-10 shadow-sm"
+        />
+      </div>
       <div
-        className="grid grid-cols-4 mx-auto -translate-y-[65%] bg-[#EBFFF8] justify-between ml-[5%] mr-[5%]"
+        className={`px-10 py-10 grid grid-cols-4 gap-6 ml-[5%] mr-[5%] -translate-y-[50%] ${
+          filteredData.length === 0 ? "bg-transparent" : "bg-[#EBFFF8]"
+        }`}
         ref={productRef} // Attach ref here
       >
         {filteredData.length > 0 ? (
@@ -80,7 +91,7 @@ const Ikan = () => {
             >
               <a href="#">
                 <img
-                  className="mx-auto mt-5 h-[65%] w-[85%]"
+                  className="mx-auto mt-5 h-[70%] w-[150%]"
                   alt="Produk Gambar"
                   src={
                     "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -103,8 +114,6 @@ const Ikan = () => {
         ) : (
           <div className="col-span-4 text-center text-3xl -translate-y-[1200%] text-[#308967]">
             Maaf,produk ini tidak tersedia.
-          <div>
-            <Gagal />
           </div>
         )}
       </div>
