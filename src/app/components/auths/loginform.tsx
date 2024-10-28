@@ -29,6 +29,8 @@ const Login = () => {
         { withCredentials: true }
       );
 
+      console.log(res)
+
       // Simpan data pengguna di localStorage setelah login berhasil
       // localStorage.setItem("token", res.data.token); // Menyimpan token
       localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna

@@ -21,11 +21,14 @@ function Navbar() {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_URL}/api/getMe`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            withCredentials:true
+            // headers: {
+            //   Authorization: `Bearer ${token}`,
+            // },
           }
         );
+
+        console.log(token);
 
         if (response.data) {
           setIsLoggedIn(true);
