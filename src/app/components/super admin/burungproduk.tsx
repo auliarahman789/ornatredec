@@ -1,18 +1,16 @@
-"use client";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+'use client'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import edit from "../../../../public/icon/Group 1000004435.svg";
-import { useRouter } from "next/navigation";
-
-
-
+import Link from 'next/link';
 const Burungproduk = () => {
   const [data, setData] = useState<any[]>([]);
-  const formatHarga = (itung: number) => {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
+  const formatHarga = (itung : number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
     }).format(itung);
   };
   useEffect(() => {
@@ -21,19 +19,19 @@ const Burungproduk = () => {
 
   const router = useRouter();
   const handleEdit = () => {
-    router.push("/Superadmin/Produk/edit");
-  };
+    router.push('/Superadmin/Produk/edit')
+  }
   async function getBurung() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet?kategori=burung`;
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=burung`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
       });
-      setData(res.data);
+      setData(res.data); 
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
-      alert("Terjadi kesalahan saat mengambil data produk burung.");
+      alert('Terjadi kesalahan saat mengambil data produk burung.');
     }
   }
 
@@ -50,10 +48,9 @@ const Burungproduk = () => {
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
                 src={
-                  "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
+                  "https://74gslzvj-8000.asse.devtunnels.ms" +
+                  item.foto_produk
                 }
-                width={100}
-                height={100}
               />
             </a>
             <div className="px-4 py-2">
@@ -67,19 +64,24 @@ const Burungproduk = () => {
               </div>
             </div>
             <div className="relative">
-
-              <Image
-                className="absolute top-[98%%] left-[90%]"
-                src={edit}
-                width={25}
-                height={25}
-                alt="edit"
-                onClick={handleEdit}
-              />
+              {item.id ? (
+                <Link href={`/Superadmin/Produk/edit/${item.id}`}>
+                  <Image
+                    className="absolute top-[98%%] left-[90%]"
+                    src={edit}
+                    width={25}
+                    height={25}
+                    alt="edit"
+                  />
+                </Link>
+              ) : (
+                <p>Loading...</p>
+              )}
             </div>
-
+          </div>
         ))}
       </div>
+    </div>
   );
 };
 

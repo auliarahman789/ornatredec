@@ -126,7 +126,7 @@ function DetailReportUlasan() {
                       }
                       width={100}
                       height={100}
-                      alt="foto profil kedua"
+                      alt="foto konten"
                       className="ml-4 h-[157px] w-[206px] bg-slate-600"
                     />
                   </div>
@@ -212,7 +212,7 @@ function DetailReportUlasan() {
                   Catatan Laporan User
                 </div>
                 <div className="text-[#FF0404] text-[20px] mt-[3%] ms-[40%] h-[5%]">
-                  43
+                  {data.jumlahReport}
                 </div>
               </div>
               <div className="space-y-3 mb-[2%]">

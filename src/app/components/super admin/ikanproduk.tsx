@@ -1,42 +1,43 @@
-"use client";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import edit from "../../../../public/icon/Group 1000004435.svg";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+'use client'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import edit from '../../../../public/icon/Group 1000004435.svg'
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 const Ikanproduk = () => {
   const [data, setData] = useState<any[]>([]);
-  const formatHarga = (itung: number) => {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
+  const formatHarga = (itung : number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
     }).format(itung);
   };
 
   useEffect(() => {
-    getTanaman();
+    getIkan();
   }, []);
 
   const router = useRouter();
-  const handleEdit = () => {
-    router.push("/Superadmin/Produk/edit");
-  };
-  async function getTanaman() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet?kategori=ikan`;
+  const handleEdit = () => {  
+    router.push('/Superadmin/Produk/edit')
+  }
+  async function getIkan() {
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=ikan`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
       });
-      setData(res.data);
+      setData(res.data); 
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
-      alert("Terjadi kesalahan saat mengambil data produk tanaman.");
+      alert('Terjadi kesalahan saat mengambil data produk tanaman.');
     }
   }
 
   return (
+    <div className="pt-14 px-7">
     <div className="grid grid-cols-5 gap-5">
       {data.map((item: any) => (
         <div
@@ -47,10 +48,9 @@ const Ikanproduk = () => {
             <img
               className="mx-auto mt-5 h-[55%] w-[85%]"
               alt="Produk Gambar"
-              width={100}
-              height={100}
               src={
-                "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
+                "https://74gslzvj-8000.asse.devtunnels.ms" +
+                item.foto_produk
               }
             />
           </a>
@@ -64,10 +64,25 @@ const Ikanproduk = () => {
               </span>
             </div>
           </div>
-        ))}
-      </div>
+          <div className="relative">
+              {item.id ? (
+                <Link href={`/Superadmin/Produk/edit/${item.id}`}>
+                  <Image
+                    className="absolute top-[98%%] left-[90%]"
+                    src={edit}
+                    width={25}
+                    height={25}
+                    alt="edit"
+                  />
+                </Link>
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
+        </div>
+      ))}
     </div>
-  
+  </div>
   );
 };
 
