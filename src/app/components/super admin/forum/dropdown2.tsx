@@ -3,9 +3,15 @@ import React, { useState } from "react";
 
 const Dropdown2 = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Terbaru");
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleOptionClick = (option: any) => {
+    setSelectedOption(option);
+    setIsOpen(false);
   };
 
   return (
@@ -19,7 +25,7 @@ const Dropdown2 = () => {
           aria-haspopup="true"
           onClick={toggleDropdown}
         >
-          Terbaru
+          {selectedOption}
           <svg
             className={`ml-2 mt-[1%s] h-6 w-6 text-[#21B892] transform transition-transform duration-200 ${
               isOpen ? "rotate-180" : "rotate-0"
@@ -45,7 +51,22 @@ const Dropdown2 = () => {
           aria-labelledby="menu-button"
         >
           <div className="py-1" role="none">
-            <p className="block px-4 py-2 text-sm text-black">opsi</p>
+            {selectedOption !== "Terbaru" && (
+              <p
+                onClick={() => handleOptionClick("Terbaru")}
+                className="block px-4 py-2 text-sm text-black"
+              >
+                Terbaru
+              </p>
+            )}
+            {selectedOption !== "Terpopuler" && (
+              <p
+                onClick={() => handleOptionClick("Terpopuler")}
+                className="block px-4 py-2 text-sm text-black"
+              >
+                Terpopuler
+              </p>
+            )}
           </div>
         </div>
       )}

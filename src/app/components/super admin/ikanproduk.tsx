@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import edit from "../../../../public/icon/Group 1000004435.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 const Ikanproduk = () => {
   const [data, setData] = useState<any[]>([]);
   const formatHarga = (itung: number) => {
@@ -14,14 +15,14 @@ const Ikanproduk = () => {
   };
 
   useEffect(() => {
-    getIkan();
+    getTanaman();
   }, []);
 
   const router = useRouter();
   const handleEdit = () => {
     router.push("/Superadmin/Produk/edit");
   };
-  async function getIkan() {
+  async function getTanaman() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet?kategori=ikan`;
     try {
       const res = await axios.get(url, {
@@ -34,6 +35,7 @@ const Ikanproduk = () => {
       alert("Terjadi kesalahan saat mengambil data produk tanaman.");
     }
   }
+
   return (
     <div className="grid grid-cols-5 gap-5">
       {data.map((item: any) => (
@@ -62,19 +64,10 @@ const Ikanproduk = () => {
               </span>
             </div>
           </div>
-          <div className="relative">
-            <Image
-              className="absolute top-[98%%] left-[90%]"
-              src={edit}
-              width={25}
-              height={25}
-              alt="edit"
-              onClick={handleEdit}
-            />
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
+  
   );
 };
 

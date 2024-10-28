@@ -3,9 +3,15 @@ import React, { useState } from "react";
 
 const Dropdown1 = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Tanaman");
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleOptionClick = (option: any) => {
+    setSelectedOption(option);
+    setIsOpen(false);
   };
 
   return (
@@ -19,9 +25,9 @@ const Dropdown1 = () => {
           aria-haspopup="true"
           onClick={toggleDropdown}
         >
-          Tanaman
+          {selectedOption}
           <svg
-            className={`ml-2 mt-[1%s] h-6 w-6 text-[#21B892] transform transition-transform duration-200 ${
+            className={`ml-2 mt-[1%] h-6 w-6 text-[#21B892] transform transition-transform duration-200 ${
               isOpen ? "rotate-180" : "rotate-0"
             }`}
             viewBox="0 0 20 20"
@@ -45,7 +51,30 @@ const Dropdown1 = () => {
           aria-labelledby="menu-button"
         >
           <div className="py-1" role="none">
-            <p className="block px-4 py-2 text-sm text-black">opsi</p>
+            {selectedOption !== "Tanaman" && (
+              <p
+                onClick={() => handleOptionClick("Tanaman")}
+                className="block px-4 py-2 text-sm text-black cursor-pointer"
+              >
+                Tanaman
+              </p>
+            )}
+            {selectedOption !== "Ikan" && (
+              <p
+                onClick={() => handleOptionClick("Ikan")}
+                className="block px-4 py-2 text-sm text-black cursor-pointer"
+              >
+                Ikan
+              </p>
+            )}
+            {selectedOption !== "Burung" && (
+              <p
+                onClick={() => handleOptionClick("Burung")}
+                className="block px-4 py-2 text-sm text-black cursor-pointer"
+              >
+                Burung
+              </p>
+            )}
           </div>
         </div>
       )}
