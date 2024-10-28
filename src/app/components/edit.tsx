@@ -98,8 +98,6 @@ const Edit = () => {
       }));
     }
     console.log(e.target.files);
-
-
   };
   // const handleInputImage = (e: ChangeEvent<HTMLInputElement>) => {
   //   const file = e.target.files?.[0];
@@ -213,7 +211,6 @@ const Edit = () => {
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <div className="bg-white p-16 rounded-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
             <div className="flex justify-center -translate-y-[10%]">
-              
               <Image
                 src={formData.photoProfile || "/img/default-avatar.png"} // Jika tidak ada gambar, gunakan default avatar
                 width={200}
@@ -349,7 +346,7 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
             </div>
-             {/* <div className="text-[#A9A7A7] text-[18px] pb-4">
+            {/* <div className="text-[#A9A7A7] text-[18px] pb-4">
             <div className="text-[#A9A7A7] text-[18px] pb-4">
               <span className="pl-4">Alamat:</span>
               <textarea
@@ -359,34 +356,32 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
 
               /> */}
+          </div>
 
-              
+          <div className="grid grid-cols-3">
+            <div className="flex justify-end mt-[20%]">
+              <button
+                onClick={handleGoBack}
+                className="px-4 py-2 bg-[#3F9272] text-white rounded-lg"
+              >
+                Kembali
+              </button>
             </div>
-
-            <div className="grid grid-cols-3">
-              <div className="flex justify-end mt-[20%]">
-                <button
-                  onClick={handleGoBack}
-                  className="px-4 py-2 bg-[#3F9272] text-white rounded-lg"
-                >
-                  Kembali
-                </button>
-              </div>
-              <div></div>
-              <div className="flex justify-start mt-[20%]">
-                <button
-                  onClick={() => {
-                    handleSave(), console.log(formData);
-                  }}
-                  className="px-4 py-2 bg-[#CCFFEB] text-[#3F9272] rounded-lg"
-                >
-                  Perbarui
-                </button>
-              </div>
+            <div></div>
+            <div className="flex justify-start mt-[20%]">
+              <button
+                onClick={() => {
+                  handleSave(), console.log(formData);
+                }}
+                className="px-4 py-2 bg-[#CCFFEB] text-[#3F9272] rounded-lg"
+              >
+                Perbarui
+              </button>
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 };
 
