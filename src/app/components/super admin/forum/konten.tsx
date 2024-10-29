@@ -23,8 +23,8 @@ function Konten() {
             <Card1tanaman />
           </div> */}
         </div>
-        <div className="w-[55%] min-h-screen mt-[5%] overflow-y-auto">
-          <div className="bg-[#1AE5CC] rounded-lg h-[45%] mb-4">
+        <div className="w-[55%] min-h-screen mt-[5%]">
+          <div className="bg-[#1AE5CC] rounded-lg h-[45%] mb-4 overflow-y-scroll">
             <div className="pt-4">
               <Card2 />
             </div>

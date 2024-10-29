@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import mata from "../../../../../../../public/icon/mata.svg";
 import chat2 from "../../../../../../../public/icon/chat2.svg";
 import profil from "../../../../../../../public/icon/profil.svg";
-import share from "../../../../../../../public/icon/share.svg";
-import save from "../../../../../../../public/icon/save.svg";
+import noted from "../../../../../../../public/icon/noted.svg";
 import Image from "next/image";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -68,17 +67,19 @@ function DetailReportUlasan() {
       confirmButtonText: "Ya, hapus!",
       cancelButtonText: "Batal",
     });
-    if (confirmDelete) {
+    if (confirmDelete.isConfirmed) {
       try {
         const res = await axios.delete(url, {
           withCredentials: true,
         });
         console.log(res.data);
-        alert("Berhasil menghapus konten");
+        Swal.fire("Berhasil!", "Konten telah dihapus.", "success"); // Pesan sukses
         router.push("/Superadmin/Forum");
       } catch (error) {
-        alert("gagal menghapus konten");
+        Swal.fire("Gagal!", "Gagal menghapus konten.", "error"); // Pesan gagal
       }
+    } else {
+      Swal.fire("Dibatalkan", "Penghapusan dibatalkan.", "info"); // Pesan batal
     }
   }
 
@@ -92,8 +93,8 @@ function DetailReportUlasan() {
   };
 
   const handleClose = () => {
-    router.push('/Superadmin/Forum')
-  }
+    router.push("/Superadmin/Forum");
+  };
 
   return (
     <div className="overflow-x-hidden min-h-screen">
@@ -101,25 +102,25 @@ function DetailReportUlasan() {
         <div className="text-[23px] font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-[2%] mt-2 inline-block text-transparent bg-clip-text">
           Kelola Forum
         </div>
-        {data && data?.jumlahReport > 0 ? 
-        <div className="ms-[65%] mt-[3%]">
-          <button
-            className="bg-green-400 rounded-xl text-white px-4"
-            onClick={deleteForumReport}
-          >
-            Tutup
-          </button>
-        </div>
-          :
+        {data && data?.jumlahReport > 0 ? (
           <div className="ms-[65%] mt-[3%]">
-          <button
-            className="bg-green-400 rounded-xl text-white px-4"
-            onClick={handleClose}
-          > 
-            Hapus
-          </button>
-        </div>
-        }
+            <button
+              className="bg-green-400 rounded-xl text-white px-4"
+              onClick={deleteForumReport}
+            >
+              Hapus
+            </button>
+          </div>
+        ) : (
+          <div className="ms-[65%] mt-[3%]">
+            <button
+              className="bg-green-400 rounded-xl text-white px-4"
+              onClick={handleClose}
+            >
+              Tutup
+            </button>
+          </div>
+        )}
 
         <div className="">
           {data && (
@@ -128,8 +129,12 @@ function DetailReportUlasan() {
                 <div className="flex">
                   <div className="flex items-start">
                     <Image
-                      src={data.User.photoProfile ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                        data.User.photoProfile : profil}
+                      src={
+                        data.User.photoProfile
+                          ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                            data.User.photoProfile
+                          : profil
+                      }
                       width={38}
                       height={38}
                       alt="foto profil"
@@ -154,16 +159,18 @@ function DetailReportUlasan() {
                           {data.judul}
                         </p>
                       </div>
-                      {data.jumlahReport > 0 ? 
-                      <div className="ms-[60%]">
-                        <div className="text-sm text-center">
-                          {data.jumlahReport}
+                      {data.jumlahReport > 0 ? (
+                        <div className="ms-[60%]">
+                          <div className="text-sm text-center">
+                            {data.jumlahReport}
+                          </div>
+                          <div className="text-center bg-red-600 h-[38%] w-5 rounded-full text-sm text-white">
+                            i
+                          </div>
                         </div>
-                        <div className="text-center bg-red-600 h-[38%] w-5 rounded-full text-sm text-white">
-                          i
-                        </div>
-                      </div>
-                      : ""}
+                      ) : (
+                        ""
+                      )}
                     </div>
 
                     <p className="font-light text-[12px]">
@@ -208,15 +215,17 @@ function DetailReportUlasan() {
                   {data.desc}
                 </p>
               </div>
-              {data.jumlahReport > 0 ?
-              <><div className="flex">
-                  <div className="text-[24px] text-[#21B892] ms-[6%] mt-[3%] mb-[2%]">
-                    Catatan Laporan User
-                  </div>
-                  <div className="text-[#FF0404] text-[20px] mt-[3%] ms-[40%] h-[5%]">
-                    {data.jumlahReport}
-                  </div>
-                </div><div className="space-y-3 mb-[2%]">
+              <div className="flex">
+                <div className="text-[24px] text-[#21B892] ms-[6%] mt-[3%] mb-[2%]">
+                  Catatan Laporan User
+                </div>
+                <div className="text-[#FF0404] text-[20px] mt-[3%] ms-[40%] h-[5%]">
+                  {data.jumlahReport}
+                </div>
+              </div>
+              {data.jumlahReport > 0 ? (
+                <>
+                  <div className="space-y-3 mb-[2%]">
                     {data.reports.length > 0 ? (
                       data.reports.map((item: any, i: number) => {
                         return (
@@ -226,12 +235,15 @@ function DetailReportUlasan() {
                           >
                             <div className="flex pt-4 mb-[2%]">
                               <img
-                                src={"https://74gslzvj-8000.asse.devtunnels.ms" +
-                                  item.User.photoprofile}
+                                src={
+                                  "https://74gslzvj-8000.asse.devtunnels.ms" +
+                                  item.User.photoprofile
+                                }
                                 width={50}
                                 height={50}
                                 alt="foto profil"
-                                className="rounded-full ms-5" />
+                                className="rounded-full ms-5"
+                              />
                               <p className="text-[15px] text-[#21B892] mt-1 ms-3">
                                 {item.User.username}
                               </p>
@@ -246,10 +258,23 @@ function DetailReportUlasan() {
                         );
                       })
                     ) : (
-                      <p className="font-semibold text-[23px] mt-[8%] text-gray-400 text-opacity-35 ms-[35%]">tidak ada report</p>
+                      <>
+                        <Image
+                          src={noted}
+                          alt="noted"
+                          width={100}
+                          height={100}
+                        ></Image>
+                        <p className="font-semibold text-[23px] mt-[8%] text-gray-400 ms-[35%]">
+                          tidak ada report
+                        </p>
+                      </>
                     )}
-                  </div></>
-              : ''}
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </>
           )}
         </div>
