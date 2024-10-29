@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Search from "../../../../../public/icon/search.svg";
+
 import React, { useState } from "react";
 import Card1tanaman from "./card1Tanaman";
 import Card1ikan from "./card1Ikan";
@@ -111,20 +111,7 @@ const CombinedDropdowns = () => {
       <div className="flex">
         <Dropdown1 onSelect={setSelectedOption} />
       </div>
-      <div className="flex text-[#8EAEA6] text-[18px] pb-4">
-        <input
-          type="text"
-          placeholder="Cari..."
-          className="w-[30%] h-[31px] pl-[3%] bg-[#FFFBFB] rounded-full ml-[2%] mt-[1%] shadow-xl border border-black"
-        />
-        <Image
-          src={Search}
-          alt={"search"}
-          width={50}
-          height={50}
-          className="bg-[#FFFBFB] shadow-xl rounded-full w-[32px] h-[32px] py-[1%] mt-[1%] ml-[2%] border border-black"
-        />
-      </div>
+
       {selectedOption === "Tanaman" && <TanamanComponent />}
       {selectedOption === "Ikan" && <IkanComponent />}
       {selectedOption === "Burung" && <BurungComponent />}
