@@ -50,9 +50,11 @@ function Card2 () {
                       alt="foto profil"
                       className="rounded-full"
                     />
-                    <button className="bg-[#3F9272] mt-[2%] w-[100%] rounded ms-[5%] text-white font-semibold text-[12px]">
-                      Atur
-                    </button>
+                    <Link href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}>
+                            <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
+                              Atur
+                            </button>
+                            </Link>
                   </div>
                   <div className="ms-[5%] flex-col">
                     <div className="flex space-x-2 mb-[2%]">

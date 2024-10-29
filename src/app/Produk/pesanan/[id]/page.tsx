@@ -17,7 +17,7 @@ const DetailProduk = () => {
   }, [id]);
 
   const fetchDetailProduct = async () => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduct/${id}`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProduct/${id}`;
     try {
       const response = await axios.get(url, { withCredentials: true });
       setProduk(response.data);

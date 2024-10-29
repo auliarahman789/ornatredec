@@ -17,6 +17,7 @@ import { usePathname } from 'next/navigation'
 function SidebarSp() {
   const pathname = usePathname();
   const isAkun = pathname.startsWith("/Superadmin/Akun/Detail/") || pathname.startsWith("/Superadmin/Akun")
+  const isForum = pathname.startsWith('/Superadmin/Forum') || pathname.startsWith('/Superadmin/Forum/detailreportUlasan') || pathname.startsWith('/Superadmin/Forum/detailreportUlasan/ReportUlasan2/')
   return (
     <div className='fixed top-0 left-0'>
       <nav className='nav bg-gradient-to-b from-[#167960] to-[#28DFB1] w-64 h-screen flex flex-col'>
@@ -43,8 +44,8 @@ function SidebarSp() {
             Akun</li>
           </Link>
           <Link href='/Superadmin/Forum'>
-            <li className={`cursor-pointer flex mb-12 ${pathname === '/Superadmin/Forum' || pathname === '/Superadmin/Forum/detailreportUlasan'? 'active' : ''}`}>
-            <Image src={pathname === '/Superadmin/Forum' || pathname === '/Superadmin/Forum/detailreportUlasan' ?  forum2 : forumm} className='w-6 h-6 me-5' width={30} height={30} alt='dashboard' />
+            <li className={`cursor-pointer flex mb-12 ${isForum ? 'active' : ''}`}>
+            <Image src={isForum ?  forum2 : forumm} className='w-6 h-6 me-5' width={30} height={30} alt='dashboard' />
             Forum</li>
           </Link>
         </ul>

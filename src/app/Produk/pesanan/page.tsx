@@ -20,7 +20,7 @@ const DetailPesanan = () => {
 
   // Fungsi untuk mengambil detail produk dari API
   const fetchDetailProduk = async (produkId: string) => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProdukId/:id`; // Sesuaikan endpoint sesuai dengan API Anda
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/:id`; // Sesuaikan endpoint sesuai dengan API Anda
     try {
       const response = await axios.get(url, { withCredentials: true });
       setProduk(response.data); // Menyimpan detail produk ke dalam state

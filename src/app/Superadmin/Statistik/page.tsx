@@ -138,7 +138,7 @@ function Page() {
           </div>
         </div>
 
-        <div className="col-span-1 bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl h-[491px]">
+        <div className=" bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl h-[491px]">
           <div className="flex space-x-14">
             <div className="text-white mt-[6%] ms-[8%] text-[22px]">
               Ulasan terpopular
@@ -152,7 +152,7 @@ function Page() {
               />
             </>
           </div>
-          <div className="mt-2 text-white">
+          <div className="mt-2 w-[100%] text-white">
             <Trending />
           </div>
         </div>

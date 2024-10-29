@@ -28,7 +28,7 @@ const Sidebar = () => {
 
     try {
       const response = await axios.delete(
-        `${process.env.NEXT_PUBLIC_URL}/api/logout`,
+        `${process.env.NEXT_PUBLIC_URL}api/logout`,
         {
           withCredentials: true,
         }
