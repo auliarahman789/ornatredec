@@ -3,6 +3,7 @@ import mata from "../../../../../public/icon/mata.svg";
 import chat2 from "../../../../../public/icon/chat2.svg";
 import Image from "next/image";
 import axios from "axios";
+import Link from "next/link";
 
 type Forumtanaman = {
   id: number;
@@ -61,9 +62,11 @@ function Card1tanaman() {
                   alt="kaktus"
                   className="w-[180px] h-[150px]"
                 />
-                <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[7%] text-white font-semibold text-[12px]">
-                  Atur
-                </button>
+                <Link href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}>
+                            <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
+                              Atur
+                            </button>
+                            </Link>
               </div>
               <div className="ms-[5%] flex-col space-y-1">
               <div className="flex space-x-2 pt-6 mb-[2%]">
