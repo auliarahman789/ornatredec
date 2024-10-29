@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import mata from "../../../../../public/icon/mata.svg";
 import chat2 from "../../../../../public/icon/chat2.svg";
+import Search from "../../../../../public/icon/search.svg";
 import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
@@ -23,6 +24,8 @@ type Forumtanaman = {
 
 function Card1tanaman() {
   const [data, setData] = useState<Forumtanaman[]>([]);
+  const [searchTerm, setSearchTerm] = useState(""); // State untuk input pencarian
+
   useEffect(() => {
     getForumtanaman();
   }, []);
@@ -48,10 +51,28 @@ function Card1tanaman() {
     };
     return new Date(tanggal).toLocaleDateString("id-ID", opsiTanggal);
   };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Filter data berdasarkan input pencarian
+  const filteredData = data.filter((item) =>
+    item.judul.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <div className="space-y-10">
-      {data.length > 0 ? (
-        data.map((item, i) => (
+      <div className="flex text-[#8EAEA6] text-[18px] pb-4">
+        <input
+          type="text"
+          placeholder="Cari..."
+          value={searchTerm} // Set value input ke searchTerm
+          onChange={handleSearchChange} // Tangani perubahan input
+          className="w-[30%] h-[31px] pl-[3%] bg-[#FFFBFB] rounded-full ml-[2%] -mt-[5%] shadow-xl border border-black"
+        />
+      </div>
+      {filteredData.length > 0 ? (
+        filteredData.map((item, i) => (
           <div
             key={i}
             className="w-[450px] h-[190px] bg-white ml-[4%] shadow-[3px_4px_4px,-3px_6px_4px] shadow-[#0000002d]"
@@ -70,11 +91,13 @@ function Card1tanaman() {
                   alt="kaktus"
                   className="w-[180px] h-[150px]"
                 />
-                <Link href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}>
-                            <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
-                              Atur
-                            </button>
-                            </Link>
+                <Link
+                  href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}
+                >
+                  <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
+                    Atur
+                  </button>
+                </Link>
               </div>
               <div className="ms-[5%] flex-col space-y-1">
                 <div className="flex space-x-2 pt-6 mb-[2%]">

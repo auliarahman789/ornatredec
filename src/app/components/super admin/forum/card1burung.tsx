@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import mata from "../../../../../public/icon/mata.svg";
 import chat2 from "../../../../../public/icon/chat2.svg";
+import Search from "../../../../../public/icon/search.svg";
 import Image from "next/image";
 import axios from "axios";
 
@@ -22,6 +23,8 @@ type ForumBurung = {
 
 function Card1burung() {
   const [data, setData] = useState<ForumBurung[]>([]);
+  const [searchTerm, setSearchTerm] = useState(""); // State untuk input pencarian
+
   useEffect(() => {
     getForumBurung();
   }, []);
@@ -39,6 +42,7 @@ function Card1burung() {
       alert("Terjadi kesalahan saat mengambil data forum");
     }
   }
+
   const formatTanggal = (tanggal: string) => {
     const opsiTanggal: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -47,10 +51,30 @@ function Card1burung() {
     };
     return new Date(tanggal).toLocaleDateString("id-ID", opsiTanggal);
   };
+
+  // Fungsi untuk menangani perubahan input pencarian
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Filter data berdasarkan input pencarian
+  const filteredData = data.filter((item) =>
+    item.judul.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="space-y-10">
-      {data.length > 0 ? (
-        data.map((item, i) => (
+      <div className="flex text-[#8EAEA6] text-[18px] pb-4">
+        <input
+          type="text"
+          placeholder="Cari..."
+          value={searchTerm} // Set value input ke searchTerm
+          onChange={handleSearchChange} // Tangani perubahan input
+          className="w-[30%] h-[31px] pl-[3%] bg-[#FFFBFB] rounded-full ml-[2%] -mt-[5%] shadow-xl border border-black"
+        />
+      </div>
+      {filteredData.length > 0 ? (
+        filteredData.map((item, i) => (
           <div
             key={i}
             className="w-[450px] h-[190px] bg-white ml-[4%] shadow-[3px_4px_4px,-3px_6px_4px] shadow-[#0000002d]"
