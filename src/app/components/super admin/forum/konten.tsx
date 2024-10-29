@@ -2,12 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Search from "../../../../../public/icon/search.svg";
 import Dropdown1 from "./dropdown1";
-import Dropdown2 from "./dropdown2";
-import Card1 from "./card1Tanaman";
 import Card2 from "./card2";
 import Card1tanaman from "./card1Tanaman";
-import Card2burung from "./card1burung";
-import Card1ikan from "./card2Ikan";
 
 function Konten() {
   return (
@@ -21,7 +17,6 @@ function Konten() {
         <div className="bg-[#EBFFF7] mx-auto w-[574px] h-[1102px] rounded-lg overflow-y-auto">
           <div className="flex">
             <Dropdown1 />
-            <Dropdown2 />
           </div>
           <div className="flex text-[#8EAEA6] text-[18px] pb-4">
             <input

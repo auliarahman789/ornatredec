@@ -4,16 +4,14 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./sidebar";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-
 import Image from "next/image";
-
 interface UserData {
   username: string;
   email: string;
   tanggalLahir: string; // Pastikan ini adalah string
   no_hp: string;
   alamat: string;
-  photoProfile: string | null; // Pastikan ini sesuai
+  photoProfile: any; // Pastikan ini sesuai
 }
 
 const Profile = () => {
@@ -23,41 +21,43 @@ const Profile = () => {
   useEffect(() => {
     getUser();
 
-    const updateUserData = () => {
-      const storedUserData = localStorage.getItem("userData");
-      if (storedUserData) {
-        const parsedUserData: UserData = JSON.parse(storedUserData);
-        setUserData(parsedUserData);
-      }
-    };
+    // const updateUserData = () => {
+    //   const storedUserData = localStorage.getItem("userData");
+    //   if (storedUserData) {
+    //     const parsedUserData: UserData = JSON.parse(storedUserData);
+    //     setUserData(parsedUserData);
+    //   }
+    // };
 
-    // Panggil updateUserData saat komponen di-mount
-    updateUserData();
+    // // Panggil updateUserData saat komponen di-mount
+    // updateUserData();
 
-    // Tambahkan event listener untuk update data jika ada perubahan
-    window.addEventListener("storage", updateUserData);
+    // // Tambahkan event listener untuk update data jika ada perubahan
+    // window.addEventListener("storage", updateUserData);
 
-    return () => {
-      // Hapus event listener saat komponen di-unmount
-      window.removeEventListener("storage", updateUserData);
-    };
+    // return () => {
+    //   // Hapus event listener saat komponen di-unmount
+    //   window.removeEventListener("storage", updateUserData);
+    // };
   }, []);
 
   async function getUser() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getMe`;
-
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/getMe`;
     try {
+      const url = `${process.env.NEXT_PUBLIC_URL}/api/getMe`;
       const res = await axios.get(url, { withCredentials: true });
-      console.log("Data pengguna:", res.data); // Log data pengguna
+      console.log("Data pengguna:", res.data.user); // Log data pengguna
 
-      if (res.data && res.data.user) {
-        const user = res.data.user;
-        console.log("User Photo Profile:", user.photoProfile); // Log nilai photoProfile
+       setUserData(res.data);
+       console.log('use data',res.data) 
+      // if (res.data && res.data.user) {
+      //   const user = res.data.user;
+      //   console.log("User Photo Profile:", user.photoProfile); // Log nilai photoProfile
 
-        setUserData(user); // Simpan data user ke state
-      } else {
-        console.error("User data is null or undefined");
-      }
+      //   setUserData(user); // Simpan data user ke state
+      // } else {
+      //   console.error("User data is null or undefined");
+      // }
     } catch (error: any) {
       console.log("Error fetching user data:", error);
     }
@@ -71,19 +71,12 @@ const Profile = () => {
           <div className="bg-white p-16 rounded-lg shadow-lg w-[65%] h-[90%] translate-x-[15%] z-20 relative pointer-events-auto">
             <div className="-translate-y-[6%]">
               <div className="flex justify-end mb-4 translate-y-[50%]">
-                <Image
-                  src={
-                    userData?.photoProfile
-                      ? `https://74gslzvj-8000.asse.devtunnels.ms${userData.photoProfile}`
-                      : "/img/default-avatar.png"
-                  }
+                <img
+                  src={`${process.env.NEXT_PUBLIC_URL}${userData?.photoProfile}`}
                   width={200}
                   height={200}
                   alt="Profile"
                   className="rounded-full"
-                  onError={(e) => {
-                    e.currentTarget.src = "/img/default-avatar.png"; // Ganti dengan foto default jika gagal
-                  }}
                 />
               </div>
               <div className="-translate-y-[38%]">

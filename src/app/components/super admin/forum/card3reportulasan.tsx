@@ -5,8 +5,10 @@ import mata from "../../../../../public/icon/mata.svg";
 import chat2 from "../../../../../public/icon/chat2.svg";
 import Image from "next/image";
 import axios from "axios";
+import Link from "next/link";
 
 type ForumReport = {
+  id: number;
   judul: string;
   desc: string;
   fotoKonten: string;
@@ -74,25 +76,27 @@ function Card3() {
   }
   return (
     <div className="flex">
-      {data.length > 0 ? (
-          data.map((item, i) => (
-            <div className="flex" key={i}>
+            <div className="flex-col">
               <div className=" bg-[#EBFFF7] w-[650px] h-[1105px] rounded-lg ms-[3%] mt-[0.5%]">
               <div className="space-y-7 pt-[2%]">
-                <div className="flex items-start mt-[10px] ml-[4%]">
+      {data.length > 0 ? (
+          data.map((item, i) => (
+                <div className="flex items-start mt-[10px] ml-[4%]" key={i}>
                   {/* Card Putih */}
-                  <div className="w-[81%] h-[190px] bg-white shadow-[3px_4px_4px,-3px_6px_4px] shadow-[#0000002d]">
+                  <div className="w-[70%] h-[190px] bg-white shadow-[3px_4px_4px,-3px_6px_4px] shadow-[#0000002d]">
                     <div className="flex">
                       <div className="flex-col">
                         <img
                          src={item.fotoKonten ? "https://74gslzvj-8000.asse.devtunnels.ms" + item.fotoKonten : ""}
                           width={100}
                           height={100}
-                          alt="kaktus"
+                          alt="foto konten"
                           className="w-[180px] h-[150px]" />
-                        <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[7%] text-white font-semibold text-[12px]">
-                          Atur
-                        </button>
+                       <Link href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}>
+                            <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
+                              Atur
+                            </button>
+                            </Link>
                       </div>
                       <div className="ms-[5%] flex-col space-y-1">
                         <div className="flex space-x-2 mt-[6%] mb-[2%]">
@@ -139,26 +143,26 @@ function Card3() {
                   </div>
 
                   {/* Elemen di luar card putih */}
-                  <div className="mx-auto flex flex-col mt-[5%] justify-center">
+                  <div className=" ms-[4%] flex flex-col mt-[5%] justify-center">
                     <div className="text-sm text-center">{item.jumlahReport}</div>
                     <div className="flex items-center justify-center bg-red-600 h-[8%] w-5 rounded-full text-sm text-white">
                       i
                     </div>
                   </div>
                 </div>
-              </div>
-              </div>
-            </div>
              ))
             ) : (
               <p>Tidak ada data ditemukan.</p>
-      )}  
+            )}  
+            </div>
+            </div>
+          </div>
       {data2 && 
         <div className="flex flex-col h-[207px] ml-[4%] mt-[5%] w-[216px] bg-[#1AE5CC] items-center">
                   <div className="text-[#FF4949] flex items-center justify-center my-auto font-semibold text-[50px]">
                     {data2.jumlahReport}
                   </div>
-                  <div className="text-white mb-1">Laporan</div>
+                  <p className="text-white mb-1">Laporan</p>
                 </div>
       }
       </div>

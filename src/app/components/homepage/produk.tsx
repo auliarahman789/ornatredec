@@ -19,7 +19,6 @@ const Produk = () => {
 
   async function getProduk() {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
-
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string
@@ -49,9 +48,11 @@ const Produk = () => {
             >
               <a href="#">
                 <Image
+                  width={50}
+                  height={50}
                   className="mx-auto mt-5 h-[65%] w-[85%]"
                   alt="Produk Gambar"
-                  src={"${process.env.NEXT_PUBLIC_URL}" + item.foto_produk}
+                  src={`${process.env.NEXT_PUBLIC_URL}/${item.foto_produk}`}
                 />
               </a>
               <div className="px-4 py-2">

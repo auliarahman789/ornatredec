@@ -123,12 +123,11 @@ function page() {
             className="rounded-lg"
             alt={"daun"}
             width={150}
-            height={150}
-          />
+            height={150}          />
         </div>
         <Image
           src="/img/pemupukan.jpeg"
-          className="rounded-lg"
+          className="rounded-lg w-[500px] h-[130px]"
           alt={"daun"}
           width={580}
           height={350}

@@ -23,7 +23,7 @@ function page() {
       <div className="grid grid-cols-2 justify-between ml-[8%] mr-[8%]">
         <div className="mt-[5%] -translate-x-2">
           <Image
-            src="/img/tan2.png"
+            src="/img/beri makan ikan.png"
             className="w-full h-auto rounded-lg"
             alt={"daun"}
             width={390}
@@ -77,8 +77,8 @@ function page() {
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
-          className="rounded-lg"
+          src="/img/Siapkan Akuarium yang Sesuai.jpg"
+          className="rounded-lg w-[25%] h-[25%]"
           alt={"daun"}
           width={400}
           height={350}
@@ -104,8 +104,8 @@ function page() {
           />
         </div>
         <Image
-          src="/img/tus hisa.png"
-          className="rounded-lg"
+          src="/img/Ganti Air Secara Berkala.jpg"
+          className="rounded-lg w-[25%] h-[25%]"
           alt={"daun"}
           width={400}
           height={350}

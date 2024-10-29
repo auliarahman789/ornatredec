@@ -8,6 +8,7 @@ import Tranding from "../../../../public/icon/arrowTranding.svg";
 import Image from "next/image";
 import React from "react";
 import Trending from "@/app/components/super admin/statistik/card";
+import Report from "@/app/components/super admin/statistik/report";
 
 function Page() {
   return (
@@ -155,6 +156,9 @@ function Page() {
             <Trending />
           </div>
         </div>
+        </div>
+        <div className="translate-x-64 w-[75%]">
+         <Report/>
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ const Sidebar = () => {
 
     try {
       const response = await axios.delete(
-        `${process.env.NEXT_PUBLIC_URL}api/logout`,
+        `${process.env.NEXT_PUBLIC_URL}/api/logout`,
         {
           withCredentials: true,
         }
@@ -40,8 +40,8 @@ const Sidebar = () => {
       localStorage.removeItem("token");
 
       // Jangan hapus username, agar bisa digunakan lagi saat login ulang
-      // localStorage.removeItem("username"); // Komentar atau hapus baris ini
-
+      localStorage.removeItem("username"); // Komentar atau hapus baris ini
+ localStorage.removeItem("avatar");
       // Pastikan untuk menutup popup logout setelah logout berhasil
       setShowLogoutPopup(false);
 
@@ -49,7 +49,7 @@ const Sidebar = () => {
       router.push("/");
     } catch (error) {
       const axiosError = error as AxiosError;
-
+console.log(error)
       if (axiosError.response) {
         const errorData = axiosError.response.data as ErrorResponse;
         const errorMessage =
@@ -92,7 +92,9 @@ const Sidebar = () => {
                   />
                   <span
                     className={`ml-8 hover:text-[#167960] ${
-                      pathname === "/profile" ? "active" : ""
+                      pathname === "/profile"
+                        ? 'active'
+                        : ""
                     }`}
                   >
                     Profil
@@ -111,7 +113,9 @@ const Sidebar = () => {
                   />
                   <span
                     className={`ml-8 hover:text-[#167960] ${
-                      pathname === "/profile/riwayat" ? "active" : ""
+                      pathname === "/profile/riwayat"
+                        ? "active"
+                        : ""
                     }`}
                   >
                     Riwayat
@@ -131,7 +135,9 @@ const Sidebar = () => {
                     />
                     <span
                       className={`ml-8 hover:text-[#167960] ${
-                        pathname === "/profile/edit" ? "active" : ""
+                        pathname === "/profile/edit"
+                          ? "active"
+                          : ""
                       }`}
                     >
                       Edit Profil
@@ -154,7 +160,9 @@ const Sidebar = () => {
                   />
                   <span
                     className={`ml-8 hover:text-[#167960] ${
-                      pathname === "/profile/logout" ? "active" : ""
+                      pathname === "/profile/logout"
+                        ? "active"
+                        : ""
                     }`}
                   >
                     Logout
@@ -174,7 +182,9 @@ const Sidebar = () => {
                     />
                     <span
                       className={`ml-8 hover:text-[#167960] ${
-                        pathname === "/profile/kembali" ? "active" : ""
+                        pathname === "/profile/kembali"
+                          ? "active"
+                          : ""
                       }`}
                     >
                       Kembali
