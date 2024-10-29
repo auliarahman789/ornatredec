@@ -13,7 +13,6 @@ const DetailPesanan = () => {
   // Mengambil detail produk saat ID berubah
   useEffect(() => {
     if (typeof id === "string") {
-      // Memastikan id adalah string
       fetchDetailProduk(id);
     }
   }, [id]);
