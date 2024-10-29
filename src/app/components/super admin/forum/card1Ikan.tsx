@@ -4,7 +4,7 @@ import chat2 from "../../../../../public/icon/chat2.svg";
 import Image from "next/image";
 import axios from "axios";
 
-type ForumBurung = {
+type ForumIkan = {
   id: number;
   judul: string;
   desc: string;
@@ -20,16 +20,16 @@ type ForumBurung = {
   };
 };
 
-function Card1burung() {
-  const [data, setData] = useState<ForumBurung[]>([]);
+function Card1ikan() {
+  const [data, setData] = useState<ForumIkan[]>([]);
   useEffect(() => {
-    getForumBurung();
+    getForumIkan();
   }, []);
 
-  async function getForumBurung() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?kategori=burung&page=1&limit=20`;
+  async function getForumIkan() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?kategori=ikan&page=1&limit=20`;
     try {
-      const res = await axios.get<ForumBurung[]>(url, {
+      const res = await axios.get<ForumIkan[]>(url, {
         withCredentials: true,
       });
       setData(res.data);
@@ -130,4 +130,4 @@ function Card1burung() {
   );
 }
 
-export default Card1burung;
+export default Card1ikan;

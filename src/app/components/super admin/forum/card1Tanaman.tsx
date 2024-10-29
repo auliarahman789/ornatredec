@@ -51,11 +51,19 @@ function Card1tanaman() {
     <div className="space-y-10">
       {data.length > 0 ? (
         data.map((item, i) => (
-          <div key={i} className="w-[83%] h-[190px] bg-white ml-[4%] shadow-[3px_4px_4px,-3px_6px_4px] shadow-[#0000002d]">
+          <div
+            key={i}
+            className="w-[450px] h-[190px] bg-white ml-[4%] shadow-[3px_4px_4px,-3px_6px_4px] shadow-[#0000002d]"
+          >
             <div className="flex">
               <div className="flex-col">
                 <img
-                  src={item.fotoKonten ? "https://74gslzvj-8000.asse.devtunnels.ms" + item.fotoKonten : ""}
+                  src={
+                    item.fotoKonten
+                      ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                        item.fotoKonten
+                      : ""
+                  }
                   width={100}
                   height={100}
                   alt="kaktus"
@@ -66,21 +74,30 @@ function Card1tanaman() {
                 </button>
               </div>
               <div className="ms-[5%] flex-col space-y-1">
-              <div className="flex space-x-2 pt-6 mb-[2%]">
-              <img
-                src={item.User.photoProfile ? "https://74gslzvj-8000.asse.devtunnels.ms" + item.User.photoProfile : "/img/default-avatar.png"}
-                width={30}
-                height={30}
-                alt="foto profil"
-                className="rounded-full"
-              />
-              <p className="text-[15px] text-[#21B892] mt-1">{item.User.username}</p>
-            </div>
+                <div className="flex space-x-2 pt-6 mb-[2%]">
+                  <img
+                    src={
+                      item.User.photoProfile
+                        ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                          item.User.photoProfile
+                        : "/img/default-avatar.png"
+                    }
+                    width={30}
+                    height={30}
+                    alt="foto profil"
+                    className="rounded-full"
+                  />
+                  <p className="text-[15px] text-[#21B892] mt-1">
+                    {item.User.username}
+                  </p>
+                </div>
                 <p className="font-medium text-[20px] leading-none text-[#323735]">
                   {item.judul}
                 </p>
                 <p className="font-light text-[12px]">
-                  Ulasan dari <span className="text-[#005DE8]">{item.User.username}</span> pada {formatTanggal(item.createdAt)}
+                  Ulasan dari{" "}
+                  <span className="text-[#005DE8]">{item.User.username}</span>{" "}
+                  pada {formatTanggal(item.createdAt)}
                 </p>
                 <button className="bg-[#C2FFE8] p-[2px] rounded w-[35%] text-[#06612B] font-light text-[12px]">
                   {item.kategori_forum}
@@ -88,9 +105,19 @@ function Card1tanaman() {
 
                 <div className="flex pt-[18%] translate-x-[80%]">
                   <Image src={mata} width={20} height={20} alt="foto profil" />
-                  <p className="ms-1 font-light mt-1 text-[12px] text-[#323735]">{item.jumlahView}</p>
-                  <Image src={chat2} className="ms-5" width={20} height={20} alt="foto profil" />
-                  <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">{item.jumlahTanggapan}</p>
+                  <p className="ms-1 font-light mt-1 text-[12px] text-[#323735]">
+                    {item.jumlahView}
+                  </p>
+                  <Image
+                    src={chat2}
+                    className="ms-5"
+                    width={20}
+                    height={20}
+                    alt="foto profil"
+                  />
+                  <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
+                    {item.jumlahTanggapan}
+                  </p>
                 </div>
               </div>
             </div>
