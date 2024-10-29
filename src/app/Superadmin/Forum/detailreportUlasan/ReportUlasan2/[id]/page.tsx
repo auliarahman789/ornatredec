@@ -91,20 +91,35 @@ function DetailReportUlasan() {
     return new Date(tanggal).toLocaleDateString("id-ID", opsiTanggal);
   };
 
+  const handleClose = () => {
+    router.push('/Superadmin/Forum')
+  }
+
   return (
     <div className="overflow-x-hidden min-h-screen">
       <div className="translate-x-64 pt-[2%] ">
         <div className="text-[23px] font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-[2%] mt-2 inline-block text-transparent bg-clip-text">
           Kelola Forum
         </div>
+        {data && data?.jumlahReport > 0 ? 
         <div className="ms-[65%] mt-[3%]">
           <button
             className="bg-green-400 rounded-xl text-white px-4"
             onClick={deleteForumReport}
           >
+            Tutup
+          </button>
+        </div>
+          :
+          <div className="ms-[65%] mt-[3%]">
+          <button
+            className="bg-green-400 rounded-xl text-white px-4"
+            onClick={handleClose}
+          > 
             Hapus
           </button>
         </div>
+        }
 
         <div className="">
           {data && (
@@ -113,7 +128,8 @@ function DetailReportUlasan() {
                 <div className="flex">
                   <div className="flex items-start">
                     <Image
-                      src={profil}
+                      src={data.User.photoProfile ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                        data.User.photoProfile : profil}
                       width={38}
                       height={38}
                       alt="foto profil"
@@ -138,6 +154,7 @@ function DetailReportUlasan() {
                           {data.judul}
                         </p>
                       </div>
+                      {data.jumlahReport > 0 ? 
                       <div className="ms-[60%]">
                         <div className="text-sm text-center">
                           {data.jumlahReport}
@@ -146,6 +163,7 @@ function DetailReportUlasan() {
                           i
                         </div>
                       </div>
+                      : ""}
                     </div>
 
                     <p className="font-light text-[12px]">
@@ -207,50 +225,48 @@ function DetailReportUlasan() {
                   {data.desc}
                 </p>
               </div>
-              <div className="flex">
-                <div className="text-[24px] text-[#21B892] ms-[6%] mt-[3%] mb-[2%]">
-                  Catatan Laporan User
-                </div>
-                <div className="text-[#FF0404] text-[20px] mt-[3%] ms-[40%] h-[5%]">
-                  {data.jumlahReport}
-                </div>
-              </div>
-              <div className="space-y-3 mb-[2%]">
-                {data.reports.length > 0 ? (
-                  data.reports.map((item: any, i: number) => {
-                    return (
-                      <div
-                        key={i}
-                        className="h-[125px] w-[751px] ms-[10%] rounded-2xl border shadow-[6px_6px_5px] shadow-[#0000002e]"
-                      >
-                        <div className="flex pt-4 mb-[2%]">
-                          <img
-                            src={
-                              "https://74gslzvj-8000.asse.devtunnels.ms" +
-                              item.User.photoprofile
-                            }
-                            width={50}
-                            height={50}
-                            alt="foto profil"
-                            className="rounded-full ms-5"
-                          />
-                          <p className="text-[15px] text-[#21B892] mt-1 ms-3">
-                            {item.User.username}
-                          </p>
-                          <p className="text-[15px] text-[#7D7D7D] mt-1 ml-9">
-                            {formatTanggal(data.createdAt)}
-                          </p>
-                        </div>
-                        <div className="text-black text-[15px] leading-tight ml-[12.5%] -translate-y-7 w-[70%]">
-                          {item.desc_report}
-                        </div>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <p>tidak ada report</p>
-                )}
-              </div>
+              {data.jumlahReport > 0 ?
+              <><div className="flex">
+                  <div className="text-[24px] text-[#21B892] ms-[6%] mt-[3%] mb-[2%]">
+                    Catatan Laporan User
+                  </div>
+                  <div className="text-[#FF0404] text-[20px] mt-[3%] ms-[40%] h-[5%]">
+                    {data.jumlahReport}
+                  </div>
+                </div><div className="space-y-3 mb-[2%]">
+                    {data.reports.length > 0 ? (
+                      data.reports.map((item: any, i: number) => {
+                        return (
+                          <div
+                            key={i}
+                            className="h-[125px] w-[751px] ms-[10%] rounded-2xl border shadow-[6px_6px_5px] shadow-[#0000002e]"
+                          >
+                            <div className="flex pt-4 mb-[2%]">
+                              <img
+                                src={"https://74gslzvj-8000.asse.devtunnels.ms" +
+                                  item.User.photoprofile}
+                                width={50}
+                                height={50}
+                                alt="foto profil"
+                                className="rounded-full ms-5" />
+                              <p className="text-[15px] text-[#21B892] mt-1 ms-3">
+                                {item.User.username}
+                              </p>
+                              <p className="text-[15px] text-[#7D7D7D] mt-1 ml-9">
+                                {formatTanggal(data.createdAt)}
+                              </p>
+                            </div>
+                            <div className="text-black text-[15px] leading-tight ml-[12.5%] -translate-y-7 w-[70%]">
+                              {item.desc_report}
+                            </div>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <p className="font-semibold text-[23px] mt-[8%] text-gray-400 text-opacity-35 ms-[35%]">tidak ada report</p>
+                    )}
+                  </div></>
+              : ''}
             </>
           )}
         </div>
