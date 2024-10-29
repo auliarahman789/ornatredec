@@ -6,6 +6,7 @@ import axios from "axios";
 import tambahicon from "../../../../../public/icon/dell_square.svg";
 import { useRouter } from "next/navigation";
 import LoadingProduk from "@/app/components/super admin/loadingProduk";
+import Swal from "sweetalert2";
 
 interface Produk {
   judul_produk: string;
@@ -169,7 +170,14 @@ const Page = () => {
         withCredentials: true,
       });
       router.push("/Superadmin/Produk");
-      alert("Berhasil menambahkan produk");
+      alert(
+        Swal.fire({
+          icon: "success", // Ganti icon menjadi "success" untuk menampilkan ceklis
+          title: "Berhasil!",
+          text: "Aksi Anda berhasil dilaksanakan, Selamat 🎉.",
+        })
+      );
+
       console.log(res.data);
       setIsLoading(false);
     } catch (error: any) {
@@ -336,23 +344,23 @@ const Page = () => {
               </div> */}
               {variasi.map((data, i) => (
                 <>
-                    <div className="ms-7 -translate-y-4 w-[95%] mt-[5%] flex-col">
-                      <label
-                        htmlFor="nama variasi"
-                        className="text-[#8EAEA6] text-[20px] font-semibold mt-[3%]"
-                      >
-                        Nama Variasi
-                      </label>
-                      <input
-                        type="text"
-                        name="nama_variasi"
-                        onChange={(e) => handleChangeField(e, i)}
-                        className="w-[100%] mt-1 bg-white h-[45px]
+                  <div className="ms-7 -translate-y-4 w-[95%] mt-[5%] flex-col">
+                    <label
+                      htmlFor="nama variasi"
+                      className="text-[#8EAEA6] text-[20px] font-semibold mt-[3%]"
+                    >
+                      Nama Variasi
+                    </label>
+                    <input
+                      type="text"
+                      name="nama_variasi"
+                      onChange={(e) => handleChangeField(e, i)}
+                      className="w-[100%] mt-1 bg-white h-[45px]
                               text-[20px] px-3 text-[#3F9272] rounded-md"
-                        required
-                      />
-                    </div>
-                    {/* <div>
+                      required
+                    />
+                  </div>
+                  {/* <div>
                       <button
                         className="px-7 ms-4 bg-[#8EAEA6] h-[45px] mt-7 font-bold text-white rounded-md"
                         onClick={() => handleDelete(i)}

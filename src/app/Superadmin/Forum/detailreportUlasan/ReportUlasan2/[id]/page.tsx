@@ -161,16 +161,6 @@ function DetailReportUlasan() {
 
                     <div className="flex pt-[3.5%] -translate-x-10">
                       <Image
-                        src={share}
-                        className="ms-10"
-                        width={20}
-                        height={20}
-                        alt="share"
-                      />
-                      <p className="ms-1 font-light mt-1 text-[12px] text-[#323735]">
-                        Bagikan
-                      </p>
-                      <Image
                         src={mata}
                         className="ms-10"
                         width={20}
@@ -190,13 +180,6 @@ function DetailReportUlasan() {
                       <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
                         {data.jumlahTanggapan}
                       </p>
-                      <Image
-                        src={save}
-                        className="ms-[65.5%]"
-                        width={20}
-                        height={20}
-                        alt="foto profil"
-                      />
                     </div>
                     <div className="border-b w-[650px] border-black"></div>
                   </div>
