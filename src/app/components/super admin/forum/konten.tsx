@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Search from "../../../../../public/icon/search.svg";
+
 import Dropdown1 from "./dropdown1";
 import Card2 from "./card2";
 import Card1tanaman from "./card1Tanaman";
@@ -18,24 +18,10 @@ function Konten() {
           <div className="flex">
             <Dropdown1 />
           </div>
-          <div className="flex text-[#8EAEA6] text-[18px] pb-4">
-            <input
-              type="text"
-              placeholder="Cari..."
-              className="w-[30%] h-[31px] pl-[3%] bg-[#FFFBFB] rounded-full ml-[2%] mt-[1%] shadow-xl border border-black"
-            />
-            <Image
-              src={Search}
-              alt={"search"}
-              width={50}
-              height={50}
-              className="bg-[#FFFBFB] shadow-xl rounded-full w-[32px] h-[32px] py-[1%] mt-[1%] ml-[2%] border border-black"
-            />
-          </div>
 
-          <div className="overflow-y-auto h-[85%] overflow-x-hidden">
+          {/* <div className="overflow-y-auto h-[85%] overflow-x-hidden">
             <Card1tanaman />
-          </div>
+          </div> */}
         </div>
         <div className="w-[55%] min-h-screen mt-[5%] overflow-y-auto">
           <div className="bg-[#1AE5CC] rounded-lg h-[45%] mb-4">
