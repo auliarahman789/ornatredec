@@ -7,10 +7,10 @@ import axios from "axios";
 import back from "../../../../../../public/icon/Arrow_left.svg";
 import next from "../../../../../../public/icon/Expand_left.svg";
 import Loadingstatus from "@/app/components/super admin/loadingStatus";
-
 type Pesanan = {
   id: number;
   status: string;
+  statusPembayaran: string;
   produk: {
     judul_produk: string;
     foto_produk: string;
@@ -104,10 +104,6 @@ function Page() {
   const handleBack = () => {
     router.push("/Superadmin/Produk/pesanan");
   };
-
-  const handleDetail = () => {
-    router.push("/Superadmin/Produk/pesanan/detail");
-  };
    
   return (
     <div className="overflow-x-hidden min-h-screen">
@@ -136,7 +132,17 @@ function Page() {
               </p>
             </div>
           </div>
-          <div className="flex relative space-x-[40%] mt-[4%] ms-[7%]">
+          <div className="flex relative space-x-[35%] mt-[4%] ms-[3%]">
+            {/* <div className="flex-col -translate-y-[50%]">
+              <div className="flex space-x-[4%]">
+                <Image src={sudahBayar} width={15} height={15} alt="sudah bayar"/>
+                <p className="whitespace-nowrap">Sudah Bayar</p>
+              </div>
+              <div className="flex space-x-[4%]">
+              <Image src={belumBayar} width={15} height={15} alt="belum bayar"/>
+              <p className="whitespace-nowrap">Belum Bayar</p>
+              </div>
+            </div> */}
             <div className="absolute right-[30%] flex-col">
               <div className="flex space-x-6">
                 <label htmlFor="Konfirmasi">Konfirmasi semua pesanan untuk dikirim</label>
@@ -157,7 +163,7 @@ function Page() {
               )} {isLoading && <Loadingstatus />}
             </div>
           </div>
-          <div className="flex-col space-y-[1%] flex mt-[4%] translate-x-[7%]">
+          <div className="flex-col space-y-[1%] flex mt-[1%] translate-x-[4%]">
             {data.length > 0 ? (
               data.map((item) => (
                 <div key={item.id} className="flex space-x-[4.5%]">

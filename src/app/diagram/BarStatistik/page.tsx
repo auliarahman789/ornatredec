@@ -13,25 +13,25 @@ import {
 
 const data = [
   {
-    name: "Januari",
+    name: "Jan",
     uv: 4000,
     pv: 2400,
     amt: 300,
   },
   {
-    name: "Februari",
+    name: "Feb",
     uv: 3000,
     pv: 1398,
     amt: 250,
   },
   {
-    name: "Maret",
+    name: "Mar",
     uv: 2000,
     pv: 10000,
     amt: 200,
   },
   {
-    name: "April",
+    name: "Apr",
     uv: 2780,
     pv: 3908,
     amt: 150,
@@ -54,6 +54,36 @@ const data = [
     pv: 4300,
     amt: 0,
   },
+  {
+    name: "Agst",
+    uv: 4000,
+    pv: 2400,
+    amt: 300,
+  },
+  {
+    name: "Sept",
+    uv: 3000,
+    pv: 1398,
+    amt: 250,
+  },
+  {
+    name: "Okt",
+    uv: 2000,
+    pv: 10000,
+    amt: 200,
+  },
+  {
+    name: "Nov",
+    uv: 2780,
+    pv: 3908,
+    amt: 150,
+  },
+  {
+    name: "Des",
+    uv: 1890,
+    pv: 4800,
+    amt: 100,
+  },
 ];
 
 export default class DiagramBarStatistik extends PureComponent {
@@ -62,9 +92,9 @@ export default class DiagramBarStatistik extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="60%" height="63%">
+      <ResponsiveContainer width="65%" height="63%">
         <BarChart
-          width={500}
+          width={700}
           height={500}
           data={data}
           margin={{
@@ -78,7 +108,7 @@ export default class DiagramBarStatistik extends PureComponent {
           <XAxis
             dataKey="name"
             scale="point"
-            padding={{ left: 50, right: 10 }}
+            padding={{ left: 30, right: 30 }}
             tick={{
               fill: "#FFFFFF", // Ubah warna teks label di sumbu X menjadi putih
               fontSize: "12px", // Ukuran font teks label di sumbu X
