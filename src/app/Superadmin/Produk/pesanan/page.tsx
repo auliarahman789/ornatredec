@@ -6,10 +6,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
+import sudahBayar from '../../../../../public/icon/Ellipse 247.svg';
+import belumBayar from '../../../../../public/icon/Ellipse 250.svg';
 
 type Pesanan = {
   id: number;
   status: string;
+  statusPembayaran: string;
   produk: {
     judul_produk: string;
     foto_produk: string;
@@ -139,7 +142,17 @@ const Page = () => {
           </div>
 
           {/* Tombol cetak semua pesanan */}
-          <div className="flex relative space-x-[40%] mt-[4%] ms-[7%]">
+          <div className="flex relative space-x-[40%] mt-[4%] ms-[4%]">
+          <div className="flex-col -translate-y-[50%]">
+              <div className="flex space-x-[4%]">
+                <Image src={sudahBayar} width={15} height={15} alt="sudah bayar"/>
+                <p className="whitespace-nowrap">Sudah Bayar</p>
+              </div>
+              <div className="flex space-x-[4%]">
+              <Image src={belumBayar} width={15} height={15} alt="belum bayar"/>
+              <p className="whitespace-nowrap">Belum Bayar</p>
+              </div>
+            </div>
             <div className="absolute right-[30%] flex-col">
               <div className="flex space-x-6">
                 <label htmlFor="Cetak">Kemas semua pesanan</label>
@@ -166,7 +179,12 @@ const Page = () => {
           <div className="flex-col space-y-[1%] flex mt-[4%] translate-x-[7%]" ref={printRef}>
             {data.length > 0 ? (
               data.map((item: any) => (
-                <div key={item.id} className="flex space-x-[4.5%]">
+                <div key={item.id} className="flex space-x-[3.5%]">
+                  {item.statusPembayaran === "pending" ? 
+                  <Image src={belumBayar} width={15} height={15} alt="belum bayar"/>
+                    :
+                    <Image src={sudahBayar} width={15} height={15} alt="sudah bayar" />
+                  }
                   <img
                     src={
                       item.produk.foto_produk

@@ -9,6 +9,7 @@ import Example from "../diagram/batang/page";
 import DiagramForum from "../diagram/lingkaranforum/page";
 import DropdownButton from "../components/super admin/button/page";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 type Total = {
   totalPenggunaUser: number;
@@ -41,6 +42,13 @@ const Page = () => {
       console.log(error);
       alert("Terjadi kesalahan saat mengambil data total.");
     }
+  }
+  const router = useRouter();
+  const handleAturProduk = () => {
+    router.push('/Superadmin/Produk')
+  }
+  const handleAturKonten = () => {
+    router.push('/Superadmin/Forum')
   }
   return (
     <div className="overflow-x-hidden min-h-screen">
@@ -166,7 +174,7 @@ const Page = () => {
                   Burung Hias
                   <span className="ms-12">{data.totalProdukBurung}</span>
                 </p>
-                <button className="bg-white text-[#308967] w-[100%] h-[40%] justify-center p-2 rounded-lg">
+                <button onClick={handleAturProduk} className="bg-white text-[#308967] w-[100%] h-[40%] justify-center p-2 rounded-lg">
                   Atur Produk
                 </button>
               </div>
@@ -202,7 +210,7 @@ const Page = () => {
                   Burung Hias
                   <span className="ms-12">{data.totalForumBurung}</span>
                 </p>
-                <button className="bg-[#198C6F] text-white w-[100%] h-[40%] justify-center p-2 rounded-lg">
+                <button onClick={handleAturKonten} className="bg-[#198C6F] text-white w-[100%] h-[40%] justify-center p-2 rounded-lg">
                   Atur Konten
                 </button>
               </div>

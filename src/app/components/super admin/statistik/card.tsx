@@ -25,7 +25,7 @@ function Trending() {
       const res = await axios.get<Trending[]>(url, {
         withCredentials: true,
       });
-      setData(res.data);
+      setData(res.data.slice(0,4));
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
@@ -46,7 +46,7 @@ function Trending() {
                           src={item.fotoKonten ? "https://74gslzvj-8000.asse.devtunnels.ms" + item.fotoKonten : ""}
                           width={60}
                           height={60}
-                          alt="foto profil"
+                          alt="foto konten"
                           className="rounded-full"
                         />
                         <button className="bg-[#3F9272] w-[70%] h-[15%] rounded ms-[20%] mt-[7%] text-white font-semibold text-[8px]">
@@ -60,7 +60,6 @@ function Trending() {
                         <p className="font-medium text-[15px] leading-none text-[#323735]">
                           {item.judul}
                         </p>
-
                         <div className="flex pt-[3%] translate-y-[90%] translate-x-[100%]">
                           <Image src={mata} width={15} height={15} alt="foto profil" />
                           <p className="ms-1 font-light mt-1 text-[9px] text-[#323735]">
