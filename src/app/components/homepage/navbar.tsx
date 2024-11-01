@@ -21,7 +21,7 @@ function Navbar() {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_URL}api/getMe`,
           {
-            withCredentials:true
+            withCredentials: true,
             // headers: {
             //   Authorization: `Bearer ${token}`,
             // },
@@ -103,11 +103,11 @@ function Navbar() {
         <div className="flex items-center space-x-3">
           {isLoggedIn ? (
             <Link href="/profile" className="flex items-center">
-              <img
+              <Image
                 src={avatar} // Gunakan avatar dari API atau default
                 alt="Profile Avatar"
-                width={40} 
-                height={40} 
+                width={40}
+                height={40}
                 className="rounded-full"
               />
               <span className="text-[#308967] ml-2">{username}</span>

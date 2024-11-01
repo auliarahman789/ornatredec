@@ -1,13 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import Search from "../../../../../public/icon/search.svg";
+
 import Dropdown1 from "./dropdown1";
-import Dropdown2 from "./dropdown2";
-import Card1 from "./card1Tanaman";
 import Card2 from "./card2";
 import Card1tanaman from "./card1Tanaman";
-import Card2burung from "./card1burung";
-import Card1ikan from "./card2Ikan";
 
 function Konten() {
   return (
@@ -21,29 +17,14 @@ function Konten() {
         <div className="bg-[#EBFFF7] mx-auto w-[574px] h-[1102px] rounded-lg overflow-y-auto">
           <div className="flex">
             <Dropdown1 />
-            <Dropdown2 />
-          </div>
-          <div className="flex text-[#8EAEA6] text-[18px] pb-4">
-            <input
-              type="text"
-              placeholder="Cari..."
-              className="w-[30%] h-[31px] pl-[3%] bg-[#FFFBFB] rounded-full ml-[2%] mt-[1%] shadow-xl border border-black"
-            />
-            <Image
-              src={Search}
-              alt={"search"}
-              width={50}
-              height={50}
-              className="bg-[#FFFBFB] shadow-xl rounded-full w-[32px] h-[32px] py-[1%] mt-[1%] ml-[2%] border border-black"
-            />
           </div>
 
-          <div className="overflow-y-auto h-[85%] overflow-x-hidden">
+          {/* <div className="overflow-y-auto h-[85%] overflow-x-hidden">
             <Card1tanaman />
-          </div>
+          </div> */}
         </div>
-        <div className="w-[55%] min-h-screen mt-[5%] overflow-y-auto">
-          <div className="bg-[#1AE5CC] rounded-lg h-[45%] mb-4">
+        <div className="w-[55%] min-h-screen mt-[5%]">
+          <div className="bg-[#1AE5CC] rounded-lg h-[45%] mb-4 overflow-y-scroll">
             <div className="pt-4">
               <Card2 />
             </div>

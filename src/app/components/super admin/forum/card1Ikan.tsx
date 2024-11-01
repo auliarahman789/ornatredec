@@ -5,7 +5,7 @@ import Search from "../../../../../public/icon/search.svg";
 import Image from "next/image";
 import axios from "axios";
 
-type ForumBurung = {
+type ForumIkan = {
   id: number;
   judul: string;
   desc: string;
@@ -21,18 +21,18 @@ type ForumBurung = {
   };
 };
 
-function Card1burung() {
-  const [data, setData] = useState<ForumBurung[]>([]);
+function Card1ikan() {
+  const [data, setData] = useState<ForumIkan[]>([]);
   const [searchTerm, setSearchTerm] = useState(""); // State untuk input pencarian
 
   useEffect(() => {
-    getForumBurung();
+    getForumIkan();
   }, []);
 
-  async function getForumBurung() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?kategori=burung&page=1&limit=20`;
+  async function getForumIkan() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?kategori=ikan&page=1&limit=20`;
     try {
-      const res = await axios.get<ForumBurung[]>(url, {
+      const res = await axios.get<ForumIkan[]>(url, {
         withCredentials: true,
       });
       setData(res.data);
@@ -42,7 +42,6 @@ function Card1burung() {
       alert("Terjadi kesalahan saat mengambil data forum");
     }
   }
-
   const formatTanggal = (tanggal: string) => {
     const opsiTanggal: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -52,7 +51,6 @@ function Card1burung() {
     return new Date(tanggal).toLocaleDateString("id-ID", opsiTanggal);
   };
 
-  // Fungsi untuk menangani perubahan input pencarian
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
@@ -61,7 +59,6 @@ function Card1burung() {
   const filteredData = data.filter((item) =>
     item.judul.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
   return (
     <div className="space-y-10">
       <div className="flex text-[#8EAEA6] text-[18px] pb-4">
@@ -154,4 +151,4 @@ function Card1burung() {
   );
 }
 
-export default Card1burung;
+export default Card1ikan;

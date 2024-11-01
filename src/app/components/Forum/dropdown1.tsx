@@ -2,33 +2,6 @@
 import Image from "next/image";
 
 import React, { useState } from "react";
-import Card1tanaman from "./card1Tanaman";
-import Card1ikan from "./card1Ikan";
-import Card1burung from "./card1burung";
-
-const TanamanComponent = () => {
-  return (
-    <div className="mt-4 p-4 ">
-      <Card1tanaman />
-    </div>
-  );
-};
-
-const IkanComponent = () => {
-  return (
-    <div className="mt-4 p-4 ">
-      <Card1ikan />
-    </div>
-  );
-};
-
-const BurungComponent = () => {
-  return (
-    <div className="mt-4 p-4 ">
-      <Card1burung />
-    </div>
-  );
-};
 
 const Dropdown1 = ({ onSelect }: { onSelect: any }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,10 +19,10 @@ const Dropdown1 = ({ onSelect }: { onSelect: any }) => {
 
   return (
     <div className="relative inline-block text-left mr-4">
-      <div className="mt-3">
+      <div className="mt-3 ms-8">
         <button
           type="button"
-          className="inline-flex justify-center text-[18px] px-3 py-1 font-semibold text-[#21B892]"
+          className="inline-flex justify-center text-[18px] px-3 py-1 font-semibold text-white max-w-[127px] min-w-[127px] rounded-xl bg-[#308967]"
           onClick={toggleDropdown}
         >
           {selectedOption}
@@ -111,10 +84,10 @@ const CombinedDropdowns = () => {
       <div className="flex">
         <Dropdown1 onSelect={setSelectedOption} />
       </div>
-
+      {/* 
       {selectedOption === "Tanaman" && <TanamanComponent />}
       {selectedOption === "Ikan" && <IkanComponent />}
-      {selectedOption === "Burung" && <BurungComponent />}
+      {selectedOption === "Burung" && <BurungComponent />} */}
     </div>
   );
 };
