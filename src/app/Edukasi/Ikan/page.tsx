@@ -1,5 +1,5 @@
-import Ikan from "@/app/components/Edukasi/ikan/ikan";
-import Footer from "@/app/components/homepage/footer";
+import Ikan from "@/components/Edukasi/ikan/ikan";
+import Footer from "@/components/homepage/footer";
 import React from "react";
 
 function Edukasi() {

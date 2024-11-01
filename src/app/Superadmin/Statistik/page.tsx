@@ -7,12 +7,12 @@ import ForumStatistik from "@/app/diagram/lingkaranforumstatistik/page";
 import Tranding from "../../../../public/icon/arrowTranding.svg";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import Trending from "@/app/components/super admin/statistik/card";
-import Report from "@/app/components/super admin/statistik/report";
+import Trending from "@/components/super admin/statistik/card";
+import Report from "@/components/super admin/statistik/report";
 import axios from "axios";
-import Perbandingan from "@/app/components/super admin/statistik/oktober/perbandingan";
+import Perbandingan from "@/components/super admin/statistik/oktober/perbandingan";
 import DiagramBarStatistik2 from "@/app/diagram/BarStatistik/contoh/page";
-import BarKecilOkt from "@/app/components/super admin/statistik/oktober/barkecilokt";
+import BarKecilOkt from "@/components/super admin/statistik/oktober/barkecilokt";
 type Diagram = {
   currentMonth: {
     month: 10;

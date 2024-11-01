@@ -1,4 +1,4 @@
-import Edit from "@/app/components/edit";
+import Edit from "@/components/edit";
 import React from "react";
 
 function page() {

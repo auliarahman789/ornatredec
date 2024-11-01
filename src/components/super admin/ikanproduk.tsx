@@ -1,11 +1,11 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import edit from "../../../../public/icon/Group 1000004435.svg";
+import edit from "../../../public/icon/Group 1000004435.svg";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/compat/router";
 import Link from "next/link";
-const Tanamanproduk = () => {
+const Ikanproduk = () => {
   const [data, setData] = useState<any[]>([]);
   const formatHarga = (itung: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -15,15 +15,15 @@ const Tanamanproduk = () => {
   };
 
   useEffect(() => {
-    getTanaman();
+    getIkan();
   }, []);
 
   const router = useRouter();
   const handleEdit = () => {
-    router.push("/Superadmin/Produk/edit");
+    router?.push("/Superadmin/Produk/edit");
   };
-  async function getTanaman() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet?kategori=tanaman`;
+  async function getIkan() {
+    const url = `https://74gslzvj-8000.asse.devtunnels.ms/filterdanGet?kategori=ikan`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -32,7 +32,7 @@ const Tanamanproduk = () => {
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
-      alert("Terjadi kesalahan saat mengambil data produk tanaman.");
+      alert("Terjadi kesalahan saat mengambil data produk ikan.");
     }
   }
 
@@ -48,8 +48,6 @@ const Tanamanproduk = () => {
               <img
                 className="mx-auto mt-5 h-[55%] w-[85%]"
                 alt="Produk Gambar"
-                width={85}
-                height={84}
                 src={
                   "https://74gslzvj-8000.asse.devtunnels.ms" + item.foto_produk
                 }
@@ -87,4 +85,4 @@ const Tanamanproduk = () => {
   );
 };
 
-export default Tanamanproduk;
+export default Ikanproduk;

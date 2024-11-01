@@ -1,4 +1,4 @@
-import Tanaman from "@/app/components/Edukasi/Tanaman/tanaman";
+import Tanaman from "@/components/Edukasi/Tanaman/tanaman";
 import React from "react";
 
 function Page() {

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Footer from "@/app/components/homepage/footer";
+import Footer from "@/components/homepage/footer";
 
 function page() {
   return (

@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/compat/router";
 import Loading from "./loading";
 import Image from "next/image";
-import userIcon from "../../../../public/icon/User_fill.svg";
-import passwordIcon from "../../../../public/icon/Lock_alt_fill.svg";
+import userIcon from "../../../public/icon/User_fill.svg";
+import passwordIcon from "../../../public/icon/Lock_alt_fill.svg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
@@ -29,7 +29,7 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      console.log(res)
+      console.log(res);
 
       // Simpan data pengguna di localStorage setelah login berhasil
       // localStorage.setItem("token", res.data.token); // Menyimpan token
@@ -42,9 +42,9 @@ const Login = () => {
       alert("Berhasil Login");
       // Redirect berdasarkan role
       if (userRole === "user") {
-        router.push("/");
+        router?.push("/");
       } else if (userRole === "super admin") {
-        router.push("/Superadmin");
+        router?.push("/Superadmin");
       }
       setIsLoading(false);
     } catch (error: any) {

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import mata from "../../../../../public/icon/mata.svg";
-import chat2 from "../../../../../public/icon/chat2.svg";
-import Search from "../../../../../public/icon/search.svg";
+import mata from "../../../../public/icon/mata.svg";
+import chat2 from "../../../../public/icon/chat2.svg";
+import Search from "../../../../public/icon/search.svg";
 import Image from "next/image";
 import axios from "axios";
+import Link from "next/link";
 
-type ForumIkan = {
+type Forumtanaman = {
   id: number;
   judul: string;
   desc: string;
@@ -21,18 +22,18 @@ type ForumIkan = {
   };
 };
 
-function Card1ikan() {
-  const [data, setData] = useState<ForumIkan[]>([]);
+function Card1tanaman() {
+  const [data, setData] = useState<Forumtanaman[]>([]);
   const [searchTerm, setSearchTerm] = useState(""); // State untuk input pencarian
 
   useEffect(() => {
-    getForumIkan();
+    getForumtanaman();
   }, []);
 
-  async function getForumIkan() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?kategori=ikan&page=1&limit=20`;
+  async function getForumtanaman() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?kategori=tanaman&page=1&limit=20`;
     try {
-      const res = await axios.get<ForumIkan[]>(url, {
+      const res = await axios.get<Forumtanaman[]>(url, {
         withCredentials: true,
       });
       setData(res.data);
@@ -90,9 +91,13 @@ function Card1ikan() {
                   alt="kaktus"
                   className="w-[180px] h-[150px]"
                 />
-                <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[7%] text-white font-semibold text-[12px]">
-                  Atur
-                </button>
+                <Link
+                  href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}
+                >
+                  <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
+                    Atur
+                  </button>
+                </Link>
               </div>
               <div className="ms-[5%] flex-col space-y-1">
                 <div className="flex space-x-2 pt-6 mb-[2%]">
@@ -151,4 +156,4 @@ function Card1ikan() {
   );
 }
 
-export default Card1ikan;
+export default Card1tanaman;

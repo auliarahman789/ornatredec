@@ -2,7 +2,7 @@
 
 import React, { ChangeEvent, useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/compat/router";
 import axios from "axios";
 import Router from "next/router";
 import Sidebar from "./sidebar";
@@ -22,7 +22,7 @@ interface UserData {
   RtRw: string;
 }
 
-const Edit = () => {
+function Edit() {
   const [formData, setFormData] = useState<UserData>({
     username: "",
     email: "",
@@ -186,7 +186,7 @@ const Edit = () => {
         localStorage.setItem("jalan", formData.jalan);
         localStorage.setItem("RtRw", formData.RtRw);
 
-        //router.push("/profile");
+        //router?.push("/profile");
       } else {
         alert("Gagal memperbarui data pengguna.");
       }
@@ -198,7 +198,7 @@ const Edit = () => {
   };
 
   const handleGoBack = () => {
-    router.push("/profile");
+    router?.push("/profile");
   };
 
   return (
@@ -384,7 +384,7 @@ const Edit = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Edit;
 function setUserData(user: any) {

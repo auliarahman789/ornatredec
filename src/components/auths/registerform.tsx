@@ -1,12 +1,11 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import userIcon from "../../../../public/icon/User_fill.svg";
-import messageIcon from "../../../../public/icon/Message_alt_fill.svg";
-import passwordIcon from "../../../../public/icon/Lock_alt_fill.svg";
-import phoneIcon from "../../../../public/icon/Phone_fill.svg";
+import userIcon from "../../../public/icon/User_fill (2).svg";
+import messageIcon from "../../../public/icon/Message_alt_fill.svg";
+import passwordIcon from "../../../public/icon/Lock_alt_fill.svg";
+import phoneIcon from "../../../public/icon/Phone_fill.svg";
 import axios from "axios";
-import Loading from "./loading";
 import LoadingRegis from "./loadingRegis";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -24,8 +23,8 @@ const Register = ({
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
   const handleClickShow = () => {
-    setShow(!show)
-  }
+    setShow(!show);
+  };
   async function buatAkun() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/register`;
     try {
@@ -58,7 +57,7 @@ const Register = ({
       setPhone("");
       setPassword("");
       setIsAnimated(!isAnimated);
-     setIsLoading(false);
+      setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
       console.log(error);
@@ -112,7 +111,7 @@ const Register = ({
             </div>
             <div className="relative">
               <input
-                type={ show ? "text" : "password"}
+                type={show ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 name="password"
@@ -128,7 +127,16 @@ const Register = ({
                 height={27}
                 className="absolute top-1/2 left-4 -translate-y-1/2"
               />
-               <p className="text-[#3F9272] absolute top-[18px] right-4" onClick={handleClickShow}>{ show ? <FaEye className="w-[22px] h-[22px]"/> : <FaEyeSlash className="w-[22px] h-[22px]" /> }</p>
+              <p
+                className="text-[#3F9272] absolute top-[18px] right-4"
+                onClick={handleClickShow}
+              >
+                {show ? (
+                  <FaEye className="w-[22px] h-[22px]" />
+                ) : (
+                  <FaEyeSlash className="w-[22px] h-[22px]" />
+                )}
+              </p>
             </div>
             <div className="relative">
               <input
@@ -155,7 +163,7 @@ const Register = ({
               onClick={buatAkun}
               className="bg-[#3F9272] text-sm text-white px-12 py-[10px] mt-[30px] rounded-full"
             >
-              {isLoading ? 'Loading...' : 'Buat'} 
+              {isLoading ? "Loading..." : "Buat"}
             </button>
             {isLoading && <LoadingRegis />}
           </div>

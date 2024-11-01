@@ -1,7 +1,7 @@
 "use client";
 
-import Grid from "@/app/components/super admin/forum/grid";
-import Konten from "@/app/components/super admin/forum/konten";
+import Grid from "@/components/super admin/forum/grid";
+import Konten from "@/components/super admin/forum/konten";
 
 function Forum() {
   return (

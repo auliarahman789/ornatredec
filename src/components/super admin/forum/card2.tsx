@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import mata from "../../../../../public/icon/mata.svg";
-import chat2 from "../../../../../public/icon/chat2.svg";
+import mata from "../../../../public/icon/mata.svg";
+import chat2 from "../../../../public/icon/chat2.svg";
 import Link from "next/link";
 import axios from "axios";
 

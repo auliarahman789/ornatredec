@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Sidebar from "./sidebar";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/compat/router";
 import axios from "axios";
 import Image from "next/image";
 interface UserData {
@@ -14,7 +14,7 @@ interface UserData {
   photoProfile: any; // Pastikan ini sesuai
 }
 
-const Profile = () => {
+function Profile() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const router = useRouter();
 
@@ -48,8 +48,8 @@ const Profile = () => {
       const res = await axios.get(url, { withCredentials: true });
       console.log("Data pengguna:", res.data.user); // Log data pengguna
 
-       setUserData(res.data);
-       console.log('use data',res.data) 
+      setUserData(res.data);
+      console.log("use data", res.data);
       // if (res.data && res.data.user) {
       //   const user = res.data.user;
       //   console.log("User Photo Profile:", user.photoProfile); // Log nilai photoProfile
@@ -141,6 +141,6 @@ const Profile = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Profile;

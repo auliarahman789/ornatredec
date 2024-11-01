@@ -1,4 +1,4 @@
-import Card3 from "@/app/components/super admin/forum/card3reportulasan";
+import Card3 from "@/components/super admin/forum/card3reportulasan";
 import React from "react";
 
 function DetailReportUlasan() {

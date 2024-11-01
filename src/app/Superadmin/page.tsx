@@ -7,9 +7,9 @@ import Image from "next/image";
 import Diagram from "../diagram/lingkaran/page";
 import Example from "../diagram/batang/page";
 import DiagramForum from "../diagram/lingkaranforum/page";
-import DropdownButton from "../components/super admin/button/page";
+import DropdownButton from "@/components/super admin/button/page";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/compat/router";
 
 type Total = {
   totalPenggunaUser: number;
@@ -45,11 +45,11 @@ const Page = () => {
   }
   const router = useRouter();
   const handleAturProduk = () => {
-    router.push('/Superadmin/Produk')
-  }
+    router?.push("/Superadmin/Produk");
+  };
   const handleAturKonten = () => {
-    router.push('/Superadmin/Forum')
-  }
+    router?.push("/Superadmin/Forum");
+  };
   return (
     <div className="overflow-x-hidden min-h-screen">
       <div className="text-black translate-x-64 pt-[2%] min-h-screen">
@@ -174,7 +174,10 @@ const Page = () => {
                   Burung Hias
                   <span className="ms-12">{data.totalProdukBurung}</span>
                 </p>
-                <button onClick={handleAturProduk} className="bg-white text-[#308967] w-[100%] h-[40%] justify-center p-2 rounded-lg">
+                <button
+                  onClick={handleAturProduk}
+                  className="bg-white text-[#308967] w-[100%] h-[40%] justify-center p-2 rounded-lg"
+                >
                   Atur Produk
                 </button>
               </div>
@@ -210,7 +213,10 @@ const Page = () => {
                   Burung Hias
                   <span className="ms-12">{data.totalForumBurung}</span>
                 </p>
-                <button onClick={handleAturKonten} className="bg-[#198C6F] text-white w-[100%] h-[40%] justify-center p-2 rounded-lg">
+                <button
+                  onClick={handleAturKonten}
+                  className="bg-[#198C6F] text-white w-[100%] h-[40%] justify-center p-2 rounded-lg"
+                >
                   Atur Konten
                 </button>
               </div>

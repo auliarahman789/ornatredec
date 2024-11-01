@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Footer from "@/app/components/homepage/footer";
+import Footer from "@/components/homepage/footer";
 
 function page() {
   return (
@@ -123,7 +123,8 @@ function page() {
             className="rounded-lg"
             alt={"daun"}
             width={150}
-            height={150}          />
+            height={150}
+          />
         </div>
         <Image
           src="/img/pemupukan.jpeg"

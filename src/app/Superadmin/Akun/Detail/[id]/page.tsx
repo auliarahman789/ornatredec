@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import back from "../../../../../../public/icon/Arrow_alt_left.svg";
 import router, { useParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/compat/router";
 import Image from "next/image";
 import contoh from "../../../../../../public/img/daun puring 1.png";
 import location from "../../../../../../public/icon/location_on.svg";
@@ -33,7 +33,7 @@ function Page() {
   const router = useRouter();
 
   const handleBack = () => {
-    router.push("/Superadmin/Akun");
+    router?.push("/Superadmin/Akun");
   };
 
   const [data, setData] = useState<Detail | null>(null);
@@ -175,10 +175,12 @@ function Page() {
                               height={180}
                               alt="foto konten"
                             />
-                            <Link href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}>
-                            <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
-                              Atur
-                            </button>
+                            <Link
+                              href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}
+                            >
+                              <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
+                                Atur
+                              </button>
                             </Link>
                           </div>
                           <div className="m-[5%] flex-col space-y-1">

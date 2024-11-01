@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/compat/router";
 import Link from "next/link";
 
 const Datauser = () => {
@@ -52,7 +52,7 @@ const Datauser = () => {
   const router = useRouter();
 
   const handleDetail = () => {
-    router.push("/Superadmin/Detail/${id}");
+    router?.push("/Superadmin/Detail/${id}");
   };
   return (
     <div>

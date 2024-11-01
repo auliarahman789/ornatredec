@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Produk = () => {
+ function Produk  ()  {
   const [data, setData] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState(""); // State untuk pencarian produk
 

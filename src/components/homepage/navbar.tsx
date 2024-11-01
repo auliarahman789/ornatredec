@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios"; // Import axios
 import Image from "next/image";
-import logo from "../../../../public/icon/logo.svg";
-import defaultAvatar from "../../../../public/img/default-avatar.png";
+import logo from "../../../public/icon/logo.svg";
+import defaultAvatar from "../../../public/img/default-avatar.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

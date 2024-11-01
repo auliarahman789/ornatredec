@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import foto from "../../../../../public/icon/foto profile.svg";
-import mata from "../../../../../public/icon/mata.svg";
-import chat2 from "../../../../../public/icon/chat2.svg";
+import foto from "../../../../public/icon/foto profile.svg";
+import mata from "../../../../public/icon/mata.svg";
+import chat2 from "../../../../public/icon/chat2.svg";
 import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";

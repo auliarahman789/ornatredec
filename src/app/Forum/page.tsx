@@ -1,7 +1,7 @@
 import React from "react";
-import Grid from "../components/Forum/grid";
-import Dropdown1 from "../components/Forum/dropdown1";
-import CombinedDropdowns from "../components/Forum/dropdown2";
+import Grid from "@/components/Forum/grid";
+import Dropdown1 from "@/components/Forum/dropdown1";
+import CombinedDropdowns from "@/components/Forum/dropdown2";
 
 function Forum() {
   return (

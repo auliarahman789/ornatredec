@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const DetailPesanan = () => {
+export default function DetailPesanan() {
   const router = useRouter();
-  const { id } = router.query;
+  const { id } = router?.query;
   const [produk, setProduk] = useState<any>(null); // State untuk menyimpan detail produk
   const [loading, setLoading] = useState(true); // State untuk indikator loading
   const [error, setError] = useState<string | null>(null); // State untuk menyimpan pesan error
@@ -48,6 +48,4 @@ const DetailPesanan = () => {
       <p className="mt-4">{produk.deskripsi_produk}</p>
     </div>
   );
-};
-
-export default DetailPesanan;
+}
