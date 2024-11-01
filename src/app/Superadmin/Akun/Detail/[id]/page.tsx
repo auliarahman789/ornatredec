@@ -12,6 +12,7 @@ import forum from "../../../../../../public/icon/Chat_alt_fill.svg";
 import pesan from "../../../../../../public/icon/Basket_alt_3.svg";
 import report from "../../../../../../public/icon/Group 1000004421.svg";
 import axios from "axios";
+import Link from "next/link";
 
 type Detail = {
   Transaksiuser: string;
@@ -167,23 +168,25 @@ function Page() {
                                 item.fotoKonten
                                   ? "https://74gslzvj-8000.asse.devtunnels.ms" +
                                     item.fotoKonten
-                                  : "/img/default-avatar.png"
+                                  : ""
                               }
                               className="w-[185px] h-[150px]"
                               width={180}
                               height={180}
                               alt="foto konten"
                             />
+                            <Link href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}>
                             <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
                               Atur
                             </button>
+                            </Link>
                           </div>
                           <div className="m-[5%] flex-col space-y-1">
                             <div className="flex space-x-2 mb-2">
                               <img
                                 src={
                                   data.user.photoProfile
-                                    ? "${process.env.NEXT_PUBLIC_URL}" +
+                                    ? "https://74gslzvj-8000.asse.devtunnels.ms" +
                                       data.user.photoProfile
                                     : "/img/default-avatar.png"
                                 }

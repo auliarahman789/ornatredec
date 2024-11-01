@@ -44,7 +44,7 @@ const page = ({
                   height={434}
                   alt="bunga"
                 />
-                <h1 className="text-[40px] text-[#0a0e0c] font-bold text-end pl-[7.5%] pt-6">
+                <h1 className="text-[40px] text-[#3F9272] font-bold text-end pl-[7.5%] pt-6">
                   Edukasi Tanaman Hias
                 </h1>
               </div>

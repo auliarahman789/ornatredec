@@ -45,7 +45,6 @@ function page() {
             dan media tanam yang sesuai. Dengan langkah-langkah perawatan yang
             sederhana namun efektif, Anda bisa menjaga tanaman hias tetap segar,
             sehat, dan memancarkan pesona yang luar biasa sepanjang waktu.
-            Dengan langkah-langkah perawatan yang sederhana namun efektif.
           </p>
         </div>
       </div>
@@ -124,12 +123,11 @@ function page() {
             className="rounded-lg"
             alt={"daun"}
             width={150}
-            height={150}
-          />
+            height={150}          />
         </div>
         <Image
           src="/img/pemupukan.jpeg"
-          className="rounded-lg"
+          className="rounded-lg w-[500px] h-[130px]"
           alt={"daun"}
           width={580}
           height={350}

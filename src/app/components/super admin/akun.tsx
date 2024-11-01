@@ -15,7 +15,7 @@ const Akun = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
     async function buatAkun() {
-        const url = `${process.env.NEXT_PUBLIC_URL}/api/register`;
+        const url = `${process.env.NEXT_PUBLIC_URL}api/register`;
         try {
             const res = await axios.post(
                 url,

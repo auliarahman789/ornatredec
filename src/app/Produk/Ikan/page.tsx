@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import Gagal from "@/app/components/gagal";
 
 const Ikan = () => {
   const [data, setData] = useState<any[]>([]);
@@ -18,7 +19,7 @@ const Ikan = () => {
   }, []);
 
   async function getIkan() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -72,13 +73,15 @@ const Ikan = () => {
           type="text"
           placeholder="Cari produk..."
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
           className="w-96 p-3 border bg-[#FFFBFB] translate-x-[115%] mt-10 shadow-sm"
         />
       </div>
       <div
-        className="px-10 py-10 grid grid-cols-4 gap-6 ml-[5%] mr-[5%] -translate-y-[50%] bg-[#EBFFF8]"
-        ref={productRef}
+        className={`px-10 py-10 grid grid-cols-4 gap-6 ml-[5%] mr-[5%] -translate-y-[50%] ${
+          filteredData.length === 0 ? "bg-transparent" : "bg-[#EBFFF8]"
+        }`}
+        ref={productRef} // Attach ref here
       >
         {filteredData.length > 0 ? (
           filteredData.map((item: any) => (
@@ -88,7 +91,7 @@ const Ikan = () => {
             >
               <a href="#">
                 <img
-                  className="mx-auto mt-5 h-[65%] w-[85%]"
+                  className="mx-auto mt-5 h-[70%] w-[150%]"
                   alt="Produk Gambar"
                   src={
                     "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -109,9 +112,7 @@ const Ikan = () => {
             </div>
           ))
         ) : (
-          <div className="col-span-4 text-center text-3xl -translate-y-[1200%] text-[#308967]">
-            Produk ini tidak tersedia.
-          </div>
+          <div></div>
         )}
       </div>
     </div>

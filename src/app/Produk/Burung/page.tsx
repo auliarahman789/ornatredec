@@ -19,7 +19,7 @@ const Burung = () => {
   }, []);
 
   async function getBurung() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -53,7 +53,7 @@ const Burung = () => {
           height: "85vh",
         }}
       ></div>
-      <ul className="text-center space-x-10 translate-y-10 min-h-screen text-[22px] text-white font-semibold flex justify-center mt-5">
+      <ul className="text-center space-x-10 translate-y-1 min-h-screen text-[22px] text-white font-semibold flex justify-center mt-5">
         <Link href="/Produk/#produk">
           <li className="mx-2 text-3xl cursor-pointer hover:text-[#308967] text-[#B3E8D5]">
             Tanaman

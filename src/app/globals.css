@@ -33,7 +33,7 @@ body {
   }
 
   .nav ul li:hover::before,
-  .nav ul li:hover::after {
+  .nav ul li:hover::after { 
     content: "";
     position: absolute;
     width: 50px;

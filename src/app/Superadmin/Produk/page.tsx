@@ -47,7 +47,7 @@ function Page() {
                   > Pesanan
                 </button>
         </div>
-        <div className='mt-[2%] bg-[#E4FFF2] min-h-screen w-[73%] rounded-md relative translate-x-10'>
+        <div className='mt-[2%] bg-[#E4FFF2] pb-[3%] min-h-screen w-[73%] rounded-md relative translate-x-10'>
           <Link href='/Superadmin/Produk/tambah'>
             <button
                     className='text-sm px-3 pt-1 absolute right-4 top-4 flex text-[#308967] rounded-full'

@@ -1,32 +1,64 @@
 "use client";
-import React, { useState } from "react";
+import Image from "next/image";
 
-const Dropdown1 = () => {
+import React, { useState } from "react";
+import Card1tanaman from "./card1Tanaman";
+import Card1ikan from "./card1Ikan";
+import Card1burung from "./card1burung";
+
+const TanamanComponent = () => {
+  return (
+    <div className="mt-4 p-4 ">
+      <Card1tanaman />
+    </div>
+  );
+};
+
+const IkanComponent = () => {
+  return (
+    <div className="mt-4 p-4 ">
+      <Card1ikan />
+    </div>
+  );
+};
+
+const BurungComponent = () => {
+  return (
+    <div className="mt-4 p-4 ">
+      <Card1burung />
+    </div>
+  );
+};
+
+const Dropdown1 = ({ onSelect }: { onSelect: any }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Tanaman"); // Set default ke "Tanaman"
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleOptionClick = (option: any) => {
+    setSelectedOption(option);
+    setIsOpen(false);
+    onSelect(option); // Memanggil fungsi onSelect ketika opsi dipilih
+  };
+
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left mr-4">
       <div className="mt-3">
         <button
           type="button"
           className="inline-flex justify-center text-[18px] px-3 py-1 font-semibold text-[#21B892]"
-          id="menu-button"
-          aria-expanded={isOpen}
-          aria-haspopup="true"
           onClick={toggleDropdown}
         >
-          Tanaman
+          {selectedOption}
           <svg
-            className={`ml-2 mt-[1%s] h-6 w-6 text-[#21B892] transform transition-transform duration-200 ${
+            className={`ml-2 mt-[1%] h-6 w-6 text-[#21B892] transform transition-transform duration-200 ${
               isOpen ? "rotate-180" : "rotate-0"
             }`}
             viewBox="0 0 20 20"
             fill="currentColor"
-            aria-hidden="true"
           >
             <path
               fillRule="evenodd"
@@ -38,14 +70,32 @@ const Dropdown1 = () => {
       </div>
 
       {isOpen && (
-        <div
-          className="absolute left-5 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg focus:outline-none"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby="menu-button"
-        >
-          <div className="py-1" role="none">
-            <p className="block px-4 py-2 text-sm text-black">opsi</p>
+        <div className="absolute left-5 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg">
+          <div className="py-1">
+            {selectedOption !== "Tanaman" && (
+              <p
+                onClick={() => handleOptionClick("Tanaman")}
+                className="block px-4 py-2 text-sm text-black cursor-pointer"
+              >
+                Tanaman
+              </p>
+            )}
+            {selectedOption !== "Ikan" && (
+              <p
+                onClick={() => handleOptionClick("Ikan")}
+                className="block px-4 py-2 text-sm text-black cursor-pointer"
+              >
+                Ikan
+              </p>
+            )}
+            {selectedOption !== "Burung" && (
+              <p
+                onClick={() => handleOptionClick("Burung")}
+                className="block px-4 py-2 text-sm text-black cursor-pointer"
+              >
+                Burung
+              </p>
+            )}
           </div>
         </div>
       )}
@@ -53,4 +103,20 @@ const Dropdown1 = () => {
   );
 };
 
-export default Dropdown1;
+const CombinedDropdowns = () => {
+  const [selectedOption, setSelectedOption] = useState("Tanaman"); // Set default ke "Tanaman"
+
+  return (
+    <div className="flex flex-col">
+      <div className="flex">
+        <Dropdown1 onSelect={setSelectedOption} />
+      </div>
+
+      {selectedOption === "Tanaman" && <TanamanComponent />}
+      {selectedOption === "Ikan" && <IkanComponent />}
+      {selectedOption === "Burung" && <BurungComponent />}
+    </div>
+  );
+};
+
+export default CombinedDropdowns;

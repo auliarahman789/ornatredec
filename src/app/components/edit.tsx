@@ -4,6 +4,7 @@ import React, { ChangeEvent, useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Router from "next/router";
 import Sidebar from "./sidebar";
 
 interface UserData {
@@ -28,7 +29,7 @@ const Edit = () => {
     tanggalLahir: "",
     no_hp: "",
     alamat: "",
-    photoProfile: "/img/default-avatar.png", // Gambar default
+    photoProfile: "", // Gambar default
     provinsi: "",
     kotakabupaten: "",
     kecamatan: "",
@@ -47,7 +48,7 @@ const Edit = () => {
       const userData = JSON.parse(storedUserData);
       setFormData({
         ...userData,
-        photoProfile: userData.photoProfile || "/img/default-avatar.png", // Gunakan default jika kosong
+        //photoProfile: userData.photoProfile || "/img/default-avatar.png", // Gunakan default jika kosong
       });
     }
   }, []);
@@ -77,17 +78,49 @@ const Edit = () => {
     }));
     console.log(value);
   };
+  const handleInputChangeFoto = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      photoProfile: value,
+    }));
+    console.log(value);
+  };
 
   const handleInputImage = (e: any) => {
     const file = e.target.files?.[0]; // Ambil file dari input
     if (file) {
       setFormData((prevData) => ({
         ...prevData,
-        photoProfile: URL.createObjectURL(file), // Ubah file menjadi URL untuk preview
+        photoProfile: file, // Ubah file menjadi URL untuk preview
       }));
     }
     console.log(e.target.files);
   };
+  // const handleInputImage = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   console.log("Selected file:", file); // Periksa apakah file sudah dipilih
+  // const handleInputImage = (e: any) => {
+  //   const file = e.target.files?.[0]; // Ambil file dari input
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       console.log("File loaded:", reader.result); // Log hasil FileReader
+  //       setFormData((prevData) => ({
+  //         ...prevData,
+  //         photoProfile: reader.result as string, // Simpan hasil ke photoProfile
+  //       }));
+  //     };
+  //     reader.readAsDataURL(file); // Membaca file sebagai Data URL
+  //     setFormData((prevData) => ({
+  //       ...prevData,
+  //       photoProfile: URL.createObjectURL(file), // Ubah file menjadi URL untuk preview
+  //     }));
+  //   }
+  //   console.log(e.target.files);
+  // };
 
   // const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
   //   const file = e.target.files?.[0];
@@ -153,7 +186,7 @@ const Edit = () => {
         localStorage.setItem("jalan", formData.jalan);
         localStorage.setItem("RtRw", formData.RtRw);
 
-        router.push("/profile");
+        //router.push("/profile");
       } else {
         alert("Gagal memperbarui data pengguna.");
       }
@@ -200,12 +233,22 @@ const Edit = () => {
 
             {/* Input fields for user data */}
             <div className="text-[#A9A7A7] text-[18px] pb-4">
-              <span className="pl-4">Nama Penggunaa:</span>
               <span className="pl-4">Nama Pengguna:</span>
+
               <input
                 type="text"
                 name="username"
                 defaultValue={formData.username}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="pb-5">
+              <span className="pl-4 text-[#A9A7A7]">No Telepon:</span>
+              <input
+                type="text"
+                name="no_hp"
+                defaultValue={formData.no_hp}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -215,6 +258,69 @@ const Edit = () => {
               <input
                 type="email"
                 name="email"
+                defaultValue={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <span className="text-[#A9A7A7] text-[18px] mt-10 pl-4 ">
+              Alamat Pengguna:
+            </span>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Provinsi:</span>
+              <input
+                type="text"
+                name="provinsi"
+                defaultValue={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Kota/Kabupaten:</span>
+              <input
+                type="text"
+                name="kotakabupaten"
+                defaultValue={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Kecamatan:</span>
+              <input
+                type="text"
+                name="kecamatan"
+                defaultValue={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Kelurahan/desa:</span>
+              <input
+                type="text"
+                name="kelurahanDesa"
+                defaultValue={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">Jalan:</span>
+              <input
+                type="text"
+                name="jalan"
+                defaultValue={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
+              />
+            </div>
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
+              <span className="pl-4">RT/RW:</span>
+              <input
+                type="text"
+                name="jalan"
                 defaultValue={formData.email}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
@@ -230,6 +336,7 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
             </div>
+
             <div className="pb-5">
               <span className="pl-4 text-[#A9A7A7]">No Telepon:</span>
               <input
@@ -240,9 +347,8 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
             </div>
-
             {/* <div className="text-[#A9A7A7] text-[18px] pb-4">
->>>>>>> 7f414a6b07d4e513fc4cb820ab9f17dbd8fde0ca
+            <div className="text-[#A9A7A7] text-[18px] pb-4">
               <span className="pl-4">Alamat:</span>
               <textarea
                 name="alamat"
@@ -251,25 +357,27 @@ const Edit = () => {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
 
               /> */}
+          </div>
 
-            <div className="grid grid-cols-3">
-              <div className="flex justify-end mt-[20%]">
-                <button
-                  onClick={handleGoBack}
-                  className="px-4 py-2 bg-[#3F9272] text-white rounded-lg"
-                >
-                  Kembali
-                </button>
-              </div>
-              <div></div>
-              <div className="flex justify-start mt-[20%]">
-                <button
-                  onClick={handleSave}
-                  className="px-4 py-2 bg-[#CCFFEB] text-[#3F9272] rounded-lg"
-                >
-                  Perbarui
-                </button>
-              </div>
+          <div className="grid grid-cols-3">
+            <div className="flex justify-end mt-[20%]">
+              <button
+                onClick={handleGoBack}
+                className="px-4 py-2 bg-[#3F9272] text-white rounded-lg"
+              >
+                Kembali
+              </button>
+            </div>
+            <div></div>
+            <div className="flex justify-start mt-[20%]">
+              <button
+                onClick={() => {
+                  handleSave(), console.log(formData);
+                }}
+                className="px-4 py-2 bg-[#CCFFEB] text-[#3F9272] rounded-lg"
+              >
+                Perbarui
+              </button>
             </div>
           </div>
         </div>
