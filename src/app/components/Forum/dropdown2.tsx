@@ -3,9 +3,9 @@ import Image from "next/image";
 
 import React, { useState } from "react";
 
-const Dropdown1 = ({ onSelect }: { onSelect: any }) => {
+const Dropdown2 = ({ onSelect }: { onSelect: any }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("Tanaman"); // Set default ke "Tanaman"
+  const [selectedOption, setSelectedOption] = useState("Terbaru"); // Set default ke "Tanaman"
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -45,28 +45,20 @@ const Dropdown1 = ({ onSelect }: { onSelect: any }) => {
       {isOpen && (
         <div className="absolute left-5 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg">
           <div className="py-1">
-            {selectedOption !== "Tanaman" && (
+            {selectedOption !== "Terbaru" && (
               <p
-                onClick={() => handleOptionClick("Tanaman")}
+                onClick={() => handleOptionClick("Terbaru")}
                 className="block px-4 py-2 text-sm text-black cursor-pointer"
               >
-                Tanaman
+                Terbaru
               </p>
             )}
-            {selectedOption !== "Ikan" && (
+            {selectedOption !== "Terpopuler" && (
               <p
-                onClick={() => handleOptionClick("Ikan")}
+                onClick={() => handleOptionClick("Terpopuler")}
                 className="block px-4 py-2 text-sm text-black cursor-pointer"
               >
-                Ikan
-              </p>
-            )}
-            {selectedOption !== "Burung" && (
-              <p
-                onClick={() => handleOptionClick("Burung")}
-                className="block px-4 py-2 text-sm text-black cursor-pointer"
-              >
-                Burung
+                Terpopuler
               </p>
             )}
           </div>
@@ -82,7 +74,7 @@ const CombinedDropdowns = () => {
   return (
     <div className="flex flex-col">
       <div className="flex">
-        <Dropdown1 onSelect={setSelectedOption} />
+        <Dropdown2 onSelect={setSelectedOption} />
       </div>
       {/* 
       {selectedOption === "Tanaman" && <TanamanComponent />}

@@ -4,13 +4,13 @@ import Image from "next/image";
 import Footer from "../components/homepage/footer";
 import Link from "next/link";
 
-const page = ({
+function page({
   isAnimated,
   setIsAnimated,
 }: {
   isAnimated: any;
   setIsAnimated: any;
-}) => {
+}) {
   return (
     <>
       <div className="overflow-hidden bg-[#E4FFF2] pb-40">
@@ -127,6 +127,6 @@ const page = ({
       <Footer />
     </>
   );
-};
+}
 
 export default page;
