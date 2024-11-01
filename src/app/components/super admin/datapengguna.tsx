@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Datakasir from './data/datakasir';
 import Dataadmin from './data/dataadmin';
 import Datauser from './data/datauser';
-import Detailuser from './data/detail/detailuser';
 
 function Data() {
     const [data, setData] = useState('user');

@@ -9,6 +9,7 @@ import axios from "axios";
 import Loading from "./loading";
 import LoadingRegis from "./loadingRegis";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { log } from "node:console";
 
 const Register = ({
   isAnimated,
@@ -30,7 +31,7 @@ const Register = ({
     const url = `${process.env.NEXT_PUBLIC_URL}api/register`;
     try {
       setIsLoading(true);
-      const res = await axios.post(
+      const res =  await axios.post(
         url,
         {
           username: username,
@@ -41,7 +42,7 @@ const Register = ({
         },
         {
           withCredentials: true,
-        }
+        },
       );
 
       // Simpan data pengguna ke localStorage
@@ -76,7 +77,7 @@ const Register = ({
           <div className="pt-[25px] gap-3.5 flex flex-col justify-center items-center">
             <div className="relative">
               <input
-                type="text"
+                type="text"   
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 name="username"
