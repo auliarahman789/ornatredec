@@ -7,7 +7,7 @@ import noted from "../../../../../../../public/icon/noted.svg";
 import Image from "next/image";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
 
 type ForumReport = {

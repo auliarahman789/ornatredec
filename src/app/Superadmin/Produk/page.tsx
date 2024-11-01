@@ -6,7 +6,7 @@ import Tanamanproduk from "@/components/super admin/tanamanproduk";
 import Burungproduk from "@/components/super admin/burungproduk";
 import Ikanproduk from "@/components/super admin/ikanproduk";
 import Link from "next/link";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 
 function Page() {
   const [activeProduk, setActiveProduk] = useState("Tanaman Hias");

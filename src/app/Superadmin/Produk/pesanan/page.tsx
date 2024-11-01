@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import back from "../../../../../public/icon/Arrow_left.svg";
 import next from "../../../../../public/icon/Expand_left.svg";
 import Image from "next/image";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 import sudahBayar from "../../../../../public/icon/Ellipse 247.svg";

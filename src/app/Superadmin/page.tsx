@@ -9,7 +9,7 @@ import Example from "../diagram/batang/page";
 import DiagramForum from "../diagram/lingkaranforum/page";
 import DropdownButton from "@/components/super admin/button/page";
 import axios from "axios";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 
 type Total = {
   totalPenggunaUser: number;

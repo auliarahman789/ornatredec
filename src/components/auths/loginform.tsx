@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 import Loading from "./loading";
 import Image from "next/image";
 import userIcon from "../../../public/icon/User_fill.svg";

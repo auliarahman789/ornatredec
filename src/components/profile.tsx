@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Sidebar from "./sidebar";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
 interface UserData {

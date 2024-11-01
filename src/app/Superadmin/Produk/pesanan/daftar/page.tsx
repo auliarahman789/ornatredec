@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import router, { useRouter } from "next/compat/router";
+import router, { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 import back from "../../../../../../public/icon/Arrow_left.svg";

@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import edit from "../../../public/icon/Group 1000004435.svg";
 import Image from "next/image";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 const Tanamanproduk = () => {
   const [data, setData] = useState<any[]>([]);

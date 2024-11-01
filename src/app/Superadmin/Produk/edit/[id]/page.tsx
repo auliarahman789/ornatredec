@@ -4,7 +4,7 @@ import Image from "next/image";
 import foto from "../../../../../../public/img/Group 1000004376 (1).png";
 import axios from "axios";
 import tambahicon from "../../../../../../public/icon/dell_square.svg";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 import LoadingProduk from "@/components/super admin/loadingProduk";
 
 interface SubVariasi {

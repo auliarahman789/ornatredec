@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import contoh from "../../../../../../../public/img/daun puring 1.png";
 import Image from "next/image";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useParams } from "next/navigation";
 

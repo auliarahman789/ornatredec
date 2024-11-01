@@ -2,13 +2,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import React from "react";
-import Akun from "@/components/super admin/akun";
-import { usePathname } from "next/navigation";
-import Data from "@/components/super admin/datapengguna";
+// import Akun from "../../../components/super admin/akun";
+// //import { usePathname } from "next/na";
+// import Data from "../../../components/super admin/data/dataadmin";
 
 function Page() {
-  const pathname = usePathname();
-  const id = pathname.split("/").pop();
+  //const pathname = usePathname();
+  //const id = pathname.split("/").pop();
   const [active, setActive] = useState("data pengguna");
   return (
     <div className="overflow-x-hidden min-h-screen ">
@@ -43,13 +43,13 @@ function Page() {
         </div>
       </div>
       <div className="pb-24">
-        <div className="translate-x-[18%] mt-[2%]">
+        {/* <div className="translate-x-[18%] mt-[2%]">
           {active === "data pengguna" && <Data />}
         </div>
 
         <div className="w-[42%] mx-[18%] translate-x-64 mt-[6%]">
           {active === "akun" && <Akun />}
-        </div>
+        </div> */}
       </div>
     </div>
   );

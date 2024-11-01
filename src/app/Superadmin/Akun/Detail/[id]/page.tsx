@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import back from "../../../../../../public/icon/Arrow_alt_left.svg";
 import router, { useParams } from "next/navigation";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import contoh from "../../../../../../public/img/daun puring 1.png";
 import location from "../../../../../../public/icon/location_on.svg";
@@ -30,11 +30,11 @@ type Detail = {
 
 function Page() {
   const { id } = useParams();
-  const router = useRouter();
+  // const router = useRouter();
 
-  const handleBack = () => {
-    router?.push("/Superadmin/Akun");
-  };
+  // const handleBack = () => {
+  //   router?.push("/Superadmin/Akun");
+  // };
 
   const [data, setData] = useState<Detail | null>(null);
   useEffect(() => {
@@ -43,7 +43,7 @@ function Page() {
   }, [id]);
 
   const [formatTanggal, setFormatTanggal] = useState<string>("");
-  const hubungi = document.getElementById("hubungi") as HTMLButtonElement;
+ // const hubungi = document.getElementById("hubungi") as HTMLButtonElement;
   function handleEmailClick() {
     const recipient = data?.user.email;
     // const subject = '';
@@ -77,7 +77,7 @@ function Page() {
       <div className="translate-x-64">
         <div className="bg-[#E4FFF2] min-h-screen w-[70%] ms-[5%] p-4 rounded-md mt-[3%]">
           <Image
-            onClick={handleBack}
+            //onClick={handleBack}
             src={back}
             width={40}
             height={40}

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
 import profile from "../../../../public/icon/profile.svg";
 import profile2 from "../../../../public/icon/profile (1).svg";

@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 import edit from "../../../public/icon/Group 1000004435.svg";
 import Link from "next/link";
 const Burungproduk = () => {
