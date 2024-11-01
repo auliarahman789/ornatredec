@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import edit from "../../../../public/icon/Group 1000004435.svg";
+import edit from "../../../public/icon/Group 1000004435.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -20,7 +20,7 @@ const Tanamanproduk = () => {
 
   const router = useRouter();
   const handleEdit = () => {
-    router.push("/Superadmin/Produk/edit");
+    router?.push("/Superadmin/Produk/edit");
   };
   async function getTanaman() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet?kategori=tanaman`;

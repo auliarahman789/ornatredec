@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useParams } from "next/navigation";
 
-const DetailProduk = () => {
+function DetailProduk() {
   const router = useRouter();
   const { id } = useParams();
   const [produk, setProduk] = useState<any>(null);
@@ -40,6 +41,6 @@ const DetailProduk = () => {
       <p>{produk.deskripsi}</p>
     </div>
   );
-};
+}
 
 export default DetailProduk;

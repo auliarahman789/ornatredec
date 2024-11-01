@@ -30,11 +30,11 @@ type Detail = {
 
 function Page() {
   const { id } = useParams();
-  const router = useRouter();
+  // const router = useRouter();
 
-  const handleBack = () => {
-    router.push("/Superadmin/Akun");
-  };
+  // const handleBack = () => {
+  //   router?.push("/Superadmin/Akun");
+  // };
 
   const [data, setData] = useState<Detail | null>(null);
   useEffect(() => {
@@ -43,7 +43,7 @@ function Page() {
   }, [id]);
 
   const [formatTanggal, setFormatTanggal] = useState<string>("");
-  const hubungi = document.getElementById("hubungi") as HTMLButtonElement;
+ // const hubungi = document.getElementById("hubungi") as HTMLButtonElement;
   function handleEmailClick() {
     const recipient = data?.user.email;
     // const subject = '';
@@ -77,7 +77,7 @@ function Page() {
       <div className="translate-x-64">
         <div className="bg-[#E4FFF2] min-h-screen w-[70%] ms-[5%] p-4 rounded-md mt-[3%]">
           <Image
-            onClick={handleBack}
+            //onClick={handleBack}
             src={back}
             width={40}
             height={40}
@@ -175,10 +175,12 @@ function Page() {
                               height={180}
                               alt="foto konten"
                             />
-                            <Link href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}>
-                            <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
-                              Atur
-                            </button>
+                            <Link
+                              href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}
+                            >
+                              <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
+                                Atur
+                              </button>
                             </Link>
                           </div>
                           <div className="m-[5%] flex-col space-y-1">

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import molekul from "../../../../public/icon/molekul.svg";
+import molekul from "../../../public/icon/molekul.svg";
 import Carausel1 from "./carausel";
 
 function Home() {

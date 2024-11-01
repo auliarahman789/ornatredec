@@ -5,7 +5,7 @@ import foto from "../../../../../public/img/Group 1000004376 (1).png";
 import axios from "axios";
 import tambahicon from "../../../../../public/icon/dell_square.svg";
 import { useRouter } from "next/navigation";
-import LoadingProduk from "@/app/components/super admin/loadingProduk";
+import LoadingProduk from "@/components/super admin/loadingProduk";
 import Swal from "sweetalert2";
 
 interface Produk {
@@ -169,7 +169,7 @@ const Page = () => {
       const res = await axios.post(url, formData2, {
         withCredentials: true,
       });
-      router.push("/Superadmin/Produk");
+      router?.push("/Superadmin/Produk");
       alert(
         Swal.fire({
           icon: "success", // Ganti icon menjadi "success" untuk menampilkan ceklis

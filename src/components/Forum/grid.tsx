@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import mata from "../../../../public/icon/mata.svg";
-import chat2 from "../../../../public/icon/chat2.svg";
-import profil from "../../../../public/icon/profil.svg";
-import noted from "../../../../public/icon/noted.svg";
+import mata from "../../../public/icon/mata.svg";
+import chat2 from "../../../public/icon/chat2.svg";
+import profil from "../../../public/icon/profil.svg";
+import noted from "../../../public/icon/noted.svg";
 
 function Grid() {
   return (

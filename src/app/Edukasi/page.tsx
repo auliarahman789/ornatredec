@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import Footer from "../components/homepage/footer";
+import Footer from "@/components/homepage/footer";
 import Link from "next/link";
 
 function page() {

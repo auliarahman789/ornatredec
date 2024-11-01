@@ -22,7 +22,7 @@ interface UserData {
   RtRw: string;
 }
 
-const Edit = () => {
+function Edit() {
   const [formData, setFormData] = useState<UserData>({
     username: "",
     email: "",
@@ -186,7 +186,7 @@ const Edit = () => {
         localStorage.setItem("jalan", formData.jalan);
         localStorage.setItem("RtRw", formData.RtRw);
 
-        //router.push("/profile");
+        //router?.push("/profile");
       } else {
         alert("Gagal memperbarui data pengguna.");
       }
@@ -198,7 +198,7 @@ const Edit = () => {
   };
 
   const handleGoBack = () => {
-    router.push("/profile");
+    router?.push("/profile");
   };
 
   return (
@@ -384,7 +384,7 @@ const Edit = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Edit;
 function setUserData(user: any) {

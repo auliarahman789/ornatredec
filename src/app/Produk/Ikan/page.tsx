@@ -3,9 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import Gagal from "@/app/components/gagal";
+import Gagal from "@/components/gagal";
 
-const Ikan = () => {
+function Ikan() {
   const [data, setData] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const productRef = useRef<HTMLDivElement | null>(null);
@@ -117,6 +117,6 @@ const Ikan = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Ikan;

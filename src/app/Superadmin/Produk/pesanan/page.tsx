@@ -6,8 +6,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
-import sudahBayar from '../../../../../public/icon/Ellipse 247.svg';
-import belumBayar from '../../../../../public/icon/Ellipse 250.svg';
+import sudahBayar from "../../../../../public/icon/Ellipse 247.svg";
+import belumBayar from "../../../../../public/icon/Ellipse 250.svg";
 
 type Pesanan = {
   id: number;
@@ -58,8 +58,8 @@ const Page = () => {
     try {
       const res = await axios.get(url, { withCredentials: true });
       console.log(res.data);
-      getPesanan()
-      alert("Pesanan berhasil di kemas")
+      getPesanan();
+      alert("Pesanan berhasil di kemas");
     } catch (error: any) {
       console.log(error);
       alert("Terjadi kesalahan saat mengambil data pesanan.");
@@ -71,10 +71,10 @@ const Page = () => {
   //   if (printRef.current) {
   //     const printContents = printRef.current.innerHTML;
   //     const originalContents = document.body.innerHTML;
-      
+
   //     document.body.innerHTML = printContents;
   //     window.print();
-      
+
   //     document.body.innerHTML = originalContents;
   //     window.location.reload();
   //     kemasStatus();
@@ -95,13 +95,12 @@ const Page = () => {
   };
 
   const handleBack = () => {
-    router.push("/Superadmin/Produk");
+    router?.push("/Superadmin/Produk");
   };
 
   const handleDaftar = () => {
-    router.push("/Superadmin/Produk/pesanan/daftar");
+    router?.push("/Superadmin/Produk/pesanan/daftar");
   };
-
 
   return (
     <div className="overflow-x-hidden min-h-screen pb-[5%]">
@@ -117,7 +116,10 @@ const Page = () => {
           />
           <div className="flex mt-[0.5%] space-x-[52%]">
             <div className="flex">
-              <p onClick={handleBack} className=" cursor-pointer text-[23px] font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-6 inline-block text-transparent bg-clip-text">
+              <p
+                onClick={handleBack}
+                className=" cursor-pointer text-[23px] font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-6 inline-block text-transparent bg-clip-text"
+              >
                 Produk
               </p>
               <Image
@@ -143,14 +145,24 @@ const Page = () => {
 
           {/* Tombol cetak semua pesanan */}
           <div className="flex relative space-x-[40%] mt-[4%] ms-[4%]">
-          <div className="flex-col -translate-y-[50%]">
+            <div className="flex-col -translate-y-[50%]">
               <div className="flex space-x-[4%]">
-                <Image src={sudahBayar} width={15} height={15} alt="sudah bayar"/>
+                <Image
+                  src={sudahBayar}
+                  width={15}
+                  height={15}
+                  alt="sudah bayar"
+                />
                 <p className="whitespace-nowrap">Sudah Bayar</p>
               </div>
               <div className="flex space-x-[4%]">
-              <Image src={belumBayar} width={15} height={15} alt="belum bayar"/>
-              <p className="whitespace-nowrap">Belum Bayar</p>
+                <Image
+                  src={belumBayar}
+                  width={15}
+                  height={15}
+                  alt="belum bayar"
+                />
+                <p className="whitespace-nowrap">Belum Bayar</p>
               </div>
             </div>
             <div className="absolute right-[30%] flex-col">
@@ -169,22 +181,35 @@ const Page = () => {
                   className="bg-[#3F9272] translate-x-24 w-16 text-sm font-light pt-[0.5px] text-white rounded-md"
                   onClick={kemasStatus}
                 >
-                  Kemas 
+                  Kemas
                 </button>
               )}
             </div>
           </div>
 
           {/* Konten pesanan yang bisa dicetak */}
-          <div className="flex-col space-y-[1%] flex mt-[4%] translate-x-[7%]" ref={printRef}>
+          <div
+            className="flex-col space-y-[1%] flex mt-[4%] translate-x-[7%]"
+            ref={printRef}
+          >
             {data.length > 0 ? (
               data.map((item: any) => (
                 <div key={item.id} className="flex space-x-[3.5%]">
-                  {item.statusPembayaran === "pending" ? 
-                  <Image src={belumBayar} width={15} height={15} alt="belum bayar"/>
-                    :
-                    <Image src={sudahBayar} width={15} height={15} alt="sudah bayar" />
-                  }
+                  {item.statusPembayaran === "pending" ? (
+                    <Image
+                      src={belumBayar}
+                      width={15}
+                      height={15}
+                      alt="belum bayar"
+                    />
+                  ) : (
+                    <Image
+                      src={sudahBayar}
+                      width={15}
+                      height={15}
+                      alt="sudah bayar"
+                    />
+                  )}
                   <img
                     src={
                       item.produk.foto_produk
@@ -197,8 +222,10 @@ const Page = () => {
                     width={70}
                     alt="foto pesanan"
                   />
-                   <div className="flex-col w-[12%]  mt-[1%]">
-                    <p className="text-[20px] whitespace-nowrap">{item.produk.judul_produk}</p>
+                  <div className="flex-col w-[12%]  mt-[1%]">
+                    <p className="text-[20px] whitespace-nowrap">
+                      {item.produk.judul_produk}
+                    </p>
                     <div className="flex space-x-6">
                       <p className="text-[#FF0A0A] font-medium text-[12px]">
                         {formatHarga(item.produk.harga)}
@@ -214,7 +241,9 @@ const Page = () => {
                       {item.subvariasi?.nama_sub_variasi}
                     </span>
                   </p>
-                  <p className="text-[20px] mt-[1.7%]">{item.alamat.nama_penerima}</p>
+                  <p className="text-[20px] mt-[1.7%]">
+                    {item.alamat.nama_penerima}
+                  </p>
                   <p className="whitespace-nowrap overflow-x-hidden mt-[2%] max-w-[12%] text-[15px] text-ellipsis">
                     {item.alamat.jalan_namagedung}
                   </p>
@@ -226,7 +255,7 @@ const Page = () => {
                 </div>
               ))
             ) : (
-                  <p className="mx-[25%] my-[10%]">Semua pesanan sudah dikemas.</p>
+              <p className="mx-[25%] my-[10%]">Semua pesanan sudah dikemas.</p>
             )}
           </div>
         </div>

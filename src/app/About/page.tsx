@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect } from "react";
-import Footer from "../components/homepage/footer";
+import Footer from "@/components/homepage/footer";
 import AOS from "aos"; // Import AOS
 import "aos/dist/aos.css"; // Import AOS CSS
 

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import mata from "../../../../../public/icon/mata.svg";
-import chat2 from "../../../../../public/icon/chat2.svg";
-import Search from "../../../../../public/icon/search.svg";
+import mata from "../../../../public/icon/mata.svg";
+import chat2 from "../../../../public/icon/chat2.svg";
+import Search from "../../../../public/icon/search.svg";
 import Image from "next/image";
 import axios from "axios";
-import Link from "next/link";
 
-type Forumtanaman = {
+type ForumIkan = {
   id: number;
   judul: string;
   desc: string;
@@ -22,18 +21,18 @@ type Forumtanaman = {
   };
 };
 
-function Card1tanaman() {
-  const [data, setData] = useState<Forumtanaman[]>([]);
+function Card1ikan() {
+  const [data, setData] = useState<ForumIkan[]>([]);
   const [searchTerm, setSearchTerm] = useState(""); // State untuk input pencarian
 
   useEffect(() => {
-    getForumtanaman();
+    getForumIkan();
   }, []);
 
-  async function getForumtanaman() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?kategori=tanaman&page=1&limit=20`;
+  async function getForumIkan() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?kategori=ikan&page=1&limit=20`;
     try {
-      const res = await axios.get<Forumtanaman[]>(url, {
+      const res = await axios.get<ForumIkan[]>(url, {
         withCredentials: true,
       });
       setData(res.data);
@@ -91,13 +90,9 @@ function Card1tanaman() {
                   alt="kaktus"
                   className="w-[180px] h-[150px]"
                 />
-                <Link
-                  href={`/Superadmin/Forum/detailreportUlasan/ReportUlasan2/${item.id}`}
-                >
-                  <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[6%] text-white font-semibold text-[12px]">
-                    Atur
-                  </button>
-                </Link>
+                <button className="bg-[#3F9272] w-[50%] rounded ms-[25%] mt-[7%] text-white font-semibold text-[12px]">
+                  Atur
+                </button>
               </div>
               <div className="ms-[5%] flex-col space-y-1">
                 <div className="flex space-x-2 pt-6 mb-[2%]">
@@ -156,4 +151,4 @@ function Card1tanaman() {
   );
 }
 
-export default Card1tanaman;
+export default Card1ikan;

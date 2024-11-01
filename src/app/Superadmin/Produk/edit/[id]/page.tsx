@@ -4,8 +4,8 @@ import Image from "next/image";
 import foto from "../../../../../../public/img/Group 1000004376 (1).png";
 import axios from "axios";
 import tambahicon from "../../../../../../public/icon/dell_square.svg";
-import { useParams, useRouter } from "next/navigation";
-import LoadingProduk from "@/app/components/super admin/loadingProduk";
+import { useRouter } from "next/navigation";
+import LoadingProduk from "@/components/super admin/loadingProduk";
 
 interface SubVariasi {
   nama_sub_variasi: string;
@@ -56,7 +56,7 @@ const Page = ({ params }: { params: { id: number } }) => {
     deskripsi_produk: "",
     harga: 0,
     foto_produk: "",
-    variasis: []
+    variasis: [],
   });
   const router = useRouter();
   const { id } = params;
@@ -64,7 +64,7 @@ const Page = ({ params }: { params: { id: number } }) => {
   useEffect(() => {
     getProduk();
   }, [id]);
- 
+
   const handleImageClick = () => {
     if (inputRef.current) {
       inputRef.current.click();
@@ -79,7 +79,6 @@ const Page = ({ params }: { params: { id: number } }) => {
     console.log(e.target.files);
   };
 
-
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -90,7 +89,6 @@ const Page = ({ params }: { params: { id: number } }) => {
     }));
     console.log(value);
   };
-  
 
   // const handleAdd = () => {
   //   setVariasi([
@@ -170,7 +168,6 @@ const Page = ({ params }: { params: { id: number } }) => {
   //   setSubVariasi2(deletesSubVariasi)
   // }
 
-
   const getProduk = async () => {
     const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${id}`;
     try {
@@ -185,8 +182,8 @@ const Page = ({ params }: { params: { id: number } }) => {
         foto_produk: res.data.foto_produk,
         variasis: res.data.variasis || [], // Tambahkan default [] jika variasi kosong
       });
-      setVariasi(res.data.variasis || []); // Simpan variasi ke state   
-      setImage(res.data.foto_produk);      
+      setVariasi(res.data.variasis || []); // Simpan variasi ke state
+      setImage(res.data.foto_produk);
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
@@ -212,7 +209,7 @@ const Page = ({ params }: { params: { id: number } }) => {
         }
       );
       alert("Produk berhasil diedit");
-      router.push("/Superadmin/Produk");
+      router?.push("/Superadmin/Produk");
     } catch (error: any) {
       console.log(error);
       alert("Terjadi kesalahan saat mengedit produk");
@@ -227,11 +224,11 @@ const Page = ({ params }: { params: { id: number } }) => {
       });
       console.log(res.data);
       alert("berhasil menghapus produk");
-      router.push("/Superadmin/Produk")
+      router?.push("/Superadmin/Produk");
     } catch (error) {
-      alert("gagal menghapus produk")
+      alert("gagal menghapus produk");
     }
-  }
+  };
 
   // async function tambahProduk() {
   //   const formData2 = new FormData();
@@ -248,7 +245,7 @@ const Page = ({ params }: { params: { id: number } }) => {
   //     const res = await axios.post(url, formData2, {
   //       withCredentials: true,
   //     });
-  //     router.push('/Superadmin/Produk');
+  //     router?.push('/Superadmin/Produk');
   //     alert('Berhasil menambahkan produk')
   //     console.log(res.data);
   //     setIsLoading(false);
@@ -286,14 +283,22 @@ const Page = ({ params }: { params: { id: number } }) => {
         <div className="bg-[#E2FFF5] min-h-screen w-[62%] ms-[2.5%] pb-[8%]">
           <div className="flex flex-col mx-[10%] mt-[7%]">
             <div className="relative">
-              <button onClick={handleDeleteProduk} className="bg-[#3F9272] cursor-pointer absolute top-3 right-0 text-white rounded-full py-1 px-2 w-[16%] text-[11px] font-bold">
+              <button
+                onClick={handleDeleteProduk}
+                className="bg-[#3F9272] cursor-pointer absolute top-3 right-0 text-white rounded-full py-1 px-2 w-[16%] text-[11px] font-bold"
+              >
                 Hapus Produk
               </button>
             </div>
             <div className="w-[50%] mx-auto mb-[6%]">
               <div onClick={handleImageClick} className="ms-[3%]">
                 {image ? (
-                  <img src={"https://74gslzvj-8000.asse.devtunnels.ms" + image} alt="foto" width={250} height={200} />
+                  <img
+                    src={"https://74gslzvj-8000.asse.devtunnels.ms" + image}
+                    alt="foto"
+                    width={250}
+                    height={200}
+                  />
                 ) : (
                   <Image src={foto} alt="foto" width={250} height={200} />
                 )}
@@ -382,27 +387,28 @@ const Page = ({ params }: { params: { id: number } }) => {
             <p className="text-[#8EAEA6] text-[20px] font-semibold mt-[3%]">
               Variasi Produk
             </p>
-            { variasi.length > 0 ? variasi.map((data, i) => (
-             <div key={i}>   
-                <div className="flex flex-row mt-[5%]">
-                  <div className="ms-7 -translate-y-4 w-[83%] mt-2 flex-col">
-                    <label
-                      htmlFor="nama_variasi"
-                      className="text-[#8EAEA6] text-[20px] font-semibold mt-[3%]"
-                    >
-                      Nama Variasi
-                    </label>
-                    <input
-                      type="text"
-                      name="nama_variasi"
-                      onChange={(e) => handleChangeField(e, i)}
-                      className="w-[100%] mt-1 bg-white h-[45px]
+            {variasi.length > 0 ? (
+              variasi.map((data, i) => (
+                <div key={i}>
+                  <div className="flex flex-row mt-[5%]">
+                    <div className="ms-7 -translate-y-4 w-[83%] mt-2 flex-col">
+                      <label
+                        htmlFor="nama_variasi"
+                        className="text-[#8EAEA6] text-[20px] font-semibold mt-[3%]"
+                      >
+                        Nama Variasi
+                      </label>
+                      <input
+                        type="text"
+                        name="nama_variasi"
+                        onChange={(e) => handleChangeField(e, i)}
+                        className="w-[100%] mt-1 bg-white h-[45px]
                               text-[20px] px-3 text-[#3F9272] rounded-md"
-                      defaultValue={data.nama_variasi}
-                      required
-                    />
-                  </div>
-                  {/* <div>
+                        defaultValue={data.nama_variasi}
+                        required
+                      />
+                    </div>
+                    {/* <div>
                     <button
                       className="px-7 ms-4 bg-[#8EAEA6] h-[45px] mt-7 font-bold text-white rounded-md"
                       onClick={() => handleDelete(i)}
@@ -410,97 +416,107 @@ const Page = ({ params }: { params: { id: number } }) => {
                       X
                     </button>
                   </div> */}
-                </div>
-                <p className="text-[#8EAEA6] ms-12 text-[20px] font-semibold mt-[3%]">
-                  Sub Variasi
-                </p>
-                <div className=" ms-12">
-                  <div>
-                  {data.subvariasis.length > 0 ? data.subvariasis.map((data2: any, ii: number) => (
-                    <div key={data2.id || ii} className="flex flex-col"> 
-                      <div className="grid grid-cols-5 space-x-12 mb-4">
-                        <div>
-                          <label
-                            htmlFor="nama_variasi"
-                            className="text-[#8EAEA6] text-sm mt-2 font-semibold"
-                          >
-                            Nama Variasi
-                          </label>
-                          <input
-                            onChange={(e) => handleChangeFieldSub(e, i, ii)}
-                            type="text"
-                            name="nama_sub_variasi"
-                            defaultValue={data2.nama_sub_variasi}
-                            className="w-[150px] mt-1 bg-white h-[45px] text-[20px] px-3 text-[#3F9272] rounded-md"
-                            required
-                          />
-                        </div>
-                        <div className="pl-2">
-                          <label
-                            htmlFor="stok"
-                            className="text-[#8EAEA6] text-sm mt-2 font-semibold"
-                          >
-                            Stok
-                          </label>
-                          <input
-                            onChange={(e) => handleChangeFieldSub(e, i, ii)}
-                            defaultValue={data2.stok}
-                            type="text"
-                            name="stok"
-                            className="w-[90px] mt-1 bg-white h-[45px] text-[20px] px-3 text-[#3F9272] rounded-md"
-                            required
-                          />
-                        </div>
-                        <div className="pl-1">
-                          <label
-                            htmlFor="harga"
-                            className="text-[#8EAEA6] text-sm mt-2 font-semibold"
-                          >
-                            Harga
-                          </label>
-                          <input
-                            onChange={(e) => handleChangeFieldSub(e, i, ii)}
-                            type="text"
-                            name="harga"
-                            defaultValue={data2.harga}
-                            className="w-[90px] mt-1 bg-white h-[45px] text-[20px] px-3 text-[#3F9272] rounded-md"
-                            required
-                          />
-                        </div>
-                        <div className="pl-1">
-                          <label
-                            htmlFor="usia"
-                            className="text-[#8EAEA6] text-sm mt-2 font-semibold"
-                          >
-                            Usia
-                          </label>
-                          <input
-                            onChange={(e) => handleChangeFieldSub(e, i, ii)}
-                            type="text"
-                            name="usia"
-                            defaultValue={data2.usia}
-                            className="w-[90px] mt-1 bg-white h-[45px] text-[20px] px-3 text-[#3F9272] rounded-md"
-                            required
-                          />
-                        </div>
-                        <button
-                          className="px-4 bg-[#8EAEA6] h-[45px] mt-7 font-bold text-white rounded-md"
-                          onClick={() => handleDeleteSub(i, ii)}
-                        >
-                          X
-                        </button>
-                      </div>
-                    </div>
-                  )) : (
+                  </div>
+                  <p className="text-[#8EAEA6] ms-12 text-[20px] font-semibold mt-[3%]">
+                    Sub Variasi
+                  </p>
+                  <div className=" ms-12">
+                    <div>
+                      {data.subvariasis.length > 0 ? (
+                        data.subvariasis.map((data2: any, ii: number) => (
+                          <div key={data2.id || ii} className="flex flex-col">
+                            <div className="grid grid-cols-5 space-x-12 mb-4">
+                              <div>
+                                <label
+                                  htmlFor="nama_variasi"
+                                  className="text-[#8EAEA6] text-sm mt-2 font-semibold"
+                                >
+                                  Nama Variasi
+                                </label>
+                                <input
+                                  onChange={(e) =>
+                                    handleChangeFieldSub(e, i, ii)
+                                  }
+                                  type="text"
+                                  name="nama_sub_variasi"
+                                  defaultValue={data2.nama_sub_variasi}
+                                  className="w-[150px] mt-1 bg-white h-[45px] text-[20px] px-3 text-[#3F9272] rounded-md"
+                                  required
+                                />
+                              </div>
+                              <div className="pl-2">
+                                <label
+                                  htmlFor="stok"
+                                  className="text-[#8EAEA6] text-sm mt-2 font-semibold"
+                                >
+                                  Stok
+                                </label>
+                                <input
+                                  onChange={(e) =>
+                                    handleChangeFieldSub(e, i, ii)
+                                  }
+                                  defaultValue={data2.stok}
+                                  type="text"
+                                  name="stok"
+                                  className="w-[90px] mt-1 bg-white h-[45px] text-[20px] px-3 text-[#3F9272] rounded-md"
+                                  required
+                                />
+                              </div>
+                              <div className="pl-1">
+                                <label
+                                  htmlFor="harga"
+                                  className="text-[#8EAEA6] text-sm mt-2 font-semibold"
+                                >
+                                  Harga
+                                </label>
+                                <input
+                                  onChange={(e) =>
+                                    handleChangeFieldSub(e, i, ii)
+                                  }
+                                  type="text"
+                                  name="harga"
+                                  defaultValue={data2.harga}
+                                  className="w-[90px] mt-1 bg-white h-[45px] text-[20px] px-3 text-[#3F9272] rounded-md"
+                                  required
+                                />
+                              </div>
+                              <div className="pl-1">
+                                <label
+                                  htmlFor="usia"
+                                  className="text-[#8EAEA6] text-sm mt-2 font-semibold"
+                                >
+                                  Usia
+                                </label>
+                                <input
+                                  onChange={(e) =>
+                                    handleChangeFieldSub(e, i, ii)
+                                  }
+                                  type="text"
+                                  name="usia"
+                                  defaultValue={data2.usia}
+                                  className="w-[90px] mt-1 bg-white h-[45px] text-[20px] px-3 text-[#3F9272] rounded-md"
+                                  required
+                                />
+                              </div>
+                              <button
+                                className="px-4 bg-[#8EAEA6] h-[45px] mt-7 font-bold text-white rounded-md"
+                                onClick={() => handleDeleteSub(i, ii)}
+                              >
+                                X
+                              </button>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
                         <p>Tidak ada variasi</p>
-                  )}
-
+                      )}
+                    </div>
                   </div>
                 </div>
-             </div>
-            )) : (
+              ))
+            ) : (
               <p>Tidak ada variasi</p>
-        )}
+            )}
 
             <div className="relative">
               <button

@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
-const Burung = () => {
+function Burung() {
   const [data, setData] = useState<any[]>([]); // State for storing product data
   const [searchTerm, setSearchTerm] = useState(""); // State for search input
   const productRef = useRef<HTMLDivElement | null>(null); // Ref for the product section
@@ -119,6 +119,6 @@ const Burung = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Burung;

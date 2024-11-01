@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import Register from "../components/auths/registerform";
-import RegisterL from "../components/auths/registerleft";
+import Register from "@/components/auths/registerform";
+import RegisterL from "@/components/auths/registerleft";
 import Image from "next/image";
-import Login from "../components/auths/loginform";
-import LoginR from "../components/auths/loginright";
-import logo from "../../../public/icon/Group 1000004298 1.svg"
+import Login from "@/components/auths/loginform";
+import LoginR from "@/components/auths/loginright";
+
 
 const Page = () => {
   const [isAnimated, setIsAnimated] = useState(true);
@@ -26,7 +26,7 @@ const Page = () => {
           height={390}
           className="absolute bottom-0 right-0 z-10"
         />
-      </div> 
+      </div>
       <div className="bg-white relative w-[960px] h-[520px] shadow-[15px_15px_3px] shadow-[#0000002e] z-20">
         <div
           id="register"

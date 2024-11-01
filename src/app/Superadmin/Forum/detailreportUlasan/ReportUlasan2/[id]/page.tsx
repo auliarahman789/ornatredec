@@ -7,7 +7,8 @@ import noted from "../../../../../../../public/icon/noted.svg";
 import Image from "next/image";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 type ForumReport = {
   judul: string;
@@ -74,7 +75,7 @@ function DetailReportUlasan() {
         });
         console.log(res.data);
         Swal.fire("Berhasil!", "Konten telah dihapus.", "success"); // Pesan sukses
-        router.push("/Superadmin/Forum");
+        router?.push("/Superadmin/Forum");
       } catch (error) {
         Swal.fire("Gagal!", "Gagal menghapus konten.", "error"); // Pesan gagal
       }
@@ -93,7 +94,7 @@ function DetailReportUlasan() {
   };
 
   const handleClose = () => {
-    router.push("/Superadmin/Forum");
+    router?.push("/Superadmin/Forum");
   };
 
   return (

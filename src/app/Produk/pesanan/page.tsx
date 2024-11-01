@@ -1,11 +1,13 @@
 "use client";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const DetailPesanan = () => {
-  const router = useRouter();
-  const { id } = router.query;
+export default function DetailPesanan() {
+  //const router = useRouter();
+
+  const { id } = useParams();
   const [produk, setProduk] = useState<any>(null); // State untuk menyimpan detail produk
   const [loading, setLoading] = useState(true); // State untuk indikator loading
   const [error, setError] = useState<string | null>(null); // State untuk menyimpan pesan error
@@ -48,6 +50,4 @@ const DetailPesanan = () => {
       <p className="mt-4">{produk.deskripsi_produk}</p>
     </div>
   );
-};
-
-export default DetailPesanan;
+}

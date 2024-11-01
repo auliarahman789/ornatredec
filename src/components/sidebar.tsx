@@ -3,10 +3,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
 import profile from "../../../../public/icon/profile.svg";
 import profile2 from "../../../../public/icon/profile (1).svg";
+import { usePathname } from "next/navigation";
 
 interface ErrorResponse {
   message: string;
@@ -41,15 +42,15 @@ const Sidebar = () => {
 
       // Jangan hapus username, agar bisa digunakan lagi saat login ulang
       localStorage.removeItem("username"); // Komentar atau hapus baris ini
- localStorage.removeItem("avatar");
+      localStorage.removeItem("avatar");
       // Pastikan untuk menutup popup logout setelah logout berhasil
       setShowLogoutPopup(false);
 
       // Redirect ke halaman home setelah logout berhasil
-      router.push("/");
+      router?.push("/");
     } catch (error) {
       const axiosError = error as AxiosError;
-console.log(error)
+      console.log(error);
       if (axiosError.response) {
         const errorData = axiosError.response.data as ErrorResponse;
         const errorMessage =
@@ -92,9 +93,7 @@ console.log(error)
                   />
                   <span
                     className={`ml-8 hover:text-[#167960] ${
-                      pathname === "/profile"
-                        ? 'active'
-                        : ""
+                      pathname === "/profile" ? "active" : ""
                     }`}
                   >
                     Profil
@@ -113,9 +112,7 @@ console.log(error)
                   />
                   <span
                     className={`ml-8 hover:text-[#167960] ${
-                      pathname === "/profile/riwayat"
-                        ? "active"
-                        : ""
+                      pathname === "/profile/riwayat" ? "active" : ""
                     }`}
                   >
                     Riwayat
@@ -135,9 +132,7 @@ console.log(error)
                     />
                     <span
                       className={`ml-8 hover:text-[#167960] ${
-                        pathname === "/profile/edit"
-                          ? "active"
-                          : ""
+                        pathname === "/profile/edit" ? "active" : ""
                       }`}
                     >
                       Edit Profil
@@ -160,9 +155,7 @@ console.log(error)
                   />
                   <span
                     className={`ml-8 hover:text-[#167960] ${
-                      pathname === "/profile/logout"
-                        ? "active"
-                        : ""
+                      pathname === "/profile/logout" ? "active" : ""
                     }`}
                   >
                     Logout
@@ -182,9 +175,7 @@ console.log(error)
                     />
                     <span
                       className={`ml-8 hover:text-[#167960] ${
-                        pathname === "/profile/kembali"
-                          ? "active"
-                          : ""
+                        pathname === "/profile/kembali" ? "active" : ""
                       }`}
                     >
                       Kembali

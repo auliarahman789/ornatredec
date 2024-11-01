@@ -52,7 +52,7 @@ const Datauser = () => {
   const router = useRouter();
 
   const handleDetail = () => {
-    router.push("/Superadmin/Detail/${id}");
+    router?.push("/Superadmin/Detail/${id}");
   };
   return (
     <div>

@@ -6,7 +6,7 @@ import Link from "next/link";
 import axios from "axios";
 import back from "../../../../../../public/icon/Arrow_left.svg";
 import next from "../../../../../../public/icon/Expand_left.svg";
-import Loadingstatus from "@/app/components/super admin/loadingStatus";
+import Loadingstatus from "@/components/super admin/loadingStatus";
 type Pesanan = {
   id: number;
   status: string;
@@ -59,7 +59,7 @@ function Page() {
         withCredentials: true,
       });
       // Jika ingin melakukan sesuatu dengan res.data, lakukan di sini
-      console.log('Data dari kirimStatus:', res.data);
+      console.log("Data dari kirimStatus:", res.data);
       setIsLoading(false);
       getPesanan();
     } catch (error) {
@@ -67,17 +67,17 @@ function Page() {
       alert("Terjadi kesalahan saat mengubah status pesanan.");
     }
   }
-  
+
   // Mengubah semua checkbox
   const handleSelectAll = () => {
     setSelectAll(!selectAll);
     if (!selectAll) {
       const allChecked = data.map((item) => item.id);
       setCheckedItems(allChecked);
-      console.log('ID yang diambil:', allChecked);
+      console.log("ID yang diambil:", allChecked);
     } else {
       setCheckedItems([]);
-      console.log('Tidak ada data untuk konfirmasi');
+      console.log("Tidak ada data untuk konfirmasi");
     }
   };
 
@@ -102,9 +102,9 @@ function Page() {
   };
 
   const handleBack = () => {
-    router.push("/Superadmin/Produk/pesanan");
+    router?.push("/Superadmin/Produk/pesanan");
   };
-   
+
   return (
     <div className="overflow-x-hidden min-h-screen">
       <div className="translate-x-64">
@@ -119,14 +119,32 @@ function Page() {
           />
           <div className="flex mt-[0.5%]">
             <div className="flex">
-              <p onClick={handleBack} className="text-[23px] cursor-pointer font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-6 inline-block text-transparent bg-clip-text">
+              <p
+                onClick={handleBack}
+                className="text-[23px] cursor-pointer font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-6 inline-block text-transparent bg-clip-text"
+              >
                 Produk
               </p>
-              <Image src={next} width={17} height={17} className="ms-2" alt="next" />
-              <p onClick={handleBack} className="text-sm cursor-pointer font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-1 mt-2 inline-block text-transparent bg-clip-text">
+              <Image
+                src={next}
+                width={17}
+                height={17}
+                className="ms-2"
+                alt="next"
+              />
+              <p
+                onClick={handleBack}
+                className="text-sm cursor-pointer font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-1 mt-2 inline-block text-transparent bg-clip-text"
+              >
                 Pesanan
               </p>
-              <Image src={next} width={17} height={17} className="ms-2" alt="next" />
+              <Image
+                src={next}
+                width={17}
+                height={17}
+                className="ms-2"
+                alt="next"
+              />
               <p className="text-sm font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-1 mt-2 inline-block text-transparent bg-clip-text">
                 Daftar Kirim
               </p>
@@ -145,7 +163,9 @@ function Page() {
             </div> */}
             <div className="absolute right-[30%] flex-col">
               <div className="flex space-x-6">
-                <label htmlFor="Konfirmasi">Konfirmasi semua pesanan untuk dikirim</label>
+                <label htmlFor="Konfirmasi">
+                  Konfirmasi semua pesanan untuk dikirim
+                </label>
                 <input
                   type="checkbox"
                   checked={selectAll}
@@ -155,12 +175,16 @@ function Page() {
                 />
               </div>
               {selectAll === true ? (
-                <button onClick={kirimStatus} className="bg-[#3F9272] translate-x-28 w-20 text-sm font-light pt-[0.5px] text-white rounded-md">
-                  {isLoading ? 'Loading...' : 'Konfirmasi'}
+                <button
+                  onClick={kirimStatus}
+                  className="bg-[#3F9272] translate-x-28 w-20 text-sm font-light pt-[0.5px] text-white rounded-md"
+                >
+                  {isLoading ? "Loading..." : "Konfirmasi"}
                 </button>
               ) : (
                 ""
-              )} {isLoading && <Loadingstatus />}
+              )}{" "}
+              {isLoading && <Loadingstatus />}
             </div>
           </div>
           <div className="flex-col space-y-[1%] flex mt-[1%] translate-x-[4%]">
@@ -168,7 +192,12 @@ function Page() {
               data.map((item) => (
                 <div key={item.id} className="flex space-x-[4.5%]">
                   <img
-                    src={item.produk.foto_produk ? "https://74gslzvj-8000.asse.devtunnels.ms" + item.produk.foto_produk : ""}
+                    src={
+                      item.produk.foto_produk
+                        ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                          item.produk.foto_produk
+                        : ""
+                    }
                     className="rounded-full w-[70px] h-[70px]"
                     height={70}
                     width={70}
@@ -187,23 +216,29 @@ function Page() {
                   </div>
                   <p className="text-12px font-semibold mt-[2%] whitespace-nowrap w-[8%]">
                     {item.variasi?.nama_variasi} -{" "}
-                    <span className="text-[#7A7A7A]">{item.subvariasi?.nama_sub_variasi}</span>
+                    <span className="text-[#7A7A7A]">
+                      {item.subvariasi?.nama_sub_variasi}
+                    </span>
                   </p>
-                  <p className="text-[20px] mt-[1.7%]">{item.alamat.nama_penerima}</p>
+                  <p className="text-[20px] mt-[1.7%]">
+                    {item.alamat.nama_penerima}
+                  </p>
                   <p className="whitespace-nowrap overflow-x-hidden mt-[2%] max-w-[12%] text-[15px] text-ellipsis">
                     {item.alamat.jalan_namagedung}
                   </p>
-                  <Link href={`/Superadmin/Produk/pesanan/daftar/detail/${item.id}`}>
-                    <button
-                      className="bg-gradient-to-b h-6 rounded-full translate-y-7 pt-1 pb-2 px-3 from-[#308967] to-[#06612B] text-white text-[13px]"
-                    >
+                  <Link
+                    href={`/Superadmin/Produk/pesanan/daftar/detail/${item.id}`}
+                  >
+                    <button className="bg-gradient-to-b h-6 rounded-full translate-y-7 pt-1 pb-2 px-3 from-[#308967] to-[#06612B] text-white text-[13px]">
                       Lihat
                     </button>
                   </Link>
                 </div>
               ))
             ) : (
-              <p className="mx-[25%] my-[10%]">Tidak ada pesanan untuk dikirim.</p>
+              <p className="mx-[25%] my-[10%]">
+                Tidak ada pesanan untuk dikirim.
+              </p>
             )}
           </div>
         </div>
