@@ -4,13 +4,7 @@ import Image from "next/image";
 import Footer from "../components/homepage/footer";
 import Link from "next/link";
 
-function page({
-  isAnimated,
-  setIsAnimated,
-}: {
-  isAnimated: any;
-  setIsAnimated: any;
-}) {
+function page() {
   return (
     <>
       <div className="overflow-hidden bg-[#E4FFF2] pb-40">
@@ -56,9 +50,9 @@ function page({
                 </p>
                 <Link
                   href="/Edukasi/Tumbuhan#tumbuhan"
-                  onClick={(e) => {
-                    setIsAnimated(false);
-                  }}
+                  // onClick={(e) => {
+                  //   setIsAnimated(false);
+                  // }}
                 >
                   <p className="translate-x-[63%] mt-14">Lihat selengkapnya</p>
                 </Link>
@@ -84,9 +78,9 @@ function page({
                 </p>
                 <Link
                   href="/Edukasi/Ikan#ikan"
-                  onClick={(e) => {
-                    setIsAnimated(false);
-                  }}
+                  // onClick={(e) => {
+                  //   setIsAnimated(false);
+                  // }}
                 >
                   <p className="translate-x-[63%] mt-14">Lihat selengkapnya</p>
                 </Link>
@@ -113,9 +107,9 @@ function page({
                 </p>
                 <Link
                   href="/Edukasi/Burung#burung"
-                  onClick={(e) => {
-                    setIsAnimated(false);
-                  }}
+                  // onClick={(e) => {
+                  //   setIsAnimated(false);
+                  // }}
                 >
                   <p className="translate-x-[63%] mt-14">Lihat selengkapnya</p>
                 </Link>
