@@ -18,6 +18,7 @@ const disableNavbar = [
   "/Superadmin/Dashboard",
   "/Superadmin/Produk",
   "/Superadmin/Akun",
+  "/Produk/paymentgateway",
   "/Superadmin/Statistik",
   "/Superadmin/Forum",
   "/Superadmin/Produk/tambah",
