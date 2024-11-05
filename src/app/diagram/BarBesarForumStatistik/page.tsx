@@ -1,5 +1,5 @@
-"use client";
-import React, { PureComponent } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -8,106 +8,100 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
 } from "recharts";
 
-const data = [
-  {
-    name: "Januari",
-    uv: 4000,
-    pv: 98,
-    amt: 300,
-  },
-  {
-    name: "Februari",
-    uv: 3000,
-    pv: 154,
-    amt: 250,
-  },
-  {
-    name: "Maret",
-    uv: 2000,
-    pv: 250,
-    amt: 200,
-  },
-  {
-    name: "April",
-    uv: 2780,
-    pv: 260,
-    amt: 150,
-  },
-  {
-    name: "Mei",
-    uv: 1890,
-    pv: 190,
-    amt: 100,
-  },
-  {
-    name: "Juni",
-    uv: 2390,
-    pv: 140,
-    amt: 50,
-  },
-  {
-    name: "Juli",
-    uv: 3490,
-    pv: 260,
-    amt: 0,
-  },
-];
+type Kategoritipe = {
+  name: string; // Nama kategori
+  pv: number;   // Total transaksi
+};
 
-export default class BarBesarForumStatistik extends PureComponent {
-  static demoUrl =
-    "https://codesandbox.io/p/sandbox/bar-chart-has-no-padding-2hlnt8";
+const BarBesarForumStatistik: React.FC = () => {
+  const [data, setData] = useState<Kategoritipe[]>([]);
 
-  render() {
-    return (
-      <ResponsiveContainer width="100%" height="100%" className="-ms-[5%]">
-        <BarChart
-          width={500}
-          height={500}
-          data={data}
-          margin={{
-            top: 20,
-            right: 25,
-            left: 0,
-            bottom: 5,
-          }}
-          barSize={35}
-        >
-          <XAxis
-            dataKey="name"
-            scale="point"
-            padding={{ left: 35, right: 10 }}
-            tick={{
-              fill: "#FFFFFF", // Ubah warna teks label di sumbu X menjadi putih
-              fontSize: "11px", // Ukuran font teks label di sumbu X
-            }}
-          />
-          <YAxis
-            stroke="#FFFFFF" // Ubah warna sumbu Y menjadi putih
-            tick={{
-              fill: "#FFFFFF", // Ubah warna teks label di sumbu X menjadi putih
-              fontSize: "12px", // Ukuran font teks label di sumbu X
-            }}
-          />
-          <Tooltip />
-          <CartesianGrid stroke="#399898" vertical={false} />
-          <Bar
-            dataKey="pv"
-            fill="#44FFC7" // Warna batang menjadi hijau
-            style={{
-              filter: "drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3))",
-            }}
-            radius={[5, 5, 0, 0]}
-            label={{
-              position: "top",
-              fill: "#FFFFFF",
-              fontSize: "12px", // Ukuran font teks label di atas batang
-            }}
-          />
-        </BarChart>
-      </ResponsiveContainer>
-    );
+  useEffect(() => {
+    getBarProdukDash();
+  }, []);
+
+  async function getBarProdukDash() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/statistik/2024`;
+    try {
+      const res = await axios.get(url, {
+        withCredentials: true,
+      });
+
+      // Data default untuk semua bulan tanpa mengubah pv
+      const defaultData: Kategoritipe[] = [
+        { name: "Jan", pv: res.data.data[0]?.totalPosts || 0 },
+        { name: "Feb", pv: res.data.data[1]?.totalPosts || 0 },
+        { name: "Mar", pv: res.data.data[2]?.totalPosts || 0 },
+        { name: "Apr", pv: res.data.data[3]?.totalPosts || 0 },
+        { name: "Mei", pv: res.data.data[4]?.totalPosts || 0 },
+        { name: "Juni", pv: res.data.data[5]?.totalPosts || 0 },
+        { name: "Juli", pv: res.data.data[6]?.totalPosts || 0 },
+        { name: "Agst", pv: res.data.data[7]?.totalPosts || 0 },
+        { name: "Sept", pv: res.data.data[8]?.totalPosts || 0 },
+        { name: "Okt", pv: res.data.data?.totalPosts || 0 },
+        { name: "Nov", pv: res.data.data[10]?.totalPosts || 0 },
+        { name: "Des", pv: res.data.data[11]?.totalPosts || 0 },
+      ];
+
+      setData(defaultData);
+      console.log(res.data);
+    } catch (error: any) {
+      console.log(error);
+      alert("Terjadi kesalahan saat mengambil data total forum tanaman burung dan ikan");
+    }
   }
-}
+
+  return (
+    <ResponsiveContainer width="100%" height="100%" className="-ms-[5%]">
+      <BarChart
+        width={500}
+        height={500}
+        data={data}
+        margin={{
+          top: 20,
+          right: 25,
+          left: 0,
+          bottom: 5,
+        }}
+        barSize={35}
+      >
+        <XAxis
+          dataKey="name"
+          padding={{ left: 10, right: 10 }}
+          tick={{
+            fill: "#FFFFFF",
+            fontSize: "11px",
+          }}
+          interval={0} // tampilkan semua label tanpa interval
+        />
+
+        <YAxis
+          stroke="#FFFFFF"
+          tick={{
+            fill: "#FFFFFF",
+            fontSize: "12px",
+          }}
+        />
+        <Tooltip />
+        <CartesianGrid stroke="#399898" vertical={false} />
+        <Bar
+          dataKey="pv"
+          fill="#44FFC7"
+          style={{
+            filter: "drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3))",
+          }}
+          radius={[5, 5, 0, 0]}
+          label={{
+            position: "top",
+            fill: "#FFFFFF",
+            fontSize: "12px",
+          }}
+        />
+      </BarChart>
+    </ResponsiveContainer>
+  );
+};
+
+export default BarBesarForumStatistik;
