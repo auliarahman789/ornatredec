@@ -1,7 +1,9 @@
 import React from "react";
 import Grid from "@/components/Forum/grid";
 import Dropdown1 from "@/components/Forum/dropdown1";
+import Image from "next/image";
 import CombinedDropdowns from "@/components/Forum/dropdown2";
+import pen from "../../../public/icon/pen.svg";
 
 function Forum() {
   return (
@@ -22,6 +24,18 @@ function Forum() {
           </div>
         </div>
         <Grid />
+        <>
+          <div className="bg-[#308967] h-[18px] w-[18px] ms-[3%] rounded-xl">
+            <Image
+              src={pen}
+              alt=""
+              width={100}
+              height={100}
+              className="h-10 w-10 bg-slate-400"
+            ></Image>
+          </div>
+          <p className="text-[#308967] text-[18px] ml-[1%] mb-1">buat ulasan</p>
+        </>
       </div>
     </div>
   );

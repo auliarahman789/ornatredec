@@ -3,6 +3,7 @@ import Image from "next/image";
 import mata from "../../../public/icon/mata.svg";
 import chat2 from "../../../public/icon/chat2.svg";
 import profil from "../../../public/icon/profil.svg";
+import panah from "../../../public/icon/for.svg";
 import noted from "../../../public/icon/noted.svg";
 
 function Grid() {
@@ -16,7 +17,7 @@ function Grid() {
               width={38}
               height={38}
               alt="foto profil"
-              className="rounded-full ml-6 mt-4"
+              className="rounded-full ml-6 -translate-y-5"
             />
             <div className="ml-4 h-[157px] w-[206px] bg-slate-600" />
           </div>
@@ -64,44 +65,84 @@ function Grid() {
         </div>
       </div>
 
-      <div className="h-[23%] mt-[2%]">
-        <p className="text-black leading-tight ml-[6%] w-[60%] text-[15px]">
-          asdas
+      <div className="mt-[4%]">
+        <p className="text-black leading-tight ml-[10%] w-[60%] text-[15px]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
+          aspernatur officiis magnam voluptate veniam. Consequatur tenetur,
+          eligendi voluptas autem voluptate reiciendis recusandae vitae suscipit
+          iste neque, sunt eum unde quidem.
         </p>
       </div>
-
-      <div className="flex">
-        <p className="text-[24px] text-[#21B892] ms-[6%] mt-[3%] mb-[2%]">
-          asdasdas
-        </p>
-        <p className="text-[#FF0404] text-[20px] mt-[3%] ms-[40%] h-[5%]">
-          asdas
-        </p>
-      </div>
-
-      <div className="space-y-3 mb-[2%]">
-        <div className="h-[125px] w-[751px] ms-[10%] rounded-2xl border shadow-[6px_6px_5px] shadow-[#0000002e]">
-          <div className="flex pt-4 mb-[2%]">
+      <div>
+        <p className="text-black text-[15px] ml-[15%] mt-[4%]">102 Komentar</p>
+        <div className="w-[595px] h-[547px] bg-[#E2FFF8] mx-auto rounded-xl">
+          <div className="pt-[4%] ml-[3%]">
             <Image
               src={profil}
-              width={50}
-              height={50}
               alt="foto profil"
-              className="rounded-full ms-5"
-            />
-            <p className="text-[15px] text-[#21B892] mt-1 ms-3">dskfjkdsf</p>
-            <p className="text-[15px] text-[#7D7D7D] mt-1 ml-9">78</p>
-          </div>
-          <p className="text-black text-[15px] leading-tight ml-[12.5%] -translate-y-7 w-[70%]">
-            23
-          </p>
-        </div>
+              width={100}
+              height={100}
+              className="w-[35px] h-[35px]"
+            ></Image>
+            <div className="space-y-3">
+              <div className="ml-[3.5%] -translate-y-7">
+                <div className="ml-[6%] h-[130px] w-[477px] bg-white relative ">
+                  <div className="flex space-x-4 pt-[2%]">
+                    <p className="text-[#3F9272] text-[13px] ml-[3%]">Kevin</p>
+                    <p className="text-[#7D7D7D] text-[10px] mt-[2px]">
+                      2 jam yang lalu
+                    </p>
+                  </div>
+                  <p className="ms-[3%] leading-tight text-[15px] mt-[3%]">
+                    ***** tanaman kayak gitu sih enak rawatnya tapi gw kemaren
+                    ke cucuk durinya kena ****** sakit banget ,gatel si , btw
+                    durinya beracun kagak? kalau beracun hilang dah masa depan
+                    gw
+                  </p>
+                  <div className="flex space-x-3 justify-end mt-[2%] mr-[2%]">
+                    <p className="text-[#8A8A8A] text-[12px]">90 balasan</p>
+                    <p className="text-[#3F9272] text-[12px]">balasan</p>
+                  </div>
+                  <div className="absolute top-3 -left-1 w-0 h-0 border-l-[15px] border-l-transparent border-b-[15px] border-b-white transform -translate-x-1/2 -translate-y-1/2"></div>
+                </div>
+              </div>
 
-        <div className="text-center">
-          <Image src={noted} alt="noted" width={100} height={100} />
-          <p className="font-semibold text-[23px] mt-[8%] text-gray-400 ms-[35%]">
-            tidak ada report
-          </p>
+              <div className="ml-[5%] -translate-y-7">
+                <Image
+                  src={profil}
+                  alt="foto profil"
+                  width={100}
+                  height={100}
+                  className="w-[35px] h-[35px]"
+                ></Image>
+                <div className="ml-[9%] h-[83px] w-[453px] -translate-y-7 bg-white relative ">
+                  <div className="flex space-x-2 pt-[2%]">
+                    <p className="text-[#3F9272] text-[13px] ml-[3%]">Kevin</p>
+                    <Image
+                      src={panah}
+                      alt="panah"
+                      width={90}
+                      height={90}
+                      className="w-3 h-3 mt-[0.5%]"
+                    ></Image>
+
+                    <p className="text-[#3F9272] text-[13px]">Danen</p>
+
+                    <p className="text-[#7D7D7D] text-[10px] mt-[2px]">
+                      2 jam yang lalu
+                    </p>
+                  </div>
+                  <p className="ms-[3%] leading-tight text-[15px] mt-[2%]">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </p>
+                  <div className="flex justify-end mt-[1%] mr-[2%]">
+                    <p className="text-[#3F9272] text-[12px]">balas</p>
+                  </div>
+                  <div className="absolute top-3 -left-1 w-0 h-0 border-l-[15px] border-l-transparent border-b-[15px] border-b-white transform -translate-x-1/2 -translate-y-1/2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
