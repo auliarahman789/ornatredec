@@ -2,29 +2,11 @@
 import BarForumDash from "@/app/diagram/batang/ForumDash";
 import BarProdukDash from "@/app/diagram/batang/page";
 import Image from "next/image";
-
 import React, { useState } from "react";
-
-
-// const BarProduk = () => {
-//   return (
-//     <div className="">
-//       <BarProdukDash />
-//     </div>
-//   );
-// };
-
-// const BarForum = () => {
-//   return (
-//     <div className="">
-//       <BarForumDash />
-//     </div>
-//   );
-// };
 
 const DropdownButton = ({ onSelect }: { onSelect: any }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("Produk"); // Set default ke "Tanaman"
+  const [selectedOption, setSelectedOption] = useState("Produk");
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -33,7 +15,7 @@ const DropdownButton = ({ onSelect }: { onSelect: any }) => {
   const handleOptionClick = (option: any) => {
     setSelectedOption(option);
     setIsOpen(false);
-    onSelect(option); // Memanggil fungsi onSelect ketika opsi dipilih
+    onSelect(option);
   };
 
   return (
@@ -46,9 +28,7 @@ const DropdownButton = ({ onSelect }: { onSelect: any }) => {
         >
           {selectedOption}
           <svg
-            className={`ml-2 mt-[1%] h-6 w-6 text-[#21B892] transform transition-transform duration-200 ${
-              isOpen ? "rotate-180" : "rotate-0"
-            }`}
+            className={`ml-2 mt-[1%] h-6 w-6 text-[#21B892] transform transition-transform duration-200 ${isOpen ? "rotate-180" : "rotate-0"}`}
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -88,7 +68,7 @@ const DropdownButton = ({ onSelect }: { onSelect: any }) => {
 };
 
 const KombinasiDropdown = () => {
-  const [selectedOption, setSelectedOption] = useState("Produk"); // Set default ke "Tanaman"
+  const [selectedOption, setSelectedOption] = useState("Produk");
 
   return (
     <div className="flex flex-col">
