@@ -1,47 +1,70 @@
 "use client";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 
-export const data = [
-  ["Pizza", "Popularity"],
-  ["Offline", 30],
-  ["Online", 70],
-];
+type MonthlyStatistic = {
+  month: string;
+  totalTransaksiOffline: number;
+  totalTransaksiOnline: number;
+};
 
 export const options = {
-  sliceVisibilityThreshold: 0.2, // 20%
+  sliceVisibilityThreshold: 0.2,
   legend: "none",
-  backgroundColor: "transparent", // Membuat background chart transparan
-  colors: ["#FFFFFF", "#6BF8C2"], // Hijau untuk Offline, Biru untuk Online
-  pieSliceText: "percentage", // Menampilkan teks persentase di dalam slice
+  backgroundColor: "transparent",
+  colors: ["#FFFFFF", "#6BF8C2"],
+  pieSliceText: "percentage",
   chartArea: {
-    left: 0, // Hilangkan padding kiri
-    top: 0, // Hilangkan padding atas
-    right: 0, // Hilangkan padding kanan
-    bottom: 0, // Hilangkan padding bawah
-    width: "100%", // Atur lebar chart
-    height: "100%", // Atur tinggi chart
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    width: "100%",
+    height: "100%",
   },
   slices: {
     0: {
       textStyle: {
-        color: "#6BF8C2", // Warna hijau untuk teks persentase pada 30%
-        fontSize: 12, // Mengatur ukuran font
+        color: "#6BF8C2",
+        fontSize: 12,
       },
     },
     1: {
       textStyle: {
-        color: "#FFFFFF", // Warna putih untuk teks persentase pada 70%
-        fontSize: 12, // Mengatur ukuran font
+        color: "#FFFFFF",
+        fontSize: 12,
       },
     },
   },
 };
 
 export function PieChartStatistik() {
+  const [data, setData] = useState([["Type", "Total"], ["Online", 0], ["Offline", 0]]);
+
+  async function getTotal() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/statistics/yearly/2024`;
+    try {
+      const res = await axios.get(url, { withCredentials: true });
+      const bulan: MonthlyStatistic = res.data.monthlyStatistics[10]; // November (index 10)
+      setData([
+        ["Type", "Total"],
+        ["Online", bulan.totalTransaksiOnline],
+        ["Offline", bulan.totalTransaksiOffline],
+      ]);
+    } catch (error) {
+      console.log(error);
+      alert("Terjadi kesalahan saat mengambil data penjualan online offline.");
+    }
+  }
+
+  useEffect(() => {
+    getTotal();
+  }, []);
+
   return (
-    <div className="w-[20%] ms-[35%] -translate-y-[130%]">
-      <div className="">
+    <div className="w-[20%] ms-[38%] -translate-y-[130%]">
+      <div>
         <p className="text-center text-white">Penjualan</p>
         <Chart
           chartType="PieChart"
@@ -51,9 +74,9 @@ export function PieChartStatistik() {
           height={100}
           className="-ms-[3.5%]"
         />
-        <div className="flex text-sm space-x-9">
+        <div className="flex text-sm space-x-9 translate-y-[16px]">
           <p className="ms-4 text-white flex items-center">
-            <span className="w-3 h-3 bg-[#6BF8C2]  rounded-full mr-1"></span>
+            <span className="w-3 h-3 bg-[#6BF8C2] rounded-full mr-1"></span>
             Online
           </p>
           <p className="text-white flex items-center">

@@ -7,9 +7,12 @@ import Image from "next/image";
 import Diagram from "../diagram/lingkaran/page";
 import Example from "../diagram/batang/page";
 import DiagramForum from "../diagram/lingkaranforum/page";
-import DropdownButton from "@/components/super admin/button/page";
+import DropdownButton from "../../components/super admin/button/page";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import BarProdukDash from "../diagram/batang/page";
+import BarForumDash from "../diagram/batang/ForumDash";
+import KombinasiDropdown from "../../components/super admin/button/page";
 
 type Total = {
   totalPenggunaUser: number;
@@ -45,11 +48,11 @@ const Page = () => {
   }
   const router = useRouter();
   const handleAturProduk = () => {
-    router?.push("/Superadmin/Produk");
-  };
+    router.push('/Superadmin/Produk')
+  }
   const handleAturKonten = () => {
-    router?.push("/Superadmin/Forum");
-  };
+    router.push('/Superadmin/Forum')
+  }
   return (
     <div className="overflow-x-hidden min-h-screen">
       <div className="text-black translate-x-64 pt-[2%] min-h-screen">
@@ -174,10 +177,7 @@ const Page = () => {
                   Burung Hias
                   <span className="ms-12">{data.totalProdukBurung}</span>
                 </p>
-                <button
-                  onClick={handleAturProduk}
-                  className="bg-white text-[#308967] w-[100%] h-[40%] justify-center p-2 rounded-lg"
-                >
+                <button onClick={handleAturProduk} className="bg-white text-[#308967] w-[100%] h-[40%] justify-center p-2 rounded-lg">
                   Atur Produk
                 </button>
               </div>
@@ -189,7 +189,8 @@ const Page = () => {
           style={{ boxShadow: "1px 5px 4px #00000040" }}
         >
           <DropdownButton />
-          <Example />
+              {/* <BarProdukDash/> */}
+              {/* <BarForumDash /> */}
         </div>
         {data && (
           <div className="flex ms-[1.5%] mt-[2%] mb-[2%]">
@@ -197,7 +198,7 @@ const Page = () => {
               className="flex flex-col items-center py-7 ms-[2.5%] mr-[1.5%] w-[19%] h-[10%] bg-[#CDF4E5] rounded-xl"
               style={{ boxShadow: "1px 5px 4px #00000040" }}
             >
-              <h1 className="font-bold text-[#198C6F]">Jumlah Ulasan</h1>
+              <h1 className="font-bold text-[#198C6F]">Jumlah Konten Forum</h1>
               <h1 className="text-4xl mt-3 text-[#198C6F] font-semibold text-center border-[#198C6F] border-b-[1px] w-[130px] pb-2">
                 {data.totalPostingan}
               </h1>
@@ -213,10 +214,7 @@ const Page = () => {
                   Burung Hias
                   <span className="ms-12">{data.totalForumBurung}</span>
                 </p>
-                <button
-                  onClick={handleAturKonten}
-                  className="bg-[#198C6F] text-white w-[100%] h-[40%] justify-center p-2 rounded-lg"
-                >
+                <button onClick={handleAturKonten} className="bg-[#198C6F] text-white w-[100%] h-[40%] justify-center p-2 rounded-lg">
                   Atur Konten
                 </button>
               </div>
