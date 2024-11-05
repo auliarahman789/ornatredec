@@ -7,7 +7,7 @@ import pen from "../../../public/icon/pen.svg";
 
 function Forum() {
   return (
-    <div className="bg-[#E4FFF2] h-[2000px]">
+    <div className="bg-[#E4FFF2] ">
       <p className="text-[#308967] text-[20px] ml-[22%] inline-block mt-[4%]">
         8 ulasan terbaru
       </p>
@@ -25,16 +25,18 @@ function Forum() {
         </div>
         <Grid />
         <>
-          <div className="bg-[#308967] h-[18px] w-[18px] ms-[3%] rounded-xl">
+          <div className="bg-[#308967] h-[18px] w-[18px] ms-[3%] rounded-md cursor-pointer">
             <Image
               src={pen}
-              alt=""
-              width={100}
-              height={100}
-              className="h-10 w-10 bg-slate-400"
+              alt="pensil"
+              width={80}
+              height={80}
+              className="h-[50%] w-[50%] mt-1 ml-1 cursor-pointer"
             ></Image>
           </div>
-          <p className="text-[#308967] text-[18px] ml-[1%] mb-1">buat ulasan</p>
+          <p className="text-[#308967] text-[18px] ml-[1%] mb-1 cursor-pointer">
+            buat ulasan
+          </p>
         </>
       </div>
     </div>
