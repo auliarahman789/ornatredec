@@ -14,43 +14,45 @@ import {
 
 type Kategoritipe = {
   name: string; // Nama kategori
-  pv: number;   // Total transaksi
+  pv: number; // Total transaksi
 };
 
 const BarForumDash: React.FC = () => {
   const [data, setData] = useState<Kategoritipe[]>([]);
   useEffect(() => {
-      getBarForumDash();
-    }, []);
-    async function getBarForumDash() {
-      const url = `${process.env.NEXT_PUBLIC_URL}api/statistik/2024`;
-      try {
-        const res = await axios.get(url, {
-          withCredentials: true,
-        });
-        const formattedData = [
-          { name: "Jan", pv: res.data.data[0].totalPosts },
-          { name: "Feb", pv: res.data.data[1].totalPosts },
-          { name: "Mar", pv: res.data.data[2].totalPosts },
-          { name: "Apr", pv: res.data.data[3].totalPosts },
-          { name: "Mei", pv: res.data.data[4].totalPosts },
-          { name: "Juni", pv: res.data.data[5].totalPosts },
-          { name: "Juli", pv: res.data.data[6].totalPosts },
-          { name: "Agst", pv: res.data.data[7].totalPosts },
-          { name: "Sept", pv: res.data.data[8].totalPosts },
-          { name: "Okt", pv: res.data.data[9].totalPosts },
-          { name: "Nov", pv: res.data.data[10].totalPosts },
-          { name: "Des", pv:res.data.data[11].totalPosts},
-        ];
-        setData(formattedData);
-        console.log(
-          res.data);
-      } catch (error: any) {
-        console.log(error);
-        alert("Terjadi kesalahan saat mengambil data total produk tanaman burung dan ikan");
-      }
+    getBarForumDash();
+  }, []);
+  async function getBarForumDash() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/statistik/2024`;
+    try {
+      const res = await axios.get(url, {
+        withCredentials: true,
+      });
+      const formattedData = [
+        { name: "Jan", pv: res.data.data[0].totalPosts },
+        { name: "Feb", pv: res.data.data[1].totalPosts },
+        { name: "Mar", pv: res.data.data[2].totalPosts },
+        { name: "Apr", pv: res.data.data[3].totalPosts },
+        { name: "Mei", pv: res.data.data[4].totalPosts },
+        { name: "Juni", pv: res.data.data[5].totalPosts },
+        { name: "Juli", pv: res.data.data[6].totalPosts },
+        { name: "Agst", pv: res.data.data[7].totalPosts },
+        { name: "Sept", pv: res.data.data[8].totalPosts },
+        { name: "Okt", pv: res.data.data[9].totalPosts },
+        { name: "Nov", pv: res.data.data[10].totalPosts },
+        { name: "Des", pv: res.data.data[11].totalPosts },
+      ];
+      setData(formattedData);
+      console.log(res.data);
+    } catch (error: any) {
+      console.log(error);
+      alert(
+        "Terjadi kesalahan saat mengambil data total produk tanaman burung dan ikan"
+      );
     }
-    return (
+  }
+  return (
+    <div>
       <ResponsiveContainer width="100%" height="90%">
         <BarChart
           width={500}
@@ -89,8 +91,9 @@ const BarForumDash: React.FC = () => {
           />
         </BarChart>
       </ResponsiveContainer>
-    );
-  }
+      <div>Ini Forum</div>
+    </div>
+  );
+};
 
-  
-  export default BarForumDash;
+export default BarForumDash;

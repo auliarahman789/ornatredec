@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import BarProdukDash from "../diagram/batang/page";
 import BarForumDash from "../diagram/batang/ForumDash";
 import KombinasiDropdown from "../../components/super admin/button/page";
+import CombinedDropdowns from "../../components/super admin/button/page";
 
 type Total = {
   totalPenggunaUser: number;
@@ -48,11 +49,11 @@ const Page = () => {
   }
   const router = useRouter();
   const handleAturProduk = () => {
-    router.push('/Superadmin/Produk')
-  }
+    router.push("/Superadmin/Produk");
+  };
   const handleAturKonten = () => {
-    router.push('/Superadmin/Forum')
-  }
+    router.push("/Superadmin/Forum");
+  };
   return (
     <div className="overflow-x-hidden min-h-screen">
       <div className="text-black translate-x-64 pt-[2%] min-h-screen">
@@ -177,7 +178,10 @@ const Page = () => {
                   Burung Hias
                   <span className="ms-12">{data.totalProdukBurung}</span>
                 </p>
-                <button onClick={handleAturProduk} className="bg-white text-[#308967] w-[100%] h-[40%] justify-center p-2 rounded-lg">
+                <button
+                  onClick={handleAturProduk}
+                  className="bg-white text-[#308967] w-[100%] h-[40%] justify-center p-2 rounded-lg"
+                >
                   Atur Produk
                 </button>
               </div>
@@ -188,9 +192,8 @@ const Page = () => {
           className="w-[73%] h-[500px] ms-[4%] mt-[2%] bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl mb-5"
           style={{ boxShadow: "1px 5px 4px #00000040" }}
         >
-          <DropdownButton />
-              {/* <BarProdukDash/> */}
-              {/* <BarForumDash /> */}
+          <BarProdukDash />
+          <BarForumDash />
         </div>
         {data && (
           <div className="flex ms-[1.5%] mt-[2%] mb-[2%]">
@@ -214,7 +217,10 @@ const Page = () => {
                   Burung Hias
                   <span className="ms-12">{data.totalForumBurung}</span>
                 </p>
-                <button onClick={handleAturKonten} className="bg-[#198C6F] text-white w-[100%] h-[40%] justify-center p-2 rounded-lg">
+                <button
+                  onClick={handleAturKonten}
+                  className="bg-[#198C6F] text-white w-[100%] h-[40%] justify-center p-2 rounded-lg"
+                >
                   Atur Konten
                 </button>
               </div>

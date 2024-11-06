@@ -1,10 +1,29 @@
 "use client";
+
+import React, { useState } from "react";
 import BarForumDash from "@/app/diagram/batang/ForumDash";
 import BarProdukDash from "@/app/diagram/batang/page";
-import Image from "next/image";
-import React, { useState } from "react";
 
-const DropdownButton = ({ onSelect }: { onSelect: any }) => {
+// Komponen untuk menampilkan diagram produk
+const ProdukComponent = () => {
+  return (
+    <div className="mt-4 p-4">
+      <BarProdukDash />
+    </div>
+  );
+};
+
+// Komponen untuk menampilkan diagram forum
+const ForumComponent = () => {
+  return (
+    <div className="mt-4 p-4">
+      <BarForumDash />
+    </div>
+  );
+};
+
+// Komponen dropdown yang mengelola pilihan
+const Dropdown1 = ({ onSelect }: { onSelect: (option: string) => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Produk");
 
@@ -12,23 +31,25 @@ const DropdownButton = ({ onSelect }: { onSelect: any }) => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (option: any) => {
+  const handleOptionClick = (option: string) => {
     setSelectedOption(option);
     setIsOpen(false);
-    onSelect(option);
+    onSelect(option); // Memanggil fungsi onSelect ketika opsi dipilih
   };
 
   return (
-    <div className="relative inline-block text-left ms-[85%]">
+    <div className="relative inline-block text-left mr-4">
       <div className="mt-3">
         <button
           type="button"
-          className="inline-flex justify-center text-[18px] bg-white rounded-[5px] px-3 py-1 font-semibold text-[#21B892]"
+          className="inline-flex justify-center text-[18px] px-3 py-1 font-semibold text-black bg-white border border-gray-300 rounded-md"
           onClick={toggleDropdown}
         >
           {selectedOption}
           <svg
-            className={`ml-2 mt-[1%] h-6 w-6 text-[#21B892] transform transition-transform duration-200 ${isOpen ? "rotate-180" : "rotate-0"}`}
+            className={`ml-2 h-6 w-6 text-[#21B892] transform transition-transform duration-200 ${
+              isOpen ? "rotate-180" : "rotate-0"
+            }`}
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -42,23 +63,19 @@ const DropdownButton = ({ onSelect }: { onSelect: any }) => {
       </div>
 
       {isOpen && (
-        <div className="absolute left-5 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg">
+        <div className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg">
           <div className="py-1">
-            {selectedOption !== "Produk" && (
-              <p
-                onClick={() => handleOptionClick("Produk")}
-                className="block px-4 py-2 text-sm text-black cursor-pointer"
-              >
-                Produk
-              </p>
-            )}
-            {selectedOption !== "Forum" && (
-              <p
-                onClick={() => handleOptionClick("Forum")}
-                className="block px-4 py-2 text-sm text-black cursor-pointer"
-              >
-                Forum
-              </p>
+            {["Produk", "Forum"].map(
+              (option) =>
+                selectedOption !== option && (
+                  <p
+                    key={option}
+                    onClick={() => handleOptionClick(option)}
+                    className="block px-4 py-2 text-sm text-black cursor-pointer hover:bg-gray-100"
+                  >
+                    {option}
+                  </p>
+                )
             )}
           </div>
         </div>
@@ -67,18 +84,20 @@ const DropdownButton = ({ onSelect }: { onSelect: any }) => {
   );
 };
 
-const KombinasiDropdown = () => {
+// Komponen utama yang menggabungkan dropdown dan konten terkait
+const CombinedDropdowns = () => {
   const [selectedOption, setSelectedOption] = useState("Produk");
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-full bg-red-500">
       <div className="flex">
-        <DropdownButton onSelect={setSelectedOption} />
+        <Dropdown1 onSelect={setSelectedOption} />
       </div>
-      {selectedOption === "Produk" && <BarProdukDash />}
-      {selectedOption === "Forum" && <BarForumDash />}
+
+      {selectedOption === "Produk" && <ProdukComponent />}
+      {selectedOption === "Forum" && <ForumComponent />}
     </div>
   );
 };
 
-export default KombinasiDropdown;
+export default CombinedDropdowns;
