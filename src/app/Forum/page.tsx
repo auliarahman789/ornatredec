@@ -4,7 +4,10 @@ import Dropdown1 from "@/components/Forum/dropdown1";
 import Image from "next/image";
 import CombinedDropdowns from "@/components/Forum/dropdown2";
 import pen from "../../../public/icon/pen.svg";
+<<<<<<< HEAD
 import Link from "next/link";
+=======
+>>>>>>> cf494d8dcb4054d768f1390424c6728aa02c409f
 
 function Forum() {
   return (
@@ -35,11 +38,17 @@ function Forum() {
               className="h-[50%] w-[50%] mt-1 ml-1 cursor-pointer"
             ></Image>
           </div>
+<<<<<<< HEAD
           <Link href="/Forum/BuatPostingan">
             <p className="text-[#308967] text-[18px] ml-[1%] mb-1 whitespace-nowrap cursor-pointer">
               buat ulasan
             </p>
           </Link>
+=======
+          <p className="text-[#308967] text-[18px] ml-[1%] mb-1 cursor-pointer">
+            buat ulasan
+          </p>
+>>>>>>> cf494d8dcb4054d768f1390424c6728aa02c409f
         </>
       </div>
     </div>
