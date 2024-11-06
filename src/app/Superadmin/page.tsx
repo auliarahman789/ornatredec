@@ -10,10 +10,11 @@ import DiagramForum from "../diagram/lingkaranforum/page";
 import DropdownButton from "../../components/super admin/button/page";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import BarProdukDash from "../diagram/batang/page";
-import BarForumDash from "../diagram/batang/ForumDash";
+
 import KombinasiDropdown from "../../components/super admin/button/page";
 import CombinedDropdowns from "../../components/super admin/button/page";
+import BarProdukDash from "../diagram/batang/page";
+import BarForumDash from "../diagram/batang/ForumDash";
 
 type Total = {
   totalPenggunaUser: number;
@@ -28,6 +29,7 @@ type Total = {
   totalForumBurung: number;
   totalPemesanan: number;
 };
+
 const Page = () => {
   const [data, setData] = useState<Total | null>();
 
@@ -48,6 +50,9 @@ const Page = () => {
     }
   }
   const router = useRouter();
+
+  const [activeMonth, setActiveMonth] = useState("Produk");
+
   const handleAturProduk = () => {
     router.push("/Superadmin/Produk");
   };
@@ -189,11 +194,35 @@ const Page = () => {
           )}
         </div>
         <div
-          className="w-[73%] h-[500px] ms-[4%] mt-[2%] bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl mb-5"
+          className="w-[73%] h-[500px] ms-[4%] mt-[2%] pt-1 bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl mb-5"
           style={{ boxShadow: "1px 5px 4px #00000040" }}
         >
-          <BarProdukDash />
-          <BarForumDash />
+          <div className="flex justify-end">
+            <ul className="mr-10 mt-2 items-end rounded-sm space-x-[18px] w-[14.5%] h-[6%] bg-white flex px-2">
+              <li
+                onClick={() => setActiveMonth("Produk")}
+                className={`cursor-pointer ${
+                  activeMonth === "Produk" ? "border-b-4 border-[#308967]" : ""
+                }`}
+              >
+                Produk
+              </li>
+              <li
+                onClick={() => setActiveMonth("Forum")}
+                className={`cursor-pointer ${
+                  activeMonth === "Forum" ? "border-b-4 border-[#308967]" : ""
+                }`}
+              >
+                Forum
+              </li>
+            </ul>
+          </div>
+
+          {activeMonth === "Produk" && <BarProdukDash />}
+          {activeMonth === "Forum" && <BarForumDash />}
+
+          {/* <BarProdukDash /> */}
+          {/* <BarForumDash /> */}
         </div>
         {data && (
           <div className="flex ms-[1.5%] mt-[2%] mb-[2%]">

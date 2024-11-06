@@ -8,7 +8,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 
@@ -52,47 +51,43 @@ const BarForumDash: React.FC = () => {
     }
   }
   return (
-    <div>
-      <ResponsiveContainer width="100%" height="90%">
-        <BarChart
-          width={500}
-          height={500}
-          data={data}
-          margin={{
-            top: 20,
-            right: 40,
-            left: 10,
-            bottom: 5,
+    <ResponsiveContainer width="100%" height="90%">
+      <BarChart
+        width={500}
+        height={500}
+        data={data}
+        margin={{
+          top: 20,
+          right: 40,
+          left: 10,
+          bottom: 5,
+        }}
+        barSize={40}
+      >
+        <XAxis
+          dataKey="name"
+          scale="point"
+          padding={{ left: 50, right: 50 }}
+          stroke="#FFFFFF" // Ubah warna sumbu X menjadi putih
+          tick={{ fill: "#FFFFFF" }} // Ubah warna teks label di sumbu X menjadi putih
+        />
+        <YAxis
+          stroke="#FFFFFF" // Ubah warna sumbu Y menjadi putih
+          tick={{ fill: "#FFFFFF" }} // Ubah warna teks label di sumbu Y menjadi putih
+        />
+        <Tooltip />
+        <CartesianGrid stroke="#399898" vertical={false} />
+        <Bar
+          dataKey="pv"
+          fill="#44FFC7" // Warna batang menjadi hijau
+          style={{
+            filter: "drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3))",
           }}
-          barSize={40}
-        >
-          <XAxis
-            dataKey="name"
-            scale="point"
-            padding={{ left: 50, right: 50 }}
-            stroke="#FFFFFF" // Ubah warna sumbu X menjadi putih
-            tick={{ fill: "#FFFFFF" }} // Ubah warna teks label di sumbu X menjadi putih
-          />
-          <YAxis
-            stroke="#FFFFFF" // Ubah warna sumbu Y menjadi putih
-            tick={{ fill: "#FFFFFF" }} // Ubah warna teks label di sumbu Y menjadi putih
-          />
-          <Tooltip />
-          <Legend />
-          <CartesianGrid stroke="#399898" vertical={false} />
-          <Bar
-            dataKey="pv"
-            fill="#44FFC7" // Warna batang menjadi hijau
-            style={{
-              filter: "drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3))",
-            }}
-            radius={[10, 10, 0, 0]}
-            label={{ position: "top", fill: "#FFFFFF" }} // Warna teks label di atas batang menjadi putih
-          />
-        </BarChart>
-      </ResponsiveContainer>
-      <div>Ini Forum</div>
-    </div>
+          radius={[10, 10, 0, 0]}
+          label={{ position: "top", fill: "#FFFFFF" }} // Warna teks label di atas batang menjadi putih
+        />
+      </BarChart>
+    </ResponsiveContainer>
   );
 };
 
