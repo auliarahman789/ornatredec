@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import ForumCarousel from "./carouselForum";
 
 function Forum() {
   return (
@@ -20,11 +21,12 @@ function Forum() {
                 className="relative"
               />
             </div>
-            <div className="bg-[#51CB9F] ml-[8%] mr-[8%] h-96 translate-y-20 relative z-20">
-              <h1 className="text-[#367B60] text-[24px] text-center">
+            <div className="bg-[#51CB9F] ml-[8%] mr-[8%] h-[740px] translate-y-20 relative z-20">
+              <h1 className="text-[#367B60] translate-y-10 text-[24px] text-center">
                 Pembahasan <span className="text-white">Popular</span>
               </h1>
-              <div className="mt-8">
+              <ForumCarousel/>
+              <div className="mt-[7%]">
                 <h1 className="text-[#367B60] text-[24px] pl-4">
                   Kategori <span className="text-white">Pembahasan</span>
                 </h1>
