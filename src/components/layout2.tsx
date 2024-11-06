@@ -21,6 +21,7 @@ const disableNavbar = [
   "/Superadmin/Statistik",
   "/Superadmin/Forum",
   "/Superadmin/Produk/tambah",
+  "/Produk/keranjang",
   // "/Superadmin/Produk/edit",
   // "/Superadmin/Produk/edit/${id}",
   "/Superadmin/Produk/pesanan/detail",
@@ -31,7 +32,7 @@ const disableNavbar = [
   "/Superadmin/Forum/detailreportUlasan",
   "/Superadmin/Forum/detailreportUlasan/ReportUlasan2",
 ];
-const superNavbar = [
+const superSidebar = [
   "/Superadmin",
   "/Superadmin/Produk",
   "/Superadmin/Akun",
@@ -58,9 +59,10 @@ export default function RootLayoutClient({
     pathname.startsWith("/Superadmin/Produk/pesanan/daftar/detail/") ||
     pathname.startsWith("/Superadmin/Forum/detailreportUlasan/ReportUlasan2/");
   const isSuperSidebar =
-    superNavbar.includes(pathname) ||
+    superSidebar.includes(pathname) ||
     pathname.startsWith("/Superadmin/Akun/Detail/") ||
     pathname.startsWith("/Superadmin/Forum/detailreportUlasan/ReportUlasan2/");
+  
   return (
     <div className={josefinSans.className}>
       {!isNavbarDisabled && <Navbar />}

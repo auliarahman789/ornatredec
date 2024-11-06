@@ -17,14 +17,14 @@ function Data() {
           User
         </button>
 
-        <button
+        {/* <button
           onClick={() => setData("admin")}
           className={`text-[17px] font-semibold bg-gradient-to-b from-[#00663F] to-[#5CD5A6] ms-[2%] mt-4 inline-block text-transparent bg-clip-text ${
             data === "admin" ? "border-b-4 border-[#308967]" : ""
           }`}
         >
           Admin
-        </button>
+        </button> */}
 
         <button
           onClick={() => setData("kasir")}
@@ -37,7 +37,7 @@ function Data() {
       </div>
       <div className=" pb-24 translate-x-20">
         <div>{data === "user" && <Datauser />}</div>
-        <div>{data === "admin" && <Dataadmin />}</div>
+        {/* <div>{data === "admin" && <Dataadmin />}</div> */}
         <div>{data === "kasir" && <Datakasir />}</div>
       </div>
     </div>
