@@ -1,3 +1,4 @@
+"use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
@@ -12,7 +13,7 @@ import {
 
 type Kategoritipe = {
   name: string; // Nama kategori
-  pv: number;   // Total transaksi
+  pv: number; // Total transaksi
 };
 
 const BarBesarForumStatistik: React.FC = () => {
@@ -49,7 +50,9 @@ const BarBesarForumStatistik: React.FC = () => {
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
-      alert("Terjadi kesalahan saat mengambil data total forum tanaman burung dan ikan");
+      alert(
+        "Terjadi kesalahan saat mengambil data total forum tanaman burung dan ikan"
+      );
     }
   }
 
