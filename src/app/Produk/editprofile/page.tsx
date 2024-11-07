@@ -189,10 +189,10 @@ function page() {
         />
         <p className="mt-9 pl-8">Kategori Alamat</p>
         <p className="mt-4 pl-8">Alamat Pengiriman Utama</p>
-        <div className="border text-[#838282] bg-[#F7F7F7] text-center mt-8 p-3 rounded mr-[2%] ml-[2%]">
+        <div className="border text-[#838282] cursor-pointer bg-[#F7F7F7] text-center mt-8 p-3 rounded mr-[2%] ml-[2%]">
           Hapus Alamat
         </div>
-        <div className="border bg-[#28DF99] text-white text-center mt-8 p-3 rounded mr-[2%] ml-[2%]">
+        <div className="border bg-[#28DF99] text-white cursor-pointer text-center mt-8 p-3 rounded mr-[2%] ml-[2%]">
           Simpan
         </div>
       </div>
