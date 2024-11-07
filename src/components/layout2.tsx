@@ -23,6 +23,7 @@ const disableNavbar = [
   "/Superadmin/Statistik",
   "/Superadmin/Forum",
   "/Superadmin/Produk/tambah",
+  "/Produk/keranjang",
   // "/Superadmin/Produk/edit",
   // "/Superadmin/Produk/edit/${id}",
   "/Superadmin/Produk/pesanan/detail",

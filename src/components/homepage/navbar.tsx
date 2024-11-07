@@ -1,8 +1,9 @@
+"use client";
 import { useEffect, useState } from "react";
 import axios from "axios"; // Import axios
 import Image from "next/image";
-import logo from "../../../public/icon/logo.svg";
-import defaultAvatar from "../../../public/img/default-avatar.png";
+import logo from "../../../../public/icon/logo.svg";
+import defaultAvatar from "../../../../public/img/default-avatar.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -19,7 +20,7 @@ function Navbar() {
         if (!token) return; // Jika tidak ada token, keluar dari fungsi
 
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_URL}api/getMe`,
+          `${process.env.NEXT_PUBLIC_URL}/api/getMe`,
           {
             withCredentials: true,
             // headers: {
@@ -103,8 +104,8 @@ function Navbar() {
         <div className="flex items-center space-x-3">
           {isLoggedIn ? (
             <Link href="/profile" className="flex items-center">
-              <Image
-                src={avatar} // Gunakan avatar dari API atau default
+              <img
+                src={avatar}
                 alt="Profile Avatar"
                 width={40}
                 height={40}
