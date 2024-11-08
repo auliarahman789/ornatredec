@@ -8,7 +8,9 @@ import chat2 from "../../../public/icon/chat2.svg";
 import emote from "../../../public/icon/emote.svg";
 import profil from "../../../public/icon/profil.svg";
 import panah from "../../../public/icon/for.svg";
+import post from "../../../public/icon/post.svg";
 import noted from "../../../public/icon/noted.svg";
+import postcss from "postcss";
 
 function Grid() {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -197,7 +199,7 @@ function Grid() {
                       lihat 81 balasan lainnya
                     </p>
                   </div>
-                  <div className="bg-white mx-auto w-[471px] h-[31px] mt-[10%] relative">
+                  <div className="flex bg-white mx-auto w-[471px] h-[31px] mt-[10%] relative">
                     <input
                       type="text"
                       value={inputText}
@@ -221,6 +223,15 @@ function Grid() {
                         <EmojiPicker onEmojiClick={handleEmojiClick} />
                       </div>
                     )}
+                    <button className="bg-[#308967] rounded-full h-[31px] w-[31px] ">
+                      <Image
+                        src={post}
+                        width={15}
+                        height={15}
+                        alt="post"
+                        className="mx-auto"
+                      />
+                    </button>
                   </div>
                 </div>
               </div>
