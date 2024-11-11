@@ -14,6 +14,12 @@ const KeranjangPage = () => {
   const [selectAll, setSelectAll] = useState(false);
   const router = useRouter();
 
+  // Hitung total item di keranjang
+  const totalItem = keranjang.reduce(
+    (acc, item) => acc + (item.jumlah ?? 0),
+    0
+  );
+
   const handlePesanProduk = () => {
     if (selectedItems.length > 0) {
       const produkIds = selectedItems.join(",");
@@ -63,7 +69,11 @@ const KeranjangPage = () => {
   };
 
   return (
-    <div className="bg-[#E4FFF2] min-h-screen pl-[5%] pt-10 pr-14">
+    <div className="bg-[#E4FFF2] min-h-screen pl-[5%] pt-10 pr-[15%]">
+      <div className="absolute top-5 right-10 -translate-x-[60%] translate-y-8 bg-[#308967] text-white px-4 py-2 rounded-full">
+        Total Item: {totalItem}
+      </div>
+
       <div className="bg-white w-[1200px] h-auto shadow-[3px_5px_4px] shadow-[#0000002e]">
         <div className="ml-10 mr-10">
           <div className="flex items-center justify-between pt-10">
