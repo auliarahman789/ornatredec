@@ -10,11 +10,13 @@ const KeranjangPage = () => {
   const { keranjang, hapusDariKeranjang } = useKeranjang();
   const [showModal, setShowModal] = useState(false);
   const [produkIdTerpilih, setProdukIdTerpilih] = useState<number | null>(null);
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const [selectAll, setSelectAll] = useState(false);
   const router = useRouter();
 
   const handlePesanProduk = () => {
-    if (keranjang.length > 0) {
-      const produkIds = keranjang.map((item) => item.id).join(",");
+    if (selectedItems.length > 0) {
+      const produkIds = selectedItems.join(",");
       router.push(`../../Produk/pesanan/checkout?idProduk=${produkIds}`);
     } else {
       alert("Pilih setidaknya satu produk untuk dipesan.");
@@ -43,13 +45,41 @@ const KeranjangPage = () => {
     setProdukIdTerpilih(null);
   };
 
+  const handleSelectAll = () => {
+    if (selectAll) {
+      setSelectedItems([]);
+    } else {
+      setSelectedItems(keranjang.map((item) => item.id));
+    }
+    setSelectAll(!selectAll);
+  };
+
+  const handleSelectItem = (id: number) => {
+    setSelectedItems((prevSelectedItems) =>
+      prevSelectedItems.includes(id)
+        ? prevSelectedItems.filter((itemId) => itemId !== id)
+        : [...prevSelectedItems, id]
+    );
+  };
+
   return (
     <div className="bg-[#E4FFF2] min-h-screen pl-[5%] pt-10 pr-14">
       <div className="bg-white w-[1200px] h-auto shadow-[3px_5px_4px] shadow-[#0000002e]">
         <div className="ml-10 mr-10">
-          <h1 className="text-3xl font-bold mb-6 text-[#308967] pt-10">
-            Keranjang Anda
-          </h1>
+          <div className="flex items-center justify-between pt-10">
+            <h1 className="text-3xl font-bold mb-6 text-[#308967]">
+              Keranjang Anda
+            </h1>
+            <div className="flex flex-row">
+              <span className="text-[#308967] text-2xl">pesan semua</span>
+              <input
+                type="checkbox"
+                checked={selectAll}
+                onChange={handleSelectAll}
+                className="ml-2 mt-2"
+              />
+            </div>
+          </div>
           <div className="border-b-2 border-[#308967]"></div>
           <div className="flex justify-between text-2xl text-[#308967] pt-5 pb-5">
             <span>Produk</span>
@@ -57,7 +87,13 @@ const KeranjangPage = () => {
           </div>
           <div className="border-b-2 border-[#308967]"></div>
           {keranjang.length === 0 ? (
-            <p>Keranjang Anda kosong.</p>
+            <div className="items-center text-center mt-[10%] flex flex-col">
+              <Image src="/" width={45} height={45} alt="trolli" />
+              <span className="text-3xl text-[#3F9272]">Masih Kosong nih</span>
+              <span className="text-1xl text-[#3F9272]">
+                Coba Untuk Simpan Produk yang nanti kamu mau beli
+              </span>
+            </div>
           ) : (
             <div className="grid gap-4 pt-6">
               {keranjang.map((item: any) => (
@@ -87,11 +123,17 @@ const KeranjangPage = () => {
                       Hapus
                     </button>
                   </div>
+                  <input
+                    type="checkbox"
+                    checked={selectedItems.includes(item.id)}
+                    onChange={() => handleSelectItem(item.id)}
+                    className="translate-x-[870px]"
+                  />
                 </div>
               ))}
             </div>
           )}
-          <div className="flex justify-end space-x-4 mt-8">
+          <div className="flex justify-end space-x-4 mt-8 pb-8">
             <button
               onClick={handleGoBack}
               className="bg-gray-300 px-4 py-2 rounded-lg"
