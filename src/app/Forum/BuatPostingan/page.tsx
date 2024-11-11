@@ -68,6 +68,7 @@ function Page() {
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
+      alert("gagal membuat postingan");
     }
   }
 
