@@ -2,7 +2,6 @@ import React from "react";
 import Grid from "@/components/Forum/grid";
 import Dropdown1 from "@/components/Forum/dropdown1";
 import Image from "next/image";
-import CombinedDropdowns from "@/components/Forum/dropdown2";
 import pen from "../../../public/icon/pen.svg";
 import Link from "next/link";
 
@@ -15,7 +14,6 @@ function Forum() {
       <div className="flex">
         <div className="">
           <Dropdown1 />
-          <CombinedDropdowns />
           <div className="flex text-black text-[18px] pb-4">
             <input
               type="text"
