@@ -20,6 +20,19 @@ function Grid() {
     setInputText((prevInput) => prevInput + emojiData.emoji);
   };
 
+  const handleSendChat = () => {
+    if (inputText.trim()) {
+      console.log("Pesan terkirim:", inputText); // Menampilkan pesan ke konsol
+      setInputText(""); // Mengosongkan input setelah mengirim pesan
+    }
+  };
+
+  const handleKeyDown = (e: { key: string }) => {
+    if (e.key === "Enter") {
+      handleSendChat();
+    }
+  };
+
   return (
     <div className="w-[779px] h-[995px] bg-white ms-[7%]">
       <div className="w-full h-[155px]">
@@ -203,6 +216,7 @@ function Grid() {
                     <input
                       type="text"
                       value={inputText}
+                      onKeyDown={handleKeyDown}
                       onChange={(e) => setInputText(e.target.value)}
                       placeholder="Ketik pesan..."
                       className="w-full h-full pl-10 pr-4 text-sm border border-gray-300 rounded-md focus:outline-none"
@@ -223,7 +237,10 @@ function Grid() {
                         <EmojiPicker onEmojiClick={handleEmojiClick} />
                       </div>
                     )}
-                    <button className="bg-[#308967] rounded-full h-[31px] w-[31px] ">
+                    <button
+                      onClick={handleSendChat}
+                      className="bg-[#308967] rounded-full h-[31px] w-[31px] "
+                    >
                       <Image
                         src={post}
                         width={15}

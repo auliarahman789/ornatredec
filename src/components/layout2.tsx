@@ -64,7 +64,7 @@ export default function RootLayoutClient({
     superSidebar.includes(pathname) ||
     pathname.startsWith("/Superadmin/Akun/Detail/") ||
     pathname.startsWith("/Superadmin/Forum/detailreportUlasan/ReportUlasan2/");
-  
+
   return (
     <div className={josefinSans.className}>
       {!isNavbarDisabled && <Navbar />}
