@@ -3,8 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import Notfound from "../../../components/Notfound/NotFound"
 
-function Burung() {
+const Burung = () => {
   const [data, setData] = useState<any[]>([]); // State for storing product data
   const [searchTerm, setSearchTerm] = useState(""); // State for search input
   const productRef = useRef<HTMLDivElement | null>(null); // Ref for the product section
@@ -19,7 +20,7 @@ function Burung() {
   }, []);
 
   async function getBurung() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -112,13 +113,11 @@ function Burung() {
             </div>
           ))
         ) : (
-          <div className="col-span-4 text-center text-3xl -translate-y-[1200%] text-[#308967]">
-            Maaf, produk ini tidak tersedia.
-          </div>
+          <Notfound/>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default Burung;

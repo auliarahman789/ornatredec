@@ -3,9 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import Gagal from "@/components/gagal";
-
-function Ikan() {
+import Notfound from "../../../components/Notfound/NotFound"
+const Ikan = () => {
   const [data, setData] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const productRef = useRef<HTMLDivElement | null>(null);
@@ -19,7 +18,7 @@ function Ikan() {
   }, []);
 
   async function getIkan() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
@@ -112,11 +111,11 @@ function Ikan() {
             </div>
           ))
         ) : (
-          <div></div>
+          <Notfound />
         )}
       </div>
     </div>
   );
-}
+};
 
 export default Ikan;
