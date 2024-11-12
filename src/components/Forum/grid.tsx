@@ -91,8 +91,8 @@ function Grid() {
                   alt="foto profil"
                   className="rounded-full ml-6 -translate-y-5"
                 />
-                <img src={item.fotoKonten ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                    item.fotoKonten : ""} className="ml-4 h-[157px] w-[206px] bg-slate-600" />
+                 <img src={item.fotoKonten ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                   item.fotoKonten : ""} className={`ml-4 h-[157px] w-[206px] bg-gray-300`} />
               </div>
 
               <div className="ms-[3%] flex-col space-y-1">
