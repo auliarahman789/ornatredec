@@ -13,6 +13,7 @@ import pesan from "../../../../../../public/icon/Basket_alt_3.svg";
 import report from "../../../../../../public/icon/Group 1000004421.svg";
 import axios from "axios";
 import Link from "next/link";
+import Blokir from "@/components/super admin/blokir";
 
 type Detail = {
   Transaksiuser: string;
@@ -30,11 +31,11 @@ type Detail = {
 
 function Page() {
   const { id } = useParams();
-  // const router = useRouter();
+  const router = useRouter();
 
-  // const handleBack = () => {
-  //   router?.push("/Superadmin/Akun");
-  // };
+  const handleBack = () => {
+    router?.push("/Superadmin/Akun");
+  };
 
   const [data, setData] = useState<Detail | null>(null);
   useEffect(() => {
@@ -72,12 +73,13 @@ function Page() {
       alert("Terjadi kesalahan saat mengambil data detail user");
     }
   }
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className="overflow-x-hidden min-h-screen">
       <div className="translate-x-64">
         <div className="bg-[#E4FFF2] min-h-screen w-[70%] ms-[5%] p-4 rounded-md mt-[3%]">
           <Image
-            //onClick={handleBack}
+            onClick={handleBack}
             src={back}
             width={40}
             height={40}
@@ -85,6 +87,7 @@ function Page() {
           />
           {data && (
             <>
+          <Blokir isVisible={showModal} onClose={() => setShowModal(false)} />
               <div className="flex ms-[8%] space-x-7">
                 <Image
                   src={
@@ -131,6 +134,11 @@ function Page() {
                   <p className="text-[15px] ms-1 whitespace-nowrap mt-1 font-light">
                     {formatTanggal}
                   </p>
+                  <button onClick={()=> setShowModal(true)}
+                      className="w-[100px] translate-y-[15px] text-white px-3 py-[2px] rounded-lg bg-[#3F9272]"
+                    >
+                      Blokir
+                    </button>
                 </div>
               </div>
               <div className="flex-col mt-[4%] ">
@@ -278,6 +286,7 @@ function Page() {
               </div>
             </>
           )}
+
         </div>
       </div>
     </div>

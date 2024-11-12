@@ -16,30 +16,30 @@ type Kategoritipe = {
   pv: number; // Total transaksi
 };
 
-const BarProdukDash: React.FC = () => {
+const BarForumDash: React.FC = () => {
   const [data, setData] = useState<Kategoritipe[]>([]);
   useEffect(() => {
-    getBarProdukDash();
+    getBarForumDash();
   }, []);
-  async function getBarProdukDash() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/statistics/yearly/2024`;
+  async function getBarForumDash() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/statistik/2024`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,
       });
       const formattedData = [
-        { name: "Jan", pv: res.data.monthlyStatistics[0].totalTransactions },
-        { name: "Feb", pv: res.data.monthlyStatistics[1].totalTransactions },
-        { name: "Mar", pv: res.data.monthlyStatistics[2].totalTransactions },
-        { name: "Apr", pv: res.data.monthlyStatistics[3].totalTransactions },
-        { name: "Mei", pv: res.data.monthlyStatistics[4].totalTransactions },
-        { name: "Juni", pv: res.data.monthlyStatistics[5].totalTransactions },
-        { name: "Juli", pv: res.data.monthlyStatistics[6].totalTransactions },
-        { name: "Agst", pv: res.data.monthlyStatistics[7].totalTransactions },
-        { name: "Sept", pv: res.data.monthlyStatistics[8].totalTransactions },
-        { name: "Okt", pv: res.data.monthlyStatistics[9].totalTransactions },
-        { name: "Nov", pv: res.data.monthlyStatistics[10].totalTransactions },
-        { name: "Des", pv: res.data.monthlyStatistics[11].totalTransactions },
+        { name: "Jan", pv: res.data.data[0].totalPosts },
+        { name: "Feb", pv: res.data.data[1].totalPosts },
+        { name: "Mar", pv: res.data.data[2].totalPosts },
+        { name: "Apr", pv: res.data.data[3].totalPosts },
+        { name: "Mei", pv: res.data.data[4].totalPosts },
+        { name: "Juni", pv: res.data.data[5].totalPosts },
+        { name: "Juli", pv: res.data.data[6].totalPosts },
+        { name: "Agst", pv: res.data.data[7].totalPosts },
+        { name: "Sept", pv: res.data.data[8].totalPosts },
+        { name: "Okt", pv: res.data.data[9].totalPosts },
+        { name: "Nov", pv: res.data.data[10].totalPosts },
+        { name: "Des", pv: res.data.data[11].totalPosts },
       ];
       setData(formattedData);
       console.log(res.data);
@@ -91,4 +91,4 @@ const BarProdukDash: React.FC = () => {
   );
 };
 
-export default BarProdukDash;
+export default BarForumDash;

@@ -1,5 +1,6 @@
 "use client";
-import React, { PureComponent } from "react";
+import axios from "axios";
+import React, { PureComponent, useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -11,86 +12,44 @@ import {
   Legend,
 } from "recharts";
 
-const data = [
-  {
-    name: "Jan",
-    uv: 4000,
-    pv: 2400,
-    amt: 300,
-  },
-  {
-    name: "Feb",
-    uv: 3000,
-    pv: 1398,
-    amt: 250,
-  },
-  {
-    name: "Mar",
-    uv: 2000,
-    pv: 10000,
-    amt: 200,
-  },
-  {
-    name: "Apr",
-    uv: 2780,
-    pv: 3908,
-    amt: 150,
-  },
-  {
-    name: "Mei",
-    uv: 1890,
-    pv: 4800,
-    amt: 100,
-  },
-  {
-    name: "Juni",
-    uv: 2390,
-    pv: 3800,
-    amt: 50,
-  },
-  {
-    name: "Juli",
-    uv: 3490,
-    pv: 4300,
-    amt: 0,
-  },
-  {
-    name: "Agst",
-    uv: 4000,
-    pv: 2400,
-    amt: 300,
-  },
-  {
-    name: "Sept",
-    uv: 3000,
-    pv: 1398,
-    amt: 250,
-  },
-  {
-    name: "Okt",
-    uv: 2000,
-    pv: 10000,
-    amt: 200,
-  },
-  {
-    name: "Nov",
-    uv: 2780,
-    pv: 3908,
-    amt: 150,
-  },
-  {
-    name: "Des",
-    uv: 1890,
-    pv: 4800,
-    amt: 100,
-  },
-];
+type Kategoritipe = {
+  name: string; // Nama kategori
+  pv: number;   // Total transaksi
+};
 
-export default class DiagramBarStatistik extends PureComponent {
-  static demoUrl =
-    "https://codesandbox.io/p/sandbox/bar-chart-has-no-padding-2hlnt8";
-
-  render() {
+const BarStatistik: React.FC = () => {
+  const [data, setData] = useState<Kategoritipe[]>([]);
+  useEffect(() => {
+      getBarStatistik();
+    }, []);
+    async function getBarStatistik() {
+      const url = `${process.env.NEXT_PUBLIC_URL}api/statistics/yearly/2024`;
+      try {
+        const res = await axios.get(url, {
+          withCredentials: true,
+        });
+        const formattedData = [
+          { name: "Jan", pv: res.data.monthlyStatistics[0].totalTransactions },
+          { name: "Feb", pv: res.data.monthlyStatistics[1].totalTransactions },
+          { name: "Mar", pv: res.data.monthlyStatistics[2].totalTransactions },
+          { name: "Apr", pv: res.data.monthlyStatistics[3].totalTransactions },
+          { name: "Mei", pv: res.data.monthlyStatistics[4].totalTransactions },
+          { name: "Juni", pv: res.data.monthlyStatistics[5].totalTransactions },
+          { name: "Juli", pv: res.data.monthlyStatistics[6].totalTransactions },
+          { name: "Agst", pv: res.data.monthlyStatistics[7].totalTransactions },
+          { name: "Sept", pv: res.data.monthlyStatistics[8].totalTransactions },
+          { name: "Okt", pv: res.data.monthlyStatistics[9].totalTransactions },
+          { name: "Nov", pv: res.data.monthlyStatistics[10].totalTransactions },
+          { name: "Des", pv:res.data.monthlyStatistics[11].totalTransactions},
+        ];
+        setData(formattedData);
+        console.log(
+          res.data);
+      } catch (error: any) {
+        console.log(error);
+        alert("Terjadi kesalahan saat mengambil data total produk tanaman burung dan ikan");
+      }
+    }
     return (
       <ResponsiveContainer width="65%" height="63%">
         <BarChart
@@ -140,4 +99,5 @@ export default class DiagramBarStatistik extends PureComponent {
       </ResponsiveContainer>
     );
   }
-}
+
+export default BarStatistik;

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 const Dropdown1 = ({ onSelect }: { onSelect: any }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("Tanaman"); // Set default ke "Tanaman"
+  const [selectedOption, setSelectedOption] = useState("Semua"); // Set default ke "Tanaman"
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -45,6 +45,14 @@ const Dropdown1 = ({ onSelect }: { onSelect: any }) => {
       {isOpen && (
         <div className="absolute left-5 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg">
           <div className="py-1">
+            {selectedOption !== "Semua" && (
+              <p
+                onClick={() => handleOptionClick("Semua")}
+                className="block px-4 py-2 text-sm text-black cursor-pointer"
+              >
+                Semua
+              </p>
+            )}
             {selectedOption !== "Tanaman" && (
               <p
                 onClick={() => handleOptionClick("Tanaman")}
