@@ -54,6 +54,10 @@ const DetailPesanan = () => {
     }
   };
 
+  const [jumlah, setJumlah] = useState(1);
+  const tambahJumlah = () => setJumlah((prev) => prev + 1);
+  const kurangiJumlah = () => setJumlah((prev) => (prev > 0 ? prev - 1 : 1));
+
   const handleVariasiClick = (subvariasi: Subvariasi) => {
     setHargaTerpilih(subvariasi.harga); // Update harga berdasarkan subvariasi yang dipilih
     setSubvariasiDipilih(subvariasi); // Simpan subvariasi yang dipilih
@@ -85,6 +89,7 @@ const DetailPesanan = () => {
                   <p className="text-xl font-medium">
                     Variasi: {variasi.nama_variasi}
                   </p>
+
                   <div className="flex flex-wrap gap-2">
                     {variasi.subvariasis.map((subvariasi) => (
                       <button
@@ -99,6 +104,21 @@ const DetailPesanan = () => {
                         {subvariasi.nama_sub_variasi} - Rp. {subvariasi.harga}
                       </button>
                     ))}
+                  </div>
+                  <div className="items-center translate-y-8">
+                    <button
+                      onClick={kurangiJumlah}
+                      className="px-3 py-2 bg-green-600 text-white rounded"
+                    >
+                      -
+                    </button>
+                    <span className="px-4">{jumlah}</span>
+                    <button
+                      onClick={tambahJumlah}
+                      className="px-3 py-2 bg-green-600 text-white rounded"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               ))}

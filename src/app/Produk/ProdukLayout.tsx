@@ -1,5 +1,3 @@
-// src/app/layout.tsx
-
 import React from "react";
 import { KeranjangProvider } from "../Produk/keranjang/keranjangContext"; // Sesuaikan path
 
