@@ -6,6 +6,8 @@ import Konten from '@/components/super admin/forum/konten';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
+import LoadingProduk from '@/components/super admin/loadingProduk';
+import LoadingForum from '@/components/Forum/loading';
 
 interface Konten {
   judul: string;
@@ -21,6 +23,7 @@ function Page() {
     fotoKonten: "",
     kategori_forum: ""
   })
+  const [isLoading, setIsLoading] = useState(false);
   const handleImageClick = () => {
     if (inputRef.current) {
       inputRef.current.click();
@@ -54,6 +57,7 @@ function Page() {
 
     const url = `${process.env.NEXT_PUBLIC_URL}api/post`;
     try {
+      setIsLoading(true);
       const res = await axios.post(url, formData2, {
         withCredentials: true,
       });
@@ -66,7 +70,9 @@ function Page() {
         })
       );
       console.log(res.data);
+      setIsLoading(false);
     } catch (error: any) {
+      setIsLoading(false);
       console.log(error);
       alert("gagal membuat postingan");
     }
@@ -153,7 +159,9 @@ function Page() {
                   </div>
               </div>
               <div className="relative">
-               <button className='w-[120px] absolute right-0 top-4 h-[40px] bg-[#E2FFF8] rounded-[5px] text-[#51CB9F] text-[24px] pb-2 pt-1'  onClick={() => buatPostingan()}>Posting</button>
+               <button disabled={isLoading} className='w-[120px] absolute right-0 top-4 h-[40px] bg-[#E2FFF8] rounded-[5px] text-[#51CB9F] text-[24px] pb-2 pt-1'  onClick={() => buatPostingan()}>{isLoading ? "" : "Tambah"}{" "}
+                </button>
+                {isLoading && <LoadingForum />}
               </div>
                   
          </div>
