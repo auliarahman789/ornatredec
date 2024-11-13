@@ -1,17 +1,68 @@
-'use client'
-import React, { useRef } from 'react'
-import Image from 'next/image';
+"use client";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Link from 'next/link';
-function page() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+import Link from "next/link";
+import axios from "axios";
+
+
+interface SubVariasi {
+  nama_sub_variasi: string;
+  stok: number;
+  harga: number;
+  usia: string;
+}
+
+interface Variasi {
+  nama_variasi: string;
+  subvariasis: SubVariasi[];
+}
+
+interface Produk {
+  judul_produk: string;
+  deskripsi_produk: string;
+  harga: number;
+  foto_produk: string;
+  variasis: Variasi[];
+}
+const Page = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
 
-    const handleGoBack = () => {
-      router?.push("/Produk/pesanan/[id]");
-    };
+  const [formData, setFormData] = useState<Produk>({
+    judul_produk: "",
+    deskripsi_produk: "",
+    harga: 0,
+    foto_produk: "",
+    variasis: [],
+  });
+
+  // Fungsi untuk pergi kembali ke halaman sebelumnya
+  const handleGoBack = () => {
+    router?.push("/Produk/pesanan/[id]"); // Gantilah [id] dengan id yang sesuai jika perlu
+  };
+
+  // Mengambil data produk dari API
+  const getProduk = async () => {
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`; // Pastikan URL ini sesuai dengan API yang benar
+    try {
+      const res = await axios.get(url, { withCredentials: true });
+      setFormData({
+        judul_produk: res.data.judul_produk || "",
+        deskripsi_produk: res.data.deskripsi_produk || "",
+        harga: res.data.harga || 0,
+        foto_produk: res.data.foto_produk || "",
+        variasis: res.data.variasis || [], // Default ke array kosong jika variasi kosong
+      });
+    } catch (error) {
+      console.error("Failed to fetch produk data", error);
+    }
+  };
+
+  useEffect(() => {
+    getProduk();
+  }, []);
+
   return (
     <div className="bg-[#E5FFF9] min-h-screen">
       <button
@@ -20,7 +71,7 @@ function page() {
       >
         <Image
           src="/icon/backk.svg"
-          alt="icon background"
+          alt="Back Icon"
           width={390}
           height={390}
           className=""
@@ -28,7 +79,7 @@ function page() {
       </button>
       <Image
         src="/icon/ornatredecc.svg"
-        alt="icon background"
+        alt="Ornament Icon"
         width={390}
         height={390}
         className="ml-[7%] translate-y-20 h-[150%] w-[80%]"
@@ -40,21 +91,41 @@ function page() {
         <div className="ml-[5%]">Usia</div>
         <div className="ml-[5%]">Jumlah</div>
       </div>
-      <div className="mt-[2%] ml-[7%] mr-[7%] py-20 bg-[#F3FFFB] font-semibold text-white ">
-        tes
+      <div className="mt-[2%] ml-[7%] mr-[7%] py-20 bg-[#F3FFFB] font-semibold text-white">
+        {/* Display Produk */}
+        {formData.judul_produk ? (
+          <div>
+            <p>Judul Produk: {formData.judul_produk}</p>
+            <p>Deskripsi: {formData.deskripsi_produk}</p>
+            <p>Harga: {formData.harga}</p>
+            {formData.foto_produk && (
+              <p>
+                Foto Produk:{" "}
+                <Image
+                  src={formData.foto_produk}
+                  alt="Produk"
+                  width={100}
+                  height={100}
+                />
+              </p>
+            )}
+          </div>
+        ) : (
+          <p>Loading produk...</p>
+        )}
       </div>
       <Image
         src="/icon/lokasi.svg"
-        alt="icon background"
+        alt="Lokasi Icon"
         width={30}
         height={30}
-        className="translate-y-[350%] ml-[11%] "
+        className="translate-y-[350%] ml-[11%]"
       />
       <div className="mt-[2%] ml-[7%] mr-[7%] py-10 bg-[#F3FFFB]">
         <div className="bg-white py-10 rounded ml-[3%] mr-[3%] text-[#00663F] text-2xl border-2 p-5 border-[#00663F]">
           Jl.Melong Tengah No 12 RW.05 RT.03
         </div>
-        <Link href ="/Produk/editprofile">
+        <Link href="/Produk/editprofile">
           <button className="text-white bg-[#139663] rounded px-3 ml-[90%] -translate-y-24">
             Edit
           </button>
@@ -63,33 +134,33 @@ function page() {
       <div className="mt-[4%] ml-[7%] mr-[7%] py-2 bg-[#28DF99] text-2xl font-semibold text-white pl-4">
         Metode Pembayaran
       </div>
-      <div className=" ml-[7%] mr-[7%] py-3 bg-[#F3FFFB]">
-        <div className="bg-white my-[10px] mx-[10px] h-[300px]  shadow-[3px_3px_3px] shadow-[#0000002e]">
+      <div className="ml-[7%] mr-[7%] py-3 bg-[#F3FFFB]">
+        <div className="bg-white my-[10px] mx-[10px] h-[300px] shadow-[3px_3px_3px] shadow-[#0000002e]">
           <div className="flex flex-row">
             <Image
               src="/img/bca.png"
-              alt="icon background"
+              alt="BCA"
               width={170}
               height={170}
               className="ml-[3%] mt-[3%]"
             />
             <Image
               src="/img/bni.png"
-              alt="icon background"
+              alt="BNI"
               width={170}
               height={170}
               className="ml-[3%] mt-[3%]"
             />
             <Image
               src="/img/mandiri.png"
-              alt="icon background"
+              alt="Mandiri"
               width={170}
               height={170}
               className="ml-[3%] mt-[3%]"
             />
             <Image
               src="/img/bri.png"
-              alt="icon background"
+              alt="BRI"
               width={170}
               height={170}
               className="ml-[3%] mt-[3%]"
@@ -97,9 +168,9 @@ function page() {
           </div>
         </div>
       </div>
-      <div className="mt-[2%] ml-[7%] mr-[7%] py-6 bg-[#F3FFFB] font-semibold text-[#00663F] ">
+      <div className="mt-[2%] ml-[7%] mr-[7%] py-6 bg-[#F3FFFB] font-semibold text-[#00663F]">
         <div className="ml-[3%] bg-white rounded mr-[3%] text-[#00663F] h-80 border-2 p-10 border-[#00663F]">
-          <p className="ml-1 text-2xl">Subtotal </p>
+          <p className="ml-1 text-2xl">Subtotal</p>
         </div>
         <p className="-translate-y-60 pl-[7%] text-2xl">
           Total Biaya Pengiriman
@@ -114,6 +185,6 @@ function page() {
       </div>
     </div>
   );
-}
+};
 
-export default page
+export default Page;

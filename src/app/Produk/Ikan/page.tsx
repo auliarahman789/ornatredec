@@ -1,17 +1,19 @@
 "use client";
-
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-
-const Produk = () => {
+import Notfound from "../../../components/Notfound/NotFound"
+function Ikan () {
   const [data, setData] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState(""); // State untuk pencarian produk
+  const productRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    fetchProducts();
+    getIkan();
   }, []);
 
+  async function getIkan() {
   const fetchProducts = async () => {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
     try {
@@ -67,7 +69,8 @@ const Produk = () => {
         </div>
 
         <div className="px-10 py-10 grid grid-cols-4 gap-6 ml-[5%] mr-[5%] -translate-y-[50%] bg-[#EBFFF8]">
-          {filteredData.map((item: any) => (
+         {filteredData.length > 0 ? (
+          filteredData.map((item: any) => (
             <div
               className="w-[239px] h-[319px] rounded-3xl bg-white shadow-[2px_8px_10px] shadow-[#0000002e]"
               key={item.id}
@@ -90,11 +93,14 @@ const Produk = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <Notfound />
+        )}
         </div>
       </div>
     </div>
   );
 };
-
-export default Produk;
+}
+export default Ikan;

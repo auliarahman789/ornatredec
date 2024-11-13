@@ -14,17 +14,10 @@ function Forum() {
       <div className="flex">
         <div className="">
           <Dropdown1 />
-          <div className="flex text-black text-[18px] pb-4">
-            <input
-              type="text"
-              placeholder="  Cari..."
-              className="w-[80%] h-[31px] mt-[8%] bg-[#FFFBFB] rounded-lg ms-[35%] shadow-xl"
-            />
-          </div>
         </div>
         <Grid />
-        <>
-          <div className="bg-[#308967] h-[18px] w-[18px] ms-[3%] rounded-md cursor-pointer">
+        <div className="mt-6 ms-[12%] flex">
+          <div className="bg-[#308967] h-[18px] w-[18px]  rounded-md cursor-pointer">
             <Image
               src={pen}
               alt="pensil"
@@ -34,11 +27,11 @@ function Forum() {
             ></Image>
           </div>
           <Link href="/Forum/BuatPostingan">
-            <p className="text-[#308967] text-[18px] ml-[1%] mb-1 whitespace-nowrap cursor-pointer">
+            <p className="text-[#308967] text-[18px] ml-[10%] mb-1 whitespace-nowrap cursor-pointer">
               buat ulasan
             </p>
           </Link>
-        </>
+        </div>
       </div>
     </div>
   );
