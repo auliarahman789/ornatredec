@@ -22,7 +22,7 @@ const BarProdukDash: React.FC = () => {
     getBarProdukDash();
   }, []);
   async function getBarProdukDash() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/statistics/yearly/2024`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/statistics/yearly/2024`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,

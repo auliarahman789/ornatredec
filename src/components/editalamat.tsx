@@ -1,8 +1,8 @@
 "use client";
 
-import React, { ChangeEvent, useRef, useState } from 'react'
-import Image from 'next/image';
-import axios from 'axios';
+import React, { ChangeEvent, useRef, useState } from "react";
+import Image from "next/image";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 
 interface UserData {
@@ -200,4 +200,4 @@ function page() {
   );
 }
 
-export default page
+export default page;
