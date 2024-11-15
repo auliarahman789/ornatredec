@@ -24,15 +24,14 @@ type Forum = {
     username: string;
     photoProfile: string;
   };
+  comments: { user: string; text: string; createdAt: string }[]; // Added for comments
 };
 
 function Grid() {
   const [data, setData] = useState<Forum[]>([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [inputText, setInputText] = useState("");
-  const [comments, setComments] = useState<
-    { username: string; comment: string }[]
-  >([]);
+  const [commentInput, setCommentInput] = useState<string>("");
 
   const formatTanggal = (tanggal: string) => {
     const opsiTanggal: Intl.DateTimeFormatOptions = {
@@ -44,48 +43,48 @@ function Grid() {
   };
 
   const handleEmojiClick = (emojiData: { emoji: string }) => {
-    setInputText((prevInput) => prevInput + emojiData.emoji);
+    setCommentInput((prevInput) => prevInput + emojiData.emoji);
   };
 
-  const handleKeyDown = (e: { key: string }) => {
-    if (e.key === "Enter") {
-      handleSendComment();
-    }
-  };
-
-  // This is the function to send the comment to the API
-  const postComment = async (forumId: number, commentText: string) => {
-    try {
-      const url = `${process.env.NEXT_PUBLIC_URL}/api/komen`; // URL API untuk mengirim komentar
-      const payload = {
-        forumId, // ID Forum tempat komentar akan diposting
-        comment: commentText, // Isi komentar
-      };
-
-      // Mengirimkan komentar ke API
-      const res = await axios.post(url, payload, {
-        withCredentials: true, // Kirim dengan cookie jika diperlukan
-      });
-
-      // Jika berhasil, tambahkan komentar ke state
-      if (res.status === 200) {
+  const handleSendComment = async (postId: number) => {
+    if (commentInput.trim()) {
+      try {
+        // Kirim komentar ke server
         const newComment = {
-          id: res.data.id, // ID komentar yang dikembalikan dari API
-          username: "Kevin", // Nama pengguna, sesuaikan jika diperlukan
-          comment: commentText,
+          postId,
+          text: commentInput,
+          user: "Kevin", // Gantilah dengan nama pengguna yang dinamis jika perlu
         };
-        setComments((prevComments) => [...prevComments, newComment]);
-        setInputText(""); // Mengosongkan input setelah komentar dikirim
+
+        const url = `${process.env.NEXT_PUBLIC_URL}/api/komen`;
+        await axios.post(url, newComment, {
+          withCredentials: true,
+        });
+
+        // Setelah berhasil kirim komentar, kita update data lokal
+        setData((prevData) => {
+          return prevData.map((post) => {
+            if (post.id === postId) {
+              post.comments.push({
+                user: "Kevin", // Ganti dengan nama pengguna dinamis jika perlu
+                text: commentInput,
+                createdAt: new Date().toISOString(),
+              });
+            }
+            return post;
+          });
+        });
+        setCommentInput(""); // Clear input setelah komentar terkirim
+      } catch (error: any) {
+        console.log("Error mengirim komentar:", error);
+        alert("Terjadi kesalahan saat mengirim komentar.");
       }
-    } catch (error: any) {
-      console.error("Error posting comment:", error.response || error.message);
-      alert("Terjadi kesalahan saat mengirim komentar.");
     }
   };
 
-  const handleSendComment = () => {
-    if (inputText.trim()) {
-      postComment(data[0].id, inputText); // Send the comment to the first forum post
+  const handleKeyDown = (e: { key: string }, postId: number) => {
+    if (e.key === "Enter") {
+      handleSendComment(postId);
     }
   };
 
@@ -100,9 +99,8 @@ function Grid() {
         withCredentials: true,
       });
       setData(res.data);
-      console.log(res.data);
     } catch (error: any) {
-      console.error("Error fetching forum data:", error.response || error.message);
+      console.log(error);
       alert("Terjadi kesalahan saat mengambil data konten forum.");
     }
   }
@@ -116,13 +114,13 @@ function Grid() {
             key={item.id}
           >
             <div className="w-full h-[155px]">
+              {/* Post Header and Content */}
               <div className="flex mt-[5%]">
                 <div className="flex items-start">
                   <img
                     src={
                       item.User.photoProfile
-                        ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                          item.User.photoProfile
+                        ? item.User.photoProfile
                         : "/img/default-avatar.png"
                     }
                     width={38}
@@ -131,26 +129,18 @@ function Grid() {
                     className="rounded-full ml-6 -translate-y-5"
                   />
                   <img
-                    src={
-                      item.fotoKonten
-                        ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                          item.fotoKonten
-                        : ""
-                    }
-                    className={`ml-4 h-[157px] w-[206px] bg-gray-300`}
-                    alt="konten foto"
+                    src={item.fotoKonten ? item.fotoKonten : ""}
+                    className="ml-4 h-[157px] w-[206px] bg-slate-600"
                   />
                 </div>
-
                 <div className="ms-[3%] flex-col space-y-1">
                   <div className="flex space-x-2 mb-[3%]">
                     <p className="text-[#21B892] mt-1 text-[20px]">
                       {item.judul}
                     </p>
                   </div>
-
                   <p className="font-light text-[12px]">
-                    {`Ulasan dari `}{" "}
+                    {`Ulasan dari `}
                     <span className="text-[#005DE8]">{item.User.username}</span>
                     {` pada `} {formatTanggal(item.createdAt)}
                   </p>
@@ -180,94 +170,89 @@ function Grid() {
                       {item.jumlahTanggapan}
                     </p>
                   </div>
-                  <div className="border-b w-[408px] border-black"></div>
                 </div>
               </div>
             </div>
 
+            {/* Post Description */}
             <div className="mt-[4%]">
               <p className="text-black leading-tight ml-[10%] w-[60%] text-[15px]">
                 {item.desc}
               </p>
             </div>
+
+            {/* Comments Section */}
             <div>
               <p className="text-black text-[15px] ml-[15%] mt-[4%]">
-                {item.jumlahTanggapan} Komentar
+                {item.comments.length} Komentar
               </p>
 
               <div className="space-y-3">
-                <div className="w-[595px] h-[547px] bg-[#E2FFF8] mx-auto rounded-xl">
-                  <div className="ml-[7%]">
-                    {comments.map((comment, index) => (
-                      <div
-                        key={index}
-                        className="h-[83px] w-[453px] bg-white relative mt-4"
-                      >
-                        <div className="flex items-center space-x-2 p-2">
-                          <p className="text-[#3F9272] text-[13px]">
-                            {comment.username}
-                          </p>
-                          <p className="text-[#7D7D7D] text-[10px]">
-                            2 jam yang lalu
-                          </p>
-                        </div>
-                        <p className="px-[3%] text-[15px] leading-tight mt-1">
-                          {comment.comment}
-                        </p>
-                        <div className="flex justify-end p-2">
-                          <p className="text-[#3F9272] text-[12px] cursor-pointer">
-                            balas
-                          </p>
-                        </div>
-                        <div className="absolute top-3 -left-1 w-0 h-0 border-l-[15px] border-l-transparent border-b-[15px] border-b-white transform -translate-x-1/2 -translate-y-1/2"></div>
-                      </div>
-                    ))}
-                    <div className="flex bg-white mx-auto w-[471px] h-[31px] mt-[10%] relative">
-                      <input
-                        type="text"
-                        value={inputText}
-                        onKeyDown={handleKeyDown}
-                        onChange={(e) => setInputText(e.target.value)}
-                        placeholder="Ketik pesan..."
-                        className="w-full h-full pl-10 pr-4 text-sm border border-gray-300 rounded-md focus:outline-none"
+                {item.comments.map((comment, index) => (
+                  <div key={index} className="p-4 border-b">
+                    <div className="flex items-center space-x-2">
+                      <Image
+                        src={profil}
+                        alt="foto profil"
+                        width={35}
+                        height={35}
+                        className="w-[35px] h-[35px]"
                       />
-                      <button
-                        onClick={() => setShowEmojiPicker((prev) => !prev)}
-                        className="absolute left-2 top-1/2 transform -translate-y-1/2"
-                      >
-                        <Image
-                          src={emote}
-                          width={20}
-                          height={20}
-                          alt="emoji picker icon"
-                        />
-                      </button>
-                      {showEmojiPicker && (
-                        <div className="absolute bottom-full left-0 mb-2">
-                          <EmojiPicker onEmojiClick={handleEmojiClick} />
-                        </div>
-                      )}
-                      <button
-                        onClick={() => handleSendComment()} // Send comment for the specific forum
-                        className="bg-[#308967] rounded-full h-[31px] w-[31px] "
-                      >
-                        <Image
-                          src={post}
-                          width={15}
-                          height={15}
-                          alt="post"
-                          className="mx-auto"
-                        />
-                      </button>
+                      <p className="text-[#3F9272] text-[13px]">
+                        {comment.user}
+                      </p>
+                      <p className="text-[#7D7D7D] text-[10px]">
+                        {formatTanggal(comment.createdAt)}
+                      </p>
                     </div>
+                    <p className="px-[3%] text-[15px] mt-2">{comment.text}</p>
                   </div>
+                ))}
+                {/* Comment Input */}
+                <div className="flex bg-white mx-auto w-[471px] h-[31px] mt-[10%] relative">
+                  <input
+                    type="text"
+                    value={commentInput}
+                    onKeyDown={(e) => handleKeyDown(e, item.id)}
+                    onChange={(e) => setCommentInput(e.target.value)}
+                    placeholder="Ketik pesan..."
+                    className="w-full h-full pl-10 pr-4 text-sm border border-gray-300 rounded-md focus:outline-none"
+                  />
+                  <button
+                    onClick={() => setShowEmojiPicker((prev) => !prev)}
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2"
+                  >
+                    <Image
+                      src={emote}
+                      width={20}
+                      height={20}
+                      alt="emoji picker icon"
+                    />
+                  </button>
+                  {showEmojiPicker && (
+                    <div className="absolute bottom-full left-0 mb-2">
+                      <EmojiPicker onEmojiClick={handleEmojiClick} />
+                    </div>
+                  )}
+                  <button
+                    onClick={() => handleSendComment(item.id)}
+                    className="bg-[#308967] rounded-full h-[31px] w-[31px]"
+                  >
+                    <Image
+                      src={post}
+                      width={15}
+                      height={15}
+                      alt="post"
+                      className="mx-auto"
+                    />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         ))
       ) : (
-        <p>ga ada postingan</p>
+        <p>Ga ada postingan</p>
       )}
     </div>
   );

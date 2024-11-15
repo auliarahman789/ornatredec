@@ -41,7 +41,7 @@ const Produk = () => {
 
         <ul className="text-center space-x-10 -translate-y-3 min-h-screen text-[22px] text-white font-semibold flex justify-center mt-5">
           <Link href="/Produk/#produk">
-            <li className="mx-2 text-3xl cursor-pointer text-[#308967]">
+            <li className="mx-2 text-3xl cursor-pointer hover:text-[#308967] text-[#308967] ">
               Tanaman
             </li>
             <div className="border-b-2 border-[#51CB9F]"></div>
@@ -80,7 +80,7 @@ const Produk = () => {
                 className="w-[239px] h-[319px] rounded-3xl bg-white shadow-[2px_8px_10px] shadow-[#0000002e]"
                 key={item.id}
               >
-                <Link href={`/Produk/${item.id}`}>
+                <Link href={`/Produk/pesanan/${item.id}`}>
                   <img
                     className="mx-auto mt-5 h-[65%] w-[85%] cursor-pointer"
                     alt="Produk Gambar"
