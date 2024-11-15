@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { useKeranjang } from "./keranjangContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { KeranjangItem } from "../pesanan/types";
 
 const KeranjangPage = () => {
   const { keranjang, hapusDariKeranjang } = useKeranjang();
@@ -14,16 +13,36 @@ const KeranjangPage = () => {
   const [selectAll, setSelectAll] = useState(false);
   const router = useRouter();
 
-  // Hitung total item di keranjang
   const totalItem = keranjang.reduce(
     (acc, item) => acc + (item.jumlah ?? 0),
     0
   );
 
-  const handlePesanProduk = () => {
+  const handlePesanProduk = async () => {
     if (selectedItems.length > 0) {
-      const produkIds = selectedItems.join(",");
-      router.push(`../../Produk/pesanan/checkout?idProduk=${produkIds}`);
+      const produkId = selectedItems.join(",");
+
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/api/troli`
+        );
+
+        if (!response.ok) {
+          throw new Error("Gagal mengambil detail pesanan");
+        }
+
+        const produkDetails = await response.json();
+
+        // router.push({
+        //   pathname: '../../Produk/pesanan/checkout',
+        //   query: { idProduk: produkId, produkDetails: JSON.stringify(produkDetails) }
+        // });
+      } catch (error) {
+        console.error("Error:", error);
+        alert(
+          "Terjadi kesalahan saat mengambil detail pesanan. Silakan coba lagi."
+        );
+      }
     } else {
       alert("Pilih setidaknya satu produk untuk dipesan.");
     }
@@ -111,13 +130,13 @@ const KeranjangPage = () => {
                   key={`${item.id}-${item.variasiDipilih}`}
                   className="flex items-center p-4 bg-white rounded mt-8 space-y-6 shadow-[3px_5px_4px] shadow-[#0000002e]"
                 >
-                  <Image
+                  {/* <Image
                     src={item.foto_produk}
                     alt={item.judul_produk}
                     width={80}
                     height={80}
                     className="rounded mr-4"
-                  />
+                  /> */}
                   <div className="flex flex-col">
                     <div className="text-xl font-semibold">
                       {item.judul_produk}

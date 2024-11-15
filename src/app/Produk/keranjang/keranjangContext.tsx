@@ -3,7 +3,6 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { Produk } from "../pesanan/types";
 
-// Definisikan tipe untuk konteks keranjang
 export type KeranjangContextType = {
   keranjang: Produk[];
   tambahProdukKeKeranjang: (produk: Produk) => void;

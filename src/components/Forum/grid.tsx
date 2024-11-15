@@ -65,6 +65,7 @@ function Grid() {
         comment: commentText, // Isi komentar
       };
 
+      // Mengirimkan komentar ke   API
       const res = await axios.post(url, payload, {
         withCredentials: true, // Kirim dengan cookie jika diperlukan
       });

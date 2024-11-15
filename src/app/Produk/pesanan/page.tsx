@@ -6,12 +6,12 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import Komentar from "../komentar/komentar";
-import { useKeranjang } from "../keranjang/keranjangContext"; // Sesuaikan path
+import { useKeranjang } from "../keranjang/keranjangContext";
 
 const DetailPesanan = () => {
   const { id } = useParams();
   const router = useRouter();
-  const { tambahProdukKeKeranjang } = useKeranjang(); // Menggunakan hook di sini
+  const { tambahProdukKeKeranjang } = useKeranjang();
   const [produk, setProduk] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -64,6 +64,7 @@ const DetailPesanan = () => {
                 Rp. {produk.harga}
               </p>
             </div>
+
             <div className="flex flex-row translate-y-[500%]">
               <Link href="../pesanan/checkout">
                 <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
