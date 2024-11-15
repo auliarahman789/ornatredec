@@ -23,9 +23,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <RootLayoutClient>
-        <KeranjangProvider>{children}</KeranjangProvider>
-      </RootLayoutClient>
+      <body>
+        <RootLayoutClient>
+          <KeranjangProvider>{children}</KeranjangProvider>
+        </RootLayoutClient>
+      </body>
     </html>
   );
 }
