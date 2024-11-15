@@ -144,13 +144,22 @@ const KeranjangPage = () => {
                     <div className="text-sm text-gray-600">
                       Variasi: {item.variasiDipilih}
                     </div>
-                    <div className="text-red-500">Rp. {item.harga}</div>
+                    <div className="translate-x-[670%] -translate-y-[100%]">
+                      <div className="text-[#308967] text-lg font-semibold">
+                        Rp. {item.harga}
+                      </div>
+                    </div>
                     <button
                       onClick={() => handleBukaModal(item.id)}
                       className="bg-[#FF0000] text-white px-4 py-2 rounded-lg mt-2"
                     >
                       Hapus
                     </button>
+                    <div className="-translate-y-[100%] translate-x-[650%]">
+                      <button className="bg-[#51CB9F] text-white font-medium px-2 py-1 h-10 w-[50%] rounded-md">
+                        Pesan
+                      </button>
+                    </div>
                   </div>
                   <input
                     type="checkbox"

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import Komentar from "../komentar/komentar";
+import Komentar from "../komentar/page";
 import { useKeranjang } from "../keranjang/keranjangContext";
 
 const DetailPesanan = () => {
