@@ -8,6 +8,7 @@ import phoneIcon from "../../../public/icon/Phone_fill.svg";
 import axios from "axios";
 import LoadingRegis from "./loadingRegis";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Register = ({
   isAnimated,
@@ -26,7 +27,7 @@ const Register = ({
     setShow(!show);
   };
   async function buatAkun() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/register`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/register`;
     try {
       setIsLoading(true);
       const res = await axios.post(
@@ -51,7 +52,13 @@ const Register = ({
       };
       localStorage.setItem("userData", JSON.stringify(userData));
 
-      alert("Berhasil Membuat Akun");
+      Swal.fire({
+        icon: "success",
+        title: "Berhasil Daftar",
+        text: "Anda berhasil mendaftar!",
+        confirmButtonColor: "#3F9272",
+      });
+
       setUsername("");
       setEmail("");
       setPhone("");
@@ -61,7 +68,12 @@ const Register = ({
     } catch (error: any) {
       setIsLoading(false);
       console.log(error);
-      alert("Terjadi kesalahan saat membuat akun.");
+      Swal.fire({
+        icon: "error",
+        title: "Gagal Melakukan Pendaftaran",
+        text: error.message || "Terjadi kesalahan, Silahkan coba lagi.",
+        confirmButtonColor: "#3F9272",
+      });
     }
   }
 

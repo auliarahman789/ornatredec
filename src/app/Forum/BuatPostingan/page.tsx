@@ -1,13 +1,13 @@
-"use client"
-import React, { ChangeEvent, useRef, useState } from 'react'
-import up from "../../../../public/img/upkonten.png"
-import Image from 'next/image'
-import Konten from '@/components/super admin/forum/konten';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import Swal from 'sweetalert2';
-import LoadingProduk from '@/components/super admin/loadingProduk';
-import LoadingForum from '@/components/Forum/loading';
+"use client";
+import React, { ChangeEvent, useRef, useState } from "react";
+import up from "../../../../public/img/upkonten.png";
+import Image from "next/image";
+import Konten from "@/components/super admin/forum/konten";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
+import LoadingProduk from "@/components/super admin/loadingProduk";
+import LoadingForum from "@/components/Forum/loading";
 
 interface Konten {
   judul: string;
@@ -22,7 +22,7 @@ function Page() {
     judul: "",
     desc: "",
     fotoKonten: null,
-    kategori_forum: ""
+    kategori_forum: "",
   });
   const [filePreview, setFilePreview] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -64,7 +64,7 @@ function Page() {
     }
     formData2.append("kategori_forum", formData.kategori_forum);
 
-    const url = `${process.env.NEXT_PUBLIC_URL}api/post`;
+    const url = "${process.env.NEXT_PUBLIC_URL}api/post";
     try {
       setIsLoading(true);
       const res = await axios.post(url, formData2, {
@@ -123,7 +123,10 @@ function Page() {
               id="tanaman"
               onChange={handleInputChange}
             />
-            <label htmlFor="tanaman" className="text-[#308967] text-[20px] font-light">
+            <label
+              htmlFor="tanaman"
+              className="text-[#308967] text-[20px] font-light"
+            >
               Tanaman
             </label>
           </div>
@@ -138,7 +141,10 @@ function Page() {
               id="burung"
               onChange={handleInputChange}
             />
-            <label htmlFor="burung" className="text-[#308967] text-[20px] font-light">
+            <label
+              htmlFor="burung"
+              className="text-[#308967] text-[20px] font-light"
+            >
               Burung
             </label>
           </div>
@@ -151,17 +157,25 @@ function Page() {
               id="ikan"
               onChange={handleInputChange}
             />
-            <label htmlFor="ikan" className="text-[#308967] text-[20px] font-light">
+            <label
+              htmlFor="ikan"
+              className="text-[#308967] text-[20px] font-light"
+            >
               Ikan
             </label>
           </div>
         </div>
       </div>
-      
+
       {/* Form Input */}
       <div className="w-[62%] p-[2.5%] pb-[2.5%]">
         <div className="relative">
-          <button onClick={handleCancel} className="absolute right-0 bg-[#367B60] -translate-y-[80%] translate-x-[80%] pt-1 px-3 text-[20px] rounded-md text-white">X</button>
+          <button
+            onClick={handleCancel}
+            className="absolute right-0 bg-[#367B60] -translate-y-[80%] translate-x-[80%] pt-1 px-3 text-[20px] rounded-md text-white"
+          >
+            X
+          </button>
         </div>
         <div className="bg-[#E2FFF8] rounded-[5px] w-[100%] px-[2.2%] pt-[2.2%] pb-[0.5%] h-screen">
           <div className="flex-col space-y-[2%] h-[100%] w-[100%]">

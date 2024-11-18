@@ -22,7 +22,7 @@ const BarForumDash: React.FC = () => {
     getBarForumDash();
   }, []);
   async function getBarForumDash() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/statistik/2024`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/statistik/2024`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,

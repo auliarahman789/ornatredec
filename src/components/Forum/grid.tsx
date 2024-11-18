@@ -65,7 +65,7 @@ function Grid() {
         comment: commentText, // Isi komentar
       };
 
-      // Mengirimkan komentar ke API
+      // Mengirimkan komentar ke   API
       const res = await axios.post(url, payload, {
         withCredentials: true, // Kirim dengan cookie jika diperlukan
       });
@@ -125,7 +125,7 @@ function Grid() {
   return (
     <div>
       {/* Input pencarian */}
-      <div className="flex ms-[13%] mt-3">
+      <div className="relative flex ms-[13%] mt-3">
         <input
           type="text"
           value={searchTerm} // Set value input ke searchTerm
@@ -398,6 +398,7 @@ function Grid() {
 }
 
 export default Grid;
+
 function setInputSearch(searchTerm: string) {
   throw new Error("Function not implemented.");
 }

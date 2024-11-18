@@ -124,7 +124,7 @@ const Page = () => {
         <div className="bg-white py-10 rounded ml-[3%] mr-[3%] text-[#00663F] text-2xl border-2 p-5 border-[#00663F]">
           Jl.Melong Tengah No 12 RW.05 RT.03
         </div>
-        <Link href="/Produk/editprofile">
+        <Link href="/Produk/compnents/editalamat">
           <button className="text-white bg-[#139663] rounded px-3 ml-[90%] -translate-y-24">
             Edit
           </button>
