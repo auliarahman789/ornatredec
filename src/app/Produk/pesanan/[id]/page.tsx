@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import Komentar from "../../komentar/komentar";
+import Komentar from "../../komentar/page";
 import { useKeranjang } from "../../keranjang/keranjangContext";
 import { Produk, Variasi, Subvariasi } from "../types";
 
@@ -53,7 +53,7 @@ const DetailPesanan = () => {
 
   const [jumlah, setJumlah] = useState(1);
   const tambahJumlah = () => setJumlah((prev) => prev + 1);
-  const kurangiJumlah = () => setJumlah((prev) => (prev > 0 ? prev - 1 : 1));
+  const kurangiJumlah = () => setJumlah((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleVariasiClick = (subvariasi: Subvariasi) => {
     setHargaTerpilih(subvariasi.harga); // Perbarui harga berdasarkan subvariasi yang diklik
@@ -102,7 +102,7 @@ const DetailPesanan = () => {
                       </button>
                     ))}
                   </div>
-                  <div className="items-center translate-y-8">
+                  <div className="items-center translate-y-8 border-black">
                     <button
                       onClick={kurangiJumlah}
                       className="px-3 py-2 bg-green-600 text-white rounded"

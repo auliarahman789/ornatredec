@@ -20,28 +20,36 @@ const KeranjangPage = () => {
 
   const handlePesanProduk = async () => {
     if (selectedItems.length > 0) {
-      const produkId = selectedItems.join(",");
-
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/troli`
+          `${process.env.NEXT_PUBLIC_URL}/api/troli`,
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ produkId: selectedItems }), // Kirim data produkId
+          }
         );
 
         if (!response.ok) {
-          throw new Error("Gagal mengambil detail pesanan");
+          const errorData = await response.json();
+          console.error("Error response:", errorData);
+          throw new Error(errorData.message || "Gagal memproses pesanan");
         }
 
         const produkDetails = await response.json();
+        console.log("Produk Details:", produkDetails);
 
+        // Arahkan ke halaman checkout dengan data produk
         // router.push({
-        //   pathname: '../../Produk/pesanan/checkout',
-        //   query: { idProduk: produkId, produkDetails: JSON.stringify(produkDetails) }
+        //   pathname: "/produk/pesanan/checkout",
+        //   query: { produkDetails: JSON.stringify(produkDetails) },
         // });
       } catch (error) {
         console.error("Error:", error);
-        alert(
-          "Terjadi kesalahan saat mengambil detail pesanan. Silakan coba lagi."
-        );
+        alert("Terjadi kesalahan saat memproses pesanan. Silakan coba lagi.");
       }
     } else {
       alert("Pilih setidaknya satu produk untuk dipesan.");
@@ -100,7 +108,7 @@ const KeranjangPage = () => {
               Keranjang Anda
             </h1>
             <div className="flex flex-row">
-              <span className="text-[#308967] text-2xl">pesan semua</span>
+              <span className="text-[#308967] text-2xl">Pesan Semua</span>
               <input
                 type="checkbox"
                 checked={selectAll}
@@ -130,13 +138,6 @@ const KeranjangPage = () => {
                   key={`${item.id}-${item.variasiDipilih}`}
                   className="flex items-center p-4 bg-white rounded mt-8 space-y-6 shadow-[3px_5px_4px] shadow-[#0000002e]"
                 >
-                  {/* <Image
-                    src={item.foto_produk}
-                    alt={item.judul_produk}
-                    width={80}
-                    height={80}
-                    className="rounded mr-4"
-                  /> */}
                   <div className="flex flex-col">
                     <div className="text-xl font-semibold">
                       {item.judul_produk}
@@ -144,13 +145,22 @@ const KeranjangPage = () => {
                     <div className="text-sm text-gray-600">
                       Variasi: {item.variasiDipilih}
                     </div>
-                    <div className="text-red-500">Rp. {item.harga}</div>
+                    <div className="translate-x-[670%] -translate-y-[100%]">
+                      <div className="text-[#308967] text-lg font-semibold">
+                        Rp. {item.harga}
+                      </div>
+                    </div>
                     <button
                       onClick={() => handleBukaModal(item.id)}
                       className="bg-[#FF0000] text-white px-4 py-2 rounded-lg mt-2"
                     >
                       Hapus
                     </button>
+                    <div className="-translate-y-[100%] translate-x-[650%]">
+                      <button className="bg-[#51CB9F] text-white font-medium px-2 py-1 h-10 w-[50%] rounded-md">
+                        Pesan
+                      </button>
+                    </div>
                   </div>
                   <input
                     type="checkbox"
