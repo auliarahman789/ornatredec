@@ -398,6 +398,7 @@ function Grid() {
 }
 
 export default Grid;
+
 function setInputSearch(searchTerm: string) {
   throw new Error("Function not implemented.");
 }

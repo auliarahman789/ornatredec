@@ -69,11 +69,11 @@ const Produk = () => {
         <div className="px-10 py-10 grid grid-cols-4 gap-6 ml-[5%] mr-[5%] -translate-y-[50%] bg-[#EBFFF8]">
           {filteredData.map((item: any) => (
             <div key={item.id}>
-              <Link href={/Produk/pesanan/${item.id}}>
+              <Link href={"/Produk/pesanan/${item.id}"}>
                 <img
                   className="mx-auto mt-5 h-[65%] w-[85%] cursor-pointer"
                   alt="Produk Gambar"
-                  src={https://74gslzvj-8000.asse.devtunnels.ms${item.foto_produk}}
+                  src={`https://74gslzvj-8000.asse.devtunnels.ms${item.foto_produk}`}
                 />
               </Link>
               <div className="px-4 py-2">
