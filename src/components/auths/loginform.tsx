@@ -21,7 +21,7 @@ const Login = () => {
   };
 
   async function login(e: React.FormEvent) {
-    e.preventDefault();
+    e.preventDefault(); // Mencegah reload saat kirim
     const url = `${process.env.NEXT_PUBLIC_URL}api/login`;
 
     try {
