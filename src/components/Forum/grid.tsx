@@ -9,6 +9,7 @@ import profil from "../../../public/icon/profil.svg";
 import post from "../../../public/icon/post.svg";
 import axios from "axios";
 
+// Define the Forum type
 type Forum = {
   id: number;
   judul: string;
@@ -31,6 +32,12 @@ function Grid() {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [commentInput, setCommentInput] = useState<string>("");
 
+  // Get username from localStorage or use default "Guest"
+  const getUsername = () => {
+    return localStorage.getItem("username") || "kevin"; // Default username if not found
+  };
+
+  // Format date function
   const formatTanggal = (tanggal: string) => {
     const opsiTanggal: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -40,17 +47,21 @@ function Grid() {
     return new Date(tanggal).toLocaleDateString("id-ID", opsiTanggal);
   };
 
+  // Handle emoji click
   const handleEmojiClick = (emojiData: { emoji: string }) => {
     setCommentInput((prevInput) => prevInput + emojiData.emoji);
   };
 
+  // Handle sending comment
   const handleSendComment = async (forumId: number) => {
     if (commentInput.trim()) {
+      const username = getUsername(); // Get the username from localStorage
+
       try {
         const newComment = {
           postId: forumId,
           text: commentInput,
-          user: "Kevin", // Replace with dynamic username if available
+          user: username,
         };
 
         const url = `${process.env.NEXT_PUBLIC_URL}api/komen`; // Adjust API URL
@@ -67,17 +78,17 @@ function Grid() {
                     comments: [
                       ...post.comments,
                       {
-                        user: "Kevin", // Replace with dynamic user name
+                        user: username, // Use the correct username
                         text: commentInput,
                         createdAt: new Date().toISOString(),
                       },
                     ],
-                    jumlahTanggapan: post.jumlahTanggapan + 1, // Increment comment count
+                    jumlahTanggapan: post.jumlahTanggapan + 1, // Increment the comment count
                   }
                 : post
             )
           );
-          setCommentInput(""); // Clear input after comment is posted
+          setCommentInput(""); // Clear input after sending the comment
         }
       } catch (error: any) {
         console.error(
@@ -89,17 +100,19 @@ function Grid() {
     }
   };
 
+  // Load forum data when the component mounts
   useEffect(() => {
     getForum();
   }, []);
 
+  // Fetch forum data from API
   async function getForum() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?page=1&limit=20`;
     try {
       const res = await axios.get<Forum[]>(url, {
-        withCredentials: true,
+        withCredentials: true, // Send cookies if necessary
       });
-      setData(res.data);
+      setData(res.data); // Set the fetched data to the state
     } catch (error: any) {
       console.error(
         "Error fetching forum data:",
@@ -249,14 +262,7 @@ function Grid() {
                   {/* Comment input box */}
                   <div className="p-4">
                     <div className="flex items-center">
-                      <Image
-                        src={profil}
-                        alt="foto profil"
-                        width={35}
-                        height={35}
-                        className="rounded-full"
-                      />
-                      <div className="ml-4 w-[85%]">
+                      <div className="mx-auto w-[78%] translate-y-64">
                         <div className="flex items-center bg-white w-full h-[31px] border border-gray-300 rounded-md relative">
                           <input
                             type="text"
