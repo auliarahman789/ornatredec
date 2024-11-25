@@ -37,14 +37,23 @@ export default function ForumCarousel() {
       sliderRef.current.slickPrev();
     }
   };
+
   const settings = {
     dots: true,
     customPaging: () => <div className="customDot translate-y-24" />,
     infinite: true,
+    speed: 2200,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 1000,
+    arrows: true, // Ensure that arrows are enabled
+    nextArrow: <div className="custom-arrow next-arrow" />, // Custom next arrow
+    prevArrow: <div className="custom-arrow prev-arrow" />, // Custom prev arrow
+    // Added styles to prevent carousel from sliding down
+    // and ensure it stays within its container
   };
+
   useEffect(() => {
     getPopulerKonten();
   }, []);
@@ -96,10 +105,11 @@ export default function ForumCarousel() {
                   />
                   <h1 className="ms-[3%]">{item.judul}</h1>
                 </div>
+
                 <p className="text-[13px] mt-[3%] text-[#323735] font-light line-clamp-4">
                   {item.desc}
                 </p>
-                <div className=" translate-y-20 ms-[75%] mt-[1%] flex space-x-2">
+                <div className="translate-y-20 ms-[75%] mt-[1%] flex space-x-2">
                   <Image src={chat2} alt="tanggapan" width={20} height={20} />
                   <p className="text-[#323735]">{item.jumlahTanggapan}</p>
                   <p className="text-[#323735] ps-2">Balas</p>
@@ -109,6 +119,7 @@ export default function ForumCarousel() {
           </div>
         ))}
       </Slider>
+
       <div className="flex -translate-y-40 -translate-x-24">
         <Image
           src={prevButton}
@@ -123,7 +134,7 @@ export default function ForumCarousel() {
           onClick={next}
           width={60}
           height={60}
-          alt="prev"
+          alt="next"
         />
       </div>
     </div>

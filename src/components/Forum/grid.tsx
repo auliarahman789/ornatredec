@@ -33,8 +33,26 @@ function Grid() {
   const [commentInput, setCommentInput] = useState<string>("");
 
   // Get username from localStorage or use default "Guest"
-  const getUsername = () => {
-    return localStorage.getItem("username") || "kevin"; // Default username if not found
+  const getUsername = async () => {
+    try {
+      const token = localStorage.getItem("authToken"); // Ambil token dari localStorage atau mekanisme penyimpanan lainnya
+      if (!token) {
+        return "Guest"; // Jika token tidak ditemukan, kembalikan username default
+      }
+
+      // Panggil API untuk mendapatkan data pengguna
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}api/user/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Kirim token sebagai header
+        },
+      });
+
+      const username = res.data.username; // Ambil username dari respons API
+      return username || "Guest"; // Pastikan ada fallback username
+    } catch (error: any) {
+      console.error("Gagal mengambil data pengguna:", error.message);
+      return "Guest"; // Default jika gagal
+    }
   };
 
   // Format date function
@@ -52,22 +70,40 @@ function Grid() {
     setCommentInput((prevInput) => prevInput + emojiData.emoji);
   };
 
-  // Handle sending comment
   const handleSendComment = async (forumId: number) => {
     if (commentInput.trim()) {
-      const username = getUsername(); // Get the username from localStorage
+      const username = await getUsername(); // Ambil username dari localStorage
 
       try {
+        // Data yang dikirim ke API
         const newComment = {
           postId: forumId,
           text: commentInput,
           user: username,
         };
 
-        const url = `${process.env.NEXT_PUBLIC_URL}api/semua`; // Adjust API URL
+        // URL untuk mengirim komentar ke server
+        const url = `${process.env.NEXT_PUBLIC_URL}api/komen`; // Pastikan endpoint ini benar
         const res = await axios.post(url, newComment, {
-          withCredentials: true, // Send cookies if necessary
+          withCredentials: true, // Kirim cookies jika diperlukan
         });
+
+        // Setelah berhasil mengirim komentar, update data forum di state
+        setData((prevData) =>
+          prevData.map((item) =>
+            item.id === forumId
+              ? {
+                  ...item,
+                  comments: [
+                    ...item.comments,
+                    { desc: commentInput, createdAt: new Date().toISOString() },
+                  ],
+                }
+              : item
+          )
+        );
+
+        setCommentInput(""); // Clear input komentar setelah dikirim
       } catch (error: any) {
         console.error(
           "Error posting comment:",
@@ -77,6 +113,8 @@ function Grid() {
       }
     }
   };
+
+  // Handle sending comment
 
   // Load forum data when the component mounts
   useEffect(() => {
@@ -245,8 +283,11 @@ function Grid() {
                           <input
                             type="text"
                             value={commentInput}
+                            // Ketika 'Enter' ditekan, kirim komentar
                             onKeyDown={(e) => {
-                              if (e.key === "Enter") handleSendComment(item.id);
+                              if (e.key === "Enter" && commentInput.trim()) {
+                                handleSendComment(item.id);
+                              }
                             }}
                             onChange={(e) => setCommentInput(e.target.value)}
                             placeholder="Ketik pesan..."
