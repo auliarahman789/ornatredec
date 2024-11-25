@@ -24,7 +24,7 @@ type Forum = {
     username: string;
     photoProfile: string;
   };
-  comments: { user: string; text: string; createdAt: string }[]; // Added for comments
+  comments: { desc: string; createdAt: string }[]; // Added for comments
 };
 
 function Grid() {
@@ -64,32 +64,10 @@ function Grid() {
           user: username,
         };
 
-        const url = `${process.env.NEXT_PUBLIC_URL}api/komen`; // Adjust API URL
+        const url = `${process.env.NEXT_PUBLIC_URL}api/semua`; // Adjust API URL
         const res = await axios.post(url, newComment, {
           withCredentials: true, // Send cookies if necessary
         });
-
-        if (res.status === 200) {
-          setData((prevData) =>
-            prevData.map((post) =>
-              post.id === forumId
-                ? {
-                    ...post,
-                    comments: [
-                      ...post.comments,
-                      {
-                        user: username, // Use the correct username
-                        text: commentInput,
-                        createdAt: new Date().toISOString(),
-                      },
-                    ],
-                    jumlahTanggapan: post.jumlahTanggapan + 1, // Increment the comment count
-                  }
-                : post
-            )
-          );
-          setCommentInput(""); // Clear input after sending the comment
-        }
       } catch (error: any) {
         console.error(
           "Error posting comment:",
@@ -244,14 +222,14 @@ function Grid() {
                           <div className="ml-4 w-[90%]">
                             <div className="flex items-center justify-between">
                               <p className="text-[#3F9272] text-[13px]">
-                                {comment.user}
+                                {item.User.username}
                               </p>
                               <p className="text-[#7D7D7D] text-[10px]">
                                 {formatTanggal(comment.createdAt)}
                               </p>
                             </div>
                             <p className="px-2 text-[15px] leading-tight mt-2">
-                              {comment.text}
+                              {comment.desc}
                             </p>
                           </div>
                         </div>
