@@ -33,7 +33,7 @@ const Login = () => {
       );
 
       const userRole = res.data.user.role;
-      localStorage.setItem("token", res.data.token);
+           
       localStorage.setItem("userData", JSON.stringify(res.data.user));
 
       // SweetAlert Success

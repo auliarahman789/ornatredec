@@ -74,7 +74,9 @@ export default function ForumCarousel() {
 
   return (
     <div className="w-[60%] p-[5%] h-[40%] justify-self-center">
-      <Slider ref={sliderRef} {...settings}>
+      
+      <Slider ref={sliderRef}
+        {...settings}>
         {data.map((item: any, id: number) => (
           <div className="p-6 w-[40%]" key={id}>
             <div className="h-[220px] mx-[3%] bg-white rounded-[34px]">
@@ -141,6 +143,3 @@ export default function ForumCarousel() {
   );
 }
 
-function setData(arg0: any) {
-  throw new Error("Function not implemented.");
-}

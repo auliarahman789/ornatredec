@@ -24,7 +24,23 @@ type Forum = {
     username: string;
     photoProfile: string;
   };
-  comments: { desc: string; createdAt: string }[]; // Added for comments
+  comments: {
+    desc: string;
+    createdAt: string;
+    User: {
+      username: string;
+      photoProfile: string;
+    };
+    replies: {
+      desc: string;
+      commentId: number;
+      createdAt: string;
+      User: {
+        username: string;
+        photoProfile: string;
+      }
+    }[]
+  }[]; 
 };
 
 function Grid() {
@@ -137,7 +153,7 @@ function Grid() {
       alert("Terjadi kesalahan saat mengambil data konten forum.");
     }
   }
-
+  const [showAll, setShowAll] = useState<boolean>(false);
   return (
     <div>
       {/* Search input */}
@@ -243,24 +259,24 @@ function Grid() {
 
                 <div className="space-y-3">
                   {/* Comment List */}
-                  <div className="max-h-[300px] space-y-5 overflow-y-auto">
+                  <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
                     {item.comments.map((comment, index) => (
-                      <div
+                      <><div
                         key={index}
                         className="w-[595px] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
                       >
-                        <div className="flex items-center p-4">
+                        <div className="flex items-center px-4 pt-4 pb-1">
                           <Image
-                            src={profil}
+                            src={comment.User.photoProfile ? 'https://74gslzvj-8000.asse.devtunnels.ms'
+                              + comment.User.photoProfile : profil}
                             alt="foto profil"
                             width={35}
                             height={35}
-                            className="rounded-full"
-                          />
+                            className="rounded-full" />
                           <div className="ml-4 w-[90%]">
                             <div className="flex items-center justify-between">
                               <p className="text-[#3F9272] text-[13px]">
-                                {item.User.username}
+                                {comment.User.username}
                               </p>
                               <p className="text-[#7D7D7D] text-[10px]">
                                 {formatTanggal(comment.createdAt)}
@@ -269,16 +285,63 @@ function Grid() {
                             <p className="px-2 text-[15px] leading-tight mt-2">
                               {comment.desc}
                             </p>
+                            <div className="relative">
+                                  <p className="absolute right-2 text-sm text-[#3F9272]">
+                                    Balas
+                                  </p>
+                                </div>
                           </div>
                         </div>
-                      </div>
+                      </div> 
+                        {comment.replies.slice(0, showAll ? undefined : 1).map((rep) => (
+                            <div
+                            key={rep.commentId}
+                            className="w-[69%] ms-[20%] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
+                          >
+                              <div className="flex items-center p-4">
+                                <Image
+                                  src={rep.User.photoProfile ? 'https://74gslzvj-8000.asse.devtunnels.ms'
+                                    + rep.User.photoProfile : profil}
+                                  alt="foto profil"
+                                  width={35}
+                                  height={35}
+                                  className="rounded-full" />
+                                <div className="ml-4 w-[90%]">
+                                  <div className="flex items-center justify-between">
+                                    <p className="text-[#3F9272] text-[13px]">
+                                      {rep.User.username}
+                                    </p>
+                                    <p className="text-[#7D7D7D] text-[10px]">
+                                      {formatTanggal(rep.createdAt)}
+                                    </p>
+                                  </div>
+                                  <p className="px-2 text-[15px] leading-tight mt-2">
+                                    {rep.desc}
+                                </p>
+                                <div className="relative">
+                                  <p className="absolute right-2 text-sm text-[#3F9272]">
+                                    Balas
+                                  </p>
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        )}
+                         {comment.replies.length > 0 && (
+                        <p onClick={() => setShowAll(!showAll)}  className="translate-x-[65%] text-[#3F9272]">
+                           {showAll ? "Sembunyikan Balasan" : "Lihat Balasan Lainnya"}
+                        </p>
+                         )
+                        }
+                       </>
                     ))}
                   </div>
 
                   {/* Comment input box */}
                   <div className="p-4">
                     <div className="flex items-center">
-                      <div className="mx-auto w-[78%] translate-y-64">
+                      <div className="mx-auto w-[78%] mt-[10%]">
                         <div className="flex items-center bg-white w-full h-[31px] border border-gray-300 rounded-md relative">
                           <input
                             type="text"
