@@ -3,12 +3,10 @@ import React from "react";
 import Image from "next/image";
 import molekul from "../../../public/icon/molekul.svg";
 import Carausel1 from "./carausel";
-import Navbar from "./navbar";
 
 function Home() {
   return (
     <div>
-      <Navbar />
       <div className="flex flex-col h-screen bg-white">
         <div className="grid grid-cols-2 gap-4">
           <div className="m-10 h-[250%]">
