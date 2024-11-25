@@ -66,6 +66,7 @@ const Page = ({ params }: { params: { id: number } }) => {
     getProduk();
   }, [id]);
 
+
   const handleImageClick = () => {
     if (inputRef.current) {
       inputRef.current.click();
