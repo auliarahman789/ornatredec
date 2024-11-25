@@ -26,7 +26,7 @@ const DetailPesanan = () => {
   }, [id]);
 
   const fetchDetailProduct = async (produkId: string) => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProdukId/${produkId}`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${produkId}`;
     try {
       const response = await axios.get(url, { withCredentials: true });
       setProduk(response.data);

@@ -40,7 +40,7 @@ const Page = () => {
   const [harga, setHarga] = useState<number>();
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
+  const [filePreview, setFilePreview] = useState<string | null>(null);
   const [formData, setFormData] = useState<Produk>({
     judul_produk: "",
     deskripsi_produk: "",
@@ -56,13 +56,15 @@ const Page = () => {
       inputRef.current.click();
     }
   };
-  const handleInputImage = (e: any) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      ["foto_produk"]: e.target.files[0],
-    }));
-    console.log(e.target.files);
+  const handleInputImage = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData((prevData) => ({
+        ...prevData,
+        foto_produk: file,
+      }));
+      setFilePreview(URL.createObjectURL(file));
+    }
   };
 
   const handleInputChange = (
@@ -159,7 +161,9 @@ const Page = () => {
     formData2.append("judul_produk", formData.judul_produk);
     formData2.append("deskripsi_produk", formData.deskripsi_produk);
     formData2.append("harga", formData.harga.toString());
-    formData2.append("foto_produk", formData.foto_produk);
+    if (formData.foto_produk) {
+      formData2.append("foto_produk", formData.foto_produk);
+    }
     formData2.append("kategori_produk", formData.kategori_produk);
     formData2.append("variasi", JSON.stringify(variasi));
 
@@ -236,12 +240,8 @@ const Page = () => {
                   >
                     Detail Gambar
                   </label>
-                  <div onClick={handleImageClick}>
-                    {image ? (
-                      <Image src={image} alt="foto" width={250} height={200} />
-                    ) : (
-                      <Image src={foto} alt="foto" width={250} height={200} />
-                    )}
+                  <div>
+                      <Image onClick={handleImageClick} src={filePreview || foto} alt="foto" width={250} height={200} />
                     <input
                       type="file"
                       name="foto"

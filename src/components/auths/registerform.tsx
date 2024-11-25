@@ -26,7 +26,7 @@ const Register = ({
     setShow(!show);
   };
   async function buatAkun() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/register`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/register`;
     try {
       setIsLoading(true);
       const res = await axios.post(

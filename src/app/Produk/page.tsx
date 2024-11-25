@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import Notfound from "../../components/Notfound/NotFound"
+import Notfound from "../../components/Notfound/NotFound";
 
 const Produk = () => {
   const [data, setData] = useState<any[]>([]);
@@ -15,7 +15,7 @@ const Produk = () => {
   }, []);
 
   const fetchProducts = async () => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet`;
     try {
       const response = await axios.get(url, { withCredentials: true });
       console.log(response.data);
