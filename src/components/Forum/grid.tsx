@@ -38,9 +38,9 @@ type Forum = {
       User: {
         username: string;
         photoProfile: string;
-      }
-    }[]
-  }[]; 
+      };
+    }[];
+  }[];
 };
 
 function Grid() {
@@ -57,7 +57,7 @@ function Grid() {
       }
 
       // Panggil API untuk mendapatkan data pengguna
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}api/user/me`, {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}api/getMe`, {
         headers: {
           Authorization: `Bearer ${token}`, // Kirim token sebagai header
         },
@@ -89,12 +89,11 @@ function Grid() {
   const handleSendComment = async (forumId: number) => {
     if (commentInput.trim()) {
       const username = await getUsername(); // Ambil username dari localStorage
-
       try {
         // Data yang dikirim ke API
         const newComment = {
           postId: forumId,
-          text: commentInput,
+          desc: commentInput,
           user: username,
         };
 
@@ -105,19 +104,19 @@ function Grid() {
         });
 
         // Setelah berhasil mengirim komentar, update data forum di state
-        setData((prevData) =>
-          prevData.map((item) =>
-            item.id === forumId
-              ? {
-                  ...item,
-                  comments: [
-                    ...item.comments,
-                    { desc: commentInput, createdAt: new Date().toISOString() },
-                  ],
-                }
-              : item
-          )
-        );
+        // setData((prevData) =>
+        //   prevData.map((item) =>
+        //     item.id === forumId
+        //       ? {
+        //           ...item,
+        //           comments: [
+        //             ...item.comments,
+        //             { desc: commentInput, createdAt: new Date().toISOString() },
+        //           ],
+        //         }
+        //       : item
+        //   )
+        // );
 
         setCommentInput(""); // Clear input komentar setelah dikirim
       } catch (error: any) {
@@ -135,6 +134,8 @@ function Grid() {
   // Load forum data when the component mounts
   useEffect(() => {
     getForum();
+    const interval = setInterval(getForum, 100);
+    return () => clearInterval(interval);
   }, []);
 
   // Fetch forum data from API
@@ -261,51 +262,64 @@ function Grid() {
                   {/* Comment List */}
                   <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
                     {item.comments.map((comment, index) => (
-                      <><div
-                        key={index}
-                        className="w-[595px] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
-                      >
-                        <div className="flex items-center px-4 pt-4 pb-1">
-                          <Image
-                            src={comment.User.photoProfile ? 'https://74gslzvj-8000.asse.devtunnels.ms'
-                              + comment.User.photoProfile : profil}
-                            alt="foto profil"
-                            width={35}
-                            height={35}
-                            className="rounded-full" />
-                          <div className="ml-4 w-[90%]">
-                            <div className="flex items-center justify-between">
-                              <p className="text-[#3F9272] text-[13px]">
-                                {comment.User.username}
+                      <>
+                        <div
+                          key={index}
+                          className="w-[595px] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
+                        >
+                          <div className="flex items-center px-4 pt-4 pb-1">
+                            <Image
+                              src={
+                                comment.User.photoProfile
+                                  ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                                    comment.User.photoProfile
+                                  : profil
+                              }
+                              alt="foto profil"
+                              width={35}
+                              height={35}
+                              className="rounded-full"
+                            />
+                            <div className="ml-4 w-[90%]">
+                              <div className="flex items-center justify-between">
+                                <p className="text-[#3F9272] text-[13px]">
+                                  {comment.User.username}
+                                </p>
+                                <p className="text-[#7D7D7D] text-[10px]">
+                                  {formatTanggal(comment.createdAt)}
+                                </p>
+                              </div>
+                              <p className="px-2 text-[15px] leading-tight mt-2">
+                                {comment.desc}
                               </p>
-                              <p className="text-[#7D7D7D] text-[10px]">
-                                {formatTanggal(comment.createdAt)}
-                              </p>
+                              <div className="relative">
+                                <p className="absolute right-2 text-sm text-[#3F9272]">
+                                  Balas
+                                </p>
+                              </div>
                             </div>
-                            <p className="px-2 text-[15px] leading-tight mt-2">
-                              {comment.desc}
-                            </p>
-                            <div className="relative">
-                                  <p className="absolute right-2 text-sm text-[#3F9272]">
-                                    Balas
-                                  </p>
-                                </div>
                           </div>
                         </div>
-                      </div> 
-                        {comment.replies.slice(0, showAll ? undefined : 1).map((rep) => (
+                        {comment.replies
+                          .slice(0, showAll ? undefined : 1)
+                          .map((rep) => (
                             <div
-                            key={rep.commentId}
-                            className="w-[69%] ms-[20%] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
-                          >
+                              key={rep.commentId}
+                              className="w-[69%] ms-[20%] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
+                            >
                               <div className="flex items-center p-4">
                                 <Image
-                                  src={rep.User.photoProfile ? 'https://74gslzvj-8000.asse.devtunnels.ms'
-                                    + rep.User.photoProfile : profil}
+                                  src={
+                                    rep.User.photoProfile
+                                      ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                                        rep.User.photoProfile
+                                      : profil
+                                  }
                                   alt="foto profil"
                                   width={35}
                                   height={35}
-                                  className="rounded-full" />
+                                  className="rounded-full"
+                                />
                                 <div className="ml-4 w-[90%]">
                                   <div className="flex items-center justify-between">
                                     <p className="text-[#3F9272] text-[13px]">
@@ -317,24 +331,27 @@ function Grid() {
                                   </div>
                                   <p className="px-2 text-[15px] leading-tight mt-2">
                                     {rep.desc}
-                                </p>
-                                <div className="relative">
-                                  <p className="absolute right-2 text-sm text-[#3F9272]">
-                                    Balas
                                   </p>
-                                </div>
+                                  <div className="relative">
+                                    <p className="absolute right-2 text-sm text-[#3F9272]">
+                                      Balas
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          )
+                          ))}
+                        {comment.replies.length > 0 && (
+                          <p
+                            onClick={() => setShowAll(!showAll)}
+                            className="translate-x-[65%] text-[#3F9272]"
+                          >
+                            {showAll
+                              ? "Sembunyikan Balasan"
+                              : "Lihat Balasan Lainnya"}
+                          </p>
                         )}
-                         {comment.replies.length > 0 && (
-                        <p onClick={() => setShowAll(!showAll)}  className="translate-x-[65%] text-[#3F9272]">
-                           {showAll ? "Sembunyikan Balasan" : "Lihat Balasan Lainnya"}
-                        </p>
-                         )
-                        }
-                       </>
+                      </>
                     ))}
                   </div>
 

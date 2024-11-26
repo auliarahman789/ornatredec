@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Komentar from "../../komentar/page";
 import { useKeranjang } from "../../keranjang/keranjangContext";
-import { Produk, Variasi, Subvariasi } from "../types";
+import { Produk, Subvariasi } from "../types";
 
 const DetailPesanan = () => {
   const { id } = useParams();
@@ -17,7 +17,9 @@ const DetailPesanan = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [hargaTerpilih, setHargaTerpilih] = useState<number | null>(null);
-  const [variasiDipilih, setVariasiDipilih] = useState<Subvariasi | null>(null);
+  const [subvariasiDipilih, setSubvariasiDipilih] = useState<Subvariasi | null>(
+    null
+  );
 
   useEffect(() => {
     if (typeof id === "string") {
@@ -39,16 +41,39 @@ const DetailPesanan = () => {
     }
   };
 
-  const tambahKeKeranjang = () => {
+  const tambahKeKeranjang = async () => {
     if (produk) {
       const produkDenganVariasi = {
         ...produk,
-        variasiDipilih: variasiDipilih?.nama_sub_variasi || "", // Tambahkan variasi yang dipilih
-        harga: hargaTerpilih || produk.harga, // Tambahkan harga yang dipilih berdasarkan variasi
+        variasiDipilih: subvariasiDipilih?.nama_sub_variasi || "", // Tambahkan variasi yang dipilih
+        subvariasiDipilih: subvariasiDipilih?.nama_sub_variasi || "", // Subvariasi yang dipilih
+        harga: hargaTerpilih || produk.harga, // Harga berdasarkan variasi
       };
-      tambahProdukKeKeranjang(produkDenganVariasi);
-      router.push("/Produk/keranjang");
+
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}api/troli`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(produkDenganVariasi),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Gagal menambahkan produk ke keranjang.");
+        }
+
+        // Jika berhasil, pindahkan ke halaman keranjang
+        // router.push("/Produk/keranjang");
+      } catch (error) {
+        console.error("Error:", (error as Error).message);
+        alert("Terjadi kesalahan saat menambahkan ke keranjang.");
+      }
     }
+    console.log(tambahKeKeranjang);
   };
 
   const [jumlah, setJumlah] = useState(1);
@@ -56,8 +81,8 @@ const DetailPesanan = () => {
   const kurangiJumlah = () => setJumlah((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleVariasiClick = (subvariasi: Subvariasi) => {
-    setHargaTerpilih(subvariasi.harga); // Perbarui harga berdasarkan subvariasi yang diklik
-    setVariasiDipilih(subvariasi); // Simpan variasi yang dipilih
+    setHargaTerpilih(subvariasi.harga); // Update harga berdasarkan subvariasi yang dipilih
+    setSubvariasiDipilih(subvariasi); // Simpan subvariasi yang dipilih
   };
 
   if (loading) return <div>Loading...</div>;
@@ -81,19 +106,19 @@ const DetailPesanan = () => {
               <p className="text-2xl font-bold text-[#FF0A0A] pt-6">
                 Rp. {hargaTerpilih ?? produk.harga}
               </p>
-              {produk.variasis.map((variasi: Variasi) => (
+              {produk.variasis.map((variasi) => (
                 <div key={variasi.id} className="pt-4">
                   <p className="text-xl font-medium">
                     Variasi: {variasi.nama_variasi}
                   </p>
 
                   <div className="flex flex-wrap gap-2">
-                    {variasi.subvariasis.map((subvariasi: Subvariasi) => (
+                    {variasi.subvariasis.map((subvariasi) => (
                       <button
                         key={subvariasi.id}
                         onClick={() => handleVariasiClick(subvariasi)}
                         className={`px-3 py-1 rounded hover:bg-gray-300 transition-colors duration-200 ${
-                          variasiDipilih?.id === subvariasi.id
+                          subvariasiDipilih?.id === subvariasi.id
                             ? "bg-green-400 text-white"
                             : "bg-gray-200"
                         }`}
@@ -158,4 +183,4 @@ const DetailPesanan = () => {
   );
 };
 
-export default DetailPesanan;
+export default DetailPesanan;
