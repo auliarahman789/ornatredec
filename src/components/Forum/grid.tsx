@@ -47,6 +47,7 @@ function Grid() {
   const [data, setData] = useState<Forum[]>([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [commentInput, setCommentInput] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState(""); // Tambahkan state untuk searchTerm
 
   // Get username from localStorage or use default "Guest"
   const getUsername = async () => {
@@ -131,6 +132,15 @@ function Grid() {
 
   // Handle sending comment
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Filter data berdasarkan input pencarian
+  const filteredData = data.filter((item) =>
+    item.judul.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   // Load forum data when the component mounts
   useEffect(() => {
     getForum();
@@ -162,13 +172,15 @@ function Grid() {
         <input
           type="text"
           placeholder="Cari..."
+          value={searchTerm} // Set value input ke searchTerm
+          onChange={handleSearchChange} // Tangani perubahan input
           className="w-[20%] h-[31px] ps-2 bg-[#FFFBFB] rounded-lg shadow-xl"
         />
       </div>
 
       <div className="ml-[13%]">
-        {data.length > 0 ? (
-          data.map((item) => (
+        {filteredData.length > 0 ? (
+          filteredData.map((item, i) => (
             <div
               className="mt-[3%] w-[779px] h-[995px] bg-white pt-5"
               key={item.id}

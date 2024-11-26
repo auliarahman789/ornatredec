@@ -12,7 +12,7 @@ import { Produk, Subvariasi } from "../types";
 const DetailPesanan = () => {
   const { id } = useParams();
   const router = useRouter();
-  const { tambahProdukKeKeranjang } = useKeranjang();
+  // const { tambahProdukKeKeranjang } = useKeranjang();
   const [produk, setProduk] = useState<Produk | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -28,7 +28,7 @@ const DetailPesanan = () => {
   }, [id]);
 
   const fetchDetailProduct = async (produkId: string) => {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${produkId}`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProdukId/${produkId}`;
     try {
       const response = await axios.get(url, { withCredentials: true });
       setProduk(response.data);
@@ -45,14 +45,26 @@ const DetailPesanan = () => {
     if (produk) {
       const produkDenganVariasi = {
         ...produk,
-        variasiDipilih: subvariasiDipilih?.nama_sub_variasi || "", // Tambahkan variasi yang dipilih
-        subvariasiDipilih: subvariasiDipilih?.nama_sub_variasi || "", // Subvariasi yang dipilih
-        harga: hargaTerpilih || produk.harga, // Harga berdasarkan variasi
+        variasiDipilih: subvariasiDipilih?.nama_sub_variasi || "",
+        subvariasiDipilih: subvariasiDipilih?.nama_sub_variasi || "",
+        harga: hargaTerpilih || produk.harga,
+        jumlah,
       };
 
       try {
+        const token = localStorage.getItem("authToken");
+        if (!token) {
+          alert("Anda harus login terlebih dahulu!");
+          return;
+        }
+
+        console.log(
+          "Produk yang akan ditambahkan ke keranjang:",
+          produkDenganVariasi
+        );
+
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}api/troli`,
+          `${process.env.NEXT_PUBLIC_URL}/api/troli`,
           {
             method: "POST",
             headers: {
@@ -63,17 +75,21 @@ const DetailPesanan = () => {
         );
 
         if (!response.ok) {
+          const errorMessage = await response.text();
+          console.error("Error response:", errorMessage);
           throw new Error("Gagal menambahkan produk ke keranjang.");
         }
 
-        // Jika berhasil, pindahkan ke halaman keranjang
-        // router.push("/Produk/keranjang");
+        alert("Produk berhasil ditambahkan ke keranjang!");
       } catch (error) {
-        console.error("Error:", (error as Error).message);
+        if (error instanceof Error) {
+          console.error("Kesalahan:", error.message);
+        } else {
+          console.error("Kesalahan yang tidak diketahui:", error);
+        }
         alert("Terjadi kesalahan saat menambahkan ke keranjang.");
       }
     }
-    console.log(tambahKeKeranjang);
   };
 
   const [jumlah, setJumlah] = useState(1);
@@ -111,7 +127,6 @@ const DetailPesanan = () => {
                   <p className="text-xl font-medium">
                     Variasi: {variasi.nama_variasi}
                   </p>
-
                   <div className="flex flex-wrap gap-2">
                     {variasi.subvariasis.map((subvariasi) => (
                       <button

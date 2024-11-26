@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useKeranjang } from "./keranjangContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -8,12 +8,33 @@ import { useRouter } from "next/navigation";
 const KeranjangPage = () => {
   const { keranjang, hapusDariKeranjang } = useKeranjang();
   const [showModal, setShowModal] = useState(false);
-  const [produkIdTerpilih, setProdukIdTerpilih] = useState<number | null>(null);
+  const [produkIdTroli, setProdukIdTroli] = useState<number | null>(null);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [selectAll, setSelectAll] = useState(false);
+  const [keranjangFromAPI, setKeranjangFromAPI] = useState<any[]>([]);
   const router = useRouter();
 
-  const totalItem = keranjang.reduce(
+  useEffect(() => {
+    const fetchKeranjang = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/api/getTroli`
+        );
+        if (!response.ok) {
+          throw new Error("Gagal memuat keranjang");
+        }
+        const data = await response.json();
+        setKeranjangFromAPI(data);
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Terjadi kesalahan saat memuat keranjang.");
+      }
+    };
+
+    fetchKeranjang();
+  }, []);
+
+  const totalItem = keranjangFromAPI.reduce(
     (acc, item) => acc + (item.jumlah ?? 0),
     0
   );
@@ -22,7 +43,7 @@ const KeranjangPage = () => {
     if (selectedItems.length > 0) {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/troli`,
+          `${process.env.NEXT_PUBLIC_URL}/api/transaksi`,
           {
             method: "POST",
             credentials: "include",
@@ -41,12 +62,6 @@ const KeranjangPage = () => {
 
         const produkDetails = await response.json();
         console.log("Produk Details:", produkDetails);
-
-        // Arahkan ke halaman checkout dengan data produk
-        // router.push({
-        //   pathname: "/produk/pesanan/checkout",
-        //   query: { produkDetails: JSON.stringify(produkDetails) },
-        // });
       } catch (error) {
         console.error("Error:", error);
         alert("Terjadi kesalahan saat memproses pesanan. Silakan coba lagi.");
@@ -61,28 +76,48 @@ const KeranjangPage = () => {
   };
 
   const handleBukaModal = (id: number) => {
-    setProdukIdTerpilih(id);
+    setProdukIdTroli(id);
     setShowModal(true);
   };
 
-  const handleKonfirmasiHapus = () => {
-    if (produkIdTerpilih !== null) {
-      hapusDariKeranjang(produkIdTerpilih);
-      setProdukIdTerpilih(null);
+  const handleKonfirmasiHapus = async () => {
+    if (produkIdTroli !== null) {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/api/hapusTroli/${produkIdTroli}`,
+          {
+            method: "DELETE",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Gagal menghapus item dari troli");
+        }
+
+        // Hapus dari konteks keranjang setelah API berhasil
+        hapusDariKeranjang(produkIdTroli);
+        setProdukIdTroli(null);
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Terjadi kesalahan:", error.message);
+        } else {
+          console.error("Kesalahan yang tidak diketahui:", error);
+        }
+      }
     }
     setShowModal(false);
   };
 
   const handleTutupModal = () => {
     setShowModal(false);
-    setProdukIdTerpilih(null);
+    setProdukIdTroli(null);
   };
 
   const handleSelectAll = () => {
     if (selectAll) {
       setSelectedItems([]);
     } else {
-      setSelectedItems(keranjang.map((item) => item.id));
+      setSelectedItems(keranjangFromAPI.map((item) => item.id));
     }
     setSelectAll(!selectAll);
   };
@@ -123,7 +158,7 @@ const KeranjangPage = () => {
             <span className="mr-8">Harga</span>
           </div>
           <div className="border-b-2 border-[#308967]"></div>
-          {keranjang.length === 0 ? (
+          {keranjangFromAPI.length === 0 ? (
             <div className="items-center text-center mt-[10%] flex flex-col">
               <Image src="/" width={45} height={45} alt="trolli" />
               <span className="text-3xl text-[#3F9272]">Masih Kosong nih</span>
@@ -133,7 +168,7 @@ const KeranjangPage = () => {
             </div>
           ) : (
             <div className="grid gap-4 pt-6">
-              {keranjang.map((item: any) => (
+              {keranjangFromAPI.map((item: any) => (
                 <div
                   key={`${item.id}-${item.variasiDipilih}`}
                   className="flex items-center p-4 bg-white rounded mt-8 space-y-6 shadow-[3px_5px_4px] shadow-[#0000002e]"
