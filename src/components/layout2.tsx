@@ -33,6 +33,7 @@ const disableNavbar = [
   "/Superadmin/Produk/pesanan/daftar/detail",
   "/Superadmin/Forum/detailreportUlasan",
   "/Superadmin/Forum/detailreportUlasan/ReportUlasan2",
+  "/Forum/BuatPostingan"
 ];
 const superSidebar = [
   "/Superadmin",

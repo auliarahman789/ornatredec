@@ -64,7 +64,7 @@ function Page() {
     }
     formData2.append("kategori_forum", formData.kategori_forum);
 
-    const url = "${process.env.NEXT_PUBLIC_URL}api/post";
+    const url = `${process.env.NEXT_PUBLIC_URL}api/post`;
     try {
       setIsLoading(true);
       const res = await axios.post(url, formData2, {
@@ -90,7 +90,7 @@ function Page() {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen pb-[4%] pe-[2%] pt-[2%]">
       <div className="w-[38%] flex-col pt-[3.5%]">
         <Image
           onClick={handleImageClick}

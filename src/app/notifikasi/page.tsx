@@ -1,7 +1,11 @@
-import React from "react";
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useEffect } from "react";
 import Image from "next/image";
-
+import { io } from "socket.io-client";
 function page() {
+  useEffect(() => {
+    const socket = io("")
+  },[])
   return (
     <div>
       <div className="bg-[#E4FFF2] min-h-screen">

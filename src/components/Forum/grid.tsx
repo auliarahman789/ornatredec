@@ -170,7 +170,7 @@ function Grid() {
         {data.length > 0 ? (
           data.map((item) => (
             <div
-              className="mt-[3%] w-[779px] h-[995px] bg-white pt-5"
+              className="mt-[3%] w-[779px] pb-[5%] bg-white pt-5"
               key={item.id}
             >
               {/* Post content */}
@@ -271,9 +271,9 @@ function Grid() {
                             <Image
                               src={
                                 comment.User.photoProfile
-                                  ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                                    comment.User.photoProfile
-                                  : profil
+                                ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                                  comment.User.photoProfile
+                                : profil
                               }
                               alt="foto profil"
                               width={35}
@@ -344,7 +344,7 @@ function Grid() {
                         {comment.replies.length > 0 && (
                           <p
                             onClick={() => setShowAll(!showAll)}
-                            className="translate-x-[65%] text-[#3F9272]"
+                            className=" cursor-pointer translate-x-[65%] text-[#3F9272]"
                           >
                             {showAll
                               ? "Sembunyikan Balasan"

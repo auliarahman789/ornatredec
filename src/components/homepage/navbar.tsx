@@ -34,7 +34,7 @@ function Navbar() {
         if (response.data) {
           setIsLoggedIn(true);
           setUsername(response.data.username);
-          setAvatar(response.data.avatar || defaultAvatar.src); // Gunakan avatar dari response
+          setAvatar("https://74gslzvj-8000.asse.devtunnels.ms"  + response.data.photoProfile || defaultAvatar.src); // Gunakan avatar dari response
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
