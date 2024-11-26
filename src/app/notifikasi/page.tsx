@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+'use client'
 import React, { useEffect } from "react";
 import Image from "next/image";
 import { io } from "socket.io-client";
