@@ -33,6 +33,7 @@ const disableNavbar = [
   "/Superadmin/Produk/pesanan/daftar/detail",
   "/Superadmin/Forum/detailreportUlasan",
   "/Superadmin/Forum/detailreportUlasan/ReportUlasan2",
+  "/Forum/BuatPostingan"
 ];
 const superSidebar = [
   "/Superadmin",
@@ -59,6 +60,7 @@ export default function RootLayoutClient({
     pathname.startsWith("/Superadmin/Akun/Detail/") ||
     pathname.startsWith("/Superadmin/Produk/pesanan/detail/") ||
     pathname.startsWith("/Superadmin/Produk/pesanan/daftar/detail/") ||
+    pathname.startsWith("/Forum/Detail/") ||
     pathname.startsWith("/Superadmin/Forum/detailreportUlasan/ReportUlasan2/");
   const isSuperSidebar =
     superSidebar.includes(pathname) ||

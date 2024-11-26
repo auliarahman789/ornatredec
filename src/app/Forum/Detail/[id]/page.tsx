@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import EmojiPicker from "emoji-picker-react";
-import mata from "../../../public/icon/mata.svg";
-import chat2 from "../../../public/icon/chat2.svg";
-import emote from "../../../public/icon/emote.svg";
-import profil from "../../../public/icon/profil.svg";
-import post from "../../../public/icon/post.svg";
+import mata from "../../../../../public/icon/mata.svg";
+import chat2 from "../../../../../public/icon/chat2.svg";
+import emote from "../../../../../public/icon/emote.svg";
+import profil from "../../../../../public/icon/profil.svg";
+import post from "../../../../../public/icon/post.svg";
 import axios from "axios";
+import { useParams } from "next/navigation";
 
 // Define the Forum type
 type Forum = {
@@ -24,14 +25,16 @@ type Forum = {
     username: string;
     photoProfile: string;
   };
-  comments: {
+    comments: {
+        id: number;
     desc: string;
     createdAt: string;
     User: {
       username: string;
       photoProfile: string;
     };
-    replies: {
+        replies: {
+            id: number;
       desc: string;
       commentId: number;
       createdAt: string;
@@ -44,10 +47,9 @@ type Forum = {
 };
 
 function Grid() {
-  const [data, setData] = useState<Forum[]>([]);
+  const [data, setData] = useState<Forum>();
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [commentInput, setCommentInput] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState(""); // Tambahkan state untuk searchTerm
 
   // Get username from localStorage or use default "Guest"
   const getUsername = async () => {
@@ -132,27 +134,20 @@ function Grid() {
 
   // Handle sending comment
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
-
-  // Filter data berdasarkan input pencarian
-  const filteredData = data.filter((item) =>
-    item.judul.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   // Load forum data when the component mounts
   useEffect(() => {
     getForum();
     const interval = setInterval(getForum, 100);
     return () => clearInterval(interval);
   }, []);
+    
+    const { id } = useParams();
 
   // Fetch forum data from API
   async function getForum() {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?page=1&limit=20`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/satu/${id}`;
     try {
-      const res = await axios.get<Forum[]>(url, {
+      const res = await axios.get<Forum>(url, {
         withCredentials: true, // Send cookies if necessary
       });
       setData(res.data); // Set the fetched data to the state
@@ -166,24 +161,20 @@ function Grid() {
   }
   const [showAll, setShowAll] = useState<boolean>(false);
   return (
-    <div>
+    <div className="bg-[#E2FFF8]">
       {/* Search input */}
-      <div className="flex ms-[13%] mt-3">
+      {/* <div className="flex ms-[13%] mt-3">
         <input
           type="text"
           placeholder="Cari..."
-          value={searchTerm} // Set value input ke searchTerm
-          onChange={handleSearchChange} // Tangani perubahan input
           className="w-[20%] h-[31px] ps-2 bg-[#FFFBFB] rounded-lg shadow-xl"
         />
-      </div>
+      </div> */}
 
       <div className="ml-[13%]">
-        {filteredData.length > 0 ? (
-          filteredData.map((item, i) => (
+        {data && 
             <div
               className="mt-[3%] w-[779px] pb-[5%] bg-white pt-5"
-              key={item.id}
             >
               {/* Post content */}
               <div className="w-full h-[155px]">
@@ -191,9 +182,9 @@ function Grid() {
                   <div className="flex items-start">
                     <img
                       src={
-                        item.User.photoProfile
+                        data.User.photoProfile
                           ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                            item.User.photoProfile
+                            data.User.photoProfile
                           : "/img/default-avatar.png"
                       }
                       width={38}
@@ -203,9 +194,9 @@ function Grid() {
                     />
                     <img
                       src={
-                        item.fotoKonten
+                        data.fotoKonten
                           ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                            item.fotoKonten
+                            data.fotoKonten
                           : ""
                       }
                       className="ml-4 h-[157px] w-[206px] bg-gray-300"
@@ -215,19 +206,19 @@ function Grid() {
                   <div className="ms-[3%] flex-col space-y-1">
                     <div className="flex space-x-2 mb-[3%]">
                       <p className="text-[#21B892] mt-1 text-[20px]">
-                        {item.judul}
+                        {data.judul}
                       </p>
                     </div>
 
                     <p className="font-light text-[12px]">
                       {`Ulasan dari `}
                       <span className="text-[#005DE8]">
-                        {item.User.username}
+                        {data.User.username}
                       </span>
-                      {` pada `} {formatTanggal(item.createdAt)}
+                      {` pada `} {formatTanggal(data.createdAt)}
                     </p>
                     <button className="bg-[#C2FFE8] p-[2px] rounded w-[15%] text-[#06612B] font-light text-[12px]">
-                      {item.kategori_forum}
+                      {data.kategori_forum}
                     </button>
 
                     <div className="flex pt-[8.5%] -translate-x-10">
@@ -239,7 +230,7 @@ function Grid() {
                         className="ms-10"
                       />
                       <p className="ms-1 font-light mt-1 text-[12px] text-[#323735]">
-                        {item.jumlahView}
+                        {data.jumlahView}
                       </p>
                       <Image
                         src={chat2}
@@ -249,7 +240,7 @@ function Grid() {
                         className="ms-10"
                       />
                       <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
-                        {item.jumlahTanggapan}
+                        {data.jumlahTanggapan}
                       </p>
                     </div>
                     <div className="border-b w-[408px] border-black"></div>
@@ -260,23 +251,24 @@ function Grid() {
               {/* Post description */}
               <div className="mt-[4%]">
                 <p className="text-black leading-tight ml-[10%] w-[60%] text-[15px]">
-                  {item.desc}
+                  {data.desc}
                 </p>
               </div>
 
               {/* Comments section */}
               <div>
                 <p className="text-black text-[15px] ml-[15%] mt-[4%]">
-                  {item.jumlahTanggapan} Komentar
+                  {data.jumlahTanggapan} Komentar
                 </p>
 
                 <div className="space-y-3">
                   {/* Comment List */}
                   <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
-                    {item.comments.map((comment, index) => (
+                    { data.comments.length > 0 ? (
+                    data.comments.map((comment) => (
                       <>
                         <div
-                          key={index}
+                          key={comment.id}
                           className="w-[595px] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
                         >
                           <div className="flex items-center px-4 pt-4 pb-1">
@@ -316,7 +308,7 @@ function Grid() {
                           .slice(0, showAll ? undefined : 1)
                           .map((rep) => (
                             <div
-                              key={rep.commentId}
+                              key={rep.id}
                               className="w-[69%] ms-[20%] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
                             >
                               <div className="flex items-center p-4">
@@ -364,7 +356,10 @@ function Grid() {
                           </p>
                         )}
                       </>
-                    ))}
+                   ))
+                ):(
+                    <p>Belum ada komen</p>
+                )}
                   </div>
 
                   {/* Comment input box */}
@@ -378,7 +373,7 @@ function Grid() {
                             // Ketika 'Enter' ditekan, kirim komentar
                             onKeyDown={(e) => {
                               if (e.key === "Enter" && commentInput.trim()) {
-                                handleSendComment(item.id);
+                                handleSendComment(data.id);
                               }
                             }}
                             onChange={(e) => setCommentInput(e.target.value)}
@@ -402,7 +397,7 @@ function Grid() {
                             </div>
                           )}
                           <button
-                            onClick={() => handleSendComment(item.id)}
+                            onClick={() => handleSendComment(data.id)}
                             className="bg-[#308967] rounded-full h-[31px] w-[31px]"
                           >
                             <Image
@@ -420,12 +415,7 @@ function Grid() {
                 </div>
               </div>
             </div>
-          ))
-        ) : (
-          <div className="mt-6 p-6 text-center text-gray-500 bg-white rounded-lg shadow-lg">
-            <p>Data tidak ditemukan.</p>
-          </div>
-        )}
+          }
       </div>
     </div>
   );

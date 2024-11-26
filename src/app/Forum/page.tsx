@@ -7,7 +7,7 @@ import Link from "next/link";
 
 function Forum() {
   return (
-    <div className="bg-[#E4FFF2] ">
+    <div className="bg-[#E4FFF2] pb-[5%] ">
       <p className="text-[#308967] text-[20px] ml-[22%] inline-block mt-[4%]">
         8 ulasan terbaru
       </p>
