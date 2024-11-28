@@ -145,10 +145,14 @@ function Grid() {
   // Load forum data when the component mounts
   useEffect(() => {
     getForum();
-    const interval = setInterval(getForum, 100);
-    return () => clearInterval(interval);
   }, []);
-
+  // useEffect(() => {
+  //   const debounce = setTimeout(() => {
+  //     // Logika filter atau panggilan API jika diperlukan
+  //   }, 300);
+  //   return () => clearTimeout(debounce);
+  // }, [searchTerm]);
+  
   // Fetch forum data from API
   async function getForum() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?page=1&limit=20`;
