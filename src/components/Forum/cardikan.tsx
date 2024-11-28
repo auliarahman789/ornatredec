@@ -145,8 +145,8 @@ function ForumIkan() {
   // Load forum data when the component mounts
   useEffect(() => {
     getForum();
-    const interval = setInterval(getForum, 100);
-    return () => clearInterval(interval);
+    // const interval = setInterval(getForum, 100);
+    // return () => clearInterval(interval);
   }, []);
 
   // Fetch forum data from API

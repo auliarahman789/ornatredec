@@ -7,6 +7,8 @@ import chat2 from "../../../../../public/icon/chat2.svg";
 import emote from "../../../../../public/icon/emote.svg";
 import profil from "../../../../../public/icon/profil.svg";
 import post from "../../../../../public/icon/post.svg";
+import rep from "../../../../../public/icon/Polygon 4.svg";
+import cancel from "../../../../../public/icon/Line (2).svg";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 
@@ -89,21 +91,22 @@ function Page() {
   const handleEmojiClick = (emojiData: { emoji: string }) => {
     setCommentInput((prevInput) => prevInput + emojiData.emoji);
   };
+  const [replyToUsername, setReplyToUsername] = useState<string | null>(null);
 
   const handleSendComment = async (forumId: number) => {
     if (commentInput.trim()) {
-      const username = await getUsername(); // Ambil username dari localStorage
+      const idUser = await getUsername(); // Ambil username dari localStorage
       try {
         const RepCom = repcomId
           ? {
-              postId: repcomId,
+              commentId: repcomId,
               desc: commentInput,
-              user: username,
+              userId: idUser,
             }
           : {
               postId: forumId,
               desc: commentInput,
-              user: username,
+              userId: idUser,
             };
 
         // URL untuk mengirim komentar ke server
@@ -146,12 +149,15 @@ function Page() {
   // Load forum data when the component mounts
   useEffect(() => {
     getForum();
-    const interval = setInterval(getForum, 100);
+    const interval = setInterval(getForum, 1000);
     return () => clearInterval(interval);
   }, []);
 
   const { id } = useParams();
-
+  const handleReplyClick = (commentId: number, username: string) => {
+    setRepComId(commentId);
+    setReplyToUsername(username);
+  };
   // Fetch forum data from API
   async function getForum() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/satu/${id}`;
@@ -168,7 +174,14 @@ function Page() {
       alert("Terjadi kesalahan saat mengambil data konten forum.");
     }
   }
-  const [showAll, setShowAll] = useState<boolean>(false);
+  const [showAll, setShowAll] = useState<{ [key: number]: boolean }>({});
+  const showRep = (commentId: number) => {
+    setShowAll((prev) => ({
+      ...prev,
+      [commentId]: !prev[commentId], // Hanya ubah status untuk ID komentar yang diklik
+    }));
+  };
+
   const router = useRouter();
   const handleBack = () => {
     router.replace("/Forum");
@@ -279,7 +292,7 @@ function Page() {
                 {data.jumlahTanggapan} Komentar
               </p>
 
-              <div className="space-y-3">
+              <div className="space-y-3 bg-[#E2FFF8] py-[5%] mx-[5%] px-[1%]">
                 {/* Comment List */}
                 <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
                   {data.comments.length > 0 ? (
@@ -287,7 +300,7 @@ function Page() {
                       <>
                         <div
                           key={comment.id}
-                          className="w-[595px] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
+                          className="w-[595px] h-[100px] bg-white mx-auto rounded-xl"
                         >
                           <div className="flex items-center px-4 pt-4 pb-1">
                             <Image
@@ -317,10 +330,12 @@ function Page() {
                               <div className="relative">
                                 <p
                                   className="absolute right-2 text-sm text-[#3F9272]"
-                                  onClick={() => {
-                                    setRepComId(comment.id);
-                                    setCommentInput("");
-                                  }}
+                                  onClick={() =>
+                                    handleReplyClick(
+                                      comment.id,
+                                      comment.User.username
+                                    )
+                                  }
                                 >
                                   Balas
                                 </p>
@@ -329,11 +344,11 @@ function Page() {
                           </div>
                         </div>
                         {comment.replies
-                          .slice(0, showAll ? undefined : 1)
+                          .slice(0, showAll[comment.id] ? undefined : 1)
                           .map((rep) => (
                             <div
                               key={rep.id}
-                              className="w-[69%] ms-[20%] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
+                              className="w-[69%] ms-[20%] h-[100px] bg-white mx-auto rounded-xl"
                             >
                               <div className="flex items-center p-4">
                                 <Image
@@ -364,12 +379,12 @@ function Page() {
                               </div>
                             </div>
                           ))}
-                        {comment.replies.length > 0 && (
+                        {comment.replies.length > 1 && (
                           <p
-                            onClick={() => setShowAll(!showAll)}
+                            onClick={() => showRep(comment.id)}
                             className=" cursor-pointer translate-x-[65%] text-[#3F9272]"
                           >
-                            {showAll
+                            {showAll[comment.id]
                               ? "Sembunyikan Balasan"
                               : "Lihat Balasan Lainnya"}
                           </p>
@@ -377,7 +392,7 @@ function Page() {
                       </>
                     ))
                   ) : (
-                    <p>Belum ada komentar</p>
+                    <p>Belum ada komen</p>
                   )}
                 </div>
 
@@ -385,7 +400,29 @@ function Page() {
                 <div className="p-4">
                   <div className="flex items-center">
                     <div className="mx-auto w-[78%] mt-[10%]">
-                      <div className="flex items-center bg-white w-full h-[31px] border border-gray-300 rounded-md relative">
+                      {repcomId && replyToUsername && (
+                        <div className="bg-white flex w-full ps-[20px] space-x-[1%] rounded-t-xl h-[40px] mb-[1%]">
+                          <Image src={rep} width={10} height={10} alt="rep" />
+                          <p className="text-[15px] translate-y-3 text-[#000000C4] font-light">
+                            Membalas komentar oleh{" "}
+                            <span className="font-normal text-[#3F9272]">
+                              @{replyToUsername}
+                            </span>
+                          </p>
+                          <Image
+                            src={cancel}
+                            onClick={() => {
+                              setRepComId(null);
+                              setReplyToUsername(null);
+                            }}
+                            className="translate-x-[70%]"
+                            width={25}
+                            height={25}
+                            alt="rep"
+                          />
+                        </div>
+                      )}
+                      <div className="flex items-center bg-white w-full h-[33px] border border-gray-300 rounded-md relative">
                         <input
                           type="text"
                           value={commentInput}
