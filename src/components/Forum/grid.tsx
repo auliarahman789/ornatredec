@@ -8,6 +8,7 @@ import emote from "../../../public/icon/emote.svg";
 import profil from "../../../public/icon/profil.svg";
 import post from "../../../public/icon/post.svg";
 import axios from "axios";
+import Link from "next/link";
 
 // Define the Forum type
 type Forum = {
@@ -182,10 +183,10 @@ function Grid() {
         {filteredData.length > 0 ? (
           filteredData.map((item, i) => (
             <div
-              className="mt-[3%] w-[779px] pb-[5%] bg-white pt-5"
-              key={item.id}
+            className="mt-[3%] w-[779px] pb-[5%] bg-white pt-5"
+            key={item.id}
             >
-              {/* Post content */}
+              <Link href={`/Forum/Detail/${item.id}`}>
               <div className="w-full h-[155px]">
                 <div className="flex mt-[5%]">
                   <div className="flex items-start">
@@ -265,14 +266,14 @@ function Grid() {
               </div>
 
               {/* Comments section */}
-              <div>
+              {/* <div>
                 <p className="text-black text-[15px] ml-[15%] mt-[4%]">
                   {item.jumlahTanggapan} Komentar
-                </p>
+                </p> */}
 
-                <div className="space-y-3">
+                {/* <div className="space-y-3">
                   {/* Comment List */}
-                  <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
+                  {/* <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
                     {item.comments.map((comment, index) => (
                       <>
                         <div
@@ -364,11 +365,11 @@ function Grid() {
                           </p>
                         )}
                       </>
-                    ))}
-                  </div>
+                    ))} */}
+                  {/* </div> */} 
 
                   {/* Comment input box */}
-                  <div className="p-4">
+                  {/* <div className="p-4">
                     <div className="flex items-center">
                       <div className="mx-auto w-[78%] mt-[10%]">
                         <div className="flex items-center bg-white w-full h-[31px] border border-gray-300 rounded-md relative">
@@ -418,8 +419,10 @@ function Grid() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div> */}
+              {/* </div> */}
+              </Link>
+      </div>
           ))
         ) : (
           <div className="mt-6 p-6 text-center text-gray-500 bg-white rounded-lg shadow-lg">
