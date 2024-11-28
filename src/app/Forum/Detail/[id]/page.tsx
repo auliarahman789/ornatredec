@@ -25,16 +25,16 @@ type Forum = {
     username: string;
     photoProfile: string;
   };
-    comments: {
-        id: number;
+  comments: {
+    id: number;
     desc: string;
     createdAt: string;
     User: {
       username: string;
       photoProfile: string;
     };
-        replies: {
-            id: number;
+    replies: {
+      id: number;
       desc: string;
       commentId: number;
       createdAt: string;
@@ -94,20 +94,22 @@ function Page() {
     if (commentInput.trim()) {
       const username = await getUsername(); // Ambil username dari localStorage
       try {
-        const RepCom = repcomId ?
-          {
+        const RepCom = repcomId
+          ? {
               postId: repcomId,
               desc: commentInput,
               user: username,
-          } :
-         {
-          postId: forumId,
-          desc: commentInput,
-          user: username,
-        };
+            }
+          : {
+              postId: forumId,
+              desc: commentInput,
+              user: username,
+            };
 
         // URL untuk mengirim komentar ke server
-        const url = repcomId ? `${process.env.NEXT_PUBLIC_URL}api/reply` : `${process.env.NEXT_PUBLIC_URL}api/komen`; // Pastikan endpoint ini benar
+        const url = repcomId
+          ? `${process.env.NEXT_PUBLIC_URL}api/reply`
+          : `${process.env.NEXT_PUBLIC_URL}api/komen`; // Pastikan endpoint ini benar
         const res = await axios.post(url, RepCom, {
           withCredentials: true, // Kirim cookies jika diperlukan
         });
@@ -147,8 +149,8 @@ function Page() {
     const interval = setInterval(getForum, 100);
     return () => clearInterval(interval);
   }, []);
-    
-    const { id } = useParams();
+
+  const { id } = useParams();
 
   // Fetch forum data from API
   async function getForum() {
@@ -169,12 +171,18 @@ function Page() {
   const [showAll, setShowAll] = useState<boolean>(false);
   const router = useRouter();
   const handleBack = () => {
-    router.replace("/Forum")
-  }
+    router.replace("/Forum");
+  };
   return (
     <div className="bg-[#E2FFF8] p-[5%] flex justify-center">
       <div className="w-[40px] h-[40px] cursor-pointer -translate-x-[100px]">
-       <Image onClick={handleBack} src="/icon/back.png" width={40} height={40} alt="kembali" />
+        <Image
+          onClick={handleBack}
+          src="/icon/back.png"
+          width={40}
+          height={40}
+          alt="kembali"
+        />
       </div>
       {/* Search input */}
       {/* <div className="flex ms-[13%] mt-3">
@@ -186,99 +194,95 @@ function Page() {
       </div> */}
 
       <div className="">
-        {data && 
-            <div key={data.id}
-              className="w-[779px] pb-[5%] bg-white pt-5"
-            >
-              {/* Post content */}
-              <div className="w-full h-[155px]">
-                <div className="flex mt-[5%]">
-                  <div className="flex items-start">
-                    <img
-                      src={
-                        data.User.photoProfile
-                          ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                            data.User.photoProfile
-                          : "/img/default-avatar.png"
-                      }
-                      width={38}
-                      height={38}
-                      alt="foto profil"
-                      className="rounded-full ml-6 -translate-y-5"
-                    />
-                    <img
-                      src={
-                        data.fotoKonten
-                          ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                            data.fotoKonten
-                          : ""
-                      }
-                      className="ml-4 h-[157px] w-[206px] bg-gray-300"
-                    />
-                  </div>
+        {data && (
+          <div key={data.id} className="w-[779px] pb-[5%] bg-white pt-5">
+            {/* Post content */}
+            <div className="w-full h-[155px]">
+              <div className="flex mt-[5%]">
+                <div className="flex items-start">
+                  <img
+                    src={
+                      data.User.photoProfile
+                        ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                          data.User.photoProfile
+                        : "/img/default-avatar.png"
+                    }
+                    width={38}
+                    height={38}
+                    alt="foto profil"
+                    className="rounded-full ml-6 -translate-y-5"
+                  />
+                  <img
+                    src={
+                      data.fotoKonten
+                        ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                          data.fotoKonten
+                        : ""
+                    }
+                    className="ml-4 h-[157px] w-[206px] bg-gray-300"
+                  />
+                </div>
 
-                  <div className="ms-[3%] flex-col space-y-1">
-                    <div className="flex space-x-2 mb-[3%]">
-                      <p className="text-[#21B892] mt-1 text-[20px]">
-                        {data.judul}
-                      </p>
-                    </div>
-
-                    <p className="font-light text-[12px]">
-                      {`Ulasan dari `}
-                      <span className="text-[#005DE8]">
-                        {data.User.username}
-                      </span>
-                      {` pada `} {formatTanggal(data.createdAt)}
+                <div className="ms-[3%] flex-col space-y-1">
+                  <div className="flex space-x-2 mb-[3%]">
+                    <p className="text-[#21B892] mt-1 text-[20px]">
+                      {data.judul}
                     </p>
-                    <button className="bg-[#C2FFE8] p-[2px] rounded w-[15%] text-[#06612B] font-light text-[12px]">
-                      {data.kategori_forum}
-                    </button>
-
-                    <div className="flex pt-[8.5%] -translate-x-10">
-                      <Image
-                        src={mata}
-                        width={20}
-                        height={20}
-                        alt="mata"
-                        className="ms-10"
-                      />
-                      <p className="ms-1 font-light mt-1 text-[12px] text-[#323735]">
-                        {data.jumlahView}
-                      </p>
-                      <Image
-                        src={chat2}
-                        width={20}
-                        height={20}
-                        alt="chat2"
-                        className="ms-10"
-                      />
-                      <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
-                        {data.jumlahTanggapan}
-                      </p>
-                    </div>
-                    <div className="border-b w-[408px] border-black"></div>
                   </div>
+
+                  <p className="font-light text-[12px]">
+                    {`Ulasan dari `}
+                    <span className="text-[#005DE8]">{data.User.username}</span>
+                    {` pada `} {formatTanggal(data.createdAt)}
+                  </p>
+                  <button className="bg-[#C2FFE8] p-[2px] rounded w-[15%] text-[#06612B] font-light text-[12px]">
+                    {data.kategori_forum}
+                  </button>
+
+                  <div className="flex pt-[8.5%] -translate-x-10">
+                    <Image
+                      src={mata}
+                      width={20}
+                      height={20}
+                      alt="mata"
+                      className="ms-10"
+                    />
+                    <p className="ms-1 font-light mt-1 text-[12px] text-[#323735]">
+                      {data.jumlahView}
+                    </p>
+                    <Image
+                      src={chat2}
+                      width={20}
+                      height={20}
+                      alt="chat2"
+                      className="ms-10"
+                    />
+                    <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
+                      {data.jumlahTanggapan}
+                    </p>
+                  </div>
+                  <div className="border-b w-[408px] border-black"></div>
                 </div>
               </div>
+            </div>
 
-              {/* Post description */}
-              <div className="mt-[4%]">
-                <p className="text-black leading-tight ml-[10%] w-[60%] text-[15px]">
-                  {data.desc}
-                </p>
-              </div>
+            {/* Post description */}
+            <div className="mt-[4%]">
+              <p className="text-black leading-tight ml-[10%] w-[60%] text-[15px]">
+                {data.desc}
+              </p>
+            </div>
 
-              {/* Comments section */}
-              <div>
-                <p className="text-black text-[15px] ml-[15%] mt-[4%]">
-                  {data.jumlahTanggapan} Komentar
-                </p>
+            {/* Comments section */}
+            <div>
+              <p className="text-black text-[15px] ml-[15%] mt-[4%]">
+                {data.jumlahTanggapan} Komentar
+              </p>
 
-                <div className="space-y-3">
-                  {/* Comment List */}
-                  <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
-                    { data.comments.length > 0 ? (
+              <div className="space-y-3">
+                {/* Comment List */}
+                <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
+                  {data.comments.length > 0 ? (
                     data.comments.map((comment) => (
                       <>
                         <div
@@ -289,9 +293,9 @@ function Page() {
                             <Image
                               src={
                                 comment.User.photoProfile
-                                ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                                  comment.User.photoProfile
-                                : profil
+                                  ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                                    comment.User.photoProfile
+                                  : profil
                               }
                               alt="foto profil"
                               width={35}
@@ -311,13 +315,16 @@ function Page() {
                                 {comment.desc}
                               </p>
                               <div className="relative">
-                                    <p className="absolute right-2 text-sm text-[#3F9272]" onClick={() => {
-                                      setRepComId(comment.id);
-                                      setCommentInput("");
-                                    }}>
-                                      Balas
-                                    </p>
-                                  </div>
+                                <p
+                                  className="absolute right-2 text-sm text-[#3F9272]"
+                                  onClick={() => {
+                                    setRepComId(comment.id);
+                                    setCommentInput("");
+                                  }}
+                                >
+                                  Balas
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -368,66 +375,66 @@ function Page() {
                           </p>
                         )}
                       </>
-                   ))
-                ):(
-                    <p>Belum ada komen</p>
-                )}
-                  </div>
+                    ))
+                  ) : (
+                    <p>Belum ada komentar</p>
+                  )}
+                </div>
 
-                  {/* Comment input box */}
-                  <div className="p-4">
-                    <div className="flex items-center">
-                      <div className="mx-auto w-[78%] mt-[10%]">
-                        <div className="flex items-center bg-white w-full h-[31px] border border-gray-300 rounded-md relative">
-                          <input
-                            type="text"
-                            value={commentInput}
-                            // Ketika 'Enter' ditekan, kirim komentar
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter" && commentInput.trim()) {
-                                handleSendComment(data.id);
-                              }
-                            }}
-                            onChange={(e) => setCommentInput(e.target.value)}
-                            placeholder="Ketik pesan..."
-                            className="w-full h-full pl-10 pr-4 text-sm focus:outline-none"
+                {/* Comment input box */}
+                <div className="p-4">
+                  <div className="flex items-center">
+                    <div className="mx-auto w-[78%] mt-[10%]">
+                      <div className="flex items-center bg-white w-full h-[31px] border border-gray-300 rounded-md relative">
+                        <input
+                          type="text"
+                          value={commentInput}
+                          // Ketika 'Enter' ditekan, kirim komentar
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" && commentInput.trim()) {
+                              handleSendComment(data.id);
+                            }
+                          }}
+                          onChange={(e) => setCommentInput(e.target.value)}
+                          placeholder="Ketik pesan..."
+                          className="w-full h-full pl-10 pr-4 text-sm focus:outline-none"
+                        />
+                        <button
+                          onClick={() => setShowEmojiPicker((prev) => !prev)}
+                          className="absolute left-2 top-1/2 transform -translate-y-1/2"
+                        >
+                          <Image
+                            src={emote}
+                            width={20}
+                            height={20}
+                            alt="emoji picker"
                           />
-                          <button
-                            onClick={() => setShowEmojiPicker((prev) => !prev)}
-                            className="absolute left-2 top-1/2 transform -translate-y-1/2"
-                          >
-                            <Image
-                              src={emote}
-                              width={20}
-                              height={20}
-                              alt="emoji picker"
-                            />
-                          </button>
-                          {showEmojiPicker && (
-                            <div className="absolute bottom-full left-0 mb-2">
-                              <EmojiPicker onEmojiClick={handleEmojiClick} />
-                            </div>
-                          )}
-                          <button
-                            onClick={() => handleSendComment(data.id)}
-                            className="bg-[#308967] rounded-full h-[31px] w-[31px]"
-                          >
-                            <Image
-                              src={post}
-                              width={15}
-                              height={15}
-                              alt="post"
-                              className="mx-auto"
-                            />
-                          </button>
-                        </div>
+                        </button>
+                        {showEmojiPicker && (
+                          <div className="absolute bottom-full left-0 mb-2">
+                            <EmojiPicker onEmojiClick={handleEmojiClick} />
+                          </div>
+                        )}
+                        <button
+                          onClick={() => handleSendComment(data.id)}
+                          className="bg-[#308967] rounded-full h-[31px] w-[31px]"
+                        >
+                          <Image
+                            src={post}
+                            width={15}
+                            height={15}
+                            alt="post"
+                            className="mx-auto"
+                          />
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          }
+          </div>
+        )}
       </div>
     </div>
   );

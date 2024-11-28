@@ -15,7 +15,6 @@ function Forum() {
         <div className="">
           <Dropdown1 />
         </div>
-        <Grid />
         <div className="mt-6 ms-[12%] flex">
           <div className="bg-[#308967] h-[18px] w-[18px]  rounded-md cursor-pointer">
             <Image
