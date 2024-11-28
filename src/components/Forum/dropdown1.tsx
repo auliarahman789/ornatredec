@@ -126,8 +126,7 @@ import Grid from "./grid";
 
 const ForumSemua = () => {
   return (
-    <div className="mt-4 p-4">
-      <h2 className="text-lg font-bold">Semua Forum</h2>
+    <div className="ms-[20%] -translate-y-[2%]">
       <Grid />
     </div>
   );
@@ -135,9 +134,8 @@ const ForumSemua = () => {
 
 const ForumIkan = () => {
   return (
-    <div className="mt-4 p-4">
-      <h2 className="text-lg font-bold">Forum Ikan</h2>
-      <p>Konten khusus untuk diskusi mengenai ikan.</p>
+    <div className="ms-[20%] -translate-y-[2%]">
+      <p>jgjhgjg</p>
     </div>
   );
 };
