@@ -8,7 +8,7 @@ import emote from "../../../../../public/icon/emote.svg";
 import profil from "../../../../../public/icon/profil.svg";
 import post from "../../../../../public/icon/post.svg";
 import axios from "axios";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 // Define the Forum type
 type Forum = {
@@ -46,10 +46,11 @@ type Forum = {
   }[];
 };
 
-function Grid() {
+function Page() {
   const [data, setData] = useState<Forum>();
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [commentInput, setCommentInput] = useState<string>("");
+  const [repcomId, setRepComId] = useState<number | null>(null);
 
   // Get username from localStorage or use default "Guest"
   const getUsername = async () => {
@@ -93,16 +94,21 @@ function Grid() {
     if (commentInput.trim()) {
       const username = await getUsername(); // Ambil username dari localStorage
       try {
-        // Data yang dikirim ke API
-        const newComment = {
+        const RepCom = repcomId ?
+          {
+              postId: repcomId,
+              desc: commentInput,
+              user: username,
+          } :
+         {
           postId: forumId,
           desc: commentInput,
           user: username,
         };
 
         // URL untuk mengirim komentar ke server
-        const url = `${process.env.NEXT_PUBLIC_URL}api/komen`; // Pastikan endpoint ini benar
-        const res = await axios.post(url, newComment, {
+        const url = repcomId ? `${process.env.NEXT_PUBLIC_URL}api/reply` : `${process.env.NEXT_PUBLIC_URL}api/komen`; // Pastikan endpoint ini benar
+        const res = await axios.post(url, RepCom, {
           withCredentials: true, // Kirim cookies jika diperlukan
         });
 
@@ -121,7 +127,8 @@ function Grid() {
         //   )
         // );
 
-        setCommentInput(""); // Clear input komentar setelah dikirim
+        setCommentInput("");
+        setRepComId(null); // Clear input komentar setelah dikirim
       } catch (error: any) {
         console.error(
           "Error posting comment:",
@@ -160,8 +167,15 @@ function Grid() {
     }
   }
   const [showAll, setShowAll] = useState<boolean>(false);
+  const router = useRouter();
+  const handleBack = () => {
+    router.replace("/Forum")
+  }
   return (
-    <div className="bg-[#E2FFF8]">
+    <div className="bg-[#E2FFF8] p-[5%] flex justify-center">
+      <div className="w-[40px] h-[40px] cursor-pointer -translate-x-[100px]">
+       <Image onClick={handleBack} src="/icon/back.png" width={40} height={40} alt="kembali" />
+      </div>
       {/* Search input */}
       {/* <div className="flex ms-[13%] mt-3">
         <input
@@ -171,10 +185,10 @@ function Grid() {
         />
       </div> */}
 
-      <div className="ml-[13%]">
+      <div className="">
         {data && 
-            <div
-              className="mt-[3%] w-[779px] pb-[5%] bg-white pt-5"
+            <div key={data.id}
+              className="w-[779px] pb-[5%] bg-white pt-5"
             >
               {/* Post content */}
               <div className="w-full h-[155px]">
@@ -297,10 +311,13 @@ function Grid() {
                                 {comment.desc}
                               </p>
                               <div className="relative">
-                                <p className="absolute right-2 text-sm text-[#3F9272]">
-                                  Balas
-                                </p>
-                              </div>
+                                    <p className="absolute right-2 text-sm text-[#3F9272]" onClick={() => {
+                                      setRepComId(comment.id);
+                                      setCommentInput("");
+                                    }}>
+                                      Balas
+                                    </p>
+                                  </div>
                             </div>
                           </div>
                         </div>
@@ -336,11 +353,6 @@ function Grid() {
                                   <p className="px-2 text-[15px] leading-tight mt-2">
                                     {rep.desc}
                                   </p>
-                                  <div className="relative">
-                                    <p className="absolute right-2 text-sm text-[#3F9272]">
-                                      Balas
-                                    </p>
-                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -421,4 +433,4 @@ function Grid() {
   );
 }
 
-export default Grid;
+export default Page;

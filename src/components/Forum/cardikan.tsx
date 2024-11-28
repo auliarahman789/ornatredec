@@ -6,11 +6,11 @@ import mata from "../../../public/icon/mata.svg";
 import chat2 from "../../../public/icon/chat2.svg";
 import emote from "../../../public/icon/emote.svg";
 import profil from "../../../public/icon/profil.svg";
-import panah from "../../../public/icon/for.svg";
 import post from "../../../public/icon/post.svg";
-import noted from "../../../public/icon/noted.svg";
 import axios from "axios";
+import Link from "next/link";
 
+// Define the Forum type
 type Forum = {
   id: number;
   judul: string;
@@ -25,18 +25,55 @@ type Forum = {
     username: string;
     photoProfile: string;
   };
+  comments: {
+    desc: string;
+    createdAt: string;
+    User: {
+      username: string;
+      photoProfile: string;
+    };
+    replies: {
+      desc: string;
+      commentId: number;
+      createdAt: string;
+      User: {
+        username: string;
+        photoProfile: string;
+      };
+    }[];
+  }[];
 };
 
 function ForumIkan() {
   const [data, setData] = useState<Forum[]>([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [inputText, setInputText] = useState("");
-
+  const [commentInput, setCommentInput] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState(""); // Tambahkan state untuk searchTerm
-  const [comments, setComments] = useState<
-    { username: string; comment: string }[]
-  >([]);
 
+  // Get username from localStorage or use default "Guest"
+  const getUsername = async () => {
+    try {
+      const token = localStorage.getItem("authToken"); // Ambil token dari localStorage atau mekanisme penyimpanan lainnya
+      if (!token) {
+        return "Guest"; // Jika token tidak ditemukan, kembalikan username default
+      }
+
+      // Panggil API untuk mendapatkan data pengguna
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}api/getMe`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Kirim token sebagai header
+        },
+      });
+
+      const username = res.data.username; // Ambil username dari respons API
+      return username || "Guest"; // Pastikan ada fallback username
+    } catch (error: any) {
+      console.error("Gagal mengambil data pengguna:", error.message);
+      return "Guest"; // Default jika gagal
+    }
+  };
+
+  // Format date function
   const formatTanggal = (tanggal: string) => {
     const opsiTanggal: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -46,51 +83,55 @@ function ForumIkan() {
     return new Date(tanggal).toLocaleDateString("id-ID", opsiTanggal);
   };
 
+  // Handle emoji click
   const handleEmojiClick = (emojiData: { emoji: string }) => {
-    setInputText((prevInput) => prevInput + emojiData.emoji);
+    setCommentInput((prevInput) => prevInput + emojiData.emoji);
   };
 
-  const handleKeyDown = (e: { key: string }) => {
-    if (e.key === "Enter") {
-      handleSendComment();
-    }
-  };
-
-  // This is the function to send the comment to the API
-  const postComment = async (forumId: number, commentText: string) => {
-    try {
-      const url = `${process.env.NEXT_PUBLIC_URL}api/komen`; // URL API untuk mengirim komentar
-      const payload = {
-        forumId, // ID Forum tempat komentar akan diposting
-        comment: commentText, // Isi komentar
-      };
-
-      // Mengirimkan komentar ke   API
-      const res = await axios.post(url, payload, {
-        withCredentials: true, // Kirim dengan cookie jika diperlukan
-      });
-
-      // Jika berhasil, tambahkan komentar ke state
-      if (res.status === 200) {
+  const handleSendComment = async (forumId: number) => {
+    if (commentInput.trim()) {
+      const username = await getUsername(); // Ambil username dari localStorage
+      try {
+        // Data yang dikirim ke API
         const newComment = {
-          id: res.data.id, // ID komentar yang dikembalikan dari API
-          username: "Kevin", // Nama pengguna, sesuaikan jika diperlukan
-          comment: commentText,
+          postId: forumId,
+          desc: commentInput,
+          user: username,
         };
-        setComments((prevComments) => [...prevComments, newComment]);
-        setInputText(""); // Mengosongkan input setelah komentar dikirim
+
+        // URL untuk mengirim komentar ke server
+        const url = `${process.env.NEXT_PUBLIC_URL}api/komen`; // Pastikan endpoint ini benar
+        const res = await axios.post(url, newComment, {
+          withCredentials: true, // Kirim cookies jika diperlukan
+        });
+
+        // Setelah berhasil mengirim komentar, update data forum di state
+        // setData((prevData) =>
+        //   prevData.map((item) =>
+        //     item.id === forumId
+        //       ? {
+        //           ...item,
+        //           comments: [
+        //             ...item.comments,
+        //             { desc: commentInput, createdAt: new Date().toISOString() },
+        //           ],
+        //         }
+        //       : item
+        //   )
+        // );
+
+        setCommentInput(""); // Clear input komentar setelah dikirim
+      } catch (error: any) {
+        console.error(
+          "Error posting comment:",
+          error.response || error.message
+        );
+        alert("Terjadi kesalahan saat mengirim komentar.");
       }
-    } catch (error: any) {
-      console.error("Error posting comment:", error.response || error.message);
-      alert("Terjadi kesalahan saat mengirim komentar.");
     }
   };
 
-  const handleSendComment = () => {
-    if (inputText.trim()) {
-      postComment(data[0].id, inputText); // Send the comment to the first forum post
-    }
-  };
+  // Handle sending comment
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -101,47 +142,51 @@ function ForumIkan() {
     item.judul.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Load forum data when the component mounts
   useEffect(() => {
-    getForumIkan();
+    getForum();
+    const interval = setInterval(getForum, 100);
+    return () => clearInterval(interval);
   }, []);
 
-  async function getForumIkan() {
+  // Fetch forum data from API
+  async function getForum() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?kategori=ikan&page=1&limit=20`;
     try {
       const res = await axios.get<Forum[]>(url, {
-        withCredentials: true,
+        withCredentials: true, // Send cookies if necessary
       });
-      setData(res.data);
-      console.log(res.data);
-      alert("Berhasil mengambil data konten forum ikan.");
+      setData(res.data); // Set the fetched data to the state
     } catch (error: any) {
       console.error(
         "Error fetching forum data:",
         error.response || error.message
       );
-      alert("Terjadi kesalahan saat mengambil data konten forum ikan.");
+      alert("Terjadi kesalahan saat mengambil data konten forum.");
     }
   }
-
+  const [showAll, setShowAll] = useState<boolean>(false);
   return (
     <div>
-      {/* Input pencarian */}
-      <div className="relative flex ms-[13%] mt-3">
+      {/* Search input */}
+      <div className="flex ms-[13%] mt-3">
         <input
           type="text"
+          placeholder="Cari..."
           value={searchTerm} // Set value input ke searchTerm
           onChange={handleSearchChange} // Tangani perubahan input
-          placeholder="Cari..."
           className="w-[20%] h-[31px] ps-2 bg-[#FFFBFB] rounded-lg shadow-xl"
         />
       </div>
+
       <div className="ml-[13%]">
         {filteredData.length > 0 ? (
           filteredData.map((item, i) => (
             <div
-              className="mt-[3%] w-[779px] h-[995px] bg-white pt-5"
-              key={item.id}
+            className="mt-[3%] w-[779px] pb-[5%] bg-white pt-5"
+            key={item.id}
             >
+              <Link href={`/Forum/Detail/${item.id}`}>
               <div className="w-full h-[155px]">
                 <div className="flex mt-[5%]">
                   <div className="flex items-start">
@@ -164,7 +209,7 @@ function ForumIkan() {
                             item.fotoKonten
                           : ""
                       }
-                      className={`ml-4 h-[157px] w-[206px] bg-gray-300`}
+                      className="ml-4 h-[157px] w-[206px] bg-gray-300"
                     />
                   </div>
 
@@ -213,180 +258,171 @@ function ForumIkan() {
                 </div>
               </div>
 
+              {/* Post description */}
               <div className="mt-[4%]">
                 <p className="text-black leading-tight ml-[10%] w-[60%] text-[15px]">
                   {item.desc}
                 </p>
               </div>
-              <div>
+
+              {/* Comments section */}
+              {/* <div>
                 <p className="text-black text-[15px] ml-[15%] mt-[4%]">
                   {item.jumlahTanggapan} Komentar
-                </p>
+                </p> */}
 
-                <div className="space-y-3">
-                  <div className="w-[595px] h-[547px] bg-[#E2FFF8] mx-auto rounded-xl">
-                    <div className="p-4">
-                      <Image
-                        src={profil}
-                        alt="foto profil"
-                        width={100}
-                        height={100}
-                        className="w-[35px] h-[35px]"
-                      />
-                      <div className="ml-[9%] -mt-7">
-                        <div className="h-[130px] w-[477px] bg-white relative">
-                          <div className="flex items-center space-x-4 p-2">
-                            <p className="text-[#3F9272] text-[13px]">Kevin</p>
-                            <p className="text-[#7D7D7D] text-[10px]">
-                              2 jam yang lalu
-                            </p>
-                          </div>
-
-                          <p className="px-[3%] text-[15px] leading-tight mt-2">
-                            ***** tanaman kayak gitu sih enak rawatnya tapi gw
-                            kemaren ke cucuk durinya kena ****** sakit banget,
-                            gatel sih, btw durinya beracun kagak? kalau beracun
-                            hilang dah masa depan gw
-                          </p>
-                          <div className="flex justify-end p-2 space-x-3">
-                            <p className="text-[#8A8A8A] text-[12px]">
-                              90 balasan
-                            </p>
-                            <p className="text-[#3F9272] text-[12px] cursor-pointer">
-                              balasan
-                            </p>
-                          </div>
-                          <div className="absolute top-3 -left-1 w-0 h-0 border-l-[15px] border-l-transparent border-b-[15px] border-b-white transform -translate-x-1/2 -translate-y-1/2"></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="ml-[7%]">
-                      <Image
-                        src={profil}
-                        alt="foto profil"
-                        width={100}
-                        height={100}
-                        className="w-[35px] h-[35px]"
-                      />
-                      <div className="ml-[9%] -mt-7 h-[83px] w-[453px] bg-white relative">
-                        <div className="flex items-center space-x-2 p-2">
-                          <p className="text-[#3F9272] text-[13px]">Kevin</p>
-                          <Image
-                            src={panah}
-                            alt="panah"
-                            width={90}
-                            height={90}
-                            className="w-3 h-3"
-                          />
-                          <p className="text-[#3F9272] text-[13px]">Danen</p>
-                          <p className="text-[#7D7D7D] text-[10px]">
-                            2 jam yang lalu
-                          </p>
-                        </div>
-                        <p className="px-[3%] text-[15px] leading-tight mt-1">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit.
-                        </p>
-                        <div className="flex justify-end p-2">
-                          <p className="text-[#3F9272] text-[12px] cursor-pointer">
-                            balas
-                          </p>
-                        </div>
-                        <div className="absolute top-3 -left-1 w-0 h-0 border-l-[15px] border-l-transparent border-b-[15px] border-b-white transform -translate-x-1/2 -translate-y-1/2"></div>
-                      </div>
-                      <div className="flex items-center justify-center space-x-2">
-                        <div className="border-b w-[290px] border-black"></div>
-                        <p className="text-[13px] text-[#3F9272] cursor-pointer">
-                          lihat 81 balasan lainnya
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="p-4">
-                      <Image
-                        src={profil}
-                        alt="foto profil"
-                        width={100}
-                        height={100}
-                        className="w-[35px] h-[35px]"
-                      />
-                      <div className="ml-[9%] -mt-7">
-                        <div className="h-[130px] w-[477px] bg-white relative">
-                          <div className="flex space-x-4 p-2 items-center">
-                            <p className="text-[#3F9272] text-[13px]">Kevin</p>
-                            <p className="text-[#7D7D7D] text-[10px]">
-                              2 jam yang lalu
-                            </p>
-                          </div>
-                          <p className="px-[3%] text-[15px] leading-tight mt-2">
-                            ***** tanaman kayak gitu sih enak rawatnya tapi gw
-                            kemaren ke cucuk durinya kena ****** sakit banget,
-                            gatel sih, btw durinya beracun kagak? kalau beracun
-                            hilang dah masa depan gw
-                          </p>
-                          <div className="flex justify-end p-2 space-x-3">
-                            <p className="text-[#8A8A8A] text-[12px]">
-                              90 balasan
-                            </p>
-                            <p className="text-[#3F9272] text-[12px] cursor-pointer">
-                              balasan
-                            </p>
-                          </div>
-                          <div className="absolute top-3 -left-1 w-0 h-0 border-l-[15px] border-l-transparent border-b-[15px] border-b-white transform -translate-x-1/2 -translate-y-1/2"></div>
-                          <div className="flex items-center justify-center space-x-2">
-                            <div className="border-b w-[290px] border-black"></div>
-                            <p className="text-[13px] text-[#3F9272] cursor-pointer">
-                              lihat 81 balasan lainnya
-                            </p>
-                          </div>
-                          <div className="flex bg-white mx-auto w-[471px] h-[31px] mt-[10%] relative">
-                            <input
-                              type="text"
-                              value={inputText}
-                              onKeyDown={handleKeyDown}
-                              onChange={(e) => setInputText(e.target.value)}
-                              placeholder="Ketik pesan..."
-                              className="w-full h-full pl-10 pr-4 text-sm border border-gray-300 rounded-md focus:outline-none"
-                            />
-                            <button
-                              onClick={() =>
-                                setShowEmojiPicker((prev) => !prev)
+                {/* <div className="space-y-3">
+                  {/* Comment List */}
+                  {/* <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
+                    {item.comments.map((comment, index) => (
+                      <>
+                        <div
+                          key={index}
+                          className="w-[595px] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
+                        >
+                          <div className="flex items-center px-4 pt-4 pb-1">
+                            <Image
+                              src={
+                                comment.User.photoProfile
+                                ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                                  comment.User.photoProfile
+                                : profil
                               }
-                              className="absolute left-2 top-1/2 transform -translate-y-1/2"
-                            >
-                              <Image
-                                src={emote}
-                                width={20}
-                                height={20}
-                                alt="emoji picker icon"
-                              />
-                            </button>
-                            {showEmojiPicker && (
-                              <div className="absolute bottom-full left-0 mb-2">
-                                <EmojiPicker onEmojiClick={handleEmojiClick} />
+                              alt="foto profil"
+                              width={35}
+                              height={35}
+                              className="rounded-full"
+                            />
+                            <div className="ml-4 w-[90%]">
+                              <div className="flex items-center justify-between">
+                                <p className="text-[#3F9272] text-[13px]">
+                                  {comment.User.username}
+                                </p>
+                                <p className="text-[#7D7D7D] text-[10px]">
+                                  {formatTanggal(comment.createdAt)}
+                                </p>
                               </div>
-                            )}
-                            <button
-                              onClick={handleSendComment}
-                              className="bg-[#308967] rounded-full h-[31px] w-[31px] "
-                            >
-                              <Image
-                                src={post}
-                                width={15}
-                                height={15}
-                                alt="post"
-                                className="mx-auto"
-                              />
-                            </button>
+                              <p className="px-2 text-[15px] leading-tight mt-2">
+                                {comment.desc}
+                              </p>
+                              <div className="relative">
+                                <p className="absolute right-2 text-sm text-[#3F9272]">
+                                  Balas
+                                </p>
+                              </div>
+                            </div>
                           </div>
+                        </div>
+                        {comment.replies
+                          .slice(0, showAll ? undefined : 1)
+                          .map((rep) => (
+                            <div
+                              key={rep.commentId}
+                              className="w-[69%] ms-[20%] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
+                            >
+                              <div className="flex items-center p-4">
+                                <Image
+                                  src={
+                                    rep.User.photoProfile
+                                      ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                                        rep.User.photoProfile
+                                      : profil
+                                  }
+                                  alt="foto profil"
+                                  width={35}
+                                  height={35}
+                                  className="rounded-full"
+                                />
+                                <div className="ml-4 w-[90%]">
+                                  <div className="flex items-center justify-between">
+                                    <p className="text-[#3F9272] text-[13px]">
+                                      {rep.User.username}
+                                    </p>
+                                    <p className="text-[#7D7D7D] text-[10px]">
+                                      {formatTanggal(rep.createdAt)}
+                                    </p>
+                                  </div>
+                                  <p className="px-2 text-[15px] leading-tight mt-2">
+                                    {rep.desc}
+                                  </p>
+                                  <div className="relative">
+                                    <p className="absolute right-2 text-sm text-[#3F9272]">
+                                      Balas
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        {comment.replies.length > 0 && (
+                          <p
+                            onClick={() => setShowAll(!showAll)}
+                            className=" cursor-pointer translate-x-[65%] text-[#3F9272]"
+                          >
+                            {showAll
+                              ? "Sembunyikan Balasan"
+                              : "Lihat Balasan Lainnya"}
+                          </p>
+                        )}
+                      </>
+                    ))} */}
+                  {/* </div> */} 
+
+                  {/* Comment input box */}
+                  {/* <div className="p-4">
+                    <div className="flex items-center">
+                      <div className="mx-auto w-[78%] mt-[10%]">
+                        <div className="flex items-center bg-white w-full h-[31px] border border-gray-300 rounded-md relative">
+                          <input
+                            type="text"
+                            value={commentInput}
+                            // Ketika 'Enter' ditekan, kirim komentar
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter" && commentInput.trim()) {
+                                handleSendComment(item.id);
+                              }
+                            }}
+                            onChange={(e) => setCommentInput(e.target.value)}
+                            placeholder="Ketik pesan..."
+                            className="w-full h-full pl-10 pr-4 text-sm focus:outline-none"
+                          />
+                          <button
+                            onClick={() => setShowEmojiPicker((prev) => !prev)}
+                            className="absolute left-2 top-1/2 transform -translate-y-1/2"
+                          >
+                            <Image
+                              src={emote}
+                              width={20}
+                              height={20}
+                              alt="emoji picker"
+                            />
+                          </button>
+                          {showEmojiPicker && (
+                            <div className="absolute bottom-full left-0 mb-2">
+                              <EmojiPicker onEmojiClick={handleEmojiClick} />
+                            </div>
+                          )}
+                          <button
+                            onClick={() => handleSendComment(item.id)}
+                            className="bg-[#308967] rounded-full h-[31px] w-[31px]"
+                          >
+                            <Image
+                              src={post}
+                              width={15}
+                              height={15}
+                              alt="post"
+                              className="mx-auto"
+                            />
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div> */}
+              {/* </div> */}
+              </Link>
+      </div>
           ))
         ) : (
           <div className="mt-6 p-6 text-center text-gray-500 bg-white rounded-lg shadow-lg">
@@ -399,7 +435,3 @@ function ForumIkan() {
 }
 
 export default ForumIkan;
-
-function setInputSearch(searchTerm: string) {
-  throw new Error("Function not implemented.");
-}
