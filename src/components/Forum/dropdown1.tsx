@@ -123,6 +123,9 @@
 "use client";
 import React, { useState } from "react";
 import Grid from "./grid";
+import Ikan from "./cardikan";
+import Burung from "./cardburung";
+import Tanaman from "./cardtanaman";
 
 const ForumSemua = () => {
   return (
@@ -135,25 +138,23 @@ const ForumSemua = () => {
 const ForumIkan = () => {
   return (
     <div className="ms-[20%] -translate-y-[2%]">
-      <p>jgjhgjg</p>
+      <Ikan />
     </div>
   );
 };
 
 const ForumBurung = () => {
   return (
-    <div className="mt-4 p-4">
-      <h2 className="text-lg font-bold">Forum Burung</h2>
-      <p>Konten khusus untuk diskusi mengenai burung.</p>
+    <div className="ms-[20%] -translate-y-[2%]">
+      <Burung />
     </div>
   );
 };
 
 const ForumTanaman = () => {
   return (
-    <div className="mt-4 p-4">
-      <h2 className="text-lg font-bold">Forum Tanaman</h2>
-      <p>Konten khusus untuk diskusi mengenai tanaman.</p>
+    <div className="ms-[20%] -translate-y-[2%]">
+      <Tanaman />
     </div>
   );
 };
