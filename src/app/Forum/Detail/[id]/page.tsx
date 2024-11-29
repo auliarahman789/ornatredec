@@ -327,7 +327,7 @@ function Page() {
                               </p>
                               <div className="relative">
                                     <p className="absolute right-2 text-sm text-[#3F9272]" onClick={() => handleReplyClick(comment.id, comment.User.username)}
-                                    >
+                                    > 
                                       Balas
                                     </p>
                                   </div>
