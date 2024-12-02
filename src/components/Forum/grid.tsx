@@ -145,6 +145,9 @@ function Grid() {
   // Load forum data when the component mounts
   useEffect(() => {
     getForum();
+    const timer = setTimeout(() => {
+    }, 300);
+    return () => clearTimeout(timer);
   }, []);
   // useEffect(() => {
   //   const debounce = setTimeout(() => {
@@ -187,11 +190,11 @@ function Grid() {
         {filteredData.length > 0 ? (
           filteredData.map((item, i) => (
             <div
-            className="mt-[3%] w-[779px] pb-[5%] bg-white pt-5"
+            className="mt-[3%] cursor-pointer w-[779px] pb-[5%] bg-white pt-5"
             key={item.id}
             >
               <Link href={`/Forum/Detail/${item.id}`}>
-              <div className="w-full h-[155px]">
+              <div className="w-full h-[155px] cursor-pointer">
                 <div className="flex mt-[5%]">
                   <div className="flex items-start">
                     <img
