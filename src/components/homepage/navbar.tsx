@@ -1,6 +1,5 @@
-"use client";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "axios"; // Import axios
 import Image from "next/image";
 import logo from "../../../public/icon/logo.svg";
 import defaultAvatar from "../../../public/img/default-avatar.png";
@@ -105,7 +104,7 @@ function Navbar() {
           {isLoggedIn ? (
             <Link href="/profile" className="flex items-center">
               <img
-                src={avatar}
+                src={avatar} // Gunakan avatar dari API atau default
                 alt="Profile Avatar"
                 width={40}
                 height={40}

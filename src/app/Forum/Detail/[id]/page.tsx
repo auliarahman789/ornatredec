@@ -11,8 +11,10 @@ import rep from "../../../../../public/icon/Polygon 4.svg";
 import cancel from "../../../../../public/icon/Line (2).svg"
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
+import Swal from "sweetalert2";
+import ReportPop from "@/components/Forum/report";
 
-// Define the Forum type
+
 type Forum = {
   id: number;
   judul: string;
@@ -186,11 +188,14 @@ function Page() {
   const handleBack = () => {
     router.replace("/Forum")
   }
+  const [showReport, setShowReport] = useState(false);
+
   return (
     <div className="bg-[#E2FFF8] p-[5%] flex justify-center">
       <div className="w-[40px] h-[40px] cursor-pointer -translate-x-[100px]">
        <Image onClick={handleBack} src="/icon/back.png" width={40} height={40} alt="kembali" />
       </div>
+     
       {/* Search input */}
       {/* <div className="flex ms-[13%] mt-3">
         <input
@@ -201,10 +206,12 @@ function Page() {
       </div> */}
 
       <div className="">
+        
         {data && 
             <div key={data.id}
               className="w-[779px] pb-[5%] bg-white pt-5"
-            >
+          >
+            <ReportPop isVisible={showReport} onClose={()=>setShowReport(false)} id={data.id} />
               {/* Post content */}
               <div className="w-full h-[155px]">
                 <div className="flex mt-[5%]">
@@ -233,10 +240,11 @@ function Page() {
                   </div>
 
                   <div className="ms-[3%] flex-col space-y-1">
-                    <div className="flex space-x-2 mb-[3%]">
+                    <div className="flex justify-between space-x-2 mb-[3%]">
                       <p className="text-[#21B892] mt-1 text-[20px]">
                         {data.judul}
-                      </p>
+                    </p>
+                    <p className="text-[#06612B] text-[12px] cursor-pointer" onClick={()=> setShowReport(true)}>Laporkan</p>
                     </div>
 
                     <p className="font-light text-[12px]">
@@ -327,7 +335,7 @@ function Page() {
                               </p>
                               <div className="relative">
                                     <p className="absolute right-2 text-sm text-[#3F9272]" onClick={() => handleReplyClick(comment.id, comment.User.username)}
-                                    > 
+                                    >
                                       Balas
                                     </p>
                                   </div>

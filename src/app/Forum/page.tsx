@@ -4,10 +4,12 @@ import Dropdown1 from "@/components/Forum/dropdown1";
 import Image from "next/image";
 import pen from "../../../public/icon/pen.svg";
 import Link from "next/link";
+// import Notif from "@/components/Forum/notif";
 
 function Forum() {
   return (
     <div className="bg-[#E4FFF2] pb-[5%] ">
+      {/* <Notif/> */}
       <p className="text-[#308967] text-[20px] ml-[22%] inline-block mt-[4%]">
         8 ulasan terbaru
       </p>
@@ -15,8 +17,7 @@ function Forum() {
         <div className="">
           <Dropdown1 />
         </div>
-        <Grid />
-        <div className="mt-6 ms-[12%] flex">
+        <div className="mt-6 ms-[23%] flex">
           <div className="bg-[#308967] h-[18px] w-[18px]  rounded-md cursor-pointer">
             <Image
               src={pen}
