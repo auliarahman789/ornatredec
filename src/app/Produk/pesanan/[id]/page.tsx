@@ -36,17 +36,25 @@ const DetailPesanan = () => {
   }, [id, id_subvariasi]);
 
   useEffect(() => {
-    set_id_subvariasipesan(id_subvariasi);
+    set_id_subvariasikeranjang(id_subvariasi);
+    set_jumlahStokkeranjang(jumlah);
+    set_keranjang(id);
   }, [id_subvariasi]);
 
   async function tambahkeranjang() {
+    // if (!subvariasiDipilih) {
+    //   alert("Harap pilih subvariasi terlebih dahulu.");
+    //   return;
+    // }
+
     const url = `${process.env.NEXT_PUBLIC_URL}/api/troli`;
+
     try {
       const response = await axios.post(
         url,
         {
           id_produk: id_produkkeranjang,
-          id_subvariasi: id_subvariasikeranjang,
+          id_subVariasi: subvariasiDipilih.id,
           jumlahStok: jumlahStokkeranjang,
         },
         { withCredentials: true }
@@ -55,12 +63,19 @@ const DetailPesanan = () => {
         alert("Produk berhasil ditambahkan ke keranjang!");
         router.push("/Produk/keranjang");
       }
+      console.log(id_produkkeranjang);
+      console.log(id_subvariasikeranjang);
     } catch (error) {
-      console.error("Error fetching product details:", error);
+      console.error("Error menambahkan ke keranjang:", error);
     }
   }
 
   async function tambahkepesan() {
+    if (!subvariasiDipilih || produk?.jumlah === 0) {
+      alert("Produk tidak dapat dibeli karena stok habis.");
+      return;
+    }
+
     const url = `${process.env.NEXT_PUBLIC_URL}/api/transaksiSatu`;
     console.log(id_produkpesan);
     console.log(id_subvariasipesan);
@@ -116,6 +131,7 @@ const DetailPesanan = () => {
   const handleVariasiClick = (subvariasi: Subvariasi) => {
     setHargaTerpilih(subvariasi.harga); // Update harga sesuai dengan subvariasi yang dipilih
     setSubvariasiDipilih(subvariasi); // Simpan subvariasi yang dipilih
+    console.log("Subvariasi dipilih:", subvariasi);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -179,7 +195,15 @@ const DetailPesanan = () => {
             </div>
             <div className="flex flex-row translate-y-[500%]">
               {/* <Link > */}
-              <button onClick={() => tambahkepesan()}>
+              <button
+                onClick={() => {
+                  if (produk?.jumlah === 0) {
+                    alert("Stok habis, produk tidak dapat dibeli.");
+                    return;
+                  }
+                  tambahkepesan();
+                }}
+              >
                 <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
                   <span className="text-white flex flex-row">
                     Beli<span className="pl-1">sekarang</span>
@@ -189,7 +213,10 @@ const DetailPesanan = () => {
               {/* </Link> */}
               <button
                 onClick={() => tambahkeranjang()}
-                className="text-white bg-green-500 rounded-lg py-2 px-[5%] ml-2 translate-x-[350%]"
+                className={`text-white bg-green-500 rounded-lg py-2 px-[5%] ml-2 translate-x-[350%] ${
+                  !subvariasiDipilih ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={!subvariasiDipilih}
               >
                 <Image
                   src="/icon/troli.svg"
