@@ -1,10 +1,11 @@
 "use client";
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 
+// Interface untuk produk
 interface SubVariasi {
   nama_sub_variasi: string;
   stok: number;
@@ -24,10 +25,49 @@ interface Produk {
   foto_produk: string;
   variasis: Variasi[];
 }
-const Page = () => {
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const router = useRouter();
 
+// Komponen popup untuk checkout
+interface CheckoutPopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+}
+
+const CheckoutPopup: React.FC<CheckoutPopupProps> = ({
+  isOpen,
+  onClose,
+  onConfirm,
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-80">
+        <h2 className="text-xl font-semibold mb-4 text-center">
+          Apakah Anda Yakin?
+        </h2>
+        <p className="mb-6">Selesaikan pembayaran ini dengan klik Konfirmasi</p>
+        <div className="flex justify-between">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-[#6F6D6D] rounded"
+          >
+            Batal
+          </button>
+          <button
+            onClick={onConfirm}
+            className="px-4 py-2 text-[#3F9272] rounded"
+          >
+            Konfirmasi
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Page = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState<Produk>({
     judul_produk: "",
     deskripsi_produk: "",
@@ -36,14 +76,33 @@ const Page = () => {
     variasis: [],
   });
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   // Fungsi untuk pergi kembali ke halaman sebelumnya
   const handleGoBack = () => {
-    router?.push("/Produk/pesanan/[id]"); // Gantilah [id] dengan id yang sesuai jika perlu
+    router.push("/Produk/pesanan/[id]");
+  };
+
+  // Fungsi untuk membuka popup
+  const handleCheckoutClick = () => {
+    setIsPopupOpen(true);
+  };
+
+  // Fungsi untuk menutup popup
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  // Fungsi untuk mengonfirmasi checkout
+  const handleConfirmCheckout = () => {
+    setIsPopupOpen(false);
+    alert("Checkout berhasil!");
+    // Anda bisa menambahkan logika checkout API di sini
   };
 
   // Mengambil data produk dari API
   const getProduk = async () => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`; // Pastikan URL ini sesuai dengan API yang benar
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProduk`;
     try {
       const res = await axios.get(url, { withCredentials: true });
       setFormData({
@@ -51,7 +110,7 @@ const Page = () => {
         deskripsi_produk: res.data.deskripsi_produk || "",
         harga: res.data.harga || 0,
         foto_produk: res.data.foto_produk || "",
-        variasis: res.data.variasis || [], // Default ke array kosong jika variasi kosong
+        variasis: res.data.variasis || [],
       });
     } catch (error) {
       console.error("Failed to fetch produk data", error);
@@ -124,7 +183,7 @@ const Page = () => {
         <div className="bg-white py-10 rounded ml-[3%] mr-[3%] text-[#00663F] text-2xl border-2 p-5 border-[#00663F]">
           Jl.Melong Tengah No 12 RW.05 RT.03
         </div>
-        <Link href="/Produk/compnents/editalamat">
+        <Link href="/Produk/editalamat">
           <button className="text-white bg-[#139663] rounded px-3 ml-[90%] -translate-y-24">
             Edit
           </button>
@@ -167,6 +226,7 @@ const Page = () => {
           </div>
         </div>
       </div>
+      {/* Komponen lainnya */}
       <div className="mt-[2%] ml-[7%] mr-[7%] py-6 bg-[#F3FFFB] font-semibold text-[#00663F]">
         <div className="ml-[3%] bg-white rounded mr-[3%] text-[#00663F] h-80 border-2 p-10 border-[#00663F]">
           <p className="ml-1 text-2xl">Subtotal</p>
@@ -178,10 +238,18 @@ const Page = () => {
         <div className="-translate-y-48 text-2xl pl-[4%] border-2 border-[#00663F] mr-[3%] ml-[3%]">
           Total Pembayaran
         </div>
-        <button className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40">
+        <button
+          className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40"
+          onClick={handleCheckoutClick}
+        >
           Checkout
         </button>
       </div>
+      <CheckoutPopup
+        isOpen={isPopupOpen}
+        onClose={handleClosePopup}
+        onConfirm={handleConfirmCheckout}
+      />
     </div>
   );
 };

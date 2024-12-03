@@ -4,6 +4,7 @@ import React, { ChangeEvent, useRef, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
 interface UserData {
   provinsi: string;
@@ -12,12 +13,12 @@ interface UserData {
   kelurahan: string;
   jalan: string;
   RtRw: string;
-  patokanRumah: any;
+  patokanRumah: string;
   namaPenerima: string;
   no_hp: string;
 }
-function page() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
+function Page() {
   const [formData, setFormData] = useState<UserData>({
     provinsi: "",
     kota: "",
@@ -30,6 +31,9 @@ function page() {
     no_hp: "",
   });
 
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const router = useRouter();
+
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -38,66 +42,87 @@ function page() {
       ...prevData,
       [name]: value,
     }));
-    console.log(value);
   };
 
   const handleSave = async () => {
     try {
-      var formData2 = new FormData();
-      formData2.append("provinsi", formData.provinsi);
-      formData2.append("kota", formData.kota);
-      formData2.append("kecamatan", formData.kecamatan);
-      formData2.append("kelurahan", formData.kelurahan);
-      formData2.append("jalan", formData.jalan);
-      formData2.append("RtRw", formData.RtRw);
-      formData2.append("patoakanRumah", formData.patokanRumah);
-      formData2.append("namaPenerima", formData.namaPenerima);
-      formData2.append("no_hp", formData.no_hp);
+      if (
+        !formData.provinsi ||
+        !formData.kota ||
+        !formData.kecamatan ||
+        !formData.kelurahan ||
+        !formData.jalan ||
+        !formData.RtRw ||
+        !formData.namaPenerima ||
+        !formData.no_hp
+      ) {
+        alert("Semua field harus diisi.");
+        return;
+      }
+
+      if (!/^\d+$/.test(formData.no_hp)) {
+        alert("Nomor HP harus berupa angka.");
+        return;
+      }
 
       const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
+      const token = localStorage.getItem("token");
+
+      if (!userId || !token) {
+        alert("User ID atau token tidak ditemukan. Silakan login ulang.");
+        return;
+      }
+
+      const formData2 = new FormData();
+      Object.keys(formData).forEach((key) => {
+        formData2.append(key, (formData as any)[key]);
+      });
 
       const response = await axios.put(
-        `${process.env.NEXT_PUBLIC_URL}api/update/${userId}`, // Ganti :id dengan userId
+        `${process.env.NEXT_PUBLIC_URL}api/update/${userId}`,
         formData2,
         {
           headers: {
-            "Content-Type": "multipart/form-Data",
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Sertakan token jika diperlukan
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
       if (response.status === 200) {
-        // Jika berhasil, simpan data di localStorage
         localStorage.setItem("userData", JSON.stringify(formData));
-        localStorage.setItem("provinsi", formData.provinsi);
-        localStorage.setItem("kota", formData.kota);
-        localStorage.setItem("kecamatan", formData.kecamatan);
-        localStorage.setItem("kelurahan", formData.kelurahan);
-        localStorage.setItem("jalan", formData.jalan);
-        localStorage.setItem("RtRw", formData.RtRw);
-        localStorage.setItem("patokanRumah", formData.patokanRumah);
-        localStorage.setItem("namaPenerima", formData.namaPenerima);
-        localStorage.setItem("no_hp", formData.no_hp);
-
-        //router?.push("/profile");
+        alert("Data berhasil diperbarui.");
+        router.push("/profile");
       } else {
-        alert("Gagal memperbarui data pengguna.");
+        alert("Gagal memperbarui data. Periksa data Anda.");
       }
-      console.log(formData);
     } catch (error) {
       console.error("Kesalahan saat memperbarui data pengguna:", error);
-      alert("Terjadi kesalahan saat memperbarui data Anda.");
+      alert(
+        "Terjadi kesalahan saat memperbarui data. Silakan coba lagi nanti."
+      );
     }
   };
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const router = useRouter();
-
   const handleGoBack = () => {
-    router?.push("/Produk/paymentgateway");
+    router.push("/Produk/paymentgateway");
+  };
+
+  const handleDelete = () => {
+    if (confirm("Apakah Anda yakin ingin menghapus alamat ini?")) {
+      setFormData({
+        provinsi: "",
+        kota: "",
+        kecamatan: "",
+        kelurahan: "",
+        jalan: "",
+        RtRw: "",
+        patokanRumah: "",
+        namaPenerima: "",
+        no_hp: "",
+      });
+      alert("Alamat berhasil dihapus.");
+    }
   };
 
   return (
@@ -122,77 +147,83 @@ function page() {
         <input
           type="text"
           name="provinsi"
-          defaultValue={formData.provinsi}
+          value={formData.provinsi}
           onChange={handleInputChange}
-          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1 "
+          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1"
         />
         <input
           type="text"
           name="kota"
-          defaultValue={formData.kota}
+          value={formData.kota}
           onChange={handleInputChange}
-          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded shadow-sm mb-1"
+          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1"
         />
         <input
           type="text"
           name="kecamatan"
-          defaultValue={formData.kecamatan}
+          value={formData.kecamatan}
           onChange={handleInputChange}
-          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded shadow-sm mb-1"
+          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1"
         />
         <input
           type="text"
           name="kelurahan"
-          defaultValue={formData.kelurahan}
+          value={formData.kelurahan}
           onChange={handleInputChange}
-          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded shadow-sm mb-1"
+          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1"
         />
         <span className="pl-8">Jalan/Nama Gedung</span>
         <input
           type="text"
           name="jalan"
-          defaultValue={formData.jalan}
+          value={formData.jalan}
           onChange={handleInputChange}
-          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1 "
+          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1"
         />
         <span className="pl-8">RT/RW</span>
         <input
           type="text"
           name="RtRw"
-          defaultValue={formData.RtRw}
+          value={formData.RtRw}
           onChange={handleInputChange}
-          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1 "
+          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1"
         />
-        <span className="pl-8">Patokan Rumah </span>
+        <span className="pl-8">Patokan Rumah</span>
         <input
           type="text"
           name="patokanRumah"
-          defaultValue={formData.patokanRumah}
+          value={formData.patokanRumah}
           onChange={handleInputChange}
-          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1 "
+          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1"
         />
-        <span className="pl-8">Nama Penerima </span>
+        <span className="pl-8">Nama Penerima</span>
         <input
           type="text"
           name="namaPenerima"
-          defaultValue={formData.namaPenerima}
+          value={formData.namaPenerima}
           onChange={handleInputChange}
-          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1 "
+          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1"
         />
-        <span className="pl-8">No HP </span>
+        <span className="pl-8">No HP</span>
         <input
           type="text"
           name="no_hp"
-          defaultValue={formData.no_hp}
+          value={formData.no_hp}
           onChange={handleInputChange}
-          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1 "
+          className="w-[95%] translate-x-7 p-4 border border-black bg-white rounded mb-1"
         />
         <p className="mt-9 pl-8">Kategori Alamat</p>
         <p className="mt-4 pl-8">Alamat Pengiriman Utama</p>
-        <div className="border text-[#838282] cursor-pointer bg-[#F7F7F7] text-center mt-8 p-3 rounded mr-[2%] ml-[2%]">
+        <div
+          onClick={handleDelete}
+          className="border text-[#838282] cursor-pointer bg-[#F7F7F7] text-center mt-8 p-3 rounded mr-[2%] ml-[2%]"
+        >
           Hapus Alamat
         </div>
-        <div className="border bg-[#28DF99] text-white cursor-pointer text-center mt-8 p-3 rounded mr-[2%] ml-[2%]">
+        <div
+          onClick={handleSave}
+          className="border bg-[#28DF99] text-white cursor-pointer text-center mt-8 p-3 rounded mr-[2%] ml-[2%]"
+        >
           Simpan
         </div>
       </div>
@@ -200,4 +231,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
