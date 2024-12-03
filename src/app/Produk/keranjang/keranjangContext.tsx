@@ -42,7 +42,6 @@ export const KeranjangProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  // Fungsi untuk menghapus produk dari keranjang berdasarkan ID produk
   const hapusDariKeranjang = (produkId: number) => {
     setKeranjang((prevKeranjang) =>
       prevKeranjang.filter((item) => item.id !== produkId)

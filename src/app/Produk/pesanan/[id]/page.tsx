@@ -11,27 +11,95 @@ import { Produk, Subvariasi } from "../types";
 
 const DetailPesanan = () => {
   const { id } = useParams();
+  const { id_subvariasi } = useParams();
   const router = useRouter();
-  const { tambahProdukKeKeranjang } = useKeranjang();
+  // const { tambahProdukKeKeranjang } = useKeranjang();
   const [produk, setProduk] = useState<Produk | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [hargaTerpilih, setHargaTerpilih] = useState<number | null>(null);
-  const [subvariasiDipilih, setSubvariasiDipilih] = useState<Subvariasi | null>(
-    null
-  );
+  const [subvariasiDipilih, setSubvariasiDipilih] = useState<any>(null);
+  const [id_produkpesan, set_produkpesan] = useState<any>();
+  const [id_subvariasipesan, set_id_subvariasipesan] = useState<any>();
+  // const [jumlahStokpesan, set_jumlahStokpesan] = useState<any>();
+  const [id_produkkeranjang, set_keranjang] = useState<any>();
+  const [id_subvariasikeranjang, set_id_subvariasikeranjang] = useState<any>();
+  const [jumlahStokkeranjang, set_jumlahStokkeranjang] = useState<any>();
 
   useEffect(() => {
-    if (typeof id === "string") {
-      fetchDetailProduct(id);
+    if (id_subvariasi) {
+      set_id_subvariasipesan(id_subvariasi);
     }
-  }, [id]);
+    fetchDetailProduct(id);
+    set_produkpesan(id);
+    console.log(id);
+  }, [id, id_subvariasi]);
 
-  const fetchDetailProduct = async (produkId: string) => {
+  useEffect(() => {
+    set_id_subvariasipesan(id_subvariasi);
+  }, [id_subvariasi]);
+
+  async function tambahkeranjang() {
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/troli`;
+    try {
+      const response = await axios.post(
+        url,
+        {
+          id_produk: id_produkkeranjang,
+          id_subvariasi: id_subvariasikeranjang,
+          jumlahStok: jumlahStokkeranjang,
+        },
+        { withCredentials: true }
+      );
+      if (response.status === 202) {
+        alert("Produk berhasil ditambahkan ke keranjang!");
+        router.push("/Produk/keranjang");
+      }
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+    }
+  }
+
+  async function tambahkepesan() {
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/transaksiSatu`;
+    console.log(id_produkpesan);
+    console.log(id_subvariasipesan);
+    try {
+      const response = await axios.post(
+        url,
+        {
+          metode_transaksi: "online",
+          id_produk: id_produkpesan,
+          jumlah: jumlah,
+          id_subvariasi: subvariasiDipilih.id,
+        },
+        { withCredentials: true }
+      );
+
+      console.log("Response:", response.data);
+      {
+        router.push("/Produk/pesanan/checkout");
+      }
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+    }
+  }
+
+  // useEffect(() => {
+  //   set_produk(id);
+  //   if (typeof id === "string") {
+  //     tambahkepesan();
+  //   }
+  //   console.log(id);
+  // }, [id]);
+
+  const fetchDetailProduct = async (produkId: any) => {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/getProdukId/${produkId}`;
+    console.log("fetch", produkId);
     try {
       const response = await axios.get(url, { withCredentials: true });
       setProduk(response.data);
+      console.log(response.data);
       setHargaTerpilih(response.data.harga); // Set harga awal sesuai dengan produk utama
     } catch (error) {
       console.error("Error fetching product details:", error);
@@ -41,25 +109,12 @@ const DetailPesanan = () => {
     }
   };
 
-  const tambahKeKeranjang = () => {
-    if (produk) {
-      const produkDenganVariasi = {
-        ...produk,
-        variasiDipilih: subvariasiDipilih?.nama_sub_variasi || "", // Tambahkan variasi yang dipilih
-        subvariasiDipilih: subvariasiDipilih?.nama_sub_variasi || "", // Subvariasi yang dipilih
-        harga: hargaTerpilih || produk.harga, // Harga berdasarkan variasi
-      };
-      tambahProdukKeKeranjang(produkDenganVariasi);
-      router.push("/Produk/keranjang");
-    }
-  };
-
   const [jumlah, setJumlah] = useState(1);
   const tambahJumlah = () => setJumlah((prev) => prev + 1);
   const kurangiJumlah = () => setJumlah((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleVariasiClick = (subvariasi: Subvariasi) => {
-    setHargaTerpilih(subvariasi.harga); // Update harga berdasarkan subvariasi yang dipilih
+    setHargaTerpilih(subvariasi.harga); // Update harga sesuai dengan subvariasi yang dipilih
     setSubvariasiDipilih(subvariasi); // Simpan subvariasi yang dipilih
   };
 
@@ -89,12 +144,11 @@ const DetailPesanan = () => {
                   <p className="text-xl font-medium">
                     Variasi: {variasi.nama_variasi}
                   </p>
-
                   <div className="flex flex-wrap gap-2">
                     {variasi.subvariasis.map((subvariasi) => (
                       <button
                         key={subvariasi.id}
-                        onClick={() => handleVariasiClick(subvariasi)}
+                        onClick={() => handleVariasiClick(subvariasi)} // Kirim objek subvariasi
                         className={`px-3 py-1 rounded hover:bg-gray-300 transition-colors duration-200 ${
                           subvariasiDipilih?.id === subvariasi.id
                             ? "bg-green-400 text-white"
@@ -124,15 +178,17 @@ const DetailPesanan = () => {
               ))}
             </div>
             <div className="flex flex-row translate-y-[500%]">
-              <Link href="../pesanan/checkout">
+              {/* <Link > */}
+              <button onClick={() => tambahkepesan()}>
                 <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
                   <span className="text-white flex flex-row">
                     Beli<span className="pl-1">sekarang</span>
                   </span>
                 </button>
-              </Link>
+              </button>
+              {/* </Link> */}
               <button
-                onClick={tambahKeKeranjang}
+                onClick={() => tambahkeranjang()}
                 className="text-white bg-green-500 rounded-lg py-2 px-[5%] ml-2 translate-x-[350%]"
               >
                 <Image
