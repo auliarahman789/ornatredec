@@ -9,7 +9,6 @@ const CheckoutPage = () => {
   const produkId = searchParams.get("produkId");
   const [produkDetail, setProdukDetail] = useState<any | null>(null);
 
-  // Definisikan tipe produkData dengan Record<number, {nama, harga, deskripsi}>
   const produkData: Record<
     number,
     { nama: string; harga: number; deskripsi: string }
