@@ -47,7 +47,13 @@ function SidebarSp() {
       console.log("Logout Response:", response.data);
       localStorage.removeItem("token");
       localStorage.removeItem("username"); 
-      router.replace('/auths')
+      Swal.fire({
+        icon: "success",
+        title: "Logout sukses",
+        showConfirmButton: false,
+        iconColor: "##167960"
+      })
+      router.replace('/auths');
     } catch (error: any) {
       console.error("Logout error:", error.response.data.message);
     }
@@ -188,16 +194,16 @@ function SidebarSp() {
               Forum
             </li>
           </Link>
-          <button onClick={()=> setShowModal(true)} className="flex">
+          <button onClick={handleLogout} className="flex">
             <Image src={logIcon} className="me-5" alt="logout" width={30} height={30} />
             Logout
           </button>
-          {showModal && (
+          {/* {showModal && (
         <Logout
           isVisible={showModal}
           onClose={() => setShowModal(false)}
         />
-      )}
+      )} */}
         </ul>
       </nav>
     </div>
