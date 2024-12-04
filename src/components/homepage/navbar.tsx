@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios"; // Import axios
 import Image from "next/image";
-import logo from "../../../public/icon/logo.svg";
-import defaultAvatar from "../../../public/img/default-avatar.png";
+import logo from "../../../../public/icon/logo.svg";
+import defaultAvatar from "../../../../public/img/default-avatar.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -19,7 +19,7 @@ function Navbar() {
         if (!token) return; // Jika tidak ada token, keluar dari fungsi
 
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_URL}api/getMe`,
+          `${process.env.NEXT_PUBLIC_URL}/api/getMe`,
           {
             withCredentials: true,
             // headers: {
@@ -33,7 +33,7 @@ function Navbar() {
         if (response.data) {
           setIsLoggedIn(true);
           setUsername(response.data.username);
-          setAvatar("https://74gslzvj-8000.asse.devtunnels.ms"  + response.data.photoProfile || defaultAvatar.src); // Gunakan avatar dari response
+          setAvatar(response.data.avatar || defaultAvatar.src); // Gunakan avatar dari response
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
