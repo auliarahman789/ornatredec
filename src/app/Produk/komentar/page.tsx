@@ -1,4 +1,4 @@
-"use client";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 type Ulasan = {
@@ -19,28 +19,19 @@ const Komentar: React.FC = () => {
 
   useEffect(() => {
     const fetchUlasans = async () => {
+      const url = `${process.env.NEXT_PUBLIC_URL}/api/ulasan`;
       try {
-        const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
-        const response = await fetch(url);
-        if (response.ok) {
-          const data = await response.json();
-          setUlasans(data);
-        } else {
-          console.error("Gagal mengambil data ulasan dari API");
+        const response = await axios.get(url);
+        if (response.status === 200) {
+          setUlasans(response.data);
         }
       } catch (error) {
-        console.error("Error:", error);
-      } finally {
-        setLoading(false);
+        setUlasans([]); // Jika error, set ulasans menjadi array kosong
       }
     };
 
     fetchUlasans();
   }, []);
-
-  if (loading) {
-    return <p>Loading ulasan...</p>;
-  }
 
   return (
     <div>

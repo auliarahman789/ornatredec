@@ -57,7 +57,6 @@ function Edit() {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/getMe`;
     try {
       const res = await axios.get(url, {
-        // Menggunakan params untuk query string
         withCredentials: true,
       });
 
@@ -158,7 +157,6 @@ function Edit() {
       formData2.append("jalan", formData.jalan);
       formData2.append("RtRw", formData.RtRw);
 
-      // Ambil ID pengguna dari localStorage
       const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
 
       const response = await axios.put(
@@ -218,7 +216,7 @@ function Edit() {
                 alt="Profile Picture"
                 className="rounded-full cursor-pointer"
                 onClick={handleavatarClick}
-                unoptimized // Menghindari optimisasi yang mungkin menyebabkan masalah pada data URL
+                unoptimized
               />
 
               <input
@@ -271,7 +269,7 @@ function Edit() {
               <input
                 type="text"
                 name="provinsi"
-                defaultValue={formData.email}
+                defaultValue={formData.provinsi}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -281,7 +279,7 @@ function Edit() {
               <input
                 type="text"
                 name="kotakabupaten"
-                defaultValue={formData.email}
+                defaultValue={formData.kotakabupaten}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -291,7 +289,7 @@ function Edit() {
               <input
                 type="text"
                 name="kecamatan"
-                defaultValue={formData.email}
+                defaultValue={formData.kecamatan}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -301,7 +299,7 @@ function Edit() {
               <input
                 type="text"
                 name="kelurahanDesa"
-                defaultValue={formData.email}
+                defaultValue={formData.kelurahanDesa}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -311,7 +309,7 @@ function Edit() {
               <input
                 type="text"
                 name="jalan"
-                defaultValue={formData.email}
+                defaultValue={formData.jalan}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -321,7 +319,7 @@ function Edit() {
               <input
                 type="text"
                 name="jalan"
-                defaultValue={formData.email}
+                defaultValue={formData.RtRw}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />

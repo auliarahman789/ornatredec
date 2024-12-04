@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useKeranjang } from "./keranjangContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import axios, { AxiosError } from "axios";
+import error from "next/error";
 
 const KeranjangPage = () => {
   const { keranjang, hapusDariKeranjang } = useKeranjang();
@@ -12,26 +14,24 @@ const KeranjangPage = () => {
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [selectAll, setSelectAll] = useState(false);
   const [keranjangFromAPI, setKeranjangFromAPI] = useState<any[]>([]);
+  const [keranjangA, setKeranjangA] = useState([]);
   const router = useRouter();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchKeranjang = async () => {
+    const getKeranjang = async () => {
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/getTroli`
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_URL}/api/getTroli`,
+          { withCredentials: true }
         );
-        if (!response.ok) {
-          throw new Error("Gagal memuat keranjang");
-        }
-        const data = await response.json();
-        setKeranjangFromAPI(data);
-      } catch (error) {
-        console.error("Error:", error);
-        alert("Terjadi kesalahan saat memuat keranjang.");
+        setKeranjangA(response.data);
+      } catch (error: any) {
+        setError(error.message);
       }
     };
 
-    fetchKeranjang();
+    getKeranjang();
   }, []);
 
   const totalItem = keranjangFromAPI.reduce(
@@ -42,32 +42,17 @@ const KeranjangPage = () => {
   const handlePesanProduk = async () => {
     if (selectedItems.length > 0) {
       try {
-        const response = await fetch(
+        const response = await axios.post(
           `${process.env.NEXT_PUBLIC_URL}/api/transaksi`,
-          {
-            method: "POST",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ produkId: selectedItems }), // Kirim data produkId
-          }
+          { produkId: selectedItems },
+          { withCredentials: true }
         );
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          console.error("Error response:", errorData);
-          throw new Error(errorData.message || "Gagal memproses pesanan");
-        }
-
-        const produkDetails = await response.json();
-        console.log("Produk Details:", produkDetails);
+        console.log("Produk Details:", response.data);
       } catch (error) {
         console.error("Error:", error);
-        alert("Terjadi kesalahan saat memproses pesanan. Silakan coba lagi.");
+        alert("Gagal memproses pesanan. Silakan coba lagi.");
       }
-    } else {
-      alert("Pilih setidaknya satu produk untuk dipesan.");
     }
   };
 
@@ -83,26 +68,14 @@ const KeranjangPage = () => {
   const handleKonfirmasiHapus = async () => {
     if (produkIdTroli !== null) {
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/hapusTroli/${produkIdTroli}`,
-          {
-            method: "DELETE",
-          }
+        await axios.delete(
+          `${process.env.NEXT_PUBLIC_URL}/api/hapusTroli/${produkIdTroli}`
         );
 
-        if (!response.ok) {
-          throw new Error("Gagal menghapus item dari troli");
-        }
-
-        // Hapus dari konteks keranjang setelah API berhasil
         hapusDariKeranjang(produkIdTroli);
         setProdukIdTroli(null);
       } catch (error) {
-        if (error instanceof Error) {
-          console.error("Terjadi kesalahan:", error.message);
-        } else {
-          console.error("Kesalahan yang tidak diketahui:", error);
-        }
+        console.error("Terjadi kesalahan:", error);
       }
     }
     setShowModal(false);
