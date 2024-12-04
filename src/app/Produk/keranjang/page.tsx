@@ -4,19 +4,13 @@ import React, { useState, useEffect } from "react";
 import { useKeranjang } from "./keranjangContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import axios, { AxiosError } from "axios";
-import error from "next/error";
+import axios from "axios";
 
 const KeranjangPage = () => {
-  const { keranjang, hapusDariKeranjang } = useKeranjang();
-  const [showModal, setShowModal] = useState(false);
-  const [produkIdTroli, setProdukIdTroli] = useState<number | null>(null);
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
-  const [selectAll, setSelectAll] = useState(false);
+  const { hapusDariKeranjang } = useKeranjang();
   const [keranjangFromAPI, setKeranjangFromAPI] = useState<any[]>([]);
-  const [keranjangA, setKeranjangA] = useState([]);
   const router = useRouter();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const getKeranjang = async () => {
@@ -25,106 +19,30 @@ const KeranjangPage = () => {
           `${process.env.NEXT_PUBLIC_URL}/api/getTroli`,
           { withCredentials: true }
         );
-        setKeranjangA(response.data);
-      } catch (error: any) {
-        setError(error.message);
+        setKeranjangFromAPI(response.data);
+      } catch (err: any) {
+        setError(err.message);
       }
     };
 
     getKeranjang();
   }, []);
 
-  const totalItem = keranjangFromAPI.reduce(
-    (acc, item) => acc + (item.jumlah ?? 0),
-    0
-  );
-
-  const handlePesanProduk = async () => {
-    if (selectedItems.length > 0) {
-      try {
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_URL}/api/transaksi`,
-          { produkId: selectedItems },
-          { withCredentials: true }
-        );
-
-        console.log("Produk Details:", response.data);
-      } catch (error) {
-        console.error("Error:", error);
-        alert("Gagal memproses pesanan. Silakan coba lagi.");
-      }
-    }
-  };
-
   const handleGoBack = () => {
     router.back();
   };
 
-  const handleBukaModal = (id: number) => {
-    setProdukIdTroli(id);
-    setShowModal(true);
-  };
-
-  const handleKonfirmasiHapus = async () => {
-    if (produkIdTroli !== null) {
-      try {
-        await axios.delete(
-          `${process.env.NEXT_PUBLIC_URL}/api/hapusTroli/${produkIdTroli}`
-        );
-
-        hapusDariKeranjang(produkIdTroli);
-        setProdukIdTroli(null);
-      } catch (error) {
-        console.error("Terjadi kesalahan:", error);
-      }
-    }
-    setShowModal(false);
-  };
-
-  const handleTutupModal = () => {
-    setShowModal(false);
-    setProdukIdTroli(null);
-  };
-
-  const handleSelectAll = () => {
-    if (selectAll) {
-      setSelectedItems([]);
-    } else {
-      setSelectedItems(keranjangFromAPI.map((item) => item.id));
-    }
-    setSelectAll(!selectAll);
-  };
-
-  const handleSelectItem = (id: number) => {
-    setSelectedItems((prevSelectedItems) =>
-      prevSelectedItems.includes(id)
-        ? prevSelectedItems.filter((itemId) => itemId !== id)
-        : [...prevSelectedItems, id]
-    );
+  const handlePesanProduk = (id: any) => {
+    router.push(`/Produk/pesanan/checkout?produkId=${id}`);
   };
 
   return (
     <div className="bg-[#E4FFF2] min-h-screen pl-[5%] pt-10 pr-[15%]">
-      <div className="absolute top-5 right-10 -translate-x-[60%] translate-y-8 bg-[#308967] text-white px-4 py-2 rounded-full">
-        Total Item: {totalItem}
-      </div>
-
       <div className="bg-white w-[1200px] h-auto shadow-[3px_5px_4px] shadow-[#0000002e]">
         <div className="ml-10 mr-10">
-          <div className="flex items-center justify-between pt-10">
-            <h1 className="text-3xl font-bold mb-6 text-[#308967]">
-              Keranjang Anda
-            </h1>
-            <div className="flex flex-row">
-              <span className="text-[#308967] text-2xl">Pesan Semua</span>
-              <input
-                type="checkbox"
-                checked={selectAll}
-                onChange={handleSelectAll}
-                className="ml-2 mt-2"
-              />
-            </div>
-          </div>
+          <h1 className="text-3xl font-bold mb-6 text-[#308967] pt-10">
+            Keranjang Anda
+          </h1>
           <div className="border-b-2 border-[#308967]"></div>
           <div className="flex justify-between text-2xl text-[#308967] pt-5 pb-5">
             <span>Produk</span>
@@ -141,41 +59,35 @@ const KeranjangPage = () => {
             </div>
           ) : (
             <div className="grid gap-4 pt-6">
-              {keranjangFromAPI.map((item: any) => (
+              {keranjangFromAPI.map((item) => (
                 <div
-                  key={`${item.id}-${item.variasiDipilih}`}
+                  key={item.id}
                   className="flex items-center p-4 bg-white rounded mt-8 space-y-6 shadow-[3px_5px_4px] shadow-[#0000002e]"
                 >
                   <div className="flex flex-col">
                     <div className="text-xl font-semibold">
-                      {item.judul_produk}
+                      {item.produk.judul_produk}
                     </div>
                     <div className="text-sm text-gray-600">
-                      Variasi: {item.variasiDipilih}
+                      Variasi: {item.variasi.nama_variasi}
                     </div>
-                    <div className="translate-x-[670%] -translate-y-[100%]">
+                    <div className="text-sm text-gray-600">
+                      Subvariasi: {item.subvariasi.nama_sub_variasi}
+                    </div>
+                    <div className="flex justify-end translate-x-[580%] -translate-y-[100%]">
                       <div className="text-[#308967] text-lg font-semibold">
-                        Rp. {item.harga}
+                        Rp. {item.subvariasi.harga}
                       </div>
                     </div>
-                    <button
-                      onClick={() => handleBukaModal(item.id)}
-                      className="bg-[#FF0000] text-white px-4 py-2 rounded-lg mt-2"
-                    >
-                      Hapus
-                    </button>
-                    <div className="-translate-y-[100%] translate-x-[650%]">
-                      <button className="bg-[#51CB9F] text-white font-medium px-2 py-1 h-10 w-[50%] rounded-md">
+                    <div className="-translate-y-[100%] translate-x-[620%]">
+                      <button
+                        onClick={() => handlePesanProduk(item.id)} // Mengirim ID produk saat tombol diklik
+                        className="bg-[#51CB9F] text-white font-medium px-2 py-1 h-10 w-[50%] rounded-md"
+                      >
                         Pesan
                       </button>
                     </div>
                   </div>
-                  <input
-                    type="checkbox"
-                    checked={selectedItems.includes(item.id)}
-                    onChange={() => handleSelectItem(item.id)}
-                    className="translate-x-[870px]"
-                  />
                 </div>
               ))}
             </div>
@@ -187,38 +99,9 @@ const KeranjangPage = () => {
             >
               Kembali
             </button>
-            <button
-              onClick={handlePesanProduk}
-              className="bg-green-500 text-white px-4 py-2 rounded-lg"
-            >
-              Pesan Sekarang
-            </button>
           </div>
         </div>
       </div>
-
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
-            <h2 className="text-lg font-bold mb-4">Konfirmasi Hapus Produk</h2>
-            <p>Apakah Anda yakin ingin menghapus produk ini dari keranjang?</p>
-            <div className="flex justify-end space-x-4 mt-6">
-              <button
-                onClick={handleTutupModal}
-                className="bg-gray-300 px-4 py-2 rounded-lg"
-              >
-                Batal
-              </button>
-              <button
-                onClick={handleKonfirmasiHapus}
-                className="bg-red-500 text-white px-4 py-2 rounded-lg"
-              >
-                Hapus
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
