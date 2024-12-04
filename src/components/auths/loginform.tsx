@@ -34,14 +34,12 @@ const Login = () => {
 
       const userData = res.data.user;
       const token = res.data.token; // Asumsikan API mengembalikan token
-  
+
       if (token) {
-        localStorage.setItem("token", token); 
+        localStorage.setItem("token", token);
       }
-  
+
       localStorage.setItem("userData", JSON.stringify(userData));
-  
-      
 
       // SweetAlert Success
       Swal.fire({
@@ -52,7 +50,7 @@ const Login = () => {
       });
 
       // Redirect berdasarkan role
-      const userRole = userData.role
+      const userRole = userData.role;
       if (userRole === "user") {
         router?.push("/");
       } else if (userRole === "super admin") {

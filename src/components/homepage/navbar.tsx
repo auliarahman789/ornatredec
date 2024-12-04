@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState } from "react";
 import axios from "axios"; // Import axios
 import Image from "next/image";
@@ -6,7 +5,7 @@ import logo from "../../../public/icon/logo.svg";
 import defaultAvatar from "../../../public/img/default-avatar.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import notifIcon from "../../../public/icon/notif2.svg"
+import notifIcon from "../../../public/icon/notif2.svg";
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,13 +20,13 @@ function Navbar() {
         if (!token) return; // Jika tidak ada token, keluar dari fungsi
 
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_URL}/api/getMe`,
+          `${process.env.NEXT_PUBLIC_URL}api/getMe,
           {
             withCredentials: true,
             // headers: {
-            //   Authorization: `Bearer ${token}`,
+            //   Authorization: Bearer ${token},
             // },
-          }
+          }`
         );
 
         console.log(token);
@@ -35,7 +34,10 @@ function Navbar() {
         if (response.data) {
           setIsLoggedIn(true);
           setUsername(response.data.username);
-          setAvatar(response.data.avatar || defaultAvatar.src); // Gunakan avatar dari response
+          setAvatar(
+            "https://74gslzvj-8000.asse.devtunnels.ms" +
+              response.data.photoProfile || defaultAvatar.src
+          ); // Gunakan avatar dari response
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -106,7 +108,7 @@ function Navbar() {
           {isLoggedIn ? (
             <>
               <Link href="/notifikasi">
-              <Image src={notifIcon} width={30} height={30} alt="notifIcon" />
+                <Image src={notifIcon} width={30} height={30} alt="notifIcon" />
               </Link>
               <Link href="/profile" className="flex items-center">
                 <img
@@ -114,9 +116,11 @@ function Navbar() {
                   alt="Profile Avatar"
                   width={40}
                   height={40}
-                  className="rounded-full" />
+                  className="rounded-full"
+                />
                 <span className="text-[#308967] ml-2">{username}</span>
-              </Link></>
+              </Link>
+            </>
           ) : (
             <div>
               <Link href="/auths">
