@@ -22,7 +22,7 @@ type Kategoritipe = {
         getBarKecil();
       }, []);
       async function getBarKecil() {
-        const url = `${process.env.NEXT_PUBLIC_URL}api/sales/10/2024`;
+        const url = `${process.env.NEXT_PUBLIC_URL}api/sales/11/2024`;
         try {
           const res = await axios.get(url, {
             withCredentials: true,

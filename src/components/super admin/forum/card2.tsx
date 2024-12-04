@@ -40,7 +40,7 @@ function Card2() {
       {data.length > 0 ? (
         data.map((item, i) => (
           <div className="flex items-center" key={i}>
-            <div className="w-[82%] bg-white ml-[4%] pb-1 shadow-[3px_4px_4px,-3px_6px_4px] shadow-[#0000002d] rounded-md">
+            <div className="w-[82%] bg-white pb-[7%] px-[1%] ml-[4%] shadow-[3px_4px_4px,-3px_6px_4px] shadow-[#0000002d] rounded-md">
               <div className="flex">
                 <div className="flex-col ms-[6%] mt-[4%]">
                   <img
@@ -72,8 +72,8 @@ function Card2() {
                   <p className="font-medium text-[15px] leading-none text-[#323735]">
                     {item.judul}
                   </p>
-
-                  <div className="flex w-[50%] ms-[100%] mt-[40%]">
+                  <div className="relative">
+                  <div className="flex w-[50%] absolute right-1 mt-[10%]">
                     <Image
                       src={mata}
                       width={15}
@@ -93,6 +93,7 @@ function Card2() {
                     <p className="font-light ms-1 mt-1 text-[10px] text-[#323735]">
                       {item.jumlahTanggapan}
                     </p>
+                  </div>
                   </div>
                 </div>
               </div>

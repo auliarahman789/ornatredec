@@ -15,7 +15,7 @@ const Produk = () => {
   }, []);
 
   const fetchProducts = async () => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet`;
     try {
       const response = await axios.get(url, { withCredentials: true });
       console.log(response.data);

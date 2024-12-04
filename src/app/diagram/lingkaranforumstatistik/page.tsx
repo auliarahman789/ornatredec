@@ -36,7 +36,7 @@ function ForumStatistik() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/statistik/2024`;
     try {
       const res = await axios.get(url, { withCredentials: true });
-      const bulan: TotalData = res.data.data[10]; // November (indeks 10)
+      const bulan: TotalData = res.data.data[11]; // November (indeks 10)
       setData([
         ["Type", "Total"],
         ["Total Ikan", bulan.totalIkan],

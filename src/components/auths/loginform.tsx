@@ -32,9 +32,16 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      const userRole = res.data.user.role;
-           
-      localStorage.setItem("userData", JSON.stringify(res.data.user));
+      const userData = res.data.user;
+      const token = res.data.token; // Asumsikan API mengembalikan token
+  
+      if (token) {
+        localStorage.setItem("token", token); 
+      }
+  
+      localStorage.setItem("userData", JSON.stringify(userData));
+  
+      
 
       // SweetAlert Success
       Swal.fire({
@@ -45,6 +52,7 @@ const Login = () => {
       });
 
       // Redirect berdasarkan role
+      const userRole = userData.role
       if (userRole === "user") {
         router?.push("/");
       } else if (userRole === "super admin") {
@@ -58,7 +66,7 @@ const Login = () => {
       Swal.fire({
         icon: "error",
         title: "Gagal Login",
-        text: error.message || "Terjadi kesalahan, coba lagi.",
+        text: error.response.data.message || "Terjadi kesalahan, coba lagi.",
         confirmButtonColor: "#3F9272",
       });
     }
