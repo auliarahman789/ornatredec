@@ -28,9 +28,9 @@ type Kategoritipe = {
             withCredentials: true,
           });
           const formattedData = [
-            { name: "Tanaman", pv: res.data.monthlyStatistics[10].ProdukTanaman },
-            { name: "Ikan", pv: res.data.monthlyStatistics[10].ProdukIkan },
-            { name: "Burung", pv:res.data.monthlyStatistics[10].ProdukBurung},
+            { name: "Tanaman", pv: res.data.monthlyStatistics[11].ProdukTanaman },
+            { name: "Ikan", pv: res.data.monthlyStatistics[11].ProdukIkan },
+            { name: "Burung", pv:res.data.monthlyStatistics[11].ProdukBurung},
           ];
           setData(formattedData);
           console.log(

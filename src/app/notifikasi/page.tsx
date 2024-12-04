@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 type Notif = {
   id: number;
   message: string;
@@ -22,7 +23,6 @@ function page() {
       )
       setData(res.data);
       console.log(res.data);
-      alert("berhasil")
     } catch (error) {
       console.log(error);
       alert("gagal")
@@ -43,12 +43,20 @@ function page() {
         day: "numeric",
     });
     return `jam ${waktuFormatted} tanggal ${tanggall}`;
-};
+  };
+  const router = useRouter();
+  const handleBack = () => {
+    if (window.history.length > 0) {
+      router.back()
+    } else {
+      router.replace("/")
+    }
+  }
   return (
     <div>
       <div className="bg-[#E4FFF2] pb-[5%] h-screen">
         <div className="pl-[10%] pt-[3%]">
-          <Image src="/icon/back.png" width={40} height={40} alt="kembali" />
+          <Image onClick={handleBack} className="cursor-pointer" src="/icon/back.png" width={40} height={40} alt="kembali" />
         </div>
         <div className="pt-[2%] pl-[10%]">
           <h1 className="text-2xl font-bold text-[#308967]">NOTIFIKASI</h1>

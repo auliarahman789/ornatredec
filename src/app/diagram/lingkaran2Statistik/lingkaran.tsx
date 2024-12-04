@@ -46,7 +46,7 @@ export function PieChartStatistik() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/statistics/yearly/2024`;
     try {
       const res = await axios.get(url, { withCredentials: true });
-      const bulan: MonthlyStatistic = res.data.monthlyStatistics[10]; // November (index 10)
+      const bulan: MonthlyStatistic = res.data.monthlyStatistics[11]; // November (index 10)
       setData([
         ["Type", "Total"],
         ["Online", bulan.totalTransaksiOnline],
