@@ -8,6 +8,7 @@ import emote from "../../../public/icon/emote.svg";
 import profil from "../../../public/icon/profil.svg";
 import post from "../../../public/icon/post.svg";
 import axios from "axios";
+import Link from "next/link";
 
 // Define the Forum type
 type Forum = {
@@ -24,18 +25,52 @@ type Forum = {
     username: string;
     photoProfile: string;
   };
-  comments: { user: string; text: string; createdAt: string }[]; // Added for comments
+  comments: {
+    desc: string;
+    createdAt: string;
+    User: {
+      username: string;
+      photoProfile: string;
+    };
+    replies: {
+      desc: string;
+      commentId: number;
+      createdAt: string;
+      User: {
+        username: string;
+        photoProfile: string;
+      };
+    }[];
+  }[];
 };
-};
+
 function Grid() {
   const [data, setData] = useState<Forum[]>([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [commentInput, setCommentInput] = useState<string>("");
-
+  const [searchTerm, setSearchTerm] = useState(""); // Tambahkan state untuk searchTerm
 
   // Get username from localStorage or use default "Guest"
-  const getUsername = () => {
-    return localStorage.getItem("username") || "kevin"; // Default username if not found
+  const getUsername = async () => {
+    try {
+      const token = localStorage.getItem("authToken"); // Ambil token dari localStorage atau mekanisme penyimpanan lainnya
+      if (!token) {
+        return "Guest"; // Jika token tidak ditemukan, kembalikan username default
+      }
+
+      // Panggil API untuk mendapatkan data pengguna
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}api/getMe, {
+        headers: {
+          Authorization: Bearer ${token}, // Kirim token sebagai header
+        },
+      }`);
+
+      const username = res.data.username; // Ambil username dari respons API
+      return username || "Guest"; // Pastikan ada fallback username
+    } catch (error: any) {
+      console.error("Gagal mengambil data pengguna:", error.message);
+      return "Guest"; // Default jika gagal
+    }
   };
 
   // Format date function
@@ -53,44 +88,39 @@ function Grid() {
     setCommentInput((prevInput) => prevInput + emojiData.emoji);
   };
 
-  // Handle sending comment
   const handleSendComment = async (forumId: number) => {
     if (commentInput.trim()) {
-      const username = getUsername(); // Get the username from localStorage
-
+      const username = await getUsername(); // Ambil username dari localStorage
       try {
+        // Data yang dikirim ke API
         const newComment = {
           postId: forumId,
-          text: commentInput,
+          desc: commentInput,
           user: username,
         };
 
-        const url = `${process.env.NEXT_PUBLIC_URL}api/komen`; // Adjust API URL
+        // URL untuk mengirim komentar ke server
+        const url = `${process.env.NEXT_PUBLIC_URL}api/komen`; // Pastikan endpoint ini benar
         const res = await axios.post(url, newComment, {
-          withCredentials: true, // Send cookies if necessary
+          withCredentials: true, // Kirim cookies jika diperlukan
         });
 
-        if (res.status === 200) {
-          setData((prevData) =>
-            prevData.map((post) =>
-              post.id === forumId
-                ? {
-                    ...post,
-                    comments: [
-                      ...post.comments,
-                      {
-                        user: username, // Use the correct username
-                        text: commentInput,
-                        createdAt: new Date().toISOString(),
-                      },
-                    ],
-                    jumlahTanggapan: post.jumlahTanggapan + 1, // Increment the comment count
-                  }
-                : post
-            )
-          );
-          setCommentInput(""); // Clear input after sending the comment
-        }
+        // Setelah berhasil mengirim komentar, update data forum di state
+        // setData((prevData) =>
+        //   prevData.map((item) =>
+        //     item.id === forumId
+        //       ? {
+        //           ...item,
+        //           comments: [
+        //             ...item.comments,
+        //             { desc: commentInput, createdAt: new Date().toISOString() },
+        //           ],
+        //         }
+        //       : item
+        //   )
+        // );
+
+        setCommentInput(""); // Clear input komentar setelah dikirim
       } catch (error: any) {
         console.error(
           "Error posting comment:",
@@ -100,27 +130,40 @@ function Grid() {
       }
     }
   };
+
+  // Handle sending comment
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Filter data berdasarkan input pencarian
+  const filteredData = data.filter((item) =>
+    item.judul.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   // Load forum data when the component mounts
   useEffect(() => {
     getForum();
+    const timer = setTimeout(() => {
+    }, 300);
+    return () => clearTimeout(timer);
   }, []);
-
+  // useEffect(() => {
+  //   const debounce = setTimeout(() => {
+  //     // Logika filter atau panggilan API jika diperlukan
+  //   }, 300);
+  //   return () => clearTimeout(debounce);
+  // }, [searchTerm]);
+  
   // Fetch forum data from API
-  const hapusPostingan = (id: number) => {
-    setData((prevData) => prevData.filter((postingan) => postingan.id !== id));
-  };
-  useEffect(() => {
-    getForum();
-  }, []);
   async function getForum() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterForum?page=1&limit=20`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?page=1&limit=20`;
     try {
       const res = await axios.get<Forum[]>(url, {
         withCredentials: true, // Send cookies if necessary
       });
       setData(res.data); // Set the fetched data to the state
-      setData(res.data);
-      console.log(res.data);
     } catch (error: any) {
       console.error(
         "Error fetching forum data:",
@@ -129,7 +172,7 @@ function Grid() {
       alert("Terjadi kesalahan saat mengambil data konten forum.");
     }
   }
-
+  const [showAll, setShowAll] = useState<boolean>(false);
   return (
     <div>
       {/* Search input */}
@@ -137,19 +180,21 @@ function Grid() {
         <input
           type="text"
           placeholder="Cari..."
+          value={searchTerm} // Set value input ke searchTerm
+          onChange={handleSearchChange} // Tangani perubahan input
           className="w-[20%] h-[31px] ps-2 bg-[#FFFBFB] rounded-lg shadow-xl"
         />
       </div>
 
       <div className="ml-[13%]">
-        {data.length > 0 ? (
-          data.map((item) => (
+        {filteredData.length > 0 ? (
+          filteredData.map((item, i) => (
             <div
-              className="mt-[3%] w-[779px] h-[995px] bg-white pt-5"
-              key={item.id}
+            className="mt-[3%] cursor-pointer w-[779px] pb-[5%] bg-white pt-5"
+            key={item.id}
             >
-              {/* Post content */}
-              <div className="w-full h-[155px]">
+              <Link href={`/Forum/Detail/${item.id}`}>
+              <div className="w-full h-[155px] cursor-pointer">
                 <div className="flex mt-[5%]">
                   <div className="flex items-start">
                     <img
@@ -216,89 +261,7 @@ function Grid() {
                       </p>
                     </div>
                     <div className="border-b w-[408px] border-black"></div>
-    <div className="ms-[7%]">
-      {data.length > 0 ? (
-        data.map((item) => (
-          <div
-            className="mt-[3%] w-[779px] h-[995px] bg-white pt-5"
-            key={item.id}
-          >
-            <div className="w-full h-[155px]">
-              <div className="flex mt-[5%]">
-                <div className="flex items-start">
-                  <img
-                    src={
-                      item.User.photoProfile
-                        ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                          item.User.photoProfile
-                        : "/img/default-avatar.png"
-                    }
-                    width={38}
-                    height={38}
-                    alt="foto profil"
-                    className="rounded-full ml-6 -translate-y-5"
-                  />
-                  <img
-                    src={
-                      item.fotoKonten
-                        ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                          item.fotoKonten
-                        : ""
-                    }
-                    className="ml-4 h-[157px] w-[206px] bg-slate-600"
-                  />
-                </div>
-
-                <div className="ms-[3%] flex-col space-y-1">
-                  <div className="flex space-x-2 mb-[3%]">
-                    <p className="text-[#21B892] mt-1 text-[20px]">
-                      {item.judul}
-                    </p>
                   </div>
-
-                  <p className="font-light text-[12px]">
-                    {`Ulasan dari `}
-                    <span className="text-[#005DE8]">{item.User.username}</span>
-                    {` pada `} {formatTanggal(item.createdAt)}
-                  </p>
-                  <button className="bg-[#C2FFE8] p-[2px] rounded w-[15%] text-[#06612B] font-light text-[12px]">
-                    {item.kategori_forum}
-                  </button>
-
-                  <div className="flex pt-[8.5%] -translate-x-10">
-                    <Image
-                      src={mata}
-                      width={20}
-                      height={20}
-                      alt="mata"
-                      className="ms-10"
-                    />
-                    <p className="ms-1 font-light mt-1 text-[12px] text-[#323735]">
-                      {item.jumlahView}
-                    </p>
-                    <Image
-                      src={chat2}
-                      width={20}
-                      height={20}
-                      alt="chat2"
-                      className="ms-10"
-                    />
-                    <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
-                      {item.jumlahTanggapan}
-                    </p>
-                    <button
-                      className="ml-[55%]"
-                      onClick={() => hapusPostingan(item.id)}
-                    >
-                      <Image
-                        src="/icon/trashh.svg"
-                        width={20}
-                        height={20}
-                        alt="trash"
-                      />
-                    </button>
-                  </div>
-                  <div className="border-b w-[408px] border-black"></div>
                 </div>
               </div>
 
@@ -310,196 +273,125 @@ function Grid() {
               </div>
 
               {/* Comments section */}
-              <div>
+              {/* <div>
                 <p className="text-black text-[15px] ml-[15%] mt-[4%]">
                   {item.jumlahTanggapan} Komentar
-                </p>
+                </p> */}
 
-                <div className="space-y-3">
+                {/* <div className="space-y-3">
                   {/* Comment List */}
-                  <div className="max-h-[300px] space-y-5 overflow-y-auto">
+                  {/* <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
                     {item.comments.map((comment, index) => (
-                      <div
-                        key={index}
-                        className="w-[595px] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
-                      >
-                        <div className="flex items-center p-4">
-                          <Image
-                            src={profil}
-                            alt="foto profil"
-                            width={35}
-                            height={35}
-                            className="rounded-full"
-                          />
-                          <div className="ml-4 w-[90%]">
-                            <div className="flex items-center justify-between">
-                              <p className="text-[#3F9272] text-[13px]">
-                                {comment.user}
+                      <>
+                        <div
+                          key={index}
+                          className="w-[595px] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
+                        >
+                          <div className="flex items-center px-4 pt-4 pb-1">
+                            <Image
+                              src={
+                                comment.User.photoProfile
+                                ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                                  comment.User.photoProfile
+                                : profil
+                              }
+                              alt="foto profil"
+                              width={35}
+                              height={35}
+                              className="rounded-full"
+                            />
+                            <div className="ml-4 w-[90%]">
+                              <div className="flex items-center justify-between">
+                                <p className="text-[#3F9272] text-[13px]">
+                                  {comment.User.username}
+                                </p>
+                                <p className="text-[#7D7D7D] text-[10px]">
+                                  {formatTanggal(comment.createdAt)}
+                                </p>
+                              </div>
+                              <p className="px-2 text-[15px] leading-tight mt-2">
+                                {comment.desc}
                               </p>
-                              <p className="text-[#7D7D7D] text-[10px]">
-                                {formatTanggal(comment.createdAt)}
-                              </p>
+                              <div className="relative">
+                                <p className="absolute right-2 text-sm text-[#3F9272]">
+                                  Balas
+                                </p>
+                              </div>
                             </div>
-                            <p className="px-2 text-[15px] leading-tight mt-2">
-                              {comment.text}
-                            </p>
                           </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
+                        {comment.replies
+                          .slice(0, showAll ? undefined : 1)
+                          .map((rep) => (
+                            <div
+                              key={rep.commentId}
+                              className="w-[69%] ms-[20%] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
+                            >
+                              <div className="flex items-center p-4">
+                                <Image
+                                  src={
+                                    rep.User.photoProfile
+                                      ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                                        rep.User.photoProfile
+                                      : profil
+                                  }
+                                  alt="foto profil"
+                                  width={35}
+                                  height={35}
+                                  className="rounded-full"
+                                />
+                                <div className="ml-4 w-[90%]">
+                                  <div className="flex items-center justify-between">
+                                    <p className="text-[#3F9272] text-[13px]">
+                                      {rep.User.username}
+                                    </p>
+                                    <p className="text-[#7D7D7D] text-[10px]">
+                                      {formatTanggal(rep.createdAt)}
+                                    </p>
+                                  </div>
+                                  <p className="px-2 text-[15px] leading-tight mt-2">
+                                    {rep.desc}
+                                  </p>
+                                  <div className="relative">
+                                    <p className="absolute right-2 text-sm text-[#3F9272]">
+                                      Balas
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        {comment.replies.length > 0 && (
+                          <p
+                            onClick={() => setShowAll(!showAll)}
+                            className=" cursor-pointer translate-x-[65%] text-[#3F9272]"
+                          >
+                            {showAll
+                              ? "Sembunyikan Balasan"
+                              : "Lihat Balasan Lainnya"}
+                          </p>
+                        )}
+                      </>
+                    ))} */}
+                  {/* </div> */} 
 
                   {/* Comment input box */}
-                  <div className="p-4">
+                  {/* <div className="p-4">
                     <div className="flex items-center">
-                      <div className="mx-auto w-[78%] translate-y-64">
+                      <div className="mx-auto w-[78%] mt-[10%]">
                         <div className="flex items-center bg-white w-full h-[31px] border border-gray-300 rounded-md relative">
                           <input
                             type="text"
                             value={commentInput}
+                            // Ketika 'Enter' ditekan, kirim komentar
                             onKeyDown={(e) => {
-                              if (e.key === "Enter") handleSendComment(item.id);
+                              if (e.key === "Enter" && commentInput.trim()) {
+                                handleSendComment(item.id);
+                              }
                             }}
                             onChange={(e) => setCommentInput(e.target.value)}
                             placeholder="Ketik pesan..."
                             className="w-full h-full pl-10 pr-4 text-sm focus:outline-none"
-                          />
-            </div>
-
-            <div className="mt-[4%]">
-              <p className="text-black leading-tight ml-[10%] w-[60%] text-[15px]">
-                {item.desc}
-              </p>
-            </div>
-            <div>
-              <p className="text-black text-[15px] ml-[15%] mt-[4%]">
-                {item.jumlahTanggapan} Komentar
-              </p>
-
-              <div className="space-y-3">
-                <div className="w-[595px] h-[547px] bg-[#E2FFF8] mx-auto rounded-xl">
-                  <div className="p-4">
-                    <Image
-                      src={profil}
-                      alt="foto profil"
-                      width={100}
-                      height={100}
-                      className="w-[35px] h-[35px]"
-                    />
-                    <div className="ml-[9%] -mt-7">
-                      <div className="h-[130px] w-[477px] bg-white relative">
-                        <div className="flex items-center space-x-4 p-2">
-                          <p className="text-[#3F9272] text-[13px]">Kevin</p>
-                          <p className="text-[#7D7D7D] text-[10px]">
-                            2 jam yang lalu
-                          </p>
-                        </div>
-
-                        <p className="px-[3%] text-[15px] leading-tight mt-2">
-                          ***** tanaman kayak gitu sih enak rawatnya tapi gw
-                          kemaren ke cucuk durinya kena ****** sakit banget,
-                          gatel sih, btw durinya beracun kagak? kalau beracun
-                          hilang dah masa depan gw
-                        </p>
-                        <div className="flex justify-end p-2 space-x-3">
-                          <p className="text-[#8A8A8A] text-[12px]">
-                            90 balasan
-                          </p>
-                          <p className="text-[#3F9272] text-[12px] cursor-pointer">
-                            balasan
-                          </p>
-                        </div>
-                        <div className="absolute top-3 -left-1 w-0 h-0 border-l-[15px] border-l-transparent border-b-[15px] border-b-white transform -translate-x-1/2 -translate-y-1/2"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="ml-[7%]">
-                    <Image
-                      src={profil}
-                      alt="foto profil"
-                      width={100}
-                      height={100}
-                      className="w-[35px] h-[35px]"
-                    />
-                    <div className="ml-[9%] -mt-7 h-[83px] w-[453px] bg-white relative">
-                      <div className="flex items-center space-x-2 p-2">
-                        <p className="text-[#3F9272] text-[13px]">Kevin</p>
-                        <Image
-                          src={panah}
-                          alt="panah"
-                          width={90}
-                          height={90}
-                          className="w-3 h-3"
-                        />
-                        <p className="text-[#3F9272] text-[13px]">Danen</p>
-                        <p className="text-[#7D7D7D] text-[10px]">
-                          2 jam yang lalu
-                        </p>
-                      </div>
-                      <p className="px-[3%] text-[15px] leading-tight mt-1">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      </p>
-                      <div className="flex justify-end p-2">
-                        <p className="text-[#3F9272] text-[12px] cursor-pointer">
-                          balas
-                        </p>
-                      </div>
-                      <div className="absolute top-3 -left-1 w-0 h-0 border-l-[15px] border-l-transparent border-b-[15px] border-b-white transform -translate-x-1/2 -translate-y-1/2"></div>
-                    </div>
-                    <div className="flex items-center justify-center space-x-2">
-                      <div className="border-b w-[290px] border-black"></div>
-                      <p className="text-[13px] text-[#3F9272] cursor-pointer">
-                        lihat 81 balasan lainnya
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="p-4">
-                    <Image
-                      src={profil}
-                      alt="foto profil"
-                      width={100}
-                      height={100}
-                      className="w-[35px] h-[35px]"
-                    />
-                    <div className="ml-[9%] -mt-7">
-                      <div className="h-[130px] w-[477px] bg-white relative">
-                        <div className="flex space-x-4 p-2 items-center">
-                          <p className="text-[#3F9272] text-[13px]">Kevin</p>
-                          <p className="text-[#7D7D7D] text-[10px]">
-                            2 jam yang lalu
-                          </p>
-                        </div>
-                        <p className="px-[3%] text-[15px] leading-tight mt-2">
-                          ***** tanaman kayak gitu sih enak rawatnya tapi gw
-                          kemaren ke cucuk durinya kena ****** sakit banget,
-                          gatel sih, btw durinya beracun kagak? kalau beracun
-                          hilang dah masa depan gw
-                        </p>
-                        <div className="flex justify-end p-2 space-x-3">
-                          <p className="text-[#8A8A8A] text-[12px]">
-                            90 balasan
-                          </p>
-                          <p className="text-[#3F9272] text-[12px] cursor-pointer">
-                            balasan
-                          </p>
-                        </div>
-                        <div className="absolute top-3 -left-1 w-0 h-0 border-l-[15px] border-l-transparent border-b-[15px] border-b-white transform -translate-x-1/2 -translate-y-1/2"></div>
-                        <div className="flex items-center justify-center space-x-2">
-                          <div className="border-b w-[290px] border-black"></div>
-                          <p className="text-[13px] text-[#3F9272] cursor-pointer">
-                            lihat 81 balasan lainnya
-                          </p>
-                        </div>
-                        <div className="flex bg-white mx-auto w-[471px] h-[31px] mt-[10%] relative">
-                          <input
-                            type="text"
-                            value={inputText}
-                            onKeyDown={handleKeyDown}
-                            onChange={(e) => setInputText(e.target.value)}
-                            placeholder="Ketik pesan..."
-                            className="w-full h-full pl-10 pr-4 text-sm border border-gray-300 rounded-md focus:outline-none"
                           />
                           <button
                             onClick={() => setShowEmojiPicker((prev) => !prev)}
@@ -510,7 +402,6 @@ function Grid() {
                               width={20}
                               height={20}
                               alt="emoji picker"
-                              alt="emoji picker icon"
                             />
                           </button>
                           {showEmojiPicker && (
@@ -521,8 +412,6 @@ function Grid() {
                           <button
                             onClick={() => handleSendComment(item.id)}
                             className="bg-[#308967] rounded-full h-[31px] w-[31px]"
-                            onClick={handleSendChat}
-                            className="bg-[#308967] rounded-full h-[31px] w-[31px] "
                           >
                             <Image
                               src={post}
@@ -537,8 +426,10 @@ function Grid() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div> */}
+              {/* </div> */}
+              </Link>
+      </div>
           ))
         ) : (
           <div className="mt-6 p-6 text-center text-gray-500 bg-white rounded-lg shadow-lg">
@@ -546,12 +437,8 @@ function Grid() {
           </div>
         )}
       </div>
-        ))
-      ) : (
-        <p> ga ada postingan</p>
-      )}
     </div>
   );
 }
 
-export default Grid;  
+export default Grid;

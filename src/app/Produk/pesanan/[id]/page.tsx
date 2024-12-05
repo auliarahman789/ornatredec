@@ -121,7 +121,7 @@ const DetailPesanan = () => {
               ))}
             </div>
             <div className="flex flex-row translate-y-[500%]">
-              <Link href="../pesanan/checkout">
+              <Link href={`/Produk/pesanan/checkout/${produk.id}`}>
                 <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
                   <span className="text-white flex flex-row">
                     Beli<span className="pl-1">sekarang</span>

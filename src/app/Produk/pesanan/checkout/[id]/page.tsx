@@ -1,29 +1,37 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 
 // Interface untuk produk
-interface SubVariasi {
-  nama_sub_variasi: string;
-  stok: number;
-  harga: number;
-  usia: string;
-}
+// interface SubVariasi {
+//   nama_sub_variasi: string;
+//   stok: number;
+//   harga: number;
+//   usia: string;
+// }
 
-interface Variasi {
-  nama_variasi: string;
-  subvariasis: SubVariasi[];
-}
+// type Variasi = {
+//   nama_variasi: string;
+//   subvariasis: SubVariasi[];
+// }
 
-interface Produk {
+type Produk = {
   judul_produk: string;
   deskripsi_produk: string;
   harga: number;
   foto_produk: string;
-  variasis: Variasi[];
+  variasis: {
+    nama_variasi: string;
+    subvariasis: {
+      nama_sub_variasi: string;
+      stok: number;
+      harga: number;
+      usia: string;
+    }[]
+  }
 }
 
 // Komponen popup untuk checkout
@@ -68,16 +76,10 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({
 
 const Page = () => {
   const router = useRouter();
-  const [formData, setFormData] = useState<Produk>({
-    judul_produk: "",
-    deskripsi_produk: "",
-    harga: 0,
-    foto_produk: "",
-    variasis: [],
-  });
+  const [data,setData] = useState<Produk>()
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
+const { id } = useParams();
   // Fungsi untuk pergi kembali ke halaman sebelumnya
   const handleGoBack = () => {
     router.push("/Produk/pesanan/[id]");
@@ -102,16 +104,11 @@ const Page = () => {
 
   // Mengambil data produk dari API
   const getProduk = async () => {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getProduk`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${id}`;
     try {
-      const res = await axios.get(url, { withCredentials: true });
-      setFormData({
-        judul_produk: res.data.judul_produk || "",
-        deskripsi_produk: res.data.deskripsi_produk || "",
-        harga: res.data.harga || 0,
-        foto_produk: res.data.foto_produk || "",
-        variasis: res.data.variasis || [],
-      });
+      const res = await axios.get<Produk>(url, { withCredentials: true });
+      setData(res.data)
+      console.log(res.data)
     } catch (error) {
       console.error("Failed to fetch produk data", error);
     }
@@ -120,7 +117,12 @@ const Page = () => {
   useEffect(() => {
     getProduk();
   }, []);
-
+ const formatHarga = (itung: number) => {
+   return new Intl.NumberFormat("id-ID", {
+     style: "currency",
+     currency: "IDR",
+   }).format(itung);
+ };
   return (
     <div className="bg-[#E5FFF9] min-h-screen">
       <button
@@ -151,22 +153,26 @@ const Page = () => {
       </div>
       <div className="mt-[2%] ml-[7%] mr-[7%] py-20 bg-[#F3FFFB] font-semibold text-white">
         {/* Display Produk */}
-        {formData.judul_produk ? (
-          <div>
-            <p>Judul Produk: {formData.judul_produk}</p>
-            <p>Deskripsi: {formData.deskripsi_produk}</p>
-            <p>Harga: {formData.harga}</p>
-            {formData.foto_produk && (
-              <p>
-                Foto Produk:{" "}
+        {data ? (
+          <div className="flex flex-row ml-[20%]">
+            <p className="text-black text-2xl">
+              {data.judul_produk}
+            </p>
                 <Image
-                  src={formData.foto_produk}
+                  src={
+                    data.foto_produk
+                      ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                        data.foto_produk
+                      : ""
+                  }
                   alt="Produk"
                   width={100}
                   height={100}
+                  className="-translate-y-48"
                 />
-              </p>
-            )}
+            <p className="text-[#828382] ml-[19%]">{formatHarga(data.harga)}</p>
+            <p className="text-[#828382] ml-[10%]">{data.variasis.nama_variasi}-{data.variasis.subvariasis.nama_sub_variasi}</p>
+            <p className="text-[#828382] ml-[6%]">3 bulan</p>
           </div>
         ) : (
           <p>Loading produk...</p>

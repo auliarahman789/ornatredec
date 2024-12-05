@@ -3,18 +3,19 @@
 import React, { useState, ChangeEvent } from "react";
 import Image from "next/image";
 import router from "next/router";
+import StarRatings from "react-star-ratings";
 
 function Page() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [rating, setRating] = React.useState(4); // Nilai awal rating
 
- const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
 
- const handleOpenPopup = () => {
-   setIsPopupOpen(true);
- };
-
- const handleClosePopup = () => {
-   setIsPopupOpen(false);
- };
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
 
   // State untuk menangani perubahan pada input deskripsi
   const [formData, setFormData] = useState({
@@ -30,9 +31,9 @@ function Page() {
     });
   };
 
-    const handleGoBack = () => {
-      router.push("/Produk/paymentgateway");
-    };
+  const handleGoBack = () => {
+    router.push("/Produk/paymentgateway");
+  };
 
   return (
     <div className="min-h-screen bg-[#E5FFF9]">
@@ -64,6 +65,20 @@ function Page() {
         <p className="text-black ml-[50%] translate-y-4">Alamat</p>
         <p className="text-black ml-[20%] translate-y-20">Warna</p>
         <p className="text-black ml-[20%] translate-y-20">Usia</p>
+
+        <div className="p-4 translate-y-24 ml-[40%]">
+          <StarRatings
+            rating={rating}
+            starRatedColor="gold"
+            starHoverColor="goldenrod"
+            starEmptyColor="gray"
+            numberOfStars={5}
+            changeRating={(newRating) => setRating(newRating)}
+            name="rating"
+            starDimension="30px"
+            starSpacing="5px"
+          />
+        </div>
 
         <div className="ml-[7%] mr-[7%] mt-[5%] translate-y-36">
           <textarea
