@@ -204,11 +204,13 @@ const DetailPesanan = () => {
                   tambahkepesan();
                 }}
               >
-                <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
-                  <span className="text-white flex flex-row">
-                    Beli<span className="pl-1">sekarang</span>
-                  </span>
-                </button>
+                <Link href={`/pesanan/checkout/${produk.id}`}>
+                  <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
+                    <span className="text-white flex flex-row">
+                      Beli<span className="pl-1">sekarang</span>
+                    </span>
+                  </button>
+                </Link>
               </button>
               {/* </Link> */}
               <button

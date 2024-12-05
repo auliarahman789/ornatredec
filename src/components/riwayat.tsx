@@ -6,6 +6,7 @@ import profile from "../../public/img/profile bruno.png";
 import tanaman from "../../public/img/kaktus.png";
 import mata from "../../public/icon/mata.svg";
 import chat2 from "../../public/icon/chat2.svg";
+import Trash from "../../public/icon/Trash.svg";
 import axios from "axios";
 
 type PostinganForum = {
@@ -13,7 +14,7 @@ type PostinganForum = {
   kategori_forum: string;
   jumlahView: number;
   jumlahTanggapan: number;
-  createdAT: number;
+  createdAt: string;
   fotoKonten: string;
   User: {
     username: string;
@@ -60,6 +61,15 @@ const Riwayat = () => {
     }
   };
 
+  const formatTanggal = (tanggal: string) => {
+    const opsiTanggal: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    };
+    return new Date(tanggal).toLocaleDateString("id-ID", opsiTanggal);
+  };
+
   useEffect(() => {
     getpostinganUser();
   }, []);
@@ -77,27 +87,13 @@ const Riwayat = () => {
               <div className="">
                 <h1 className="text-[#5CD5A6] text-[20px]">Postingan Saya</h1>
 
-                <div className="bg-[#5CD5A6]  rounded-lg shadow-lg w-[90%] h-[350%] mt-2">
-                  {profile && (
-                    <div>
-                      <Image
-                        src={
-                          profile.User.photoProfile
-                            ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                              profile.User.photoProfile
-                            : "/default-profile.png"
-                        }
-                        alt={"foto profil"}
-                        className="rounded-full h-[10%] w-[10%] pt-3 pl-1"
-                      ></Image>
-                    </div>
-                  )}
+                <div className="bg-[#5CD5A6]  rounded-lg shadow-lg w-[90%] h-[350%] pt-3">
                   <div className="space-y-3">
                     {data.length > 0 ? (
                       data.map((item, index) => (
                         <div
                           key={index}
-                          className="bg-white h-[76px] w-[272px] ml-[11%] -translate-y-3"
+                          className="bg-white h-[76px] w-[240px] ml-[3%] flex"
                         >
                           <div className="flex">
                             <img
@@ -105,7 +101,7 @@ const Riwayat = () => {
                               alt="foto"
                               width={100}
                               height={100}
-                              className="h-[76px] w-[78px]"
+                              className="h-[76px] w-[76px]"
                             />
                             <div className="ml-2 text-black">
                               {/* Judul */}
@@ -116,13 +112,13 @@ const Riwayat = () => {
 
                               <div className="flex">
                                 <p className="text-[10px] font-light">
-                                  {`Diposting Pada Tanggal `}
+                                  {`Diposting Pada Tanggal  `}
                                 </p>
-                                <p className="text-[10px] text-blue-600">
-                                  {item.createdAT}
+                                <p className="text-[8px] text-blue-600">
+                                  {formatTanggal(item.createdAt)}
                                 </p>
                               </div>
-                              <div className="flex space-x-3 items-center mt-[9%]">
+                              <div className="flex space-x-3 items-center mt-[8%]">
                                 {/* Tag Tanaman */}
                                 <p className="w-[66px] h-[17px] bg-[#83F6CA] text-[12px] text-[#06612B] font-light rounded-sm text-center">
                                   {item.kategori_forum}
@@ -158,6 +154,13 @@ const Riwayat = () => {
                               </div>
                             </div>
                           </div>
+                          <Image
+                            src={Trash}
+                            alt="drop"
+                            width={100}
+                            height={100}
+                            className="absolute ml-[31%] mt-[2%] w-[30px] h-[30px]"
+                          />
                         </div>
                       ))
                     ) : (

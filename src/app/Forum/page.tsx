@@ -11,7 +11,7 @@ function Forum() {
     <div className="bg-[#E4FFF2] pb-[5%] ">
       {/* <Notif/> */}
       <p className="text-[#308967] text-[20px] ml-[22%] inline-block mt-[4%]">
-        8 ulasan terbaru
+        Ulasan Terbaru
       </p>
       <div className="flex">
         <div className="">

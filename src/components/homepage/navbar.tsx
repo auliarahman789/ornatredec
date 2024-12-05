@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios"; // Import axios
+import axios from "axios";
 import Image from "next/image";
 import logo from "../../../public/icon/logo.svg";
 import defaultAvatar from "../../../public/img/default-avatar.png";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import notifIcon from "../../../public/icon/notif2.svg";
 
 function Navbar() {
@@ -12,6 +12,7 @@ function Navbar() {
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState<string>(defaultAvatar.src);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -20,24 +21,23 @@ function Navbar() {
         if (!token) return; // Jika tidak ada token, keluar dari fungsi
 
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_URL}api/getMe,
+          `${process.env.NEXT_PUBLIC_URL}api/getMe`,
           {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
             withCredentials: true,
-            // headers: {
-            //   Authorization: Bearer ${token},
-            // },
-          }`
+          }
         );
-
-        console.log(token);
 
         if (response.data) {
           setIsLoggedIn(true);
           setUsername(response.data.username);
           setAvatar(
-            "https://74gslzvj-8000.asse.devtunnels.ms" +
-              response.data.photoProfile || defaultAvatar.src
-          ); // Gunakan avatar dari response
+            response.data.photoProfile
+              ? `${process.env.NEXT_PUBLIC_URL}${response.data.photoProfile}`
+              : defaultAvatar.src
+          );
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -46,6 +46,14 @@ function Navbar() {
 
     fetchUserData();
   }, []);
+
+  const handleLoginSuccess = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+      router.push("/"); // Redirect ke homepage
+    }
+  };
 
   return (
     <div>
@@ -124,7 +132,9 @@ function Navbar() {
           ) : (
             <div>
               <Link href="/auths">
-                <button className="text-[#308967]">Login</button>
+                <button className="text-[#308967]" onClick={handleLoginSuccess}>
+                  Login
+                </button>
               </Link>
               <Link href="/auths">
                 <button className="text-white bg-green-500 rounded-lg py-1 px-4 ml-2">
