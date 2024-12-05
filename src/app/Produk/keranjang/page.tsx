@@ -53,16 +53,33 @@ const KeranjangPage = () => {
   //     }
   //   }
   // };
+
+  const simpanKeLocalStorage = (data: any) => {
+    try {
+      localStorage.setItem("keranjangPesan", JSON.stringify(data));
+      alert("Produk berhasil disimpan ke localStorage!");
+    } catch (error) {
+      console.error("Gagal menyimpan ke localStorage:", error);
+      alert("Gagal menyimpan data. Silakan coba lagi.");
+    }
+  };
+
+  const handlePesanSemua = () => {
+    const dataYangDipilih = keranjangFromAPI.filter((item) =>
+      selectedItems.includes(item.id)
+    );
+
+    simpanKeLocalStorage(dataYangDipilih);
+  };
   const handleKonfirmasiHapus = async () => {
     if (produkIdTroli !== null) {
       try {
-        // Menghapus produk dari API
         const response = await axios.delete(
           `${process.env.NEXT_PUBLIC_URL}/api/hapusTroli/${produkIdTroli}`,
           { withCredentials: true }
         );
         console.log(response.data);
-        // Menghapus produk dari tampilan loka
+
         setKeranjangFromAPI((prevKeranjang) =>
           prevKeranjang.filter((item) => item.id !== produkIdTroli)
         );
@@ -125,8 +142,8 @@ const KeranjangPage = () => {
                     <div className="text-sm text-gray-600">
                       Subvariasi: {item.subvariasi.nama_sub_variasi}
                     </div>
-                    <div className="flex justify-end translate-x-[580%] -translate-y-[100%]">
-                      <div className="text-[#308967] text-lg font-semibold">
+                    <div className="flex justify-end translate-x-[300%] translate-y-[120%]">
+                      <div className="text-[#308967] text-2xl font-semibold">
                         Rp. {item.subvariasi.harga}
                       </div>
                     </div>
@@ -142,10 +159,10 @@ const KeranjangPage = () => {
                       </button>
                       <Link href="/Produk/pesanan/checkout">
                         <button
-                          // onClick={handlePesanProduk}
+                          onClick={handlePesanSemua}
                           className="bg-green-500 text-white px-4 py-2 rounded-lg translate-y-2"
                         >
-                          Pesan
+                          Pesan Sekarang
                         </button>
                       </Link>
                     </div>
