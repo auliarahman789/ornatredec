@@ -4,19 +4,17 @@ import React, { useState, useEffect } from "react";
 import { useKeranjang } from "./keranjangContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import axios, { AxiosError } from "axios";
-import error from "next/error";
+import axios from "axios";
+import Link from "next/link";
 
 const KeranjangPage = () => {
-  const { keranjang, hapusDariKeranjang } = useKeranjang();
+  const { hapusDariKeranjang } = useKeranjang();
   const [showModal, setShowModal] = useState(false);
   const [produkIdTroli, setProdukIdTroli] = useState<number | null>(null);
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
-  const [selectAll, setSelectAll] = useState(false);
   const [keranjangFromAPI, setKeranjangFromAPI] = useState<any[]>([]);
-  const [keranjangA, setKeranjangA] = useState([]);
   const router = useRouter();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   useEffect(() => {
     const getKeranjang = async () => {
@@ -25,9 +23,9 @@ const KeranjangPage = () => {
           `${process.env.NEXT_PUBLIC_URL}/api/getTroli`,
           { withCredentials: true }
         );
-        setKeranjangA(response.data);
-      } catch (error: any) {
-        setError(error.message);
+        setKeranjangFromAPI(response.data);
+      } catch (err: any) {
+        setError(err.message);
       }
     };
 
@@ -35,72 +33,51 @@ const KeranjangPage = () => {
   }, []);
 
   const totalItem = keranjangFromAPI.reduce(
-    (acc, item) => acc + (item.jumlah ?? 0),
+    (acc, item) => acc + (item.jumlahStok ?? 0),
     0
   );
 
-  const handlePesanProduk = async () => {
-    if (selectedItems.length > 0) {
-      try {
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_URL}/api/transaksi`,
-          { produkId: selectedItems },
-          { withCredentials: true }
-        );
+  // // const handlePesanProduk = async () => {
+  // //   if (selectedItems.length > 0) {
+  // //     try {
+  // //       const response = await axios.post(
+  // //        `${process.env.NEXT_PUBLIC_URL}/api/transaksi`,
+  // //         { produkId: selectedItems },
+  // //         { withCredentials: true }
+  // //       );
 
-        console.log("Produk Details:", response.data);
-      } catch (error) {
-        console.error("Error:", error);
-        alert("Gagal memproses pesanan. Silakan coba lagi.");
-      }
-    }
-  };
-
-  const handleGoBack = () => {
-    router.back();
-  };
-
-  const handleBukaModal = (id: number) => {
-    setProdukIdTroli(id);
-    setShowModal(true);
-  };
-
+  //       console.log("Produk Details:", response.data);
+  //     } catch (err) {
+  //       console.error("Error:", err);
+  //       alert("Gagal memproses pesanan. Silakan coba lagi.");
+  //     }
+  //   }
+  // };
   const handleKonfirmasiHapus = async () => {
     if (produkIdTroli !== null) {
       try {
-        await axios.delete(
-          `${process.env.NEXT_PUBLIC_URL}/api/hapusTroli/${produkIdTroli}`
+        // Menghapus produk dari API
+        const response = await axios.delete(
+          `${process.env.NEXT_PUBLIC_URL}/api/hapusTroli/${produkIdTroli}`,
+          { withCredentials: true }
         );
-
-        hapusDariKeranjang(produkIdTroli);
-        setProdukIdTroli(null);
-      } catch (error) {
-        console.error("Terjadi kesalahan:", error);
+        console.log(response.data);
+        // Menghapus produk dari tampilan loka
+        setKeranjangFromAPI((prevKeranjang) =>
+          prevKeranjang.filter((item) => item.id !== produkIdTroli)
+        );
+        alert("Produk berhasil dihapus dari keranjang.");
+      } catch (err) {
+        alert("Gagal menghapus produk. Silakan coba lagi.");
+      } finally {
+        setShowModal(false);
       }
     }
-    setShowModal(false);
   };
 
   const handleTutupModal = () => {
     setShowModal(false);
     setProdukIdTroli(null);
-  };
-
-  const handleSelectAll = () => {
-    if (selectAll) {
-      setSelectedItems([]);
-    } else {
-      setSelectedItems(keranjangFromAPI.map((item) => item.id));
-    }
-    setSelectAll(!selectAll);
-  };
-
-  const handleSelectItem = (id: number) => {
-    setSelectedItems((prevSelectedItems) =>
-      prevSelectedItems.includes(id)
-        ? prevSelectedItems.filter((itemId) => itemId !== id)
-        : [...prevSelectedItems, id]
-    );
   };
 
   return (
@@ -115,15 +92,6 @@ const KeranjangPage = () => {
             <h1 className="text-3xl font-bold mb-6 text-[#308967]">
               Keranjang Anda
             </h1>
-            <div className="flex flex-row">
-              <span className="text-[#308967] text-2xl">Pesan Semua</span>
-              <input
-                type="checkbox"
-                checked={selectAll}
-                onChange={handleSelectAll}
-                className="ml-2 mt-2"
-              />
-            </div>
           </div>
           <div className="border-b-2 border-[#308967]"></div>
           <div className="flex justify-between text-2xl text-[#308967] pt-5 pb-5">
@@ -141,59 +109,51 @@ const KeranjangPage = () => {
             </div>
           ) : (
             <div className="grid gap-4 pt-6">
-              {keranjangFromAPI.map((item: any) => (
+              {keranjangFromAPI.map((item) => (
                 <div
-                  key={`${item.id}-${item.variasiDipilih}`}
+                  key={item.id}
                   className="flex items-center p-4 bg-white rounded mt-8 space-y-6 shadow-[3px_5px_4px] shadow-[#0000002e]"
                 >
+                  <div className="w-24 h-24 mr-4"></div>
                   <div className="flex flex-col">
                     <div className="text-xl font-semibold">
-                      {item.judul_produk}
+                      {item.produk.judul_produk}
                     </div>
                     <div className="text-sm text-gray-600">
-                      Variasi: {item.variasiDipilih}
+                      Variasi: {item.variasi.nama_variasi}
                     </div>
-                    <div className="translate-x-[670%] -translate-y-[100%]">
+                    <div className="text-sm text-gray-600">
+                      Subvariasi: {item.subvariasi.nama_sub_variasi}
+                    </div>
+                    <div className="flex justify-end translate-x-[580%] -translate-y-[100%]">
                       <div className="text-[#308967] text-lg font-semibold">
-                        Rp. {item.harga}
+                        Rp. {item.subvariasi.harga}
                       </div>
                     </div>
-                    <button
-                      onClick={() => handleBukaModal(item.id)}
-                      className="bg-[#FF0000] text-white px-4 py-2 rounded-lg mt-2"
-                    >
-                      Hapus
-                    </button>
-                    <div className="-translate-y-[100%] translate-x-[650%]">
-                      <button className="bg-[#51CB9F] text-white font-medium px-2 py-1 h-10 w-[50%] rounded-md">
-                        Pesan
+                    <div className="flex justify-between space-x-4">
+                      <button
+                        onClick={() => {
+                          setProdukIdTroli(item.id);
+                          setShowModal(true);
+                        }}
+                        className="bg-[#FF0000] text-white px-4 py-2 rounded-lg mt-2"
+                      >
+                        Hapus
                       </button>
+                      <Link href="/Produk/pesanan/checkout">
+                        <button
+                          // onClick={handlePesanProduk}
+                          className="bg-green-500 text-white px-4 py-2 rounded-lg translate-y-2"
+                        >
+                          Pesan
+                        </button>
+                      </Link>
                     </div>
                   </div>
-                  <input
-                    type="checkbox"
-                    checked={selectedItems.includes(item.id)}
-                    onChange={() => handleSelectItem(item.id)}
-                    className="translate-x-[870px]"
-                  />
                 </div>
               ))}
             </div>
           )}
-          <div className="flex justify-end space-x-4 mt-8 pb-8">
-            <button
-              onClick={handleGoBack}
-              className="bg-gray-300 px-4 py-2 rounded-lg"
-            >
-              Kembali
-            </button>
-            <button
-              onClick={handlePesanProduk}
-              className="bg-green-500 text-white px-4 py-2 rounded-lg"
-            >
-              Pesan Sekarang
-            </button>
-          </div>
         </div>
       </div>
 

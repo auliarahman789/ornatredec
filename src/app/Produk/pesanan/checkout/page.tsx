@@ -1,189 +1,52 @@
 "use client";
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import axios from "axios";
 
-interface SubVariasi {
-  nama_sub_variasi: string;
-  stok: number;
-  harga: number;
-  usia: string;
-}
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-interface Variasi {
-  nama_variasi: string;
-  subvariasis: SubVariasi[];
-}
+const CheckoutPage = () => {
+  // Mengambil parameter produkId dari URL
+  const searchParams = useSearchParams();
+  const produkId = searchParams.get("produkId");
+  const [produkDetail, setProdukDetail] = useState<any | null>(null);
 
-interface Produk {
-  judul_produk: string;
-  deskripsi_produk: string;
-  harga: number;
-  foto_produk: string;
-  variasis: Variasi[];
-}
-const Page = () => {
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const router = useRouter();
-
-  const [formData, setFormData] = useState<Produk>({
-    judul_produk: "",
-    deskripsi_produk: "",
-    harga: 0,
-    foto_produk: "",
-    variasis: [],
-  });
-
-  // Fungsi untuk pergi kembali ke halaman sebelumnya
-  const handleGoBack = () => {
-    router?.push("/Produk/pesanan/[id]"); // Gantilah [id] dengan id yang sesuai jika perlu
-  };
-
-  // Mengambil data produk dari API
-  const getProduk = async () => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`; // Pastikan URL ini sesuai dengan API yang benar
-    try {
-      const res = await axios.get(url, { withCredentials: true });
-      setFormData({
-        judul_produk: res.data.judul_produk || "",
-        deskripsi_produk: res.data.deskripsi_produk || "",
-        harga: res.data.harga || 0,
-        foto_produk: res.data.foto_produk || "",
-        variasis: res.data.variasis || [], // Default ke array kosong jika variasi kosong
-      });
-    } catch (error) {
-      console.error("Failed to fetch produk data", error);
-    }
+  const produkData: Record<
+    number,
+    { nama: string; harga: number; deskripsi: string }
+  > = {
+    1: { nama: "Produk A", harga: 50000, deskripsi: "Deskripsi Produk A" },
+    2: { nama: "Produk B", harga: 70000, deskripsi: "Deskripsi Produk B" },
+    // Tambahkan produk lainnya jika perlu
   };
 
   useEffect(() => {
-    getProduk();
-  }, []);
+    // Pastikan produkId ada dan valid
+    if (produkId) {
+      const produkIdNumber = Number(produkId); // Convert ke number
+      if (!isNaN(produkIdNumber)) {
+        // Ambil produk detail berdasarkan produkId
+        setProdukDetail(produkData[produkIdNumber]);
+      }
+    }
+  }, [produkId]);
+
+  if (!produkId) {
+    return <div>Produk tidak ditemukan. Silakan kembali ke keranjang.</div>;
+  }
 
   return (
-    <div className="bg-[#E5FFF9] min-h-screen">
-      <button
-        onClick={handleGoBack}
-        className="ml-[7%] cursor-pointer translate-y-10 h-[50px] w-[50px]"
-      >
-        <Image
-          src="/icon/backk.svg"
-          alt="Back Icon"
-          width={390}
-          height={390}
-          className=""
-        />
-      </button>
-      <Image
-        src="/icon/ornatredecc.svg"
-        alt="Ornament Icon"
-        width={390}
-        height={390}
-        className="ml-[7%] translate-y-20 h-[150%] w-[80%]"
-      />
-      <div className="mt-[7%] ml-[7%] mr-[7%] py-2 flex flex-row bg-[#28DF99] font-semibold text-white pl-4">
-        Produk
-        <div className="ml-[50%]">Harga Satuan</div>
-        <div className="ml-[5%]">Warna</div>
-        <div className="ml-[5%]">Usia</div>
-        <div className="ml-[5%]">Jumlah</div>
-      </div>
-      <div className="mt-[2%] ml-[7%] mr-[7%] py-20 bg-[#F3FFFB] font-semibold text-white">
-        {/* Display Produk */}
-        {formData.judul_produk ? (
-          <div>
-            <p>Judul Produk: {formData.judul_produk}</p>
-            <p>Deskripsi: {formData.deskripsi_produk}</p>
-            <p>Harga: {formData.harga}</p>
-            {formData.foto_produk && (
-              <p>
-                Foto Produk:{" "}
-                <Image
-                  src={formData.foto_produk}
-                  alt="Produk"
-                  width={100}
-                  height={100}
-                />
-              </p>
-            )}
-          </div>
-        ) : (
-          <p>Loading produk...</p>
-        )}
-      </div>
-      <Image
-        src="/icon/lokasi.svg"
-        alt="Lokasi Icon"
-        width={30}
-        height={30}
-        className="translate-y-[350%] ml-[11%]"
-      />
-      <div className="mt-[2%] ml-[7%] mr-[7%] py-10 bg-[#F3FFFB]">
-        <div className="bg-white py-10 rounded ml-[3%] mr-[3%] text-[#00663F] text-2xl border-2 p-5 border-[#00663F]">
-          Jl.Melong Tengah No 12 RW.05 RT.03
+    <div className="p-10">
+      <h1 className="text-3xl font-bold mb-6">Checkout</h1>
+      {produkDetail ? (
+        <div className="bg-white p-6 rounded shadow-lg">
+          <h2 className="text-2xl font-semibold">{produkDetail.nama}</h2>
+          <p>Harga: Rp. {produkDetail.harga}</p>
+          <p>Deskripsi: {produkDetail.deskripsi}</p>
         </div>
-        <Link href="/Produk/compnents/editalamat">
-          <button className="text-white bg-[#139663] rounded px-3 ml-[90%] -translate-y-24">
-            Edit
-          </button>
-        </Link>
-      </div>
-      <div className="mt-[4%] ml-[7%] mr-[7%] py-2 bg-[#28DF99] text-2xl font-semibold text-white pl-4">
-        Metode Pembayaran
-      </div>
-      <div className="ml-[7%] mr-[7%] py-3 bg-[#F3FFFB]">
-        <div className="bg-white my-[10px] mx-[10px] h-[300px] shadow-[3px_3px_3px] shadow-[#0000002e]">
-          <div className="flex flex-row">
-            <Image
-              src="/img/bca.png"
-              alt="BCA"
-              width={170}
-              height={170}
-              className="ml-[3%] mt-[3%]"
-            />
-            <Image
-              src="/img/bni.png"
-              alt="BNI"
-              width={170}
-              height={170}
-              className="ml-[3%] mt-[3%]"
-            />
-            <Image
-              src="/img/mandiri.png"
-              alt="Mandiri"
-              width={170}
-              height={170}
-              className="ml-[3%] mt-[3%]"
-            />
-            <Image
-              src="/img/bri.png"
-              alt="BRI"
-              width={170}
-              height={170}
-              className="ml-[3%] mt-[3%]"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="mt-[2%] ml-[7%] mr-[7%] py-6 bg-[#F3FFFB] font-semibold text-[#00663F]">
-        <div className="ml-[3%] bg-white rounded mr-[3%] text-[#00663F] h-80 border-2 p-10 border-[#00663F]">
-          <p className="ml-1 text-2xl">Subtotal</p>
-        </div>
-        <p className="-translate-y-60 pl-[7%] text-2xl">
-          Total Biaya Pengiriman
-        </p>
-        <p className="text-2xl pl-[7%] -translate-y-60">Biaya Layanan</p>
-        <div className="-translate-y-48 text-2xl pl-[4%] border-2 border-[#00663F] mr-[3%] ml-[3%]">
-          Total Pembayaran
-        </div>
-        <button className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40">
-          Checkout
-        </button>
-      </div>
+      ) : (
+        <div>Loading produk...</div>
+      )}
     </div>
   );
 };
 
-export default Page;
+export default CheckoutPage;
