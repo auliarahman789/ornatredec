@@ -52,7 +52,7 @@ function Page() {
     formData2.append("fotoKonten", formData.fotoKonten);
     formData2.append("kategori_forum", formData.kategori_forum);
 
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/post`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/post`;
     try {
       const res = await axios.post(url, formData2, {
         withCredentials: true,

@@ -20,7 +20,7 @@ function Navbar() {
         if (!token) return; // Jika tidak ada token, keluar dari fungsi
 
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_URL}/api/getMe`,
+          `${process.env.NEXT_PUBLIC_URL}api/getMe`,
           {
             withCredentials: true,
             // headers: {

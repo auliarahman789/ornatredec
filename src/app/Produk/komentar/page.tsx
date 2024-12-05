@@ -19,7 +19,7 @@ const Komentar: React.FC = () => {
 
   useEffect(() => {
     const fetchUlasans = async () => {
-      const url = `${process.env.NEXT_PUBLIC_URL}/api/ulasan`;
+      const url = `${process.env.NEXT_PUBLIC_URL}api/ulasan`;
       try {
         const response = await axios.get(url);
         if (response.status === 200) {

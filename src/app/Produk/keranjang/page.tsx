@@ -20,7 +20,7 @@ const KeranjangPage = () => {
     const getKeranjang = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_URL}/api/getTroli`,
+          `${process.env.NEXT_PUBLIC_URL}api/getTroli`,
           { withCredentials: true }
         );
         setKeranjangFromAPI(response.data);

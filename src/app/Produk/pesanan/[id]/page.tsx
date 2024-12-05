@@ -47,7 +47,7 @@ const DetailPesanan = () => {
     //   return;
     // }
 
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/troli`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/troli`;
 
     try {
       const response = await axios.post(
@@ -76,7 +76,7 @@ const DetailPesanan = () => {
       return;
     }
 
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/transaksiSatu`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/transaksiSatu`;
     console.log(id_produkpesan);
     console.log(id_subvariasipesan);
     try {
@@ -109,13 +109,14 @@ const DetailPesanan = () => {
   // }, [id]);
 
   const fetchDetailProduct = async (produkId: any) => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProdukId/${produkId}`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${produkId}`;
     console.log("fetch", produkId);
     try {
       const response = await axios.get(url, { withCredentials: true });
       setProduk(response.data);
       console.log(response.data);
-      setHargaTerpilih(response.data.harga);
+      setHargaTerpilih(response.data.harga); // Set harga awal sesuai dengan produk utama
+    } catch (error) {
       console.error("Error fetching product details:", error);
       setError("Terjadi kesalahan saat mengambil detail produk.");
     } finally {
