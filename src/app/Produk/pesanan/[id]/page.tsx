@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Komentar from "../../komentar/page";
 import { useKeranjang } from "../../keranjang/keranjangContext";
-import { Produk, Variasi, Subvariasi } from "../types";
+import { Produk, Subvariasi } from "../types";
 
 const DetailPesanan = () => {
   const { id } = useParams();
@@ -18,7 +18,6 @@ const DetailPesanan = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [hargaTerpilih, setHargaTerpilih] = useState<number | null>(null);
-  const [variasiDipilih, setVariasiDipilih] = useState<Subvariasi | null>(null);
   const [subvariasiDipilih, setSubvariasiDipilih] = useState<any>(null);
   const [id_produkpesan, set_produkpesan] = useState<any>();
   const [id_subvariasipesan, set_id_subvariasipesan] = useState<any>();
@@ -36,8 +35,6 @@ const DetailPesanan = () => {
     console.log(id);
   }, [id, id_subvariasi]);
 
-  const fetchDetailProduct = async (produkId: string) => {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${produkId}`;
   useEffect(() => {
     set_id_subvariasikeranjang(id_subvariasi);
     set_jumlahStokkeranjang(jumlah);
@@ -127,18 +124,6 @@ const DetailPesanan = () => {
     }
   };
 
-  const tambahKeKeranjang = () => {
-    if (produk) {
-      const produkDenganVariasi = {
-        ...produk,
-        variasiDipilih: variasiDipilih?.nama_sub_variasi || "", // Tambahkan variasi yang dipilih
-        harga: hargaTerpilih || produk.harga, // Tambahkan harga yang dipilih berdasarkan variasi
-      };
-      tambahProdukKeKeranjang(produkDenganVariasi);
-      router.push("/Produk/keranjang");
-    }
-  };
-
   const [jumlah, setJumlah] = useState(1);
   const tambahJumlah = () => setJumlah((prev) => prev + 1);
   const kurangiJumlah = () => setJumlah((prev) => (prev > 1 ? prev - 1 : 1));
@@ -170,18 +155,18 @@ const DetailPesanan = () => {
               <p className="text-2xl font-bold text-[#FF0A0A] pt-6">
                 Rp. {hargaTerpilih ?? produk.harga}
               </p>
-              {produk.variasis.map((variasi: Variasi) => (
+              {produk.variasis.map((variasi) => (
                 <div key={variasi.id} className="pt-4">
                   <p className="text-xl font-medium">
                     Variasi: {variasi.nama_variasi}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {variasi.subvariasis.map((subvariasi: Subvariasi) => (
+                    {variasi.subvariasis.map((subvariasi) => (
                       <button
                         key={subvariasi.id}
                         onClick={() => handleVariasiClick(subvariasi)} // Kirim objek subvariasi
                         className={`px-3 py-1 rounded hover:bg-gray-300 transition-colors duration-200 ${
-                          variasiDipilih?.id === subvariasi.id
+                          subvariasiDipilih?.id === subvariasi.id
                             ? "bg-green-400 text-white"
                             : "bg-gray-200"
                         }`}
@@ -208,8 +193,7 @@ const DetailPesanan = () => {
                 </div>
               ))}
             </div>
-            <div className="flex flex-row translate-y-[500%]">]
-              <Link href={`/Produk/pesanan/checkout/${produk.id}`}>
+            <div className="flex flex-row translate-y-[500%]">
               {/* <Link > */}
               <button
                 onClick={() => {
@@ -257,8 +241,7 @@ const DetailPesanan = () => {
         <Komentar />
       </div>
     </div>
-    )
   );
 };
 
-export default DetailPesanan;
+export default DetailPesanan;

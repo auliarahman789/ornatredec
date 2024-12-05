@@ -15,6 +15,7 @@ const disableNavbar = [
   "/profile/riwayat",
   "/Produk/detail",
   "/Produk/editalamat",
+  "/Produk/pesanan/statuspesanan",
   "/Superadmin",
   "/Superadmin/Dashboard",
   "/Superadmin/Produk",
