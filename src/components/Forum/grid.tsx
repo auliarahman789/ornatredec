@@ -59,11 +59,11 @@ function Grid() {
       }
 
       // Panggil API untuk mendapatkan data pengguna
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}api/getMe`, {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}api/getMe, {
         headers: {
-          Authorization: `Bearer ${token}`, // Kirim token sebagai header
+          Authorization: Bearer ${token}, // Kirim token sebagai header
         },
-      });
+      }`);
 
       const username = res.data.username; // Ambil username dari respons API
       return username || "Guest"; // Pastikan ada fallback username
@@ -145,8 +145,7 @@ function Grid() {
   // Load forum data when the component mounts
   useEffect(() => {
     getForum();
-    const timer = setTimeout(() => {
-    }, 300);
+    const timer = setTimeout(() => {}, 300);
     return () => clearTimeout(timer);
   }, []);
   // useEffect(() => {
@@ -155,7 +154,7 @@ function Grid() {
   //   }, 300);
   //   return () => clearTimeout(debounce);
   // }, [searchTerm]);
-  
+
   // Fetch forum data from API
   async function getForum() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/filterForum?page=1&limit=20`;
@@ -190,97 +189,97 @@ function Grid() {
         {filteredData.length > 0 ? (
           filteredData.map((item, i) => (
             <div
-            className="mt-[3%] cursor-pointer w-[779px] pb-[5%] bg-white pt-5"
-            key={item.id}
+              className="mt-[3%] cursor-pointer w-[779px] pb-[5%] bg-white pt-5"
+              key={item.id}
             >
               <Link href={`/Forum/Detail/${item.id}`}>
-              <div className="w-full h-[155px] cursor-pointer">
-                <div className="flex mt-[5%]">
-                  <div className="flex items-start">
-                    <img
-                      src={
-                        item.User.photoProfile
-                          ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                            item.User.photoProfile
-                          : "/img/default-avatar.png"
-                      }
-                      width={38}
-                      height={38}
-                      alt="foto profil"
-                      className="rounded-full ml-6 -translate-y-5"
-                    />
-                    <img
-                      src={
-                        item.fotoKonten
-                          ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                            item.fotoKonten
-                          : ""
-                      }
-                      className="ml-4 h-[157px] w-[206px] bg-gray-300"
-                    />
-                  </div>
-
-                  <div className="ms-[3%] flex-col space-y-1">
-                    <div className="flex space-x-2 mb-[3%]">
-                      <p className="text-[#21B892] mt-1 text-[20px]">
-                        {item.judul}
-                      </p>
+                <div className="w-full h-[155px] cursor-pointer">
+                  <div className="flex mt-[5%]">
+                    <div className="flex items-start">
+                      <img
+                        src={
+                          item.User.photoProfile
+                            ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                              item.User.photoProfile
+                            : "/img/default-avatar.png"
+                        }
+                        width={38}
+                        height={38}
+                        alt="foto profil"
+                        className="rounded-full ml-6 -translate-y-5"
+                      />
+                      <img
+                        src={
+                          item.fotoKonten
+                            ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                              item.fotoKonten
+                            : ""
+                        }
+                        className="ml-4 h-[157px] w-[206px] bg-gray-300"
+                      />
                     </div>
 
-                    <p className="font-light text-[12px]">
-                      {`Ulasan dari `}
-                      <span className="text-[#005DE8]">
-                        {item.User.username}
-                      </span>
-                      {` pada `} {formatTanggal(item.createdAt)}
-                    </p>
-                    <button className="bg-[#C2FFE8] p-[2px] rounded w-[15%] text-[#06612B] font-light text-[12px]">
-                      {item.kategori_forum}
-                    </button>
+                    <div className="ms-[3%] flex-col space-y-1">
+                      <div className="flex space-x-2 mb-[3%]">
+                        <p className="text-[#21B892] mt-1 text-[20px]">
+                          {item.judul}
+                        </p>
+                      </div>
 
-                    <div className="flex pt-[8.5%] -translate-x-10">
-                      <Image
-                        src={mata}
-                        width={20}
-                        height={20}
-                        alt="mata"
-                        className="ms-10"
-                      />
-                      <p className="ms-1 font-light mt-1 text-[12px] text-[#323735]">
-                        {item.jumlahView}
+                      <p className="font-light text-[12px]">
+                        {`Ulasan dari `}
+                        <span className="text-[#005DE8]">
+                          {item.User.username}
+                        </span>
+                        {` pada `} {formatTanggal(item.createdAt)}
                       </p>
-                      <Image
-                        src={chat2}
-                        width={20}
-                        height={20}
-                        alt="chat2"
-                        className="ms-10"
-                      />
-                      <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
-                        {item.jumlahTanggapan}
-                      </p>
+                      <button className="bg-[#C2FFE8] p-[2px] rounded w-[15%] text-[#06612B] font-light text-[12px]">
+                        {item.kategori_forum}
+                      </button>
+
+                      <div className="flex pt-[8.5%] -translate-x-10">
+                        <Image
+                          src={mata}
+                          width={20}
+                          height={20}
+                          alt="mata"
+                          className="ms-10"
+                        />
+                        <p className="ms-1 font-light mt-1 text-[12px] text-[#323735]">
+                          {item.jumlahView}
+                        </p>
+                        <Image
+                          src={chat2}
+                          width={20}
+                          height={20}
+                          alt="chat2"
+                          className="ms-10"
+                        />
+                        <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
+                          {item.jumlahTanggapan}
+                        </p>
+                      </div>
+                      <div className="border-b w-[408px] border-black"></div>
                     </div>
-                    <div className="border-b w-[408px] border-black"></div>
                   </div>
                 </div>
-              </div>
 
-              {/* Post description */}
-              <div className="mt-[4%]">
-                <p className="text-black leading-tight ml-[10%] w-[60%] text-[15px]">
-                  {item.desc}
-                </p>
-              </div>
+                {/* Post description */}
+                <div className="mt-[4%]">
+                  <p className="text-black leading-tight ml-[10%] w-[60%] text-[15px]">
+                    {item.desc}
+                  </p>
+                </div>
 
-              {/* Comments section */}
-              {/* <div>
+                {/* Comments section */}
+                {/* <div>
                 <p className="text-black text-[15px] ml-[15%] mt-[4%]">
                   {item.jumlahTanggapan} Komentar
                 </p> */}
 
                 {/* <div className="space-y-3">
                   {/* Comment List */}
-                  {/* <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
+                {/* <div className="max-h-[500px] space-y-5 overflow-x-hidden overflow-y-auto">
                     {item.comments.map((comment, index) => (
                       <>
                         <div
@@ -373,10 +372,10 @@ function Grid() {
                         )}
                       </>
                     ))} */}
-                  {/* </div> */} 
+                {/* </div> */}
 
-                  {/* Comment input box */}
-                  {/* <div className="p-4">
+                {/* Comment input box */}
+                {/* <div className="p-4">
                     <div className="flex items-center">
                       <div className="mx-auto w-[78%] mt-[10%]">
                         <div className="flex items-center bg-white w-full h-[31px] border border-gray-300 rounded-md relative">
@@ -427,9 +426,9 @@ function Grid() {
                   </div>
                 </div>
               </div> */}
-              {/* </div> */}
+                {/* </div> */}
               </Link>
-      </div>
+            </div>
           ))
         ) : (
           <div className="mt-6 p-6 text-center text-gray-500 bg-white rounded-lg shadow-lg">

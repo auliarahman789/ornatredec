@@ -1,59 +1,114 @@
 "use client";
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 
+// Interface untuk produk
+// interface SubVariasi {
+//   nama_sub_variasi: string;
+//   stok: number;
+//   harga: number;
+//   usia: string;
+// }
 
-interface SubVariasi {
-  nama_sub_variasi: string;
-  stok: number;
-  harga: number;
-  usia: string;
-}
+// type Variasi = {
+//   nama_variasi: string;
+//   subvariasis: SubVariasi[];
+// }
 
-interface Variasi {
-  nama_variasi: string;
-  subvariasis: SubVariasi[];
-}
-
-interface Produk {
+type Produk = {
   judul_produk: string;
   deskripsi_produk: string;
   harga: number;
   foto_produk: string;
-  variasis: Variasi[];
+  variasis: {
+    nama_variasi: string;
+    subvariasis: {
+      nama_sub_variasi: string;
+      stok: number;
+      harga: number;
+      usia: string;
+    }[]
+  }
 }
+
+// Komponen popup untuk checkout
+interface CheckoutPopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+}
+
+const CheckoutPopup: React.FC<CheckoutPopupProps> = ({
+  isOpen,
+  onClose,
+  onConfirm,
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-80">
+        <h2 className="text-xl font-semibold mb-4 text-center">
+          Apakah Anda Yakin?
+        </h2>
+        <p className="mb-6">Selesaikan pembayaran ini dengan klik Konfirmasi</p>
+        <div className="flex justify-between">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-[#6F6D6D] rounded"
+          >
+            Batal
+          </button>
+          <button
+            onClick={onConfirm}
+            className="px-4 py-2 text-[#3F9272] rounded"
+          >
+            Konfirmasi
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Page = () => {
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
+  const [data,setData] = useState<Produk>()
 
-  const [formData, setFormData] = useState<Produk>({
-    judul_produk: "",
-    deskripsi_produk: "",
-    harga: 0,
-    foto_produk: "",
-    variasis: [],
-  });
-
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+const { id } = useParams();
   // Fungsi untuk pergi kembali ke halaman sebelumnya
   const handleGoBack = () => {
-    router?.push("/Produk/pesanan/[id]"); // Gantilah [id] dengan id yang sesuai jika perlu
+    router.push("/Produk/pesanan/[id]");
+  };
+
+  // Fungsi untuk membuka popup
+  const handleCheckoutClick = () => {
+    setIsPopupOpen(true);
+  };
+
+  // Fungsi untuk menutup popup
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  // Fungsi untuk mengonfirmasi checkout
+  const handleConfirmCheckout = () => {
+    setIsPopupOpen(false);
+    alert("Checkout berhasil!");
+    // Anda bisa menambahkan logika checkout API di sini
   };
 
   // Mengambil data produk dari API
   const getProduk = async () => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProduk`; // Pastikan URL ini sesuai dengan API yang benar
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${id}`;
     try {
-      const res = await axios.get(url, { withCredentials: true });
-      setFormData({
-        judul_produk: res.data.judul_produk || "",
-        deskripsi_produk: res.data.deskripsi_produk || "",
-        harga: res.data.harga || 0,
-        foto_produk: res.data.foto_produk || "",
-        variasis: res.data.variasis || [], // Default ke array kosong jika variasi kosong
-      });
+      const res = await axios.get<Produk>(url, { withCredentials: true });
+      setData(res.data)
+      console.log(res.data)
     } catch (error) {
       console.error("Failed to fetch produk data", error);
     }
@@ -62,7 +117,12 @@ const Page = () => {
   useEffect(() => {
     getProduk();
   }, []);
-
+ const formatHarga = (itung: number) => {
+   return new Intl.NumberFormat("id-ID", {
+     style: "currency",
+     currency: "IDR",
+   }).format(itung);
+ };
   return (
     <div className="bg-[#E5FFF9] min-h-screen">
       <button
@@ -93,22 +153,26 @@ const Page = () => {
       </div>
       <div className="mt-[2%] ml-[7%] mr-[7%] py-20 bg-[#F3FFFB] font-semibold text-white">
         {/* Display Produk */}
-        {formData.judul_produk ? (
-          <div>
-            <p>Judul Produk: {formData.judul_produk}</p>
-            <p>Deskripsi: {formData.deskripsi_produk}</p>
-            <p>Harga: {formData.harga}</p>
-            {formData.foto_produk && (
-              <p>
-                Foto Produk:{" "}
+        {data ? (
+          <div className="flex flex-row ml-[20%]">
+            <p className="text-black text-2xl">
+              {data.judul_produk}
+            </p>
                 <Image
-                  src={formData.foto_produk}
+                  src={
+                    data.foto_produk
+                      ? "https://74gslzvj-8000.asse.devtunnels.ms" +
+                        data.foto_produk
+                      : ""
+                  }
                   alt="Produk"
                   width={100}
                   height={100}
+                  className="-translate-y-48"
                 />
-              </p>
-            )}
+            <p className="text-[#828382] ml-[19%]">{formatHarga(data.harga)}</p>
+            <p className="text-[#828382] ml-[10%]">{data.variasis.nama_variasi}-{data.variasis.subvariasis.nama_sub_variasi}</p>
+            <p className="text-[#828382] ml-[6%]">3 bulan</p>
           </div>
         ) : (
           <p>Loading produk...</p>
@@ -168,6 +232,7 @@ const Page = () => {
           </div>
         </div>
       </div>
+      {/* Komponen lainnya */}
       <div className="mt-[2%] ml-[7%] mr-[7%] py-6 bg-[#F3FFFB] font-semibold text-[#00663F]">
         <div className="ml-[3%] bg-white rounded mr-[3%] text-[#00663F] h-80 border-2 p-10 border-[#00663F]">
           <p className="ml-1 text-2xl">Subtotal</p>
@@ -179,10 +244,18 @@ const Page = () => {
         <div className="-translate-y-48 text-2xl pl-[4%] border-2 border-[#00663F] mr-[3%] ml-[3%]">
           Total Pembayaran
         </div>
-        <button className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40">
+        <button
+          className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40"
+          onClick={handleCheckoutClick}
+        >
           Checkout
         </button>
       </div>
+      <CheckoutPopup
+        isOpen={isPopupOpen}
+        onClose={handleClosePopup}
+        onConfirm={handleConfirmCheckout}
+      />
     </div>
   );
 };
