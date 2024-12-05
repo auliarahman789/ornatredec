@@ -8,6 +8,8 @@ import mata from "../../public/icon/mata.svg";
 import chat2 from "../../public/icon/chat2.svg";
 import Trash from "../../public/icon/Trash.svg";
 import axios from "axios";
+import router from "next/router";
+import Swal from "sweetalert2";
 
 type PostinganForum = {
   judul: string;
@@ -37,6 +39,34 @@ const Riwayat = () => {
     } catch (error: any) {
       console.log(error);
       alert("Terjadi kesalahan saat mengambil data pesanan.");
+    }
+  }
+
+  async function deleteForumReport() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/deletePost/${id}`;
+    const confirmDelete = await Swal.fire({
+      title: "Apakah kamu yakin?",
+      text: "Forum yang dihapus tidak bisa dikembalikan!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Ya, hapus!",
+      cancelButtonText: "Batal",
+    });
+    if (confirmDelete.isConfirmed) {
+      try {
+        const res = await axios.delete(url, {
+          withCredentials: true,
+        });
+        console.log(res.data);
+        Swal.fire("Berhasil!", "Konten telah dihapus.", "success"); // Pesan sukses
+        router?.push("/Superadmin/Forum");
+      } catch (error) {
+        Swal.fire("Gagal!", "Gagal menghapus konten.", "error"); // Pesan gagal
+      }
+    } else {
+      Swal.fire("Dibatalkan", "Penghapusan dibatalkan.", "info"); // Pesan batal
     }
   }
 
@@ -159,7 +189,7 @@ const Riwayat = () => {
                             alt="drop"
                             width={100}
                             height={100}
-                            className="absolute ml-[31%] mt-[2%] w-[30px] h-[30px]"
+                            className="absolute ml-[31%] mt-[2%] w-[30px] h-[30px] cursor-pointer"
                           />
                         </div>
                       ))
