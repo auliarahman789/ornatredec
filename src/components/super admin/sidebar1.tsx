@@ -182,10 +182,10 @@ function SidebarSp() {
           </Link>
           <Link href="/Superadmin/Forum">
             <li
-              className={`cursor-pointer flex mb-10 ${pathname==="/" ? "active" : ""}`}
+              className={`cursor-pointer flex mb-10 ${isForum ? "active" : ""}`}
             >
               <Image
-                src={pathname==="/" ? forum2 : forumm}
+                src={isForum ? forum2 : forumm}
                 className="w-6 h-6 me-5"
                 width={30}
                 height={30}
