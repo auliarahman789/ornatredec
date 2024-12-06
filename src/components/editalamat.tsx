@@ -79,7 +79,7 @@ function Page() {
       });
 
       const response = await axios.put(
-        `${process.env.NEXT_PUBLIC_URL}api/update/${userId}`,
+        `${process.env.NEXT_PUBLIC_URL}api/alamat`,
         formData2,
         {
           headers: {

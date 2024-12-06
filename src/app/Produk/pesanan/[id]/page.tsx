@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -108,14 +108,14 @@ const DetailPesanan = () => {
   //   console.log(id);
   // }, [id]);
 
-  const fetchDetailProduct = async (produkId: any) => {
+ const fetchDetailProduct = async (produkId: any) => {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/getProdukId/${produkId}`;
     console.log("fetch", produkId);
     try {
       const response = await axios.get(url, { withCredentials: true });
       setProduk(response.data);
       console.log(response.data);
-      setHargaTerpilih(response.data.harga); // Set harga awal sesuai dengan produk utama
+      setHargaTerpilih(response.data.harga); 
     } catch (error) {
       console.error("Error fetching product details:", error);
       setError("Terjadi kesalahan saat mengambil detail produk.");
@@ -129,8 +129,8 @@ const DetailPesanan = () => {
   const kurangiJumlah = () => setJumlah((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleVariasiClick = (subvariasi: Subvariasi) => {
-    setHargaTerpilih(subvariasi.harga); // Update harga sesuai dengan subvariasi yang dipilih
-    setSubvariasiDipilih(subvariasi); // Simpan subvariasi yang dipilih
+    setHargaTerpilih(subvariasi.harga);
+    setSubvariasiDipilih(subvariasi);
     console.log("Subvariasi dipilih:", subvariasi);
   };
 
@@ -164,7 +164,7 @@ const DetailPesanan = () => {
                     {variasi.subvariasis.map((subvariasi) => (
                       <button
                         key={subvariasi.id}
-                        onClick={() => handleVariasiClick(subvariasi)} // Kirim objek subvariasi
+                        onClick={() => handleVariasiClick(subvariasi)}
                         className={`px-3 py-1 rounded hover:bg-gray-300 transition-colors duration-200 ${
                           subvariasiDipilih?.id === subvariasi.id
                             ? "bg-green-400 text-white"
