@@ -175,7 +175,7 @@ function Grid() {
   return (
     <div>
       {/* Search input */}
-      <div className="flex ms-[13%] mt-10">
+      <div className="flex ms-[13%] mt-20">
         <input
           type="text"
           placeholder="Cari..."

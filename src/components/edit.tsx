@@ -54,7 +54,7 @@ function Edit() {
   }, []);
 
   async function getUser() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getMe`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getMe`;
     try {
       const res = await axios.get(url, {
         // Menggunakan params untuk query string

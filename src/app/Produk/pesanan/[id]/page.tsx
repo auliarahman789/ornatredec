@@ -47,7 +47,7 @@ const DetailPesanan = () => {
     //   return;
     // }
 
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/troli`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/troli`;
 
     try {
       const response = await axios.post(
@@ -76,7 +76,7 @@ const DetailPesanan = () => {
       return;
     }
 
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/transaksiSatu`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/transaksiSatu`;
     console.log(id_produkpesan);
     console.log(id_subvariasipesan);
     try {
@@ -109,7 +109,7 @@ const DetailPesanan = () => {
   // }, [id]);
 
   const fetchDetailProduct = async (produkId: any) => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProdukId/${produkId}`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${produkId}`;
     console.log("fetch", produkId);
     try {
       const response = await axios.get(url, { withCredentials: true });
