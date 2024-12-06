@@ -115,7 +115,8 @@ const DetailPesanan = () => {
       const response = await axios.get(url, { withCredentials: true });
       setProduk(response.data);
       console.log(response.data);
-      setHargaTerpilih(response.data.harga);
+      setHargaTerpilih(response.data.harga); // Set harga awal sesuai dengan produk utama
+    } catch (error) {
       console.error("Error fetching product details:", error);
       setError("Terjadi kesalahan saat mengambil detail produk.");
     } finally {
