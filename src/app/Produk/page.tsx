@@ -4,9 +4,9 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
- function Produk  ()  {
+function Produk() {
   const [data, setData] = useState<any[]>([]);
-  const [searchTerm, setSearchTerm] = useState(""); // State untuk pencarian produk
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchProducts();
@@ -24,7 +24,6 @@ import axios from "axios";
     }
   };
 
-  // Menyaring produk berdasarkan input pencarian
   const filteredData = data.filter((item) =>
     item.judul_produk.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -72,7 +71,7 @@ import axios from "axios";
               className="w-[239px] h-[319px] rounded-3xl bg-white shadow-[2px_8px_10px] shadow-[#0000002e]"
               key={item.id}
             >
-              <Link href={`/Produk/${item.id}`}>
+              <Link href={`/Produk/pesanan/${item.id}`}>
                 <img
                   className="mx-auto mt-5 h-[65%] w-[85%] cursor-pointer"
                   alt="Produk Gambar"
@@ -95,6 +94,6 @@ import axios from "axios";
       </div>
     </div>
   );
-};
+}
 
 export default Produk;
