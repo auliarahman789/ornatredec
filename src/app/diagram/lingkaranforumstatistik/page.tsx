@@ -1,31 +1,58 @@
 "use client";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 
-const data = [
-  ["Task", "Hours per Day"],
-  ["Tanaman", 156],
-  ["Ikan", 78],
-  ["Burung", 26],
-];
+type TotalData = {
+  totalIkan: number;
+  totalBurung: number;
+  totalTanaman: number;
+};
 
-// Optional
 const options = {
-  title: "", // Tetap kosong jika tidak perlu judul
-  legend: "none", // Menghilangkan legend di sebelah kanan
+  title: "",
+  legend: "none",
   chartArea: {
-    left: 13, // Hilangkan padding kiri
-    top: 8, // Hilangkan padding atas
-    right: 13, // Hilangkan padding kanan
-    bottom: 8, // Hilangkan padding bawah
-    width: "50%", // Mengatur lebar chart menjadi 50% dari container
-    height: "50%", // Mengatur tinggi chart menjadi 50% dari container
+    left: 13,
+    top: 8,
+    right: 13,
+    bottom: 8,
+    width: "50%",
+    height: "50%",
   },
-  backgroundColor: "transparent", // Menghilangkan background putih
-  colors: ["#309494", "#4CC2AD", "#6BF8C2"], // Ganti dengan warna yang diinginkan
+  backgroundColor: "transparent",
+  colors: ["#309494", "#4CC2AD", "#6BF8C2"],
 };
 
 function ForumStatistik() {
+  const [data, setData] = useState([
+    ["Type", "Total"],
+    ["Total Ikan", 0],
+    ["Total Burung", 0],
+    ["Total Tanaman", 0],
+  ]);
+
+  async function getTotal() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/statistik/2024`;
+    try {
+      const res = await axios.get(url, { withCredentials: true });
+      const bulan: TotalData = res.data.data[10]; // November (indeks 10)
+      setData([
+        ["Type", "Total"],
+        ["Total Ikan", bulan.totalIkan],
+        ["Total Burung", bulan.totalBurung],
+        ["Total Tanaman", bulan.totalTanaman],
+      ]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      alert("Terjadi kesalahan saat mengambil data konten forum perbulan");
+    }
+  }
+
+  useEffect(() => {
+    getTotal();
+  }, []);
+
   return (
     <div className="w-[70%] h-[90%] mx-auto">
       <Chart chartType="PieChart" data={data} options={options} />

@@ -57,7 +57,6 @@ function Edit() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/getMe`;
     try {
       const res = await axios.get(url, {
-        // Menggunakan params untuk query string
         withCredentials: true,
       });
 
@@ -158,7 +157,6 @@ function Edit() {
       formData2.append("jalan", formData.jalan);
       formData2.append("RtRw", formData.RtRw);
 
-      // Ambil ID pengguna dari localStorage
       const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
 
       const response = await axios.put(
@@ -209,7 +207,7 @@ function Edit() {
       // style={{ backgroundImage: "url('/img/bg.jpg')", height: "160vh" }}
       >
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-          <div className="bg-white p-16 rounded-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
+          <div className=" p-16 rounded-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
             <div className="flex justify-center -translate-y-[10%]">
               <Image
                 src={formData.photoProfile || "/img/default-avatar.png"} // Jika tidak ada gambar, gunakan default avatar
@@ -218,7 +216,7 @@ function Edit() {
                 alt="Profile Picture"
                 className="rounded-full cursor-pointer"
                 onClick={handleavatarClick}
-                unoptimized // Menghindari optimisasi yang mungkin menyebabkan masalah pada data URL
+                unoptimized
               />
 
               <input
@@ -271,7 +269,7 @@ function Edit() {
               <input
                 type="text"
                 name="provinsi"
-                defaultValue={formData.email}
+                defaultValue={formData.provinsi}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -281,7 +279,7 @@ function Edit() {
               <input
                 type="text"
                 name="kotakabupaten"
-                defaultValue={formData.email}
+                defaultValue={formData.kotakabupaten}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -291,7 +289,7 @@ function Edit() {
               <input
                 type="text"
                 name="kecamatan"
-                defaultValue={formData.email}
+                defaultValue={formData.kecamatan}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -301,7 +299,7 @@ function Edit() {
               <input
                 type="text"
                 name="kelurahanDesa"
-                defaultValue={formData.email}
+                defaultValue={formData.kelurahanDesa}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -311,7 +309,7 @@ function Edit() {
               <input
                 type="text"
                 name="jalan"
-                defaultValue={formData.email}
+                defaultValue={formData.jalan}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -321,7 +319,7 @@ function Edit() {
               <input
                 type="text"
                 name="jalan"
-                defaultValue={formData.email}
+                defaultValue={formData.RtRw}
                 onChange={handleInputChange}
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
@@ -357,27 +355,27 @@ function Edit() {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
 
               /> */}
-          </div>
 
-          <div className="grid grid-cols-3">
-            <div className="flex justify-end mt-[20%]">
-              <button
-                onClick={handleGoBack}
-                className="px-4 py-2 bg-[#3F9272] text-white rounded-lg"
-              >
-                Kembali
-              </button>
-            </div>
-            <div></div>
-            <div className="flex justify-start mt-[20%]">
-              <button
-                onClick={() => {
-                  handleSave(), console.log(formData);
-                }}
-                className="px-4 py-2 bg-[#CCFFEB] text-[#3F9272] rounded-lg"
-              >
-                Perbarui
-              </button>
+            <div className="grid grid-cols-3">
+              <div className="flex justify-end mt-[20%]">
+                <button
+                  onClick={handleGoBack}
+                  className="px-4 py-2 bg-[#3F9272] text-white rounded-lg"
+                >
+                  Kembali
+                </button>
+              </div>
+              <div></div>
+              <div className="flex justify-start mt-[20%]">
+                <button
+                  onClick={() => {
+                    handleSave(), console.log(formData);
+                  }}
+                  className="px-4 py-2 bg-[#CCFFEB] text-[#3F9272] rounded-lg"
+                >
+                  Perbarui
+                </button>
+              </div>
             </div>
           </div>
         </div>

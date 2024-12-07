@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import userIcon from "../../../public/icon/User_fill (2).svg";
+import userIcon from "../../../public/icon/User_fill.svg";
 import messageIcon from "../../../public/icon/Message_alt_fill.svg";
 import passwordIcon from "../../../public/icon/Lock_alt_fill.svg";
 import phoneIcon from "../../../public/icon/Phone_fill.svg";

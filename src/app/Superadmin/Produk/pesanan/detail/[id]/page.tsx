@@ -9,6 +9,7 @@ import { useParams } from "next/navigation";
 type DetailPesanan = {
   jumlah: number;
   status: string;
+  statusPembayaran: string;
   produk: {
     judul_produk: string;
     harga: number;
@@ -76,7 +77,7 @@ function Page() {
     <div className="overflow-x-hidden">
       <div className="flex">
         {data && (
-          <div className="flex w-[65%] min-h-screen mx-[15%]">
+          <><div className="flex w-[65%] min-h-screen mx-[15%]">
             <div className="w-[25%] min-h-screen bg-gradient-to-b from-[#178267] to-[#28DFB1] fixed">
               <div className="mt-[18%] mx-[26%]">
                 <p className="text-white font-medium text-[23px] whitespace-nowrap">
@@ -89,11 +90,8 @@ function Page() {
                       alt="Produk Gambar"
                       width={200}
                       height={200}
-                      src={
-                        "https://74gslzvj-8000.asse.devtunnels.ms" +
-                        data.produk.foto_produk
-                      }
-                    />
+                      src={"https://74gslzvj-8000.asse.devtunnels.ms" +
+                        data.produk.foto_produk} />
                   </a>
                   <div className="px-4 py-2">
                     <h5 className="text-sm font-semibold text-black">
@@ -154,37 +152,46 @@ function Page() {
               <div className="space-y-[1%]">
                 <p className="text-[#18856A] text-[15px]">Status</p>
                 <div className="flex space-x-[14%]">
-                  <div className="flex space-x-4">
-                    <input
-                      type="radio"
-                      name="status bayar"
-                      value="Sudah bayar"
-                      id="Sudah bayar"
-                    />
-                    <label htmlFor="Sudah bayar">Sudah bayar</label>
-                  </div>
-                  <div className="flex space-x-4">
-                    <input
-                      type="radio"
-                      name="status bayar"
-                      value="cod"
-                      id="cod"
-                    />
-                    <label htmlFor="cod">cod</label>
-                  </div>
+                  {data.statusPembayaran === "success" ? (
+                    <div className="flex space-x-4">
+                      <input
+                        type="radio"
+                        name="status bayar"
+                        value="Sudah bayar"
+                        id="Sudah bayar"
+                        readOnly
+                        checked />
+                      <label htmlFor="Sudah bayar">Sudah bayar</label>
+                    </div>
+                  ) : (
+                    <div className="flex space-x-4">
+                      <input
+                        type="radio"
+                        name="status bayar"
+                        value="cod"
+                        id="cod"
+                        readOnly
+                        checked />
+                      <label htmlFor="cod">Belum bayar</label>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
-        )}
-        <div className="relative">
-          <p
-            onClick={KemasStatus}
-            className=" cursor-pointer text-[#00663F] absolute -translate-x-[80%] bottom-10 font-bold"
-          >
-            Kemas
-          </p>
-        </div>
+            <div className="relative">
+              {data.statusPembayaran === "success" ? (
+                <p
+                  onClick={KemasStatus}
+                  className=" cursor-pointer text-[#00663F] absolute -translate-x-[80%] bottom-10 font-bold"
+                >
+                  Kemas
+                </p>
+              ) : (
+                  ""
+              )}
+            </div></>
+          )}
       </div>
     </div>
   );

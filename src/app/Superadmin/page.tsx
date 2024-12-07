@@ -7,9 +7,14 @@ import Image from "next/image";
 import Diagram from "../diagram/lingkaran/page";
 import Example from "../diagram/batang/page";
 import DiagramForum from "../diagram/lingkaranforum/page";
-import DropdownButton from "@/components/super admin/button/page";
+import DropdownButton from "../../components/super admin/button/page";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+
+import KombinasiDropdown from "../../components/super admin/button/page";
+import CombinedDropdowns from "../../components/super admin/button/page";
+import BarProdukDash from "../diagram/batang/page";
+import BarForumDash from "../diagram/batang/ForumDash";
 
 type Total = {
   totalPenggunaUser: number;
@@ -24,6 +29,7 @@ type Total = {
   totalForumBurung: number;
   totalPemesanan: number;
 };
+
 const Page = () => {
   const [data, setData] = useState<Total | null>();
 
@@ -44,11 +50,14 @@ const Page = () => {
     }
   }
   const router = useRouter();
+
+  const [activeMonth, setActiveMonth] = useState("Produk");
+
   const handleAturProduk = () => {
-    router?.push("/Superadmin/Produk");
+    router.push("/Superadmin/Produk");
   };
   const handleAturKonten = () => {
-    router?.push("/Superadmin/Forum");
+    router.push("/Superadmin/Forum");
   };
   return (
     <div className="overflow-x-hidden min-h-screen">
@@ -185,11 +194,35 @@ const Page = () => {
           )}
         </div>
         <div
-          className="w-[73%] h-[500px] ms-[4%] mt-[2%] bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl mb-5"
+          className="w-[73%] h-[500px] ms-[4%] mt-[2%] pt-1 bg-gradient-to-b from-[#15E6CD] to-[#4EDBB9] rounded-xl mb-5"
           style={{ boxShadow: "1px 5px 4px #00000040" }}
         >
-          <DropdownButton />
-          <Example />
+          <div className="flex justify-end">
+            <ul className="mr-10 mt-2 items-end rounded-sm space-x-[18px] w-[14.5%] h-[6%] bg-white flex px-2">
+              <li
+                onClick={() => setActiveMonth("Produk")}
+                className={`cursor-pointer ${
+                  activeMonth === "Produk" ? "border-b-4 border-[#308967]" : ""
+                }`}
+              >
+                Produk
+              </li>
+              <li
+                onClick={() => setActiveMonth("Forum")}
+                className={`cursor-pointer ${
+                  activeMonth === "Forum" ? "border-b-4 border-[#308967]" : ""
+                }`}
+              >
+                Forum
+              </li>
+            </ul>
+          </div>
+
+          {activeMonth === "Produk" && <BarProdukDash />}
+          {activeMonth === "Forum" && <BarForumDash />}
+
+          {/* <BarProdukDash /> */}
+          {/* <BarForumDash /> */}
         </div>
         {data && (
           <div className="flex ms-[1.5%] mt-[2%] mb-[2%]">
@@ -197,7 +230,7 @@ const Page = () => {
               className="flex flex-col items-center py-7 ms-[2.5%] mr-[1.5%] w-[19%] h-[10%] bg-[#CDF4E5] rounded-xl"
               style={{ boxShadow: "1px 5px 4px #00000040" }}
             >
-              <h1 className="font-bold text-[#198C6F]">Jumlah Ulasan</h1>
+              <h1 className="font-bold text-[#198C6F]">Jumlah Konten Forum</h1>
               <h1 className="text-4xl mt-3 text-[#198C6F] font-semibold text-center border-[#198C6F] border-b-[1px] w-[130px] pb-2">
                 {data.totalPostingan}
               </h1>
