@@ -8,7 +8,8 @@ const LoginR = ({
   setIsAnimated: any;
 }) => {
   return (
-    <div id="login"
+    <div
+      id="login"
       className="h-[520px] w-[420px] bg-no-repeat bg-center text-white
      flex flex-col items-center justify-center gap-5"
       style={{
@@ -17,11 +18,13 @@ const LoginR = ({
       }}
     >
       <div className="text-center">
-        <h1 className="text-[30px] font-bold mt-20 -translate-y-2">Selamat Datang</h1>
+        <h1 className="text-[30px] font-bold mt-20 -translate-y-2">
+          Selamat Datang
+        </h1>
         <p className="mt-6 -translate-y-3">
           Tap disini jika kamu belum
           <br />
-          memiliki akun di OrnaTredec
+          memiliki akun di T-Trana
         </p>
       </div>
       <button

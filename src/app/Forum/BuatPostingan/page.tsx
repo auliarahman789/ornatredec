@@ -6,34 +6,44 @@ import Konten from "@/components/super admin/forum/konten";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import LoadingProduk from "@/components/super admin/loadingProduk";
+import LoadingForum from "@/components/Forum/loading";
 
 interface Konten {
   judul: string;
   desc: string;
-  fotoKonten: any;
+  fotoKonten: File | null; // Tentukan tipe data File
   kategori_forum: string;
 }
+
 function Page() {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [formData, setFormData] = useState<Konten>({
     judul: "",
     desc: "",
-    fotoKonten: "",
+    fotoKonten: null,
     kategori_forum: "",
   });
+  const [filePreview, setFilePreview] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleImageClick = () => {
     if (inputRef.current) {
       inputRef.current.click();
     }
   };
-  const handleInputImage = (e: any) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      ["fotoKonten"]: e.target.files[0],
-    }));
-    console.log(e.target.files);
+
+  const handleInputImage = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData((prevData) => ({
+        ...prevData,
+        fotoKonten: file,
+      }));
+      setFilePreview(URL.createObjectURL(file));
+    }
   };
+
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -42,46 +52,50 @@ function Page() {
       ...prevData,
       [name]: value,
     }));
-    console.log(value);
   };
+
   const router = useRouter();
   async function buatPostingan() {
     const formData2 = new FormData();
     formData2.append("judul", formData.judul);
     formData2.append("desc", formData.desc);
-    formData2.append("fotoKonten", formData.fotoKonten);
+    if (formData.fotoKonten) {
+      formData2.append("fotoKonten", formData.fotoKonten);
+    }
     formData2.append("kategori_forum", formData.kategori_forum);
 
     const url = `${process.env.NEXT_PUBLIC_URL}api/post`;
     try {
+      setIsLoading(true);
       const res = await axios.post(url, formData2, {
         withCredentials: true,
       });
-      router?.push("/Forum");
-      alert(
-        Swal.fire({
-          icon: "success",
-          title: "Berhasil!",
-          text: "Anda Berhasil Membuat Konten, Selamat 🎉.",
-        })
-      );
+      router.push("/Forum");
+      Swal.fire({
+        icon: "success",
+        title: "Berhasil!",
+        text: "Anda Berhasil Membuat Konten, Selamat 🎉.",
+      });
       console.log(res.data);
+      setIsLoading(false);
     } catch (error: any) {
-      console.log(error);
-      alert("gagal membuat postingan");
+      setIsLoading(false);
+      console.error(error);
+      alert("Gagal membuat postingan");
     }
   }
 
   const handleCancel = () => {
     router.push("/Forum");
   };
+
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen pb-[4%] pe-[2%] pt-[2%]">
       <div className="w-[38%] flex-col pt-[3.5%]">
         <Image
           onClick={handleImageClick}
           className="w-[80%] h-[45%] justify-self-center"
-          src={up}
+          src={filePreview || up}
           alt="up"
           width={400}
           height={400}
@@ -95,7 +109,11 @@ function Page() {
           className="mt-3"
           style={{ display: "none" }}
         />
+        {/* && <img src={filePreview} alt="Preview" width={100} height={100} />}
+        
+        Input Kategori */}
         <div className="flex flex-col space-y-6 mt-[15%] justify-self-center">
+          {/* Tanaman */}
           <div className="flex space-x-3">
             <input
               type="radio"
@@ -112,6 +130,8 @@ function Page() {
               Tanaman
             </label>
           </div>
+
+          {/* Burung */}
           <div className="flex space-x-3">
             <input
               type="radio"
@@ -132,8 +152,7 @@ function Page() {
             <input
               type="radio"
               name="kategori_forum"
-              className="w-[20px] border-2 
-                                         border-[#308967]"
+              className="w-[20px] border-2 border-[#308967]"
               value="ikan"
               id="ikan"
               onChange={handleInputChange}
@@ -147,6 +166,8 @@ function Page() {
           </div>
         </div>
       </div>
+
+      {/* Form Input */}
       <div className="w-[62%] p-[2.5%] pb-[2.5%]">
         <div className="relative">
           <button
@@ -175,11 +196,13 @@ function Page() {
         </div>
         <div className="relative">
           <button
+            disabled={isLoading}
             className="w-[120px] absolute right-0 top-4 h-[40px] bg-[#E2FFF8] rounded-[5px] text-[#51CB9F] text-[24px] pb-2 pt-1"
-            onClick={() => buatPostingan()}
+            onClick={buatPostingan}
           >
-            Posting
+            {isLoading ? "" : "Tambah"}
           </button>
+          {isLoading && <LoadingForum />}
         </div>
       </div>
     </div>

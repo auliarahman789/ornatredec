@@ -1,17 +1,18 @@
-"use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import logo from "../../../public/icon/logo.svg";
 import defaultAvatar from "../../../public/img/default-avatar.png";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import notifIcon from "../../../public/icon/notif2.svg";
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState<string>(defaultAvatar.src);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -22,19 +23,21 @@ function Navbar() {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_URL}api/getMe`,
           {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
             withCredentials: true,
-            // headers: {
-            //   Authorization: `Bearer ${token}`,
-            // },
           }
         );
-
-        console.log(token);
 
         if (response.data) {
           setIsLoggedIn(true);
           setUsername(response.data.username);
-          setAvatar(response.data.avatar || defaultAvatar.src); // Gunakan avatar dari response
+          setAvatar(
+            response.data.photoProfile
+              ? `${process.env.NEXT_PUBLIC_URL}${response.data.photoProfile}`
+              : defaultAvatar.src
+          );
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -43,6 +46,14 @@ function Navbar() {
 
     fetchUserData();
   }, []);
+
+  const handleLoginSuccess = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+      router.push("/"); // Redirect ke homepage
+    }
+  };
 
   return (
     <div>
@@ -103,20 +114,27 @@ function Navbar() {
 
         <div className="flex items-center space-x-3">
           {isLoggedIn ? (
-            <Link href="/profile" className="flex items-center">
-              <img
-                src={avatar}
-                alt="Profile Avatar"
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
-              <span className="text-[#308967] ml-2">{username}</span>
-            </Link>
+            <>
+              <Link href="/notifikasi">
+                <Image src={notifIcon} width={30} height={30} alt="notifIcon" />
+              </Link>
+              <Link href="/profile" className="flex items-center">
+                <img
+                  src={avatar} // Gunakan avatar dari API atau default
+                  alt="Profile Avatar"
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+                <span className="text-[#308967] ml-2">{username}</span>
+              </Link>
+            </>
           ) : (
             <div>
               <Link href="/auths">
-                <button className="text-[#308967]">Login</button>
+                <button className="text-[#308967]" onClick={handleLoginSuccess}>
+                  Login
+                </button>
               </Link>
               <Link href="/auths">
                 <button className="text-white bg-green-500 rounded-lg py-1 px-4 ml-2">

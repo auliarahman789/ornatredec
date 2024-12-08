@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import Dropdown1 from "./dropdownPengeluaran";
 import PengeluaranOkt from "./pengeluaran-pemasuk/oktober/pengteluaran";
+import PengeluaranJan from "./pengeluaran-pemasuk/januari/pengteluaran";
+import PengeluaranFeb from "./pengeluaran-pemasuk/februari/pengteluaran";
+import PengeluaranMaret from "./pengeluaran-pemasuk/maret/pengteluaran";
+import PengeluaranApril from "./pengeluaran-pemasuk/april/pengteluaran";
+import PengeluaranMei from "./pengeluaran-pemasuk/mei/pengteluaran";
+import PengeluaranJuni from "./pengeluaran-pemasuk/juni/pengteluaran";
+import PengeluaranJuli from "./pengeluaran-pemasuk/juli/pengteluaran";
+import PengeluaranAgt from "./pengeluaran-pemasuk/agustus/pengteluaran";
+import PengeluaranSep from "./pengeluaran-pemasuk/september/pengteluaran";
+import PengeluaranNov from "./pengeluaran-pemasuk/november/pengteluaran";
+import PengeluaranDes from "./pengeluaran-pemasuk/desember/pengteluaran";
 
 function Pengeluaran() {
   const [activeMonth, setActiveMonth] = useState('Januari');
@@ -33,7 +44,18 @@ function Pengeluaran() {
             <p>januari</p>
           )
       )} */}
-      {activeMonth === "Oktober" && <PengeluaranOkt/>}
+      {activeMonth === "Januari" && <PengeluaranJan />}
+      {activeMonth === "Februari" && <PengeluaranFeb />}
+      {activeMonth === "Maret" && <PengeluaranMaret />}
+      {activeMonth === "April" && <PengeluaranApril />}
+      {activeMonth === "Mei" && <PengeluaranMei />}
+      {activeMonth === "Juni" && <PengeluaranJuni />}
+      {activeMonth === "Juli" && <PengeluaranJuli />}
+      {activeMonth === "Agustus" && <PengeluaranAgt />}
+      {activeMonth === "September" && <PengeluaranSep />}
+      {activeMonth === "Oktober" && <PengeluaranOkt />}
+      {activeMonth === "November" && <PengeluaranNov />}
+      {activeMonth === "Desember" && <PengeluaranDes/>}
     </div>
   );
 }

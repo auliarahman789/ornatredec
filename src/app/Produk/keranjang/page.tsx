@@ -75,7 +75,7 @@ const KeranjangPage = () => {
     if (produkIdTroli !== null) {
       try {
         const response = await axios.delete(
-          `${process.env.NEXT_PUBLIC_URL}/api/hapusTroli/${produkIdTroli}`,
+          `${process.env.NEXT_PUBLIC_URL}api/hapusTroli/${produkIdTroli}`,
           { withCredentials: true }
         );
         console.log(response.data);

@@ -1,5 +1,6 @@
 // src/app/layout.tsx
 
+import RootLayoutClient from "@/components/layout2";
 import { KeranjangProvider } from "./Produk/keranjang/keranjangContext";
 import "./globals.css";
 import type { Metadata } from "next";
@@ -21,9 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={josefinSans.className}>
-        <KeranjangProvider>{children}</KeranjangProvider>
+    <html lang="en ">
+      <body>
+        <RootLayoutClient>
+          <KeranjangProvider>{children}</KeranjangProvider>
+        </RootLayoutClient>
       </body>
     </html>
   );

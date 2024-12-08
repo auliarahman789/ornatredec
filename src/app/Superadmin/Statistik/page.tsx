@@ -91,9 +91,9 @@ const Page = () => {
             <Perbandingan />
             <div className="relative text-white">
               <p className="absolute left-[25%] top-28 font-semibold text-xs">
-                Total Terjual: {data.monthlyStatistics[10].transaksi_produk}
+                Total Terjual: {data.monthlyStatistics[11].transaksi_produk}
               </p>
-              <p className="absolute left-[25%] top-36 font-bold text-xl">November</p>
+              <p className="absolute left-[25%] top-36 font-bold text-xl">Desember</p>
             </div>
             <BarKecil />
             <PieChartStatistik />

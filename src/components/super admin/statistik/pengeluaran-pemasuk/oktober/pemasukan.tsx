@@ -17,6 +17,9 @@ type PemasukanOkt = {
     totalUntungIkan: number;
     totalUntungBurung: number;
     totalUntung: number;
+    totalBiayaLayanan: number;
+    totalBiayaDarurat: number;
+    subTotalKeuntungan: number;
   };
   
   function PemasukanOkt() {
@@ -119,18 +122,18 @@ type PemasukanOkt = {
                           <li>Nominal</li>
                       </ul>
                       <ul className='bg-white h-[28px] p-1 flex justify-evenly'>
-                          <li>Biaya Tambahan</li>
-                          <li>Nominal</li>
+                          <li>Biaya Darurat</li>
+                          <li>Biaya Layanan</li>
                       </ul>
                       <ul className='bg-white h-[28px] p-1 flex justify-evenly'>
-                          <li>Biaya Tambahan</li>
-                          <li>Nominal</li>
+                          <li>{formatHarga(data.totalBiayaDarurat)}</li>
+                          <li>{formatHarga(data.totalBiayaLayanan)}</li>
                       </ul>
                   </div>
                   <div className="w-[45%] h-[100px]">
                       <p className="bg-[#308967] h-[28px] p-1 text-white text-center">Subtotal</p>
                       <div className="bg-white h-[62px] mt-[1.5%]">
-                          <p className="text-center py-[5%]">929999199</p>
+                          <p className="text-center py-[5%]">{formatHarga(data.subTotalKeuntungan)}</p>
                       </div>
                   </div>
               </div>
