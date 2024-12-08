@@ -93,7 +93,7 @@ const Riwayat: React.FC = () => {
           ))}
         </div>
       ) : (
-        <p className="text-gray-600">Tidak ada data untuk ditampilkan.</p>
+        <p className="text-gray-600">harap simpan postingan belum ada data</p>
       )}
     </div>
   );
