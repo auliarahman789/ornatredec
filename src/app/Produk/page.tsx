@@ -71,7 +71,7 @@ function Produk() {
               className="w-[239px] h-[319px] rounded-3xl bg-white shadow-[2px_8px_10px] shadow-[#0000002e]"
               key={item.id}
             >
-              <Link href={`/Produk/${item.id}`}>
+              <Link href={`/Produk/pesanan/${item.id}`}>
                 <img
                   className="mx-auto mt-5 h-[65%] w-[85%] cursor-pointer"
                   alt="Produk Gambar"

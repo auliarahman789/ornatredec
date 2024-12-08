@@ -49,6 +49,7 @@ function Grid() {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [commentInput, setCommentInput] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState(""); // Tambahkan state untuk searchTerm
+  const [idPosting, set_postingan] = useState<any>();
 
   // Get username from localStorage or use default "Guest"
   const getUsername = async () => {
@@ -172,6 +173,28 @@ function Grid() {
     }
   }
   const [showAll, setShowAll] = useState<boolean>(false);
+
+  useEffect(() => {
+    set_postingan(idPosting);
+  }, [idPosting]);
+
+  async function simpanpostingan() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/simpanPost`;
+
+    try {
+      const response = await axios.post(
+        url,
+        {
+          postId: idPosting,
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error("gagal menyimpan postingan:", error);
+    }
+  }
+
   return (
     <div>
       {/* Search input */}
@@ -259,7 +282,16 @@ function Grid() {
                         <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
                           {item.jumlahTanggapan}
                         </p>
+                        <button
+                          onClick={() => {
+                            simpanpostingan();
+                          }}
+                          className="text-black p-4 bg-orange-500 ml-[20%]"
+                        >
+                          simpan
+                        </button>
                       </div>
+
                       <div className="border-b w-[408px] border-black"></div>
                     </div>
                   </div>

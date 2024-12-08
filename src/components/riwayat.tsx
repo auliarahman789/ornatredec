@@ -12,7 +12,7 @@ import router from "next/router";
 import Swal from "sweetalert2";
 
 type PostinganForum = {
-  id: string; // Tambahkan id jika belum ada
+  id: string;
   judul: string;
   kategori_forum: string;
   jumlahView: number;

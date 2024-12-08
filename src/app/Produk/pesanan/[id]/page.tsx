@@ -42,10 +42,10 @@ const DetailPesanan = () => {
   }, [id_subvariasi]);
 
   async function tambahkeranjang() {
-    // if (!subvariasiDipilih) {
-    //   alert("Harap pilih subvariasi terlebih dahulu.");
-    //   return;
-    // }
+    if (!subvariasiDipilih) {
+      alert("Harap pilih subvariasi terlebih dahulu.");
+      return;
+    }
 
     const url = `${process.env.NEXT_PUBLIC_URL}api/troli`;
 
@@ -204,20 +204,19 @@ const DetailPesanan = () => {
                   tambahkepesan();
                 }}
               >
-                <Link href={`/pesanan/checkout/${produk.id}`}>
-                  <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
-                    <span className="text-white flex flex-row">
-                      Beli<span className="pl-1">sekarang</span>
-                    </span>
-                  </button>
-                </Link>
+                {/* <Link href={`/pesanan/checkout/${produk.id}`}> */}
+                <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
+                  <span className="text-white flex flex-row">
+                    Beli<span className="pl-1">sekarang</span>
+                  </span>
+                </button>
+                {/* </Link> */}
               </button>
               {/* </Link> */}
               <button
                 onClick={() => tambahkeranjang()}
-                className={`text-white bg-green-500 rounded-lg py-2 px-[5%] ml-2 translate-x-[350%] ${
-                  !subvariasiDipilih ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+                className={`text-white bg-green-500 rounded-lg py-2 px-[5%] ml-2 translate-x-[350%] 
+                ${!subvariasiDipilih ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={!subvariasiDipilih}
               >
                 <Image
