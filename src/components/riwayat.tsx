@@ -10,6 +10,7 @@ import Trash from "../../public/icon/Trash.svg";
 import axios from "axios";
 import router from "next/router";
 import Swal from "sweetalert2";
+import Simpan from "./simpan";
 
 type PostinganForum = {
   id: string;
@@ -83,6 +84,34 @@ const Riwayat = () => {
   useEffect(() => {
     getpostinganUser();
   }, []);
+
+  const DataViewer = () => {
+    const [data, setData] = useState<any[]>([]);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            `${process.env.NEXT_PUBLIC_URL}api/simpanan`,
+            { withCredentials: true }
+          );
+          setData(response.data);
+        } catch (err: any) {
+          setError("Gagal memuat data. Silakan coba lagi.");
+        }
+      };
+
+      fetchData();
+    }, []);
+
+    return (
+      <div>
+        <h1>Data dari API:</h1>
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      </div>
+    );
+  };
 
   return (
     <div className="flex min-h-screen bg-white">
@@ -186,7 +215,9 @@ const Riwayat = () => {
                 <h1 className="text-[#5CD5A6] text-[20px]">
                   Ulasan Yang Terakhir Dikunjungi
                 </h1>
-                <div className="bg-[#5CD5A6] rounded-lg shadow-lg w-[90%] h-[350%] mt-2"></div>
+                <div className="bg-[#5CD5A6] rounded-lg shadow-lg w-[90%] h-[350%] mt-2">
+                  <Simpan />
+                </div>
               </div>
             </div>
           </div>
