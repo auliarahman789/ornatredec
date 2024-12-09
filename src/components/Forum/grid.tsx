@@ -48,7 +48,7 @@ function Grid() {
   const [data, setData] = useState<Forum[]>([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [commentInput, setCommentInput] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState(""); // Tambahkan state untuk searchTerm
+  const [searchTerm, setSearchTerm] = useState("");
   const [idPosting, set_postingan] = useState<any>();
 
   // Get username from localStorage or use default "Guest"
@@ -174,18 +174,14 @@ function Grid() {
   }
   const [showAll, setShowAll] = useState<boolean>(false);
 
-  useEffect(() => {
-    set_postingan(idPosting);
-  }, [idPosting]);
-
-  async function simpanpostingan() {
+  async function simpanpostingan(idPost: number) {
     const url = `${process.env.NEXT_PUBLIC_URL}api/simpanPost`;
-
+    console.log(idPost);
     try {
       const response = await axios.post(
         url,
         {
-          postId: idPosting,
+          idPost: idPost,
         },
         { withCredentials: true }
       );
@@ -194,6 +190,9 @@ function Grid() {
       console.error("gagal menyimpan postingan:", error);
     }
   }
+  // useEffect(() => {
+  //   set_postingan(idPosting);
+  // }, [idPosting]);
 
   return (
     <div>
@@ -216,6 +215,14 @@ function Grid() {
               className="mt-[3%] cursor-pointer w-[779px] pb-[5%] bg-white pt-5"
               key={item.id}
             >
+              <button
+                onClick={() => {
+                  simpanpostingan(item.id);
+                }}
+                className="text-black p-4 bg-orange-500 ml-[20%]"
+              >
+                simpan
+              </button>
               <Link href={`/Forum/Detail/${item.id}`}>
                 <div className="w-full h-[155px] cursor-pointer">
                   <div className="flex mt-[5%]">
@@ -282,14 +289,6 @@ function Grid() {
                         <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
                           {item.jumlahTanggapan}
                         </p>
-                        <button
-                          onClick={() => {
-                            simpanpostingan();
-                          }}
-                          className="text-black p-4 bg-orange-500 ml-[20%]"
-                        >
-                          simpan
-                        </button>
                       </div>
 
                       <div className="border-b w-[408px] border-black"></div>

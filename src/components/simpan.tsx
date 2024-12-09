@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 interface PostData {
   id: number;
@@ -62,8 +63,6 @@ const Riwayat: React.FC = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Riwayat Postingan</h1>
-
       {error ? (
         <p className="text-red-500">{error}</p>
       ) : data.length > 0 ? (
@@ -85,8 +84,32 @@ const Riwayat: React.FC = () => {
                   <p className="w-[66px] h-[17px] bg-[#83F6CA] text-[12px] text-[#06612B] font-light rounded-sm text-center">
                     {item.post.kategori_forum}
                   </p>
-                  <p className="ml-5"> {item.post.jumlahTanggapan}</p>
-                  <p className="ml-5"> {item.post.jumlahView}</p>
+                  <p className="ml-5 text-[7px] font-light text-black">
+                    <Image
+                      src="/icon/komen.svg"
+                      width={15}
+                      height={15}
+                      alt="komen"
+                    />
+                    <span className="ml-1">{item.post.jumlahTanggapan}</span>
+                  </p>
+                  <p className="ml-5 text-[7px] font-light text-black">
+                    <Image
+                      src="/icon/mata.svg"
+                      width={20}
+                      height={20}
+                      alt="komen"
+                    />
+                    <span className="ml-2 mt-2">{item.post.jumlahView}</span>
+                  </p>
+                  <div className="ml-5">
+                    <Image
+                      src="/icon/simpan.svg"
+                      width={15}
+                      height={15}
+                      alt="komen"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

@@ -213,7 +213,7 @@ const Riwayat = () => {
               </div>
               <div className="">
                 <h1 className="text-[#5CD5A6] text-[20px]">
-                  Ulasan Yang Terakhir Dikunjungi
+                  Ulasan Yang Anda Simpan
                 </h1>
                 <div className="bg-[#5CD5A6] rounded-lg shadow-lg w-[90%] h-[350%] mt-2">
                   <Simpan />
