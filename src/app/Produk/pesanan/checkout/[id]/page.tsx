@@ -171,7 +171,7 @@ const { id } = useParams();
                   className="-translate-y-48"
                 />
             <p className="text-[#828382] ml-[19%]">{formatHarga(data.harga)}</p>
-            <p className="text-[#828382] ml-[10%]">{data.variasis.nama_variasi}-{data.variasis.subvariasis.nama_sub_variasi}</p>
+            <p className="text-[#828382] ml-[10%]">{data.variasis.nama_variasi}- {data.variasis.subvariasis[0]?.nama_sub_variasi || "Tidak tersedia"}</p>
             <p className="text-[#828382] ml-[6%]">3 bulan</p>
           </div>
         ) : (

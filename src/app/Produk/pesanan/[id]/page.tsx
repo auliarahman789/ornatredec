@@ -55,7 +55,7 @@ const DetailPesanan = () => {
         {
           id_produk: id_produkkeranjang,
           id_subVariasi: subvariasiDipilih.id,
-          jumlahStok: jumlahStokkeranjang,
+          jumlahStok: jumlahStokkeranjang,  
         },
         { withCredentials: true }
       );
