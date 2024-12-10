@@ -1,5 +1,16 @@
 import React, { useState } from 'react'
 import PemasukanOkt from './pengeluaran-pemasuk/oktober/pemasukan';
+import PemasukanJan from './pengeluaran-pemasuk/januari/pemasukan';
+import PemasukanFeb from './pengeluaran-pemasuk/februari/pemasukan';
+import PemasukanMaret from './pengeluaran-pemasuk/maret/pemasukan';
+import PemasukanApril from './pengeluaran-pemasuk/april/pemasukan';
+import PemasukanMei from './pengeluaran-pemasuk/mei/pemasukan';
+import PemasukanJuni from './pengeluaran-pemasuk/juni/pemasukan';
+import PemasukanJuli from './pengeluaran-pemasuk/juli/pemasukan';
+import PemasukanAgt from './pengeluaran-pemasuk/agustus/pemasukan';
+import PemasukanSep from './pengeluaran-pemasuk/september/pemasukan';
+import PemasukanNov from './pengeluaran-pemasuk/november/pemasukan';
+import PemasukanDes from './pengeluaran-pemasuk/desember/pemasukan';
 
 
 function Pemasukan() {
@@ -27,7 +38,18 @@ function Pemasukan() {
               ini dropdown
       </div>
       </div> */}
-               {active === "Oktober" && <PemasukanOkt/>}
+          {active === "Januari" && <PemasukanJan />}
+          {active === "Februari" && <PemasukanFeb />}
+          {active === "Maret" && <PemasukanMaret />}
+          {active === "April" && <PemasukanApril />}
+          {active === "Mei" && <PemasukanMei />}
+          {active === "Juni" && <PemasukanJuni/>}
+          {active === "Juli" && <PemasukanJuli />}
+          {active === "Agustus" && <PemasukanAgt />}
+          {active === "September" && <PemasukanSep />}
+          {active === "Oktober" && <PemasukanOkt />}
+          {active === "November" && <PemasukanNov />}
+          {active === "Desember" && <PemasukanDes/>}
       </div>
   )
 }

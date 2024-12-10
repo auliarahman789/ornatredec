@@ -22,7 +22,7 @@ const Burungproduk = () => {
     router?.push("/Superadmin/Produk/edit");
   };
   async function getBurung() {
-    const url = `https://74gslzvj-8000.asse.devtunnels.ms/api/filterdanGet?kategori=burung`;
+    const url = `{process.env.NEXT_PUBLIC_URL}api/filterdanGet?kategori=burung`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,

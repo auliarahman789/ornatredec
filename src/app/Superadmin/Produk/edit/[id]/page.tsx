@@ -6,6 +6,7 @@ import axios from "axios";
 import tambahicon from "../../../../../../public/icon/dell_square.svg";
 import { useRouter } from "next/navigation";
 import LoadingProduk from "@/components/super admin/loadingProduk";
+import Swal from "sweetalert2";
 
 interface SubVariasi {
   nama_sub_variasi: string;
@@ -64,6 +65,7 @@ const Page = ({ params }: { params: { id: number } }) => {
   useEffect(() => {
     getProduk();
   }, [id]);
+
 
   const handleImageClick = () => {
     if (inputRef.current) {
@@ -218,15 +220,29 @@ const Page = ({ params }: { params: { id: number } }) => {
 
   const handleDeleteProduk = async () => {
     const url = `${process.env.NEXT_PUBLIC_URL}api/hapusProduk/${id}`;
-    try {
-      const res = await axios.delete(url, {
-        withCredentials: true,
-      });
-      console.log(res.data);
-      alert("berhasil menghapus produk");
-      router?.push("/Superadmin/Produk");
-    } catch (error) {
-      alert("gagal menghapus produk");
+    const confirmDelete = await Swal.fire({
+      title: "Apakah kamu yakin?",
+      text: "Produk yang dihapus tidak bisa dikembalikan!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Ya, hapus!",
+      cancelButtonText: "Batal",
+    });
+    if (confirmDelete.isConfirmed) {
+      try {
+        const res = await axios.delete(url, {
+          withCredentials: true,
+        });
+        console.log(res.data);
+        Swal.fire("Berhasil!", "Produk telah dihapus.", "success"); // Pesan sukses
+        router?.push("/Superadmin/Produk");
+      } catch (error) {
+        Swal.fire("Gagal!", "Gagal menghapus produk", "error"); // Pesan gagal
+      }
+    } else {
+      Swal.fire("Dibatalkan", "Penghapusan dibatalkan.", "info"); // Pesan batal
     }
   };
 

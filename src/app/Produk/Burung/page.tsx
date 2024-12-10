@@ -121,4 +121,4 @@ function Burung() {
   );
 }
 
-export default Burung;
+export default Burung;

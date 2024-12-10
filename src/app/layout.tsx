@@ -22,11 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en ">
       <body>
-      <RootLayoutClient>
-        <KeranjangProvider>{children}</KeranjangProvider>
-      </RootLayoutClient>
+        <RootLayoutClient>
+          <KeranjangProvider>{children}</KeranjangProvider>
+        </RootLayoutClient>
       </body>
     </html>
   );

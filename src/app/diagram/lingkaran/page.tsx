@@ -17,7 +17,7 @@ const Page = () => {
 
   // Fungsi untuk mendapatkan data dari API
   async function getTotal() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/totalKeseluruhan`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/totalKeseluruhan`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,

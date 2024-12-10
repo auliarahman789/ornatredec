@@ -47,7 +47,7 @@ const DetailPesanan = () => {
     //   return;
     // }
 
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/troli`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/troli`;
 
     try {
       const response = await axios.post(
@@ -76,7 +76,7 @@ const DetailPesanan = () => {
       return;
     }
 
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/transaksiSatu`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/transaksiSatu`;
     console.log(id_produkpesan);
     console.log(id_subvariasipesan);
     try {
@@ -107,9 +107,8 @@ const DetailPesanan = () => {
   //   }
   //   console.log(id);
   // }, [id]);
-
- const fetchDetailProduct = async (produkId: any) => {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/getProdukId/${produkId}`;
+  const fetchDetailProduct = async (produkId: any) => {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${produkId}`;
     console.log("fetch", produkId);
     try {
       const response = await axios.get(url, { withCredentials: true });
@@ -204,11 +203,13 @@ const DetailPesanan = () => {
                   tambahkepesan();
                 }}
               >
-                <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
-                  <span className="text-white flex flex-row">
-                    Beli<span className="pl-1">sekarang</span>
-                  </span>
-                </button>
+                <Link href={`/pesanan/checkout/${produk.id}`}>
+                  <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
+                    <span className="text-white flex flex-row">
+                      Beli<span className="pl-1">sekarang</span>
+                    </span>
+                  </button>
+                </Link>
               </button>
               {/* </Link> */}
               <button

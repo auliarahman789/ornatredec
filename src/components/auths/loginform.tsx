@@ -4,6 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Loading from "./loading";
 import Image from "next/image";
+import Swal from "sweetalert2"; // Import SweetAlert
 import userIcon from "../../../public/icon/User_fill.svg";
 import passwordIcon from "../../../public/icon/Lock_alt_fill.svg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -14,9 +15,11 @@ const Login = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
+
   const handleClickShow = () => {
     setShow(!show);
   };
+
   async function login(e: React.FormEvent) {
     e.preventDefault(); // Mencegah reload saat kirim
     const url = `${process.env.NEXT_PUBLIC_URL}api/login`;
@@ -29,18 +32,25 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      console.log(res);
+      const userData = res.data.user;
+      const token = res.data.token; // Asumsikan API mengembalikan token
 
-      // Simpan data pengguna di localStorage setelah login berhasil
-      // localStorage.setItem("token", res.data.token); // Menyimpan token
-      localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
-      const userRole = res.data.user.role; // Simpan role dari response
+      if (token) {
+        localStorage.setItem("token", token);
+      }
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userData", JSON.stringify(res.data.user)); // Simpan data pengguna
+      localStorage.setItem("userData", JSON.stringify(userData));
 
-      alert("Berhasil Login");
+      // SweetAlert Success
+      Swal.fire({
+        icon: "success",
+        title: "Berhasil Login",
+        text: "Anda berhasil masuk!",
+        confirmButtonColor: "#3F9272",
+      });
+
       // Redirect berdasarkan role
+      const userRole = userData.role;
       if (userRole === "user") {
         router?.push("/");
       } else if (userRole === "super admin") {
@@ -50,8 +60,13 @@ const Login = () => {
     } catch (error: any) {
       setIsLoading(false);
 
-      console.log(error);
-      alert(error);
+      // SweetAlert Error
+      Swal.fire({
+        icon: "error",
+        title: "Gagal Login",
+        text: error.response.data.message || "Terjadi kesalahan, coba lagi.",
+        confirmButtonColor: "#3F9272",
+      });
     }
   }
 
