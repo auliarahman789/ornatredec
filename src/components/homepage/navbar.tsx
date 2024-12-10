@@ -35,7 +35,7 @@ function Navbar() {
           setUsername(response.data.username);
           setAvatar(
             response.data.photoProfile
-              ? `${process.env.NEXT_PUBLIC_URL}${response.data.photoProfile}`
+              ? 'https://74gslzvj-8000.asse.devtunnels.ms' + response.data.photoProfile
               : defaultAvatar.src
           );
         }
