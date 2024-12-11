@@ -11,6 +11,7 @@ import { Produk, Subvariasi } from "../types";
 
 const DetailPesanan = () => {
   const { id } = useParams();
+  console.log(id)
   const { id_subvariasi } = useParams();
   const router = useRouter();
   // const { tambahProdukKeKeranjang } = useKeranjang();
@@ -204,11 +205,13 @@ const DetailPesanan = () => {
                 }}
               >
                 {/* <Link href={`/pesanan/checkout/${produk.id}`}> */}
-                <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
-                  <span className="text-white flex flex-row">
-                    Beli<span className="pl-1">sekarang</span>
-                  </span>
-                </button>
+                <Link href={`checkout/${produk.id}`}>
+                  <button className="text-white bg-green-500 rounded-lg py-2 px-[150%] ml-2 h-[100%]">
+                    <span className="text-white flex flex-row">
+                      Beli<span className="pl-1">sekarang</span>
+                    </span>
+                  </button>
+                </Link>
                 {/* </Link> */}
               </button>
               {/* </Link> */}

@@ -82,7 +82,8 @@ const Page = () => {
 const { id } = useParams();
   // Fungsi untuk pergi kembali ke halaman sebelumnya
   const handleGoBack = () => {
-    router.push("/Produk/pesanan/[id]");
+    // SEKALIAN BENERIN BACK AMBIL ID
+    router.push(`/Produk/pesanan/${id}`);
   };
 
   // Fungsi untuk membuka popup
@@ -144,21 +145,22 @@ const { id } = useParams();
         height={390}
         className="ml-[7%] translate-y-20 h-[150%] w-[80%]"
       />
-      <div className="mt-[7%] ml-[7%] mr-[7%] py-2 flex flex-row bg-[#28DF99] font-semibold text-white pl-4">
-        Produk
-        <div className="ml-[50%]">Harga Satuan</div>
-        <div className="ml-[5%]">Warna</div>
-        <div className="ml-[5%]">Usia</div>
-        <div className="ml-[5%]">Jumlah</div>
-      </div>
-      <div className="mt-[2%] ml-[7%] mr-[7%] py-20 bg-[#F3FFFB] font-semibold text-white">
+      {/* IZIN UBAH STYLE */}
+      <div className="flex flex-col gap-2">
+        <div className="mt-[7%] ml-[7%] mr-[7%] py-2 grid grid-cols-[48%_13%_13%_13%_13%] bg-[#28DF99] font-semibold text-white pl-4">
+          <div className="whitespace-nowrap">Produk</div>
+          <div className="whitespace-nowrap">Harga Satuan</div>
+          <div className="whitespace-nowrap">Warna</div>
+          <div className="whitespace-nowrap">Usia</div>
+          <div className="whitespace-nowrap">Jumlah</div>
+        </div>
         {/* Display Produk */}
         {data ? (
-          <div className="flex flex-row ml-[20%]">
-            <p className="text-black text-2xl">
-              {data.judul_produk}
-            </p>
+          <div className="grid grid-cols-[48%_13%_13%_13%_13%] justify-center items-center mt-[2%] ml-[7%] mr-[7%] py-[2rem] bg-[#F3FFFB] font-semibold text-white">
+            <div className="flex justify-center gap-2 w-full ">
+              <div className="relative size-[100px]">
                 <Image
+                className="object-cover object-center rounded-md"
                   src={
                     data.foto_produk
                       ? "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -166,25 +168,31 @@ const { id } = useParams();
                       : ""
                   }
                   alt="Produk"
-                  width={100}
-                  height={100}
-                  className="-translate-y-48"
+                  fill
                 />
-            <p className="text-[#828382] ml-[19%]">{formatHarga(data.harga)}</p>
-            <p className="text-[#828382] ml-[10%]">{data.variasis.nama_variasi}- {data.variasis.subvariasis[0]?.nama_sub_variasi || "Tidak tersedia"}</p>
-            <p className="text-[#828382] ml-[6%]">3 bulan</p>
+              </div>
+              <div className="self-start text-black text-2xl">
+                <p>{data.judul_produk}</p>
+                <p className="text-xs">RATING DISINI</p>
+              </div>
+            </div>
+            {/* JSON NYA GA ADA HARGA WARNA USIA SESUAI UI/UX */}
+            <p className="text-[#828382]">harga</p>
+            <p className="text-[#828382]">warna</p>
+            <p className="text-[#828382]">usia</p>
+            <p className="text-[#828382]">{(data as any).jumlahProduk? (data as any).jumlahProduk: 0}</p>
           </div>
         ) : (
           <p>Loading produk...</p>
         )}
+        <Image
+          src="/icon/lokasi.svg"
+          alt="Lokasi Icon"
+          width={30}
+          height={30}
+          className="translate-y-[350%] ml-[11%]"
+        />
       </div>
-      <Image
-        src="/icon/lokasi.svg"
-        alt="Lokasi Icon"
-        width={30}
-        height={30}
-        className="translate-y-[350%] ml-[11%]"
-      />
       <div className="mt-[2%] ml-[7%] mr-[7%] py-10 bg-[#F3FFFB]">
         <div className="bg-white py-10 rounded ml-[3%] mr-[3%] text-[#00663F] text-2xl border-2 p-5 border-[#00663F]">
           Jl.Melong Tengah No 12 RW.05 RT.03
