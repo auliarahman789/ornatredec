@@ -19,7 +19,7 @@ function Burung() {
   }, []);
 
   async function getBurung() {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/filterdanGet`;
+    const url = `${process.env.NEXT_PUBLIC_URL}api/filterdanGet`;
     try {
       const res = await axios.get(url, {
         withCredentials: true,

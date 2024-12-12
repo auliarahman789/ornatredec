@@ -86,7 +86,7 @@ const Page = ({ params }: { params: { id: number } }) => {
   ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
-      ...prevData,
+      ...prevData,   
       [name]: value,
     }));
     console.log(value);
