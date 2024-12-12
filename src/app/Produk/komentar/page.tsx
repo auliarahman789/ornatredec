@@ -1,3 +1,4 @@
+"use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -26,7 +27,7 @@ const Komentar: React.FC = () => {
           setUlasans(response.data);
         }
       } catch (error) {
-        setUlasans([]); // Jika error, set ulasans menjadi array kosong
+        setUlasans([]);
       }
     };
 
@@ -34,7 +35,7 @@ const Komentar: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-white w-[80%] pl-4 mx-auto">
       <h2>Ulasan</h2>
       {ulasans.length === 0 ? (
         <p>Tidak ada ulasan.</p>

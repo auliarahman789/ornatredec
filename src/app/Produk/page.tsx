@@ -4,9 +4,9 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Produk = () => {
+function Produk() {
   const [data, setData] = useState<any[]>([]);
-  const [searchTerm, setSearchTerm] = useState(""); // State untuk pencarian produk
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchProducts();
@@ -24,7 +24,6 @@ const Produk = () => {
     }
   };
 
-  // Menyaring produk berdasarkan input pencarian
   const filteredData = data.filter((item) =>
     item.judul_produk.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -68,8 +67,11 @@ const Produk = () => {
 
         <div className="px-10 py-10 grid grid-cols-4 gap-6 ml-[5%] mr-[5%] -translate-y-[50%] bg-[#EBFFF8]">
           {filteredData.map((item: any) => (
-            <div key={item.id}>
-              <Link href={"/Produk/pesanan/${item.id}"}>
+            <div
+              className="w-[239px] h-[319px] rounded-3xl bg-white shadow-[2px_8px_10px] shadow-[#0000002e]"
+              key={item.id}
+            >
+              <Link href={`/Produk/pesanan/${item.id}`}>
                 <img
                   className="mx-auto mt-5 h-[65%] w-[85%] cursor-pointer"
                   alt="Produk Gambar"
@@ -92,6 +94,6 @@ const Produk = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Produk;
