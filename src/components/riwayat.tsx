@@ -8,8 +8,11 @@ import mata from "../../public/icon/mata.svg";
 import chat2 from "../../public/icon/chat2.svg";
 import Trash from "../../public/icon/Trash.svg";
 import axios from "axios";
+import router from "next/router";
+import Swal from "sweetalert2";
 
 type PostinganForum = {
+  id: string; // Tambahkan id jika belum ada
   judul: string;
   kategori_forum: string;
   jumlahView: number;
@@ -24,7 +27,6 @@ type PostinganForum = {
 
 const Riwayat = () => {
   const [data, setData] = useState<PostinganForum[]>([]); // State untuk menyimpan data
-  const [profile, setProfile] = useState<PostinganForum | null>(null);
 
   async function getpostinganUser() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/postinganUser`;
@@ -36,28 +38,36 @@ const Riwayat = () => {
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
-      alert("Terjadi kesalahan saat mengambil data pesanan.");
+      alert("Terjadi kesalahan saat mengambil data postingan.");
     }
   }
 
-  const getUsername = async () => {
-    try {
-      const token = localStorage.getItem("authToken"); // Ambil token dari localStorage atau mekanisme penyimpanan lainnya
-      if (!token) {
-        return "Guest"; // Jika token tidak ditemukan, kembalikan username default
+  const deleteForumKonten = async (postId: string) => {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/deletePost/${postId}`;
+    const confirmDelete = await Swal.fire({
+      title: "Apakah kamu yakin?",
+      text: "Forum yang dihapus tidak bisa dikembalikan!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Ya, hapus!",
+      cancelButtonText: "Batal",
+    });
+
+    if (confirmDelete.isConfirmed) {
+      try {
+        await axios.delete(url, { withCredentials: true });
+        Swal.fire("Berhasil!", "Konten telah dihapus.", "success");
+
+        // Update state agar data yang terhapus tidak ditampilkan
+        setData((prev) => prev.filter((item) => item.id !== postId));
+      } catch (error) {
+        console.error(error);
+        Swal.fire("Gagal!", "Gagal menghapus konten.", "error");
       }
-
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}api/getMe`, {
-        headers: {
-          Authorization: `Bearer ${token}`, // Kirim token sebagai header
-        },
-      });
-
-      const username = res.data.username; // Ambil username dari respons API
-      return username || "Guest"; // Pastikan ada fallback username
-    } catch (error: any) {
-      console.error("Gagal mengambil data pengguna:", error.message);
-      return "Guest"; // Default jika gagal
+    } else {
+      Swal.fire("Dibatalkan", "Penghapusan dibatalkan.", "info");
     }
   };
 
@@ -154,13 +164,16 @@ const Riwayat = () => {
                               </div>
                             </div>
                           </div>
-                          <Image
-                            src={Trash}
-                            alt="drop"
-                            width={100}
-                            height={100}
-                            className="absolute ml-[31%] mt-[2%] w-[30px] h-[30px]"
-                          />
+                          {data && (
+                            <Image
+                              src={Trash}
+                              alt="hapus"
+                              onClick={() => deleteForumKonten(item.id)}
+                              width={100}
+                              height={100}
+                              className="absolute ml-[31%] mt-[2%] w-[30px] h-[30px] cursor-pointer"
+                            />
+                          )}
                         </div>
                       ))
                     ) : (
