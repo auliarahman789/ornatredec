@@ -131,7 +131,7 @@ const KeranjangPage = () => {
                   key={item.id}
                   className="flex items-center p-4 bg-white rounded mt-8 space-y-6 shadow-[3px_5px_4px] shadow-[#0000002e]"
                 >
-                  <div className="w-24 h-24 mr-4">
+                  <div className="w-28 h-28 mr-4 -translate-y-8">
                     <img
                       className="mx-auto mt-5 h-[125%] w-[65%] rounded cursor-pointer"
                       src={`https://74gslzvj-8000.asse.devtunnels.ms${item.produk.foto_produk}`}
