@@ -145,7 +145,7 @@ const DetailPesanan = () => {
           <div>
             <img
               className="mx-auto mt-5 h-[125%] w-[65%] rounded cursor-pointer"
-              src={`${process.env.NEXT_PUBLIC_URL}${produk.foto_produk}`}
+              src={`https://74gslzvj-8000.asse.devtunnels.ms${produk.foto_produk}`}
               alt={produk.judul_produk}
             />
           </div>
