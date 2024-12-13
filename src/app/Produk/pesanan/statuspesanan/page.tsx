@@ -71,13 +71,13 @@ function Page() {
   };
   const router = useRouter();
   const handleBack = () => {
-    router.replace("/Produk/pesanan/statuspesanan")
+    router.back()
   }
   return (
     <div className="p-[3%] bg-gradient-to-b min-h-screen from-[#E5FFF9] to-[#E4FFF2]">
       <div className="flex">
-        <Image src={kembali} width={25} height={25} alt="kembali" />
-        <p className="text-[19px] translate-y-2 text-[#308967]">Kembali</p>
+        <Image onClick={handleBack} src={kembali} width={25} height={25} alt="kembali" />
+        <p onClick={handleBack}  className="text-[19px] cursor-pointer translate-y-2 text-[#308967]">Kembali</p>
         <p className="text-[25px] mx-auto font-semibold text-[#308967]">
           Riwayat Pesanan
         </p>

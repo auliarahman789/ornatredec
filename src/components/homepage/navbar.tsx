@@ -6,7 +6,7 @@ import defaultAvatar from "../../../public/img/default-avatar.png";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import notifIcon from "../../../public/icon/notif2.svg";
-
+import statusIcon from "../../../public/icon/Paper.svg"
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
@@ -115,6 +115,14 @@ function Navbar() {
         <div className="flex items-center space-x-3">
           {isLoggedIn ? (
             <>
+              <Link href="/Produk/pesanan/statuspesanan">
+                <Image
+                  src={statusIcon}
+                  width={30}
+                  height={30}
+                  alt="status"
+                />
+              </Link>
               <Link href="/Produk/keranjang">
                 <Image
                   src="/icon/keranjang.svg"
