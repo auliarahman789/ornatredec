@@ -1,23 +1,10 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
-
-// Interface untuk produk
-// interface SubVariasi {
-//   nama_sub_variasi: string;
-//   stok: number;
-//   harga: number;
-//   usia: string;
-// }
-
-// type Variasi = {
-//   nama_variasi: string;
-//   subvariasis: SubVariasi[];
-// }
-
+import "./global.d.ts"; 
 type Produk = {
   judul_produk: string;
   deskripsi_produk: string;
@@ -30,11 +17,10 @@ type Produk = {
       stok: number;
       harga: number;
       usia: string;
-    }[]
-  }
-}
+    }[];
+  };
+};
 
-// Komponen popup untuk checkout
 interface CheckoutPopupProps {
   isOpen: boolean;
   onClose: () => void;
@@ -76,66 +62,119 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({
 
 const Page = () => {
   const router = useRouter();
-  const [data,setData] = useState<Produk>()
+  const { id } = useParams();
 
+  const [data, setData] = useState<any>();
+  const [metodeTransaksi, setMetodeTransaksi] = useState("online");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-const { id } = useParams();
-  // Fungsi untuk pergi kembali ke halaman sebelumnya
+
   const handleGoBack = () => {
-    router.push("/Produk/pesanan/[id]");
+    router.push(`/Produk/pesanan/${id}`);
   };
 
-  // Fungsi untuk membuka popup
   const handleCheckoutClick = () => {
     setIsPopupOpen(true);
   };
 
-  // Fungsi untuk menutup popup
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
 
-  // Fungsi untuk mengonfirmasi checkout
-  const handleConfirmCheckout = () => {
-    setIsPopupOpen(false);
-    alert("Checkout berhasil!");
-    // Anda bisa menambahkan logika checkout API di sini
-  };
+  const handleConfirmCheckout = async () => {
+    // if (!data) {
+    //   alert("Data produk tidak tersedia. Silakan coba lagi.");
+    //   return;
+    // }
 
-  // Mengambil data produk dari API
-  const getProduk = async () => {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${id}`;
+    // // Contoh validasi data (sesuaikan dengan kebutuhan aplikasi Anda)
+    // const idProduk = 63; // ID produk diubah menjadi variabel dinamis jika perlu
+    // const jumlah = 2; // Jumlah juga sebaiknya dinamis
+    // const idSubvariasi = 63; // ID subvariasi harus sesuai dengan variasi produk
+
+    // if (!idProduk || !jumlah || !idSubvariasi) {
+    //   alert("Informasi produk tidak lengkap untuk checkout.");
+    //   return;
+    // }
+
+    setIsPopupOpen(false);
+
+    //
+    //    const payload = {
+    //      metode_transaksi: metodeTransaksi,
+    //      produk: [
+    //        {
+    //          id_produk: idProduk,
+    //          jumlah,
+    //          id_subvariasi: idSubvariasi,
+    //        },
+    //      ],
+    //    };
     try {
-      const res = await axios.get<Produk>(url, { withCredentials: true });
-      setData(res.data)
-      console.log(res.data)
-    } catch (error) {
-      console.error("Failed to fetch produk data", error);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_URL}api/transaksiCookie`,
+
+        { withCredentials: true }
+      );
+      console.log(response);
+      // if (response.status === 200 || response.status === 201) {
+      //   alert("Checkout berhasil!");
+      //   console.log("Response:", response.data);
+      //   // Redirect user atau lakukan tindakan lain setelah berhasil checkout
+      // } else {
+      //   console.error("Response error:", response);
+      //   alert("Checkout gagal. Silakan coba lagi.");
+      // }
+    } catch (error: any) {
+      console.error("Checkout gagal:", error);
+      if (error.response) {
+        // Jika ada respons dari server
+        alert(`Kesalahan: ${error.response.data.message || "Gagal checkout"}`);
+      } else {
+        alert("Terjadi kesalahan saat checkout. Silakan coba lagi.");
+      }
     }
   };
+ const [transactionToken, setTransactionToken] = useState(null);
+  async function postTransaksi() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/paymentgateway`;
+    try {
+      const res = await axios.post(
+        url,
+        {
+        id_transaksi:id,
+          payment_method: "gopay",
+        },
+        {
+          withCredentials: true,
+        }
+      );
+setTransactionToken(res.data.token);
+
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
-    getProduk();
+    handleConfirmCheckout();
+
   }, []);
- const formatHarga = (itung: number) => {
-   return new Intl.NumberFormat("id-ID", {
-     style: "currency",
-     currency: "IDR",
-   }).format(itung);
- };
+
+  const formatHarga = (itung: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(itung);
+  };
+
   return (
     <div className="bg-[#E5FFF9] min-h-screen">
       <button
         onClick={handleGoBack}
         className="ml-[7%] cursor-pointer translate-y-10 h-[50px] w-[50px]"
       >
-        <Image
-          src="/icon/backk.svg"
-          alt="Back Icon"
-          width={390}
-          height={390}
-          className=""
-        />
+        <Image src="/icon/backk.svg" alt="Back Icon" width={390} height={390} />
       </button>
       <Image
         src="/icon/ornatredecc.svg"
@@ -144,21 +183,20 @@ const { id } = useParams();
         height={390}
         className="ml-[7%] translate-y-20 h-[150%] w-[80%]"
       />
-      <div className="mt-[7%] ml-[7%] mr-[7%] py-2 flex flex-row bg-[#28DF99] font-semibold text-white pl-4">
-        Produk
-        <div className="ml-[50%]">Harga Satuan</div>
-        <div className="ml-[5%]">Warna</div>
-        <div className="ml-[5%]">Usia</div>
-        <div className="ml-[5%]">Jumlah</div>
-      </div>
-      <div className="mt-[2%] ml-[7%] mr-[7%] py-20 bg-[#F3FFFB] font-semibold text-white">
-        {/* Display Produk */}
+      <div className="flex flex-col gap-2">
+        <div className="mt-[7%] ml-[7%] mr-[7%] py-2 grid grid-cols-[48%_13%_13%_13%_13%] bg-[#28DF99] font-semibold text-white pl-4">
+          <div className="whitespace-nowrap">Produk</div>
+          <div className="whitespace-nowrap">Harga Satuan</div>
+          <div className="whitespace-nowrap">Warna</div>
+          <div className="whitespace-nowrap">Usia</div>
+          <div className="whitespace-nowrap">Jumlah</div>
+        </div>
         {data ? (
-          <div className="flex flex-row ml-[20%]">
-            <p className="text-black text-2xl">
-              {data.judul_produk}
-            </p>
+          <div className="grid grid-cols-[48%_13%_13%_13%_13%] justify-center items-center mt-[2%] ml-[7%] mr-[7%] py-[2rem] bg-[#F3FFFB] font-semibold text-white">
+            <div className="flex justify-center gap-2 w-full ">
+              <div className="relative size-[100px]">
                 <Image
+                  className="object-cover object-center rounded-md"
                   src={
                     data.foto_produk
                       ? "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -166,25 +204,30 @@ const { id } = useParams();
                       : ""
                   }
                   alt="Produk"
-                  width={100}
-                  height={100}
-                  className="-translate-y-48"
+                  fill
                 />
-            <p className="text-[#828382] ml-[19%]">{formatHarga(data.harga)}</p>
-            <p className="text-[#828382] ml-[10%]">{data.variasis.nama_variasi}-{data.variasis.subvariasis.nama_sub_variasi}</p>
-            <p className="text-[#828382] ml-[6%]">3 bulan</p>
+              </div>
+              <div className="self-start text-black text-2xl">
+                <p>{data.judul_produk}</p>
+                <p className="text-xs">RATING DISINI</p>
+              </div>
+            </div>
+            <p className="text-[#828382]">{formatHarga(data.harga)}</p>
+            <p className="text-[#828382]">{data.variasis}</p>
+            <p className="text-[#828382]">usia</p>
+            <p className="text-[#828382]">{data.jumlahProduk}</p>
           </div>
         ) : (
           <p>Loading produk...</p>
         )}
+        <Image
+          src="/icon/lokasi.svg"
+          alt="Lokasi Icon"
+          width={30}
+          height={30}
+          className="translate-y-[350%] ml-[11%]"
+        />
       </div>
-      <Image
-        src="/icon/lokasi.svg"
-        alt="Lokasi Icon"
-        width={30}
-        height={30}
-        className="translate-y-[350%] ml-[11%]"
-      />
       <div className="mt-[2%] ml-[7%] mr-[7%] py-10 bg-[#F3FFFB]">
         <div className="bg-white py-10 rounded ml-[3%] mr-[3%] text-[#00663F] text-2xl border-2 p-5 border-[#00663F]">
           Jl.Melong Tengah No 12 RW.05 RT.03
@@ -198,41 +241,29 @@ const { id } = useParams();
       <div className="mt-[4%] ml-[7%] mr-[7%] py-2 bg-[#28DF99] text-2xl font-semibold text-white pl-4">
         Metode Pembayaran
       </div>
-      <div className="ml-[7%] mr-[7%] py-3 bg-[#F3FFFB]">
-        <div className="bg-white my-[10px] mx-[10px] h-[300px] shadow-[3px_3px_3px] shadow-[#0000002e]">
-          <div className="flex flex-row">
-            <Image
-              src="/img/bca.png"
-              alt="BCA"
-              width={170}
-              height={170}
-              className="ml-[3%] mt-[3%]"
+      <div className="mt-[2%] ml-[7%] mr-[7%] py-6 bg-[#F3FFFB] font-semibold text-[#00663F]">
+        <p className="text-2xl mb-4">Pilih Metode Transaksi:</p>
+        <div className="flex gap-4">
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              value="online"
+              checked={metodeTransaksi === "online"}
+              onChange={(e) => setMetodeTransaksi(e.target.value)}
             />
-            <Image
-              src="/img/bni.png"
-              alt="BNI"
-              width={170}
-              height={170}
-              className="ml-[3%] mt-[3%]"
+            <span>Online</span>
+          </label>
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              value="offline"
+              checked={metodeTransaksi === "offline"}
+              onChange={(e) => setMetodeTransaksi(e.target.value)}
             />
-            <Image
-              src="/img/mandiri.png"
-              alt="Mandiri"
-              width={170}
-              height={170}
-              className="ml-[3%] mt-[3%]"
-            />
-            <Image
-              src="/img/bri.png"
-              alt="BRI"
-              width={170}
-              height={170}
-              className="ml-[3%] mt-[3%]"
-            />
-          </div>
+            <span>Offline</span>
+          </label>
         </div>
       </div>
-      {/* Komponen lainnya */}
       <div className="mt-[2%] ml-[7%] mr-[7%] py-6 bg-[#F3FFFB] font-semibold text-[#00663F]">
         <div className="ml-[3%] bg-white rounded mr-[3%] text-[#00663F] h-80 border-2 p-10 border-[#00663F]">
           <p className="ml-1 text-2xl">Subtotal</p>
@@ -244,12 +275,32 @@ const { id } = useParams();
         <div className="-translate-y-48 text-2xl pl-[4%] border-2 border-[#00663F] mr-[3%] ml-[3%]">
           Total Pembayaran
         </div>
-        <button
-          className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40"
-          onClick={handleCheckoutClick}
-        >
-          Checkout
-        </button>
+        {transactionToken ? (
+          <div>
+            {/* Render Midtrans Snap JavaScript */}
+            <script
+              src={`https://app.sandbox.midtrans.com/snap/snap.js`}
+              async
+            ></script>
+
+            {/* Trigger Snap payment */}
+            <button
+              className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40"
+              onClick={() => window.snap.pay(transactionToken)}
+            >
+              Bayar
+            </button>
+          </div>
+        ) : (
+          <button
+            className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40"
+            onClick={() => {
+              postTransaksi();
+            }}
+          >
+            Checkout
+          </button>
+        )}
       </div>
       <CheckoutPopup
         isOpen={isPopupOpen}

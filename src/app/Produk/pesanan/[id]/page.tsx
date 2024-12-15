@@ -69,6 +69,7 @@ const DetailPesanan = () => {
       console.error("Error menambahkan ke keranjang:", error);
     }
   }
+const [produkCookie, setProdukcookie] = useState<any>();
 
   async function tambahkepesan() {
     if (!subvariasiDipilih || produk?.jumlah === 0) {
@@ -90,10 +91,10 @@ const DetailPesanan = () => {
         },
         { withCredentials: true }
       );
-
+setProdukcookie(response.data.produk)
       console.log("Response:", response.data);
       {
-        router.push("/Produk/pesanan/checkout");
+        router.push(`/Produk/pesanan/checkout/${response.data.id}`);
       }
     } catch (error) {
       console.error("Error fetching product details:", error);
@@ -246,3 +247,4 @@ const DetailPesanan = () => {
 };
 
 export default DetailPesanan;
+  
