@@ -47,11 +47,7 @@ export default function ForumCarousel() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1000,
-    arrows: true, // Ensure that arrows are enabled
-    nextArrow: <div className="custom-arrow next-arrow" />, // Custom next arrow
-    prevArrow: <div className="custom-arrow prev-arrow" />, // Custom prev arrow
-    // Added styles to prevent carousel from sliding down
-    // and ensure it stays within its container
+   arrows: false
   };
 
   useEffect(() => {
@@ -64,28 +60,25 @@ export default function ForumCarousel() {
       const res = await axios.get<Konten[]>(url, {
         withCredentials: true,
       });
-      setData(res.data);
+      setData(res.data.slice(0, 3));
       console.log(res.data);
     } catch (error: any) {
       console.log(error);
       alert("Terjadi kesalahan saat mengambil data konten yang populer.");
     }
   }
-
   return (
     <div className="w-[60%] p-[5%] h-[40%] justify-self-center">
-      
-      <Slider ref={sliderRef}
-        {...settings}>
-        {data.map((item: any, id: number) => (
+      <Slider ref={sliderRef} {...settings}>
+        {data.map((item, id) => (
           <div className="p-6 w-[40%]" key={id}>
             <div className="h-[220px] mx-[3%] bg-white rounded-[34px]">
-              <div className="relative right-7 bottom-3 ">
+              <div className="relative right-7 bottom-3">
                 <Image
                   src={
                     item.User.photoProfile
                       ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                        item.User.photoProfile
+                      item.User.photoProfile
                       : "/img/default-avatar.png"
                   }
                   className="rounded-full bg-white border-8 border-[#51CB9F] absolute"
@@ -107,7 +100,7 @@ export default function ForumCarousel() {
                   />
                   <h1 className="ms-[3%]">{item.judul}</h1>
                 </div>
-
+  
                 <p className="text-[13px] mt-[3%] text-[#323735] font-light line-clamp-4">
                   {item.desc}
                 </p>
@@ -121,7 +114,7 @@ export default function ForumCarousel() {
           </div>
         ))}
       </Slider>
-
+      {/* Tombol Navigasi Manual */}
       <div className="flex -translate-y-40 -translate-x-24">
         <Image
           src={prevButton}
@@ -142,4 +135,3 @@ export default function ForumCarousel() {
     </div>
   );
 }
-

@@ -73,7 +73,7 @@ const Riwayat: React.FC = () => {
               className="bg-white shadow-lg rounded-lg p-4 flex items-center"
             >
               <img
-                src={`${process.env.NEXT_PUBLIC_URL}${item.post.fotoKonten}`}
+                src={"https://74gslzvj-8000.asse.devtunnels.ms" + item.post.fotoKonten}
                 alt="Foto Konten"
                 className="w-20 h-20 object-cover rounded-lg mr-4"
               />

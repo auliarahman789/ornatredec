@@ -155,6 +155,7 @@ function Page() {
   }, []);
 
   const { id } = useParams();
+
   const handleReplyClick = (commentId: number, username: string) => {
     setRepComId(commentId);
     setReplyToUsername(username);

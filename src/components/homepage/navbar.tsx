@@ -6,7 +6,7 @@ import defaultAvatar from "../../../public/img/default-avatar.png";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import notifIcon from "../../../public/icon/notif2.svg";
-
+import statusIcon from "../../../public/icon/Paper.svg"
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
@@ -115,13 +115,30 @@ function Navbar() {
         <div className="flex items-center space-x-3">
           {isLoggedIn ? (
             <>
+              <Link href="/Produk/pesanan/statuspesanan">
+                <Image
+                  src={statusIcon}
+                  width={30}
+                  height={30}
+                  alt="status"
+                />
+              </Link>
+              <Link href="/Produk/keranjang">
+                <Image
+                  src="/icon/keranjang.svg"
+                  width={30}
+                  height={30}
+                  alt="keranjang"
+                />
+              </Link>
               <Link href="/notifikasi">
                 <Image src={notifIcon} width={30} height={30} alt="notifIcon" />
               </Link>
+
               <Link href="/profile" className="flex items-center">
                 <img
-                  src={avatar} // Gunakan avatar dari API atau default
-                  alt="Profile Avatar"
+                  src={avatar}
+                  alt=""
                   width={40}
                   height={40}
                   className="rounded-full"

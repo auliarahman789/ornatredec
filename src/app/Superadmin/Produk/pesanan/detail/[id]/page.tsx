@@ -47,7 +47,7 @@ function Page() {
     try {
       const res = await axios.get<DetailPesanan>(url, {
         withCredentials: true,
-      });
+      });  
       setData(res.data);
       console.log("data yang diterima: ", res.data);
       console.log("status:", res.data.status);
@@ -63,8 +63,8 @@ function Page() {
       const res = await axios.get(url, {
         withCredentials: true,
       });
-      await getDetailPesanan(); // Pastikan data di-fetch ulang setelah update
-      console.log("Status setelah Kemas:", data?.status); // Log status baru
+      await getDetailPesanan(); 
+      console.log("Status setelah Kemas:", data?.status);  
       alert("pesanan berhasil dikemas");
       router?.push("/Superadmin/Produk/pesanan");
     } catch (error: any) {
