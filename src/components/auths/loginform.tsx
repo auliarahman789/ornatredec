@@ -42,12 +42,12 @@ const Login = () => {
       localStorage.setItem("userData", JSON.stringify(userData));
 
       // SweetAlert Success
-      Swal.fire({
-        icon: "success",
-        title: "Berhasil Login",
-        text: "Anda berhasil masuk!",
-        confirmButtonColor: "#3F9272",
-      });
+      // Swal.fire({
+      //   icon: "success",
+      //   title: "Berhasil Login",
+      //   text: "Anda berhasil masuk!",
+      //   confirmButtonColor: "#3F9272",
+      // });
 
       // Redirect berdasarkan role
       const userRole = userData.role;

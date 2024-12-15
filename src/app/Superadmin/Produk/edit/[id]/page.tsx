@@ -23,7 +23,7 @@ interface Variasi {
 interface Produk {
   judul_produk: string;
   deskripsi_produk: string;
-  harga: number;
+  harga: string;
   foto_produk: string;
   variasis: Variasi[];
 }
@@ -55,7 +55,7 @@ const Page = ({ params }: { params: { id: number } }) => {
   const [formData, setFormData] = useState<Produk>({
     judul_produk: "",
     deskripsi_produk: "",
-    harga: 0,
+    harga: "",
     foto_produk: "",
     variasis: [],
   });
@@ -198,7 +198,9 @@ const Page = ({ params }: { params: { id: number } }) => {
       formData2.append("judul_produk", formData.judul_produk);
       formData2.append("deskripsi_produk", formData.deskripsi_produk);
       formData2.append("harga", formData.harga.toString());
-      formData2.append("foto_produk", formData.foto_produk);
+      if (formData.foto_produk) {
+        formData2.append("foto_produk", formData.foto_produk);
+      }
       formData2.append("variasi", JSON.stringify(variasi));
 
       const response = await axios.put(
@@ -386,7 +388,7 @@ const Page = ({ params }: { params: { id: number } }) => {
                               </div>
                           </div> */}
             <label
-              htmlFor="Harga"
+              htmlFor="harga"
               className="text-[#8EAEA6] text-[20px] font-semibold mt-[3%]"
             >
               Harga Produk

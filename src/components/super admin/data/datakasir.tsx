@@ -99,7 +99,7 @@ const Datakasir = () => {
               </p>
               <button
                 id="hubungi"
-                className="bg-[#308967] px-[5%] h-10 text-sm translate-x-64 text-white rounded-full mt-[3%]"
+                className="bg-[#308967] px-[5%] h-10 text-sm text-white rounded-full mt-[3%]"
                 onClick={() => handleEmailClick(item.email)}
               >
                 Hubungi

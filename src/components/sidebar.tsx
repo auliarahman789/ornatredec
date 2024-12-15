@@ -82,8 +82,10 @@ const Sidebar = () => {
             />
           </div>
           <ul className="text-[20px] font-bold text-white ms-[15%]">
-            <li className="mb-3">
               <Link href="/profile">
+            <li className={`cursor-pointer flex mb-10 ${
+                pathname === "/profile" ? "active" : ""
+              }`}>
                 <div className="flex items-center py-2 rounded">
                   <Image
                     src="/icon/profil.svg"
@@ -99,10 +101,12 @@ const Sidebar = () => {
                     Profil
                   </span>
                 </div>
-              </Link>
             </li>
-            <li className="mb-2 mt-8">
+              </Link>
               <Link href="/profile/riwayat">
+            <li className={`cursor-pointer flex mb-10 ${
+                pathname === "/profile/riwayat" ? "active" : ""
+              }`}>
                 <div className="flex items-center py-2 rounded">
                   <Image
                     src="/icon/logo riwayat.svg"
@@ -118,10 +122,12 @@ const Sidebar = () => {
                     Riwayat
                   </span>
                 </div>
-              </Link>
             </li>
-            <li className="mb-2 mt-8">
+              </Link>
               <Link href="/profile/edit">
+            <li className={`cursor-pointer flex mb-10 ${
+                pathname === "/profile/edit" ? "active" : ""
+              }`}>
                 <div className="block py-2 rounded">
                   <div className="flex flex-row">
                     <Image
@@ -139,8 +145,8 @@ const Sidebar = () => {
                     </span>
                   </div>
                 </div>
-              </Link>
             </li>
+              </Link>
             <li className="mb-2 mt-8">
               <button
                 onClick={() => setShowLogoutPopup(true)}

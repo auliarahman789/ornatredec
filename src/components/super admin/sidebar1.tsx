@@ -51,7 +51,8 @@ function SidebarSp() {
         icon: "success",
         title: "Logout sukses",
         showConfirmButton: false,
-        iconColor: "##167960"
+        iconColor: "##167960",
+        timer: 3000,
       })
       router.replace('/auths');
     } catch (error: any) {
