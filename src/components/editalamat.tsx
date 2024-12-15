@@ -46,56 +46,64 @@ function Page() {
 
   const handleSave = async () => {
     try {
-      if (
-        !formData.provinsi ||
-        !formData.kota ||
-        !formData.kecamatan ||
-        !formData.kelurahan ||
-        !formData.jalan ||
-        !formData.RtRw ||
-        !formData.namaPenerima ||
-        !formData.no_hp
-      ) {
-        alert("Semua field harus diisi.");
-        return;
-      }
+      // if (
+      //   !formData.provinsi ||
+      //   !formData.kota ||
+      //   !formData.kecamatan ||
+      //   !formData.kelurahan ||
+      //   !formData.jalan ||
+      //   !formData.RtRw ||
+      //   !formData.namaPenerima ||
+      //   !formData.no_hp
+      // ) {
+      //   alert("Semua field harus diisi.");
+      //   return;
+      // }
 
-      if (!/^\d+$/.test(formData.no_hp)) {
-        alert("Nomor HP harus berupa angka.");
-        return;
-      }
+      // if (!/^\d+$/.test(formData.no_hp)) {
+      //   alert("Nomor HP harus berupa angka.");
+      //   return;
+      // }
 
-      const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
-      const token = localStorage.getItem("token");
+      // const userId = JSON.parse(localStorage.getItem("userData") || "{}").id;
+      // const token = localStorage.getItem("token");
 
-      if (!userId || !token) {
-        alert("User ID atau token tidak ditemukan. Silakan login ulang.");
-        return;
-      }
+      // if (!userId || !token) {
+      //   alert("User ID atau token tidak ditemukan. Silakan login ulang.");
+      //   return;
+      // }
 
-      const formData2 = new FormData();
-      Object.keys(formData).forEach((key) => {
-        formData2.append(key, (formData as any)[key]);
-      });
+      // const formData2 = new FormData();
+      // Object.keys(formData).forEach((key) => {
+      //   formData2.append(key, (formData as any)[key]);
+      // });
 
-      const response = await axios.put(
+      const response = await axios.post(
         `${process.env.NEXT_PUBLIC_URL}api/alamat`,
-        formData2,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
+          provinsi: "Jawa Barat",
+          kota_kabupaten: "Bandung Barat",
+          kecamatan: "Cisarua",
+          kelurahan_desa: "Padaasih",
+          jalan_namagedung: "Jl. Kamarung Girang",
+          rtrw: "RT 02/RW 14",
+          patokan: "SDN Budimulya",
+          nama_penerima: "Irfan",
+          kategori_alamat: "Rumah",
+          alamat_pengiriman_utama: "Aktif",
+        },
+        {
+          withCredentials: true,
         }
       );
 
-      if (response.status === 200) {
-        localStorage.setItem("userData", JSON.stringify(formData));
-        alert("Data berhasil diperbarui.");
-        router.push("/profile");
-      } else {
-        alert("Gagal memperbarui data. Periksa data Anda.");
-      }
+      // if (response.status === 200) {
+      //   localStorage.setItem("userData", JSON.stringify(formData));
+      //   alert("Data berhasil diperbarui.");
+      //   router.push("/profile");
+      // } else {
+      //   alert("Gagal memperbarui data. Periksa data Anda.");
+      // }
     } catch (error) {
       console.error("Kesalahan saat memperbarui data pengguna:", error);
       alert(

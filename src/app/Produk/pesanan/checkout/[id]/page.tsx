@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
-
+import "./global.d.ts"; 
 type Produk = {
   judul_produk: string;
   deskripsi_produk: string;
@@ -80,75 +80,85 @@ const Page = () => {
     setIsPopupOpen(false);
   };
 
- const handleConfirmCheckout = async () => {
-   if (!data) {
-     alert("Data produk tidak tersedia. Silakan coba lagi.");
-     return;
-   }
+  const handleConfirmCheckout = async () => {
+    // if (!data) {
+    //   alert("Data produk tidak tersedia. Silakan coba lagi.");
+    //   return;
+    // }
 
-   // Contoh validasi data (sesuaikan dengan kebutuhan aplikasi Anda)
-   const idProduk = 63; // ID produk diubah menjadi variabel dinamis jika perlu
-   const jumlah = 2; // Jumlah juga sebaiknya dinamis
-   const idSubvariasi = 63; // ID subvariasi harus sesuai dengan variasi produk
+    // // Contoh validasi data (sesuaikan dengan kebutuhan aplikasi Anda)
+    // const idProduk = 63; // ID produk diubah menjadi variabel dinamis jika perlu
+    // const jumlah = 2; // Jumlah juga sebaiknya dinamis
+    // const idSubvariasi = 63; // ID subvariasi harus sesuai dengan variasi produk
 
-   if (!idProduk || !jumlah || !idSubvariasi) {
-     alert("Informasi produk tidak lengkap untuk checkout.");
-     return;
-   }
+    // if (!idProduk || !jumlah || !idSubvariasi) {
+    //   alert("Informasi produk tidak lengkap untuk checkout.");
+    //   return;
+    // }
 
-   setIsPopupOpen(false);
+    setIsPopupOpen(false);
 
-   try {
-     const payload = {
-       metode_transaksi: metodeTransaksi,
-       produk: [
-         {
-           id_produk: idProduk,
-           jumlah,
-           id_subvariasi: idSubvariasi,
-         },
-       ],
-     };
-
-     const response = await axios.post(
-       `${process.env.NEXT_PUBLIC_URL}api/transaksiCookie`,
-       payload,
-       { withCredentials: true }
-     );
-
-     if (response.status === 200 || response.status === 201) {
-       alert("Checkout berhasil!");
-       console.log("Response:", response.data);
-       // Redirect user atau lakukan tindakan lain setelah berhasil checkout
-     } else {
-       console.error("Response error:", response);
-       alert("Checkout gagal. Silakan coba lagi.");
-     }
-   } catch (error: any) {
-     console.error("Checkout gagal:", error);
-     if (error.response) {
-       // Jika ada respons dari server
-       alert(`Kesalahan: ${error.response.data.message || "Gagal checkout"}`);
-     } else {
-       alert("Terjadi kesalahan saat checkout. Silakan coba lagi.");
-     }
-   }
- };
-
-
-  const getProduk = async () => {
-    const url = `${process.env.NEXT_PUBLIC_URL}api/getProdukId/${id}`;
+    //
+    //    const payload = {
+    //      metode_transaksi: metodeTransaksi,
+    //      produk: [
+    //        {
+    //          id_produk: idProduk,
+    //          jumlah,
+    //          id_subvariasi: idSubvariasi,
+    //        },
+    //      ],
+    //    };
     try {
-      const res = await axios.get<Produk>(url, { withCredentials: true });
-      setData(res.data);
-      console.log(res.data);
-    } catch (error) {
-      console.error("Failed to fetch produk data", error);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_URL}api/transaksiCookie`,
+
+        { withCredentials: true }
+      );
+      console.log(response);
+      // if (response.status === 200 || response.status === 201) {
+      //   alert("Checkout berhasil!");
+      //   console.log("Response:", response.data);
+      //   // Redirect user atau lakukan tindakan lain setelah berhasil checkout
+      // } else {
+      //   console.error("Response error:", response);
+      //   alert("Checkout gagal. Silakan coba lagi.");
+      // }
+    } catch (error: any) {
+      console.error("Checkout gagal:", error);
+      if (error.response) {
+        // Jika ada respons dari server
+        alert(`Kesalahan: ${error.response.data.message || "Gagal checkout"}`);
+      } else {
+        alert("Terjadi kesalahan saat checkout. Silakan coba lagi.");
+      }
     }
   };
+ const [transactionToken, setTransactionToken] = useState(null);
+  async function postTransaksi() {
+    const url = `${process.env.NEXT_PUBLIC_URL}api/paymentgateway`;
+    try {
+      const res = await axios.post(
+        url,
+        {
+        id_transaksi:id,
+          payment_method: "gopay",
+        },
+        {
+          withCredentials: true,
+        }
+      );
+setTransactionToken(res.data.token);
+
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
-    getProduk();
+    handleConfirmCheckout();
+
   }, []);
 
   const formatHarga = (itung: number) => {
@@ -164,12 +174,7 @@ const Page = () => {
         onClick={handleGoBack}
         className="ml-[7%] cursor-pointer translate-y-10 h-[50px] w-[50px]"
       >
-        <Image
-          src="/icon/backk.svg"
-          alt="Back Icon"
-          width={390}
-          height={390}
-        />
+        <Image src="/icon/backk.svg" alt="Back Icon" width={390} height={390} />
       </button>
       <Image
         src="/icon/ornatredecc.svg"
@@ -210,9 +215,7 @@ const Page = () => {
             <p className="text-[#828382]">{formatHarga(data.harga)}</p>
             <p className="text-[#828382]">{data.variasis}</p>
             <p className="text-[#828382]">usia</p>
-            <p className="text-[#828382]">
-              {data.jumlahProduk}
-            </p>
+            <p className="text-[#828382]">{data.jumlahProduk}</p>
           </div>
         ) : (
           <p>Loading produk...</p>
@@ -272,12 +275,32 @@ const Page = () => {
         <div className="-translate-y-48 text-2xl pl-[4%] border-2 border-[#00663F] mr-[3%] ml-[3%]">
           Total Pembayaran
         </div>
-        <button
-          className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40"
-          onClick={handleCheckoutClick}
-        >
-          Checkout
-        </button>
+        {transactionToken ? (
+          <div>
+            {/* Render Midtrans Snap JavaScript */}
+            <script
+              src={`https://app.sandbox.midtrans.com/snap/snap.js`}
+              async
+            ></script>
+
+            {/* Trigger Snap payment */}
+            <button
+              className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40"
+              onClick={() => window.snap.pay(transactionToken)}
+            >
+              Bayar
+            </button>
+          </div>
+        ) : (
+          <button
+            className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40"
+            onClick={() => {
+              postTransaksi();
+            }}
+          >
+            Checkout
+          </button>
+        )}
       </div>
       <CheckoutPopup
         isOpen={isPopupOpen}

@@ -336,7 +336,6 @@ function Edit() {
                 className="w-full p-4 border bg-[#CCFFEB] rounded-md shadow-sm"
               />
             </div>
-
             <div className="pb-5">
               <span className="pl-4 text-[#A9A7A7]">No Telepon:</span>
               <input
