@@ -215,14 +215,6 @@ function Grid() {
               className="mt-[3%] cursor-pointer w-[779px] pb-[5%] bg-white pt-5"
               key={item.id}
             >
-              <button
-                onClick={() => {
-                  simpanpostingan(item.id);
-                }}
-                className="text-black p-4 bg-orange-500 ml-[20%]"
-              >
-                simpan
-              </button>
               <Link href={`/Forum/Detail/${item.id}`}>
                 <div className="w-full h-[155px] cursor-pointer">
                   <div className="flex mt-[5%]">
@@ -289,6 +281,19 @@ function Grid() {
                         <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
                           {item.jumlahTanggapan}
                         </p>
+                        <button
+                          onClick={() => {
+                            simpanpostingan(item.id);
+                          }}
+                        >
+                          <Image
+                            src="/icon/simpan postingan.svg"
+                            width={20}
+                            height={20}
+                            alt="simpan"
+                            className="translate-x-[1400%]"
+                          />
+                        </button>
                       </div>
 
                       <div className="border-b w-[408px] border-black"></div>

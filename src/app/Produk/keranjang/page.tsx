@@ -148,7 +148,7 @@ const KeranjangPage = () => {
                     <div className="text-sm text-gray-600">
                       Subvariasi: {item.subvariasi.nama_sub_variasi}
                     </div>
-                    <div className="flex justify-end translate-x-[300%] translate-y-[120%]">
+                    <div className="flex justify-end translate-x-[300%] -translate-y-[200%]">
                       <div className="text-[#308967] text-2xl font-semibold">
                         Rp. {item.subvariasi.harga}
                       </div>

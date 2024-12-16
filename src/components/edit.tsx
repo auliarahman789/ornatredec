@@ -218,7 +218,7 @@ function Edit() {
                 alt="Profile Picture"
                 className="rounded-full cursor-pointer"
                 onClick={handleavatarClick}
-                unoptimized // Menghindari optimisasi yang mungkin menyebabkan masalah pada data URL
+                // unoptimized // Menghindari optimisasi yang mungkin menyebabkan masalah pada data URL
               />
 
               <input

@@ -26,18 +26,18 @@ function Home() {
             <div className="absolute top-0 left-0 right-0">
               <Carausel1 />
             </div>
-            <div className="inline-block"/>
-            </div>
-            <div className="relative">
-              <img
+            <div className="inline-block" />
+          </div>
+          <div className="relative">
+            {/* <img
                 className="absolute top-[330px] right-0"
                 src={molekul}
                 alt="molekul"
-              />
-            </div>
+              /> */}
           </div>
         </div>
       </div>
+    </div>
   );
 }
 

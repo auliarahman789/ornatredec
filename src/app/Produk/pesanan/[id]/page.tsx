@@ -69,7 +69,7 @@ const DetailPesanan = () => {
       console.error("Error menambahkan ke keranjang:", error);
     }
   }
-const [produkCookie, setProdukcookie] = useState<any>();
+  const [produkCookie, setProdukcookie] = useState<any>();
 
   async function tambahkepesan() {
     if (!subvariasiDipilih || produk?.jumlah === 0) {
@@ -91,7 +91,7 @@ const [produkCookie, setProdukcookie] = useState<any>();
         },
         { withCredentials: true }
       );
-setProdukcookie(response.data.produk)
+      setProdukcookie(response.data.produk);
       console.log("Response:", response.data);
       {
         router.push(`/Produk/pesanan/checkout/${response.data.id}`);
@@ -141,7 +141,7 @@ setProdukcookie(response.data.produk)
 
   return (
     <div className="bg-[#DBFFF6] h-auto">
-      <div className="bg-white w-[80%] mx-auto pb-[20%]">
+      <div className="bg-white w-[80%] mx-auto pb-[10%]">
         <div className="grid grid-cols-2">
           <div>
             <img
@@ -194,7 +194,7 @@ setProdukcookie(response.data.produk)
                 </div>
               ))}
             </div>
-            <div className="flex flex-row translate-y-[500%]">
+            <div className="flex flex-row translate-y-[280%]">
               {/* <Link > */}
               <button
                 onClick={() => {
@@ -220,12 +220,7 @@ setProdukcookie(response.data.produk)
                 ${!subvariasiDipilih ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={!subvariasiDipilih}
               >
-                <img
-                  src="/icon/troli.svg"
-                  width={35}
-                  height={35}
-                  alt="logo"
-                />
+                <img src="/icon/troli.svg" width={35} height={35} alt="logo" />
               </button>
             </div>
           </div>
@@ -247,4 +242,3 @@ setProdukcookie(response.data.produk)
 };
 
 export default DetailPesanan;
-  
