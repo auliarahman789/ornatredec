@@ -186,6 +186,11 @@ function Grid() {
         { withCredentials: true }
       );
       console.log(response.data);
+      if (response.data.success) {
+        alert("Postingan berhasil disimpan!");
+      } else {
+        alert("Gagal menyimpan postingan.");
+      }
     } catch (error) {
       console.error("gagal menyimpan postingan:", error);
     }
