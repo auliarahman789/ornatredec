@@ -12,14 +12,14 @@ const Page = () => {
   return (
     <main className="bg-[#E3FFF3] w-full h-screen flex justify-center items-center relative">
       <div>
-        <Image
+        <img
           src="/icon/biru.png"
           alt="icon background"
           width={390}
           height={390}
           className="absolute top-0 left-0 z-10"
         />
-        <Image
+        <img
           src="/icon/kuning.png"
           alt="icon background"
           width={390}

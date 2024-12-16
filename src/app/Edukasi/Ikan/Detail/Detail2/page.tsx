@@ -22,7 +22,7 @@ function page() {
       </div>
       <div className="grid grid-cols-2 justify-between ml-[8%] mr-[8%]">
         <div className="mt-[5%] -translate-x-2">
-          <Image
+          <img
             src="/img/beri makan ikan.png"
             className="w-full h-auto rounded-lg"
             alt={"daun"}
@@ -68,7 +68,7 @@ function page() {
           pencahayaan yang baik.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group1.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -76,7 +76,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/Siapkan Akuarium yang Sesuai.jpg"
           className="rounded-lg w-[25%] h-[25%]"
           alt={"daun"}
@@ -95,7 +95,7 @@ function page() {
           sekaligus agar ikan tidak stres.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -103,7 +103,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/Ganti Air Secara Berkala.jpg"
           className="rounded-lg w-[25%] h-[25%]"
           alt={"daun"}
@@ -122,7 +122,7 @@ function page() {
           untuk ikan tropis.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group3.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -130,7 +130,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/tus hisa.png"
           className="rounded-lg"
           alt={"daun"}
@@ -148,7 +148,7 @@ function page() {
           makan berlebihan karena sisa makanan bisa mencemari air.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group4.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -156,7 +156,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/tus hisa.png"
           className="rounded-lg"
           alt={"daun"}
@@ -175,7 +175,7 @@ function page() {
           penyakit tidak menyebar ke ikan lainnya.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group4.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -183,7 +183,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/tus hisa.png"
           className="rounded-lg"
           alt={"daun"}

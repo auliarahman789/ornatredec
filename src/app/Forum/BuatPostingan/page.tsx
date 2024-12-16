@@ -97,7 +97,7 @@
 //   return (
 //     <div className="flex min-h-screen pb-[4%] pe-[2%] pt-[2%]">
 //       <div className="w-[38%] flex-col pt-[3.5%]">
-//         <Image
+//         <img
 //           onClick={handleImageClick}
 //           className="w-[80%] h-[45%] justify-self-center"
 //           src={filePreview || up}

@@ -139,7 +139,7 @@ function Page() {
         onClick={handleGoBack}
         className="ml-[7%] cursor-pointer translate-y-10 h-[50px] w-[50px]"
       >
-        <Image
+        <img
           src="/icon/backk.svg"
           alt="icon background"
           width={390}

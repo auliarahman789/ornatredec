@@ -86,7 +86,7 @@ function Card3() {
                   <div className="w-[70%] h-[190px] bg-white shadow-[3px_4px_4px,-3px_6px_4px] shadow-[#0000002d]">
                     <div className="flex">
                       <div className="flex-col">
-                        <img
+                        <Image
                           src={
                             item.fotoKonten
                               ? "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -148,7 +148,7 @@ function Card3() {
                             className="ms-3"
                             width={20}
                             height={20}
-                            alt="foto profil"
+                            alt="chat"
                           />
                           <p className="font-light ms-1 mt-1 text-[12px] text-[#323735]">
                             {item.jumlahTanggapan}

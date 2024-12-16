@@ -45,7 +45,7 @@ function Burung() {
               : "translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/burung1.png"
             className="w-full h-auto relative -translate-x-[10px]"
             alt={"burung"}
@@ -67,7 +67,7 @@ function Burung() {
               : "-translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/burung2.png"
             className="w-full h-auto translate-x-[13px] "
             alt={"burung"}
@@ -130,7 +130,7 @@ function Burung() {
               : "translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/pakanburung.png"
             className="w-full h-auto -translate-x-[13px]"
             alt={"burung"}
@@ -152,7 +152,7 @@ function Burung() {
               : "-translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/burungmati.png"
             className="w-full h-auto translate-x-[13px]"
             alt={"burung"}

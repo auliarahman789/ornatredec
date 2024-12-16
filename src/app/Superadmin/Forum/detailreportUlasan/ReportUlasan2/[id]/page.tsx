@@ -129,7 +129,7 @@ function DetailReportUlasan() {
               <div className="w-full h-[155px]">
                 <div className="flex">
                   <div className="flex items-start">
-                    <Image
+                    <img
                       src={
                         data.User.photoProfile
                           ? "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -265,7 +265,7 @@ function DetailReportUlasan() {
                           alt="noted"
                           width={100}
                           height={100}
-                        ></Image>
+                        />
                         <p className="font-semibold text-[23px] mt-[8%] text-gray-400 ms-[35%]">
                           tidak ada report
                         </p>

@@ -54,7 +54,7 @@ const Carausel1: NextPage = () => {
       <Slider {...settings}>
         {shuffledKeys.map((key) => (
           <div key={key} className="mt-[12%] mx-[6%]">
-            <Image
+            <img
               className={`w-[75%] h-[400px] ${key === "2" ? "mt-10 ms-5" : ""}`} // Menambahkan class 'custom-class' hanya pada gambar ke-14
               src={imageMap[key]}
               alt="Gambar Acak"

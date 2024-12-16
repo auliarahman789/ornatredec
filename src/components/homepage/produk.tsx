@@ -47,7 +47,7 @@ const Produk = () => {
               key={item.id}
             >
               <a href="#">
-                <Image
+                <img
                   width={50}
                   height={50}
                   className="mx-auto mt-5 h-[65%] w-[85%]"

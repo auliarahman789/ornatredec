@@ -32,7 +32,7 @@ function page() {
           <div className="translate-y-[24%]">
             <div className="bg-white w-[80%] h-[338px] mx-auto shadow-[3px_5px_4px] shadow-[#0000002e]">
               <div className="flex">
-                <Image
+                <img
                   src="/img/Daun hias.png"
                   width={400}
                   height={434}
@@ -60,7 +60,7 @@ function page() {
             </div>
             <div className="bg-white w-[80%] h-[338px] mx-auto mt-9 shadow-[3px_5px_4px] shadow-[#0000002e]">
               <div className="flex">
-                <Image
+                <img
                   src="/img/ikan hias 1.png"
                   width={400}
                   height={434}
@@ -88,7 +88,7 @@ function page() {
             </div>
             <div className="bg-white w-[80%] h-[338px] mx-auto mt-9  shadow-[3px_5px_4px] shadow-[#0000002e]">
               <div className="flex">
-                <Image
+                <img
                   src="/img/burung hias.png"
                   width={400}
                   height={434}

@@ -56,7 +56,7 @@ function page() {
     <div>
       <div className="bg-[#E4FFF2] pb-[5%] h-screen">
         <div className="pl-[10%] pt-[3%]">
-          <Image onClick={handleBack} className="cursor-pointer" src="/icon/back.png" width={40} height={40} alt="kembali" />
+          <img onClick={handleBack} className="cursor-pointer" src="/icon/back.png" width={40} height={40} alt="kembali" />
         </div>
         <div className="pt-[2%] pl-[10%]">
           <h1 className="text-2xl font-bold text-[#308967]">NOTIFIKASI</h1>
@@ -65,7 +65,7 @@ function page() {
         {data.map((item) => (
         <div key={item.id} className="ps-[15%] py-[2%] ml-[10%] mr-[10%] border-b-[1px] border-[#308967]">
           <div className="flex -translate-x-[25%]">
-            <Image
+            <img
               src="/icon/Bell.png"
               width={60}
               height={60}

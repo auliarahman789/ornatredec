@@ -9,7 +9,7 @@ function Edukasi() {
       style={{ backgroundImage: "url('/img/edukasi hal.png')" }}
     >
       <div className="grid grid-cols-2 pl-28 pt-40">
-        <Image
+        <img
           src="/img/edukasi buku gambar.png"
           width={468}
           height={375}
@@ -20,7 +20,7 @@ function Edukasi() {
             Edukasi
           </h1>
           <div className="flex">
-            <Image
+            <img
               src="/img/Bulat.png"
               width={56}
               height={56}
@@ -42,7 +42,7 @@ function Edukasi() {
             </div>
           </div>
           <div className="flex flex-row">
-            <Image
+            <img
               src="/img/Bulat.png"
               width={56}
               height={56}
@@ -64,7 +64,7 @@ function Edukasi() {
             </div>
           </div>
           <div className="flex flex-row">
-            <Image
+            <img
               src="/img/Bulat.png"
               width={56}
               height={56}

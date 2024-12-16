@@ -115,7 +115,7 @@ const BuatKonten: React.FC<PopupPost> = ({ isVisible, onClose }) => {
             className="mt-3"
             style={{ display: "none" }}
             />
-            {/* && <img src={filePreview} alt="Preview" width={100} height={100} />}
+            {/* && <Image src={filePreview} alt="Preview" width={100} height={100} />}
             
             Input Kategori */}
             <div className="flex flex-col space-y-6 mt-[15%] justify-self-center">

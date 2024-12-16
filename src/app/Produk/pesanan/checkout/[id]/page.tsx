@@ -4,22 +4,7 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
-import "./global.d.ts"; 
-type Produk = {
-  judul_produk: string;
-  deskripsi_produk: string;
-  harga: number;
-  foto_produk: string;
-  variasis: {
-    nama_variasi: string;
-    subvariasis: {
-      nama_sub_variasi: string;
-      stok: number;
-      harga: number;
-      usia: string;
-    }[];
-  };
-};
+import "./global.d.ts";
 
 interface CheckoutPopupProps {
   isOpen: boolean;
@@ -27,11 +12,7 @@ interface CheckoutPopupProps {
   onConfirm: () => void;
 }
 
-const CheckoutPopup: React.FC<CheckoutPopupProps> = ({
-  isOpen,
-  onClose,
-  onConfirm,
-}) => {
+const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
 
   return (
@@ -42,16 +23,10 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({
         </h2>
         <p className="mb-6">Selesaikan pembayaran ini dengan klik Konfirmasi</p>
         <div className="flex justify-between">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-[#6F6D6D] rounded"
-          >
+          <button onClick={onClose} className="px-4 py-2 text-[#6F6D6D] rounded">
             Batal
           </button>
-          <button
-            onClick={onConfirm}
-            className="px-4 py-2 text-[#3F9272] rounded"
-          >
+          <button onClick={onConfirm} className="px-4 py-2 text-[#3F9272] rounded">
             Konfirmasi
           </button>
         </div>
@@ -63,10 +38,10 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({
 const Page = () => {
   const router = useRouter();
   const { id } = useParams();
-
-  const [data, setData] = useState<any>();
+  const [data, setData] = useState<any>(null);
   const [metodeTransaksi, setMetodeTransaksi] = useState("online");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [transactionToken, setTransactionToken] = useState<string | null>(null);
 
   const handleGoBack = () => {
     router.push(`/Produk/pesanan/${id}`);
@@ -81,75 +56,36 @@ const Page = () => {
   };
 
   const handleConfirmCheckout = async () => {
-    // if (!data) {
-    //   alert("Data produk tidak tersedia. Silakan coba lagi.");
-    //   return;
-    // }
-
-    // // Contoh validasi data (sesuaikan dengan kebutuhan aplikasi Anda)
-    // const idProduk = 63; // ID produk diubah menjadi variabel dinamis jika perlu
-    // const jumlah = 2; // Jumlah juga sebaiknya dinamis
-    // const idSubvariasi = 63; // ID subvariasi harus sesuai dengan variasi produk
-
-    // if (!idProduk || !jumlah || !idSubvariasi) {
-    //   alert("Informasi produk tidak lengkap untuk checkout.");
-    //   return;
-    // }
-
     setIsPopupOpen(false);
-
-    //
-    //    const payload = {
-    //      metode_transaksi: metodeTransaksi,
-    //      produk: [
-    //        {
-    //          id_produk: idProduk,
-    //          jumlah,
-    //          id_subvariasi: idSubvariasi,
-    //        },
-    //      ],
-    //    };
     try {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_URL}api/transaksiCookie`,
-
         { withCredentials: true }
       );
-      console.log(response);
-      // if (response.status === 200 || response.status === 201) {
-      //   alert("Checkout berhasil!");
-      //   console.log("Response:", response.data);
-      //   // Redirect user atau lakukan tindakan lain setelah berhasil checkout
-      // } else {
-      //   console.error("Response error:", response);
-      //   alert("Checkout gagal. Silakan coba lagi.");
-      // }
+      setData(response.data);
+      console.log(response.data);
     } catch (error: any) {
       console.error("Checkout gagal:", error);
       if (error.response) {
-        // Jika ada respons dari server
         alert(`Kesalahan: ${error.response.data.message || "Gagal checkout"}`);
       } else {
         alert("Terjadi kesalahan saat checkout. Silakan coba lagi.");
       }
     }
   };
- const [transactionToken, setTransactionToken] = useState(null);
+
   async function postTransaksi() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/paymentgateway`;
     try {
       const res = await axios.post(
         url,
         {
-        id_transaksi:id,
+          id_transaksi: id,
           payment_method: "gopay",
         },
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
-setTransactionToken(res.data.token);
-
+      setTransactionToken(res.data.token);
       console.log(res);
     } catch (error) {
       console.error(error);
@@ -157,8 +93,8 @@ setTransactionToken(res.data.token);
   }
 
   useEffect(() => {
+    // You might want to fetch the initial data when the page loads
     handleConfirmCheckout();
-
   }, []);
 
   const formatHarga = (itung: number) => {
@@ -170,13 +106,10 @@ setTransactionToken(res.data.token);
 
   return (
     <div className="bg-[#E5FFF9] min-h-screen">
-      <button
-        onClick={handleGoBack}
-        className="ml-[7%] cursor-pointer translate-y-10 h-[50px] w-[50px]"
-      >
-        <Image src="/icon/backk.svg" alt="Back Icon" width={390} height={390} />
+      <button onClick={handleGoBack} className="ml-[7%] cursor-pointer translate-y-10 h-[50px] w-[50px]">
+        <img src="/icon/backk.svg" alt="Back Icon" width={390} height={390} />
       </button>
-      <Image
+      <img
         src="/icon/ornatredecc.svg"
         alt="Ornament Icon"
         width={390}
@@ -191,51 +124,38 @@ setTransactionToken(res.data.token);
           <div className="whitespace-nowrap">Usia</div>
           <div className="whitespace-nowrap">Jumlah</div>
         </div>
-        {data ? (
+        {data && data.TransaksiProduks?.length > 0 ? (
           <div className="grid grid-cols-[48%_13%_13%_13%_13%] justify-center items-center mt-[2%] ml-[7%] mr-[7%] py-[2rem] bg-[#F3FFFB] font-semibold text-white">
             <div className="flex justify-center gap-2 w-full ">
               <div className="relative size-[100px]">
                 <Image
                   className="object-cover object-center rounded-md"
-                  src={
-                    data.foto_produk
-                      ? "https://74gslzvj-8000.asse.devtunnels.ms" +
-                        data.foto_produk
-                      : ""
-                  }
+                  src={`https://74gslzvj-8000.asse.devtunnels.ms${data.TransaksiProduks[0]?.produk.foto_produk}`}
                   alt="Produk"
                   fill
                 />
               </div>
               <div className="self-start text-black text-2xl">
-                <p>{data.judul_produk}</p>
+                <p>{data.TransaksiProduks[0]?.produk.judul_produk}</p>
                 <p className="text-xs">RATING DISINI</p>
               </div>
             </div>
-            <p className="text-[#828382]">{formatHarga(data.harga)}</p>
-            <p className="text-[#828382]">{data.variasis}</p>
-            <p className="text-[#828382]">usia</p>
-            <p className="text-[#828382]">{data.jumlahProduk}</p>
+            <p className="text-[#828382]">{formatHarga(data.TransaksiProduks[0]?.produk.harga)}</p>
+            <p className="text-[#828382]">{data.TransaksiProduks[0]?.subvariasi?.nama_sub_variasi}</p>
+            <p className="text-[#828382]">{data.TransaksiProduks[0]?.subvariasi?.usia}</p>
+            <p className="text-[#828382]">{data.TransaksiProduks[0]?.jumlah}</p>
           </div>
         ) : (
           <p>Loading produk...</p>
         )}
-        <Image
-          src="/icon/lokasi.svg"
-          alt="Lokasi Icon"
-          width={30}
-          height={30}
-          className="translate-y-[350%] ml-[11%]"
-        />
+        <Image src="/icon/lokasi.svg" alt="Lokasi Icon" width={30} height={30} className="translate-y-[350%] ml-[11%]" />
       </div>
       <div className="mt-[2%] ml-[7%] mr-[7%] py-10 bg-[#F3FFFB]">
         <div className="bg-white py-10 rounded ml-[3%] mr-[3%] text-[#00663F] text-2xl border-2 p-5 border-[#00663F]">
           Jl.Melong Tengah No 12 RW.05 RT.03
         </div>
         <Link href="/Produk/editalamat">
-          <button className="text-white bg-[#139663] rounded px-3 ml-[90%] -translate-y-24">
-            Edit
-          </button>
+          <button className="text-white bg-[#139663] rounded px-3 ml-[90%] -translate-y-24">Edit</button>
         </Link>
       </div>
       <div className="mt-[4%] ml-[7%] mr-[7%] py-2 bg-[#28DF99] text-2xl font-semibold text-white pl-4">
@@ -266,14 +186,18 @@ setTransactionToken(res.data.token);
       </div>
       <div className="mt-[2%] ml-[7%] mr-[7%] py-6 bg-[#F3FFFB] font-semibold text-[#00663F]">
         <div className="ml-[3%] bg-white rounded mr-[3%] text-[#00663F] h-80 border-2 p-10 border-[#00663F]">
-          <p className="ml-1 text-2xl">Subtotal</p>
+          <div className="justify-between flex">
+            <p className="ml-1 text-2xl">Subtotal</p>
+            <p className="ml-1 text-2xl">{formatHarga(data?.sub_total)}</p>
+          </div>
+          <div className="justify-between flex">
+            <p className="ml-1 text-2xl">Biaya Layanan</p>
+            <p className="ml-1 text-2xl">{formatHarga(2500)}</p>
+          </div>
         </div>
-        <p className="-translate-y-60 pl-[7%] text-2xl">
-          Total Biaya Pengiriman
-        </p>
-        <p className="text-2xl pl-[7%] -translate-y-60">Biaya Layanan</p>
-        <div className="-translate-y-48 text-2xl pl-[4%] border-2 border-[#00663F] mr-[3%] ml-[3%]">
-          Total Pembayaran
+        <div className="-translate-y-48 justify-between flex text-2xl pl-[4%] border-2 border-[#00663F] mr-[3%] ml-[3%]">
+            <p className="ml-1 text-2xl">Total Pembayaran</p>
+            <p className="ml-1 text-2xl -translate-x-[50px]">{formatHarga(data?.total_pembayaran)}</p>
         </div>
         {transactionToken ? (
           <div>
@@ -294,19 +218,13 @@ setTransactionToken(res.data.token);
         ) : (
           <button
             className="text-white bg-[#FF0A0A] rounded px-6 py-2 ml-[80%] -translate-y-40"
-            onClick={() => {
-              postTransaksi();
-            }}
+            onClick={postTransaksi}
           >
             Checkout
           </button>
         )}
       </div>
-      <CheckoutPopup
-        isOpen={isPopupOpen}
-        onClose={handleClosePopup}
-        onConfirm={handleConfirmCheckout}
-      />
+      <CheckoutPopup isOpen={isPopupOpen} onClose={handleClosePopup} onConfirm={handleConfirmCheckout} />
     </div>
   );
 };

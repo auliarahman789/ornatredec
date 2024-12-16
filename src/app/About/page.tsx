@@ -83,7 +83,7 @@ function Page() {
             </p>
           </div>
           <div>
-            <Image
+            <img
               data-aos="zoom-in"
               src="/img/about1.png"
               alt={""}
@@ -92,7 +92,7 @@ function Page() {
             />
           </div>
           <div>
-            <Image
+            <img
               data-aos="zoom-in"
               src="/img/about2.png"
               alt={""}
@@ -163,7 +163,7 @@ function Page() {
             </p>
           </div>
           <div>
-            <Image
+            <img
               data-aos="zoom-in"
               src="/img/about2.png"
               alt={""}

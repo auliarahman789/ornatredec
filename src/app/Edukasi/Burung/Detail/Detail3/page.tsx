@@ -22,7 +22,7 @@ function page() {
       </div>
       <div className="grid grid-cols-2 justify-between ml-[8%] mr-[8%]">
         <div className="mt-[5%] -translate-x-2">
-          <Image
+          <img
             src="/img/pakanburung.png"
             className="w-full h-auto rounded-lg"
             alt={"daun"}
@@ -66,7 +66,7 @@ function page() {
           aperiam! lor
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group1.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -74,7 +74,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/tus hisa.png"
           className="rounded-lg"
           alt={"daun"}
@@ -90,7 +90,7 @@ function page() {
           aperiam! lor
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -98,7 +98,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/tus hisa.png"
           className="rounded-lg"
           alt={"daun"}
@@ -114,7 +114,7 @@ function page() {
           aperiam! lor
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group3.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -122,7 +122,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/tus hisa.png"
           className="rounded-lg"
           alt={"daun"}
@@ -138,7 +138,7 @@ function page() {
           aperiam! lor
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group4.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -146,7 +146,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/tus hisa.png"
           className="rounded-lg"
           alt={"daun"}

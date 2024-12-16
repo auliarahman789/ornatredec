@@ -74,7 +74,7 @@ export default function ForumCarousel() {
           <div className="p-6 w-[40%]" key={id}>
             <div className="pb-[10%] mx-[3%] bg-white rounded-[34px]">
               <div className="relative right-7 bottom-3">
-                <Image
+                <img
                   src={
                     item.User.photoProfile
                       ? "https://74gslzvj-8000.asse.devtunnels.ms" +

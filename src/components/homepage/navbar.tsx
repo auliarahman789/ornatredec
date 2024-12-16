@@ -85,7 +85,7 @@ function Navbar() {
             <Link href="/Produk">
               <li
                 className={`${
-                  pathname === "/Produk" || "/Produk/Ikan#ikan" ? "text-[#27BFB6]" : "text-[#308967]"
+                  pathname.startsWith("/Produk") ? "text-[#27BFB6]" : "text-[#308967]"
                 }`}
               >
                 Produk
@@ -94,7 +94,7 @@ function Navbar() {
             <Link href="/Edukasi">
               <li
                 className={`${
-                  pathname === "/Edukasi" || "/Edukasi/Tumbuhan#tumbuhan" || "/Edukasi/Ikan#ikan" || "/Edukasi/Burung#burung" ? "text-[#27BFB6]" : "text-[#308967]"
+                  pathname.startsWith("/Edukasi")? "text-[#27BFB6]" : "text-[#308967]"
                 }`}
               >
                 Edukasi
@@ -124,7 +124,7 @@ function Navbar() {
                 />
               </Link>
               <Link href="/Produk/keranjang">
-                <Image
+                <img
                   src="/icon/keranjang.svg"
                   width={30}
                   height={30}

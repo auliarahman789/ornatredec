@@ -220,7 +220,7 @@ setProdukcookie(response.data.produk)
                 ${!subvariasiDipilih ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={!subvariasiDipilih}
               >
-                <Image
+                <img
                   src="/icon/troli.svg"
                   width={35}
                   height={35}

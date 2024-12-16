@@ -333,7 +333,7 @@ const Page = () => {
               {/* <div className="relative">
                 <button onClick={handleAdd}>
                   {" "}
-                  <Image
+                  <img
                     src={tambahicon}
                     width={20}
                     height={20}

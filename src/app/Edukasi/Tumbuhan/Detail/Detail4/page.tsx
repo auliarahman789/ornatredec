@@ -23,7 +23,7 @@ function page() {
       </div>
       <div className="grid grid-cols-2 justify-between ml-[8%] mr-[8%]">
         <div className="mt-[5%] -translate-x-2">
-          <Image
+          <img
             src="/img/Daun hias.png"
             className="w-full h-auto rounded-lg"
             alt={"daun"}
@@ -61,35 +61,35 @@ function page() {
         </p>
       </div>
       <div className="flex flex-row space-x-[2%] justify-center mt-4">
-        <Image
+        <img
           src="/img/tanaman mati1.jpg"
           className="rounded-lg"
           alt={"daun"}
           width={200}
           height={200}
         />
-        <Image
+        <img
           src="/img/tanaman mati2.jpeg"
           className="rounded-lg"
           alt={"daun"}
           width={200}
           height={200}
         />
-        <Image
+        <img
           src="/img/tanaman mati3.webp"
           className="rounded-lg"
           alt={"daun"}
           width={200}
           height={200}
         />
-        <Image
+        <img
           src="/img/tanaman mati4.png"
           className="rounded-lg"
           alt={"daun"}
           width={200}
           height={200}
         />
-        <Image
+        <img
           src="/img/tanaman mati5.jpg"
           className="rounded-lg"
           alt={"daun"}

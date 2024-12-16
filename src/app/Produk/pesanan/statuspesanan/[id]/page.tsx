@@ -105,7 +105,7 @@ function page() {
           <div key={data.id} className="flex justify-evenly">
             <div className="-translate-x-[15%]">
               <div className="flex space-x-[5%] ps-[13%]">
-                <Image src={data.produk.foto_produk ? "https://74gslzvj-8000.asse.devtunnels.ms" + data.produk?.foto_produk : ""} width={180} height={180} alt='foto produk' className='rounded-[10px]' />
+                <img src={data.produk.foto_produk ? "https://74gslzvj-8000.asse.devtunnels.ms" + data.produk?.foto_produk : ""} width={180} height={180} alt='foto produk' className='rounded-[10px]' />
                 <div className="flex-col">
                   <h1 className='text-black font-semibold whitespace-nowrap text-[24px]'>{data.produk?.judul_produk}</h1>
                   <div className="flex whitespace-nowrap space-y-[3%]">

@@ -211,7 +211,7 @@ function Edit() {
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <div className=" p-16 rounded-lg w-[65%] h-[150%] translate-x-[15%] z-20 relative pointer-events-auto mt-[30%]">
             <div className="flex justify-center -translate-y-[10%]">
-              <Image
+              <img
                 src={formData.photoProfile || "/img/default-avatar.png"} // Jika tidak ada gambar, gunakan default avatar
                 width={200}
                 height={200}

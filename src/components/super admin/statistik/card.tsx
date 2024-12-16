@@ -42,7 +42,7 @@ function Trending() {
                   <div key={id} className=" h-[90px] w-[260px]  rounded-lg pe-5 bg-white shadow-[3px_4px_4px,-3px_6px_4px] shadow-[#0000002d]">
                     <div className="flex">
                       <div className="flex-col ms-[4%] mt-[2%]">
-                        <Image
+                        <img
                           src={item.fotoKonten ? "https://74gslzvj-8000.asse.devtunnels.ms" + item.fotoKonten : ""}
                           width={60}
                           height={60}
