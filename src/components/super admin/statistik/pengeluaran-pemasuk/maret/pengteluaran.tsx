@@ -61,7 +61,7 @@ function PengeluaranMaret() {
               <hr className="border-t-2 border-[#00000069] mx-8 mt-3" />
               <div className="flex-col flex space-x-[40%] mx-8 mt-[4%]">
                 <div className="flex relative">
-                  <p className="font-bold text-[20px]">Barang</p>
+                  <p className="font-bold text-[20px] whitespace-nowarp">Barang</p>
                   <p className="font-bold text-[20px] ms-[300px]">Harga</p>
                 </div>
 

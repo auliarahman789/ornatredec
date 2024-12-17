@@ -227,7 +227,7 @@ function Grid() {
                 <div className="w-full h-[155px] cursor-pointer">
                   <div className="flex mt-[5%]">
                     <div className="flex items-start">
-                      <img
+                      <Image
                         src={
                           item.User.photoProfile
                             ? "https://74gslzvj-8000.asse.devtunnels.ms" +

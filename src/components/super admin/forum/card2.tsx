@@ -74,7 +74,7 @@ function Card2() {
                   </p>
                   <div className="relative">
                   <div className="flex w-[50%] absolute right-1 mt-[10%]">
-                    <Image
+                    <img
                       src={mata}
                       width={15}
                       height={15}
@@ -83,7 +83,7 @@ function Card2() {
                     <p className="ms-1 font-light mt-1 text-[10px] text-[#323735]">
                       {item.jumlahView}
                     </p>
-                    <Image
+                    <img
                       src={chat2}
                       className="ms-3"
                       width={15}

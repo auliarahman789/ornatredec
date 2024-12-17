@@ -281,7 +281,7 @@ function ForumBurung() {
                           className="w-[595px] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
                         >
                           <div className="flex items-center px-4 pt-4 pb-1">
-                            <Image
+                            <img
                               src={
                                 comment.User.photoProfile
                                 ? "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -321,7 +321,7 @@ function ForumBurung() {
                               className="w-[69%] ms-[20%] h-[100px] bg-[#E2FFF8] mx-auto rounded-xl"
                             >
                               <div className="flex items-center p-4">
-                                <Image
+                                <img
                                   src={
                                     rep.User.photoProfile
                                       ? "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -390,7 +390,7 @@ function ForumBurung() {
                             onClick={() => setShowEmojiPicker((prev) => !prev)}
                             className="absolute left-2 top-1/2 transform -translate-y-1/2"
                           >
-                            <Image
+                            <img
                               src={emote}
                               width={20}
                               height={20}
@@ -406,7 +406,7 @@ function ForumBurung() {
                             onClick={() => handleSendComment(item.id)}
                             className="bg-[#308967] rounded-full h-[31px] w-[31px]"
                           >
-                            <Image
+                            <img
                               src={post}
                               width={15}
                               height={15}

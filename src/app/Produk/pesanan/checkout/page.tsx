@@ -190,10 +190,10 @@ try {
         onClick={handleGoBack}
         className="ml-[7%] cursor-pointer translate-y-10 h-[50px] w-[50px]"
       >
-        <Image src="/icon/backk.svg" alt="Back Icon" width={390} height={390} />
+        <img src="/icon/backk.svg" alt="Back Icon" width={390} height={390} />
         ----
       </button>
-      <Image
+      <img
         src="/icon/ornatredecc.svg"
         alt="Ornament Icon"
         width={390}
@@ -212,7 +212,7 @@ try {
           <div className="grid grid-cols-[48%_13%_13%_13%_13%] justify-center items-center mt-[2%] ml-[7%] mr-[7%] py-[2rem] bg-[#F3FFFB] font-semibold text-white">
             <div className="flex justify-center gap-2 w-full ">
               <div className="relative size-[100px]">
-                <Image
+                <img
                   className="object-cover object-center rounded-md"
                   src={
                     data.foto_produk
@@ -237,7 +237,7 @@ try {
         ) : (
           <p>Loading produk...</p>
         )}
-        <Image
+        <img
           src="/icon/lokasi.svg"
           alt="Lokasi Icon"
           width={30}

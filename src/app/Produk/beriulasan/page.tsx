@@ -41,14 +41,14 @@ function Page() {
         onClick={handleGoBack}
         className="ml-[7%] cursor-pointer translate-y-10 h-[50px] w-[50px]"
       ></button>
-      <Image
+      <img
         src="/icon/backk.svg"
         alt="icon background"
         width={70}
         height={70}
         className="ml-[6%] -translate-y-5"
       />
-      <Image
+      <img
         src="/icon/ornatredecc.svg"
         alt="Ornament Icon"
         width={390}

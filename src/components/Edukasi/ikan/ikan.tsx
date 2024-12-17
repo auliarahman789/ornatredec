@@ -43,7 +43,7 @@ function Ikan() {
               : "translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/ikan hias 1.png"
             className="w-full h-auto relative -translate-x-[10px]"
             alt={"ikan"}
@@ -65,7 +65,7 @@ function Ikan() {
               : "-translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/beri makan ikan.png"
             className="w-full h-auto translate-x-[13px]"
             alt={"ikan"}
@@ -124,7 +124,7 @@ function Ikan() {
               : "translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/makananikan.png"
             className="w-full h-auto -translate-x-[13px]"
             alt={"ikan"}
@@ -146,7 +146,7 @@ function Ikan() {
               : "-translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/ikandiadu.png"
             className="w-full h-auto translate-x-[13px]"
             alt={"ikan"}

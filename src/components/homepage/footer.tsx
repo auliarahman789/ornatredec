@@ -27,14 +27,14 @@ function Footer() {
                 +6283890485363
               </p>
               <div className="pl-[3%] flex flex-row pt-2 space-x-2">
-                <Image src="/img/ig.png" width={50} height={25} alt="ig" />
-                <Image
+                <img src="/img/ig.png" width={50} height={25} alt="ig" />
+                <img
                   src="/img/whats app.png"
                   width={65}
                   height={25}
                   alt="wa"
                 />
-                <Image src="/img/twitter.png" width={60} height={25} alt="tw" />
+                <img src="/img/twitter.png" width={60} height={25} alt="tw" />
               </div>
             </div>
           </div>

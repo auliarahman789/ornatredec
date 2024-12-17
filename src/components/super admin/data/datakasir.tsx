@@ -67,7 +67,7 @@ const Datakasir = () => {
               className="bg-white  flex w-[100%] h-[20%] mt-[2%] py-4 px-5"
             >
               <div className="w-[36%] flex">
-                <Image
+                <img
                   src={
                     item.photoProfile
                       ? "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -99,7 +99,7 @@ const Datakasir = () => {
               </p>
               <button
                 id="hubungi"
-                className="bg-[#308967] px-[5%] h-10 text-sm translate-x-64 text-white rounded-full mt-[3%]"
+                className="bg-[#308967] px-[5%] h-10 text-sm text-white rounded-full mt-[3%]"
                 onClick={() => handleEmailClick(item.email)}
               >
                 Hubungi

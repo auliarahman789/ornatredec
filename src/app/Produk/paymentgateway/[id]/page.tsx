@@ -125,7 +125,7 @@ const Page = () => {
         onClick={handleGoBack}
         className="ml-[7%] cursor-pointer translate-y-10 h-[50px] w-[50px]"
       >
-        <Image
+        <img
           src="/icon/backk.svg"
           alt="Back Icon"
           width={390}
@@ -133,7 +133,7 @@ const Page = () => {
           className=""
         />
       </button>
-      <Image
+      <img
         src="/icon/ornatredecc.svg"
         alt="Ornament Icon"
         width={390}
@@ -158,7 +158,7 @@ const Page = () => {
             {item.foto_produk && (
               <p>
                 Foto Produk:{" "}
-                <Image
+                <img
                   src={item.foto_produk}
                   alt="Produk"
                   width={100}
@@ -172,7 +172,7 @@ const Page = () => {
           <p>Loading produk...</p>
         )}
       </div>
-      <Image
+      <img
         src="/icon/lokasi.svg"
         alt="Lokasi Icon"
         width={30}
@@ -195,28 +195,28 @@ const Page = () => {
       <div className="ml-[7%] mr-[7%] py-3 bg-[#F3FFFB]">
         <div className="bg-white my-[10px] mx-[10px] h-[300px] shadow-[3px_3px_3px] shadow-[#0000002e]">
           <div className="flex flex-row">
-            <Image
+            <img
               src="/img/bca.png"
               alt="BCA"
               width={170}
               height={170}
               className="ml-[3%] mt-[3%]"
             />
-            <Image
+            <img
               src="/img/bni.png"
               alt="BNI"
               width={170}
               height={170}
               className="ml-[3%] mt-[3%]"
             />
-            <Image
+            <img
               src="/img/mandiri.png"
               alt="Mandiri"
               width={170}
               height={170}
               className="ml-[3%] mt-[3%]"
             />
-            <Image
+            <img
               src="/img/bri.png"
               alt="BRI"
               width={170}

@@ -47,7 +47,7 @@ function Tanaman() {
               : "translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/Daun hias.png"
             className="w-full h-auto -translate-x-[10px]"
             alt={"daun"}
@@ -69,7 +69,7 @@ function Tanaman() {
               : "-translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/tan2.png"
             className="w-full h-auto translate-x-[13px]"
             alt={"burung"}
@@ -133,7 +133,7 @@ function Tanaman() {
               : "translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/tan3.png"
             className="w-full h-auto -translate-x-[13px]"
             alt={"burung"}
@@ -155,7 +155,7 @@ function Tanaman() {
               : "-translate-x-[100%] opacity-0"
           }`}
         >
-          <Image
+          <img
             src="/img/tan4.png"
             className="w-full h-auto translate-x-[13px]"
             alt={"burung"}

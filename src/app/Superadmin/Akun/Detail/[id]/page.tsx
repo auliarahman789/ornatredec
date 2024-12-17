@@ -78,7 +78,7 @@ function Page() {
     <div className="overflow-x-hidden min-h-screen">
       <div className="translate-x-64">
         <div className="bg-[#E4FFF2] min-h-screen w-[70%] ms-[5%] p-4 rounded-md mt-[3%]">
-          <Image
+          <img
             onClick={handleBack}
             src={back}
             width={40}
@@ -89,7 +89,7 @@ function Page() {
             <>
           <Blokir isVisible={showModal} onClose={() => setShowModal(false)} />
               <div className="flex ms-[8%] space-x-7">
-                <Image
+                <img
                   src={
                     data.user.photoProfile
                       ? "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -155,7 +155,7 @@ function Page() {
                       >
                         {item.jumlahReport > 0 ? (
                           <div className="relative">
-                            <Image
+                            <img
                               src={report}
                               className="absolute top-2 right-2"
                               alt="report"
@@ -223,7 +223,7 @@ function Page() {
                               {item.kategori_forum}
                             </button>
                             <div className="flex pt-[7%] translate-x-[50%]">
-                              <Image
+                              <img
                                 src={seen}
                                 width={20}
                                 height={20}
@@ -232,7 +232,7 @@ function Page() {
                               <p className="ms-1 font-light mt-1 text-[12px] text-[#323735]">
                                 {item.jumlahView}
                               </p>
-                              <Image
+                              <img
                                 src={reply}
                                 className="ms-3"
                                 width={20}
@@ -251,7 +251,7 @@ function Page() {
                   <div className="flex-col mt-[5%] space-y-7 w-[25%]">
                     <div className="bg-[#1AE5CC] h-[190px] flex-col rounded-xl">
                       <div className="flex justify-center pt-[22%]">
-                        <Image
+                        <img
                           src={pesan}
                           width={47}
                           height={47}
@@ -267,7 +267,7 @@ function Page() {
                     </div>
                     <div className="bg-[#1AE5CC] h-[190px] flex-col rounded-xl">
                       <div className="flex justify-center pt-[22%]">
-                        <Image
+                        <img
                           src={forum}
                           width={47}
                           height={47}

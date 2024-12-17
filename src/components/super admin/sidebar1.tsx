@@ -51,7 +51,8 @@ function SidebarSp() {
         icon: "success",
         title: "Logout sukses",
         showConfirmButton: false,
-        iconColor: "##167960"
+        iconColor: "##167960",
+        timer: 3000,
       })
       router.replace('/auths');
     } catch (error: any) {
@@ -94,7 +95,7 @@ function SidebarSp() {
   return (
     <div className="fixed top-0 left-0">
       <nav className="nav bg-gradient-to-b from-[#167960] to-[#28DFB1] w-64 h-screen flex flex-col">
-        <Image
+       <Image
           src={logo}
           className="w-[150px] mt-3 mx-auto"
           width={300}
@@ -108,7 +109,7 @@ function SidebarSp() {
                 pathname === "/Superadmin" ? "active" : ""
               }`}
             >
-              <Image
+             <Image
                 src={pathname === "/Superadmin" ? dashboardd : dashboardd2}
                 className="w-8 h-8 me-5"
                 width={30}
@@ -129,7 +130,7 @@ function SidebarSp() {
                   : ""
               }`}
             >
-              <Image
+             <Image
                 src={
                   pathname === "/Superadmin/Produk" ||
                   pathname === "/Superadmin/Produk/tambah" ||
@@ -152,7 +153,7 @@ function SidebarSp() {
                 pathname === "/Superadmin/Statistik" ? "active" : ""
               }`}
             >
-              <Image
+             <Image
                 src={
                   pathname === "/Superadmin/Statistik"
                     ? statistikk2
@@ -170,7 +171,7 @@ function SidebarSp() {
             <li
               className={`cursor-pointer flex mb-10 ${isAkun ? "active" : ""}`}
             >
-              <Image
+             <Image
                 src={isAkun ? userr : userr2}
                 className="w-6 h-6 me-5"
                 width={30}
@@ -184,7 +185,7 @@ function SidebarSp() {
             <li
               className={`cursor-pointer flex mb-10 ${isForum ? "active" : ""}`}
             >
-              <Image
+             <Image
                 src={isForum ? forum2 : forumm}
                 className="w-6 h-6 me-5"
                 width={30}
@@ -195,7 +196,7 @@ function SidebarSp() {
             </li>
           </Link>
           <button onClick={handleLogout} className="flex">
-            <Image src={logIcon} className="me-5" alt="logout" width={30} height={30} />
+           <Image src={logIcon} className="me-5" alt="logout" width={30} height={30} />
             Logout
           </button>
           {/* {showModal && (

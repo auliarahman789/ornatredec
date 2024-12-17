@@ -85,7 +85,7 @@ const Riwayat: React.FC = () => {
                     {item.post.kategori_forum}
                   </p>
                   <p className="ml-5 text-[7px] font-light text-black">
-                    <Image
+                    <img
                       src="/icon/komen.svg"
                       width={15}
                       height={15}
@@ -94,7 +94,7 @@ const Riwayat: React.FC = () => {
                     <span className="ml-1">{item.post.jumlahTanggapan}</span>
                   </p>
                   <p className="ml-5 text-[7px] font-light text-black">
-                    <Image
+                    <img
                       src="/icon/mata.svg"
                       width={20}
                       height={20}
@@ -103,7 +103,7 @@ const Riwayat: React.FC = () => {
                     <span className="ml-2 mt-2">{item.post.jumlahView}</span>
                   </p>
                   <div className="ml-5">
-                    <Image
+                    <img
                       src="/icon/simpan.svg"
                       width={15}
                       height={15}

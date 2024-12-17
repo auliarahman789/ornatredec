@@ -71,7 +71,7 @@ function Page() {
   };
   const router = useRouter();
   const handleBack = () => {
-    router.back()
+    router.replace("/")
   }
   return (
     <div className="p-[3%] bg-gradient-to-b min-h-screen from-[#E5FFF9] to-[#E4FFF2]">

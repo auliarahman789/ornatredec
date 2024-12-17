@@ -72,9 +72,9 @@ export default function ForumCarousel() {
       <Slider ref={sliderRef} {...settings}>
         {data.map((item, id) => (
           <div className="p-6 w-[40%]" key={id}>
-            <div className="h-[220px] mx-[3%] bg-white rounded-[34px]">
+            <div className="pb-[10%] mx-[3%] bg-white rounded-[34px]">
               <div className="relative right-7 bottom-3">
-                <Image
+                <img
                   src={
                     item.User.photoProfile
                       ? "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -104,10 +104,10 @@ export default function ForumCarousel() {
                 <p className="text-[13px] mt-[3%] text-[#323735] font-light line-clamp-4">
                   {item.desc}
                 </p>
-                <div className="translate-y-20 ms-[75%] mt-[1%] flex space-x-2">
+                <div className="translate-y-[80%] ms-[75%] mt-[1%] flex space-x-2">
                   <Image src={chat2} alt="tanggapan" width={20} height={20} />
                   <p className="text-[#323735]">{item.jumlahTanggapan}</p>
-                  <p className="text-[#323735] ps-2">Balas</p>
+                  {/* <p className="text-[#323735] ps-2">Balas</p> */}
                 </div>
               </div>
             </div>

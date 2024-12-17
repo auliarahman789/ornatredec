@@ -4,7 +4,7 @@ import Image from "next/image";
 function Page() {
   return (
     <div className="flex items-center w-[1000px] -translate-y-[40%] ml-[10%] justify-center min-h-screen bg-[#EBFFF8] relative">
-      <Image
+      <img
         src="/icon/Chat_search.svg"
         alt="icon"
         width={100}

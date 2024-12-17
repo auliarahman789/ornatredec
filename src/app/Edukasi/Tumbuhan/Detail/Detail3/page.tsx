@@ -22,7 +22,7 @@ function page() {
       </div>
       <div className="grid grid-cols-2 justify-between ml-[8%] mr-[8%]">
         <div className="mt-[5%] -translate-x-2">
-          <Image
+          <img
             src="/img/tan3.png"
             className="w-full h-auto rounded-lg"
             alt={"daun"}
@@ -69,7 +69,7 @@ function page() {
           tumbuh dengan baik.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group1.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -77,7 +77,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/cahaya yang cukup.jpeg"
           className="rounded-lg w-[85%] h-[85%]"
           alt={"daun"}
@@ -97,7 +97,7 @@ function page() {
           tanaman.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -105,7 +105,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/Suhu yang Stabil.jpg"
           className="rounded-lg w-[80%] h-[80%]"
           alt={"daun"}
@@ -125,7 +125,7 @@ function page() {
           menggunakan pelembap udara.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group3.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -133,7 +133,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/lembab.jpeg"
           className="rounded-lg w-[85%] h-[85%]"
           alt={"daun"}
@@ -152,7 +152,7 @@ function page() {
           agar udara dapat mengalir di sekitarnya.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group4.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -160,7 +160,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/Sirkulasi Udara yang Baik.jpg"
           className="rounded-lg w-[75%] h-[75%]"
           alt={"daun"}
@@ -180,7 +180,7 @@ function page() {
           mencegah genangan air.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group4.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -188,7 +188,7 @@ function page() {
             height={250}
           />
         </div>
-        <Image
+        <img
           src="/img/Media Tanam yang Berkualitas.jpg"
           className="rounded-lg w-[85%] h-[85%]"
           alt={"daun"}

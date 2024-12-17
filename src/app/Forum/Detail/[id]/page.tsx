@@ -279,7 +279,7 @@ function Page() {
                     <p className="ms-1 font-light mt-1 text-[12px] text-[#323735]">
                       {data.jumlahView}
                     </p>
-                    <Image
+                    <img
                       src={chat2}
                       width={20}
                       height={20}
@@ -319,7 +319,7 @@ function Page() {
                           className="w-[595px] h-[100px] bg-white mx-auto rounded-xl"
                         >
                           <div className="flex items-center px-4 pt-4 pb-1">
-                            <Image
+                            <img
                               src={
                                 comment.User.photoProfile
                                   ? "https://74gslzvj-8000.asse.devtunnels.ms" +
@@ -367,7 +367,7 @@ function Page() {
                               className="w-[69%] ms-[20%] h-[100px] bg-white mx-auto rounded-xl"
                             >
                               <div className="flex items-center p-4">
-                                <Image
+                                <img
                                   src={
                                     rep.User.photoProfile
                                       ? "https://74gslzvj-8000.asse.devtunnels.ms" +

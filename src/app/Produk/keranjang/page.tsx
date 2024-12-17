@@ -118,7 +118,7 @@ const KeranjangPage = () => {
           <div className="border-b-2 border-[#308967]"></div>
           {keranjangFromAPI.length === 0 ? (
             <div className="items-center text-center mt-[10%] flex flex-col">
-              <Image src="/" width={45} height={45} alt="trolli" />
+              <img src="/" width={45} height={45} alt="trolli" />
               <span className="text-3xl text-[#3F9272]">Masih Kosong nih</span>
               <span className="text-1xl text-[#3F9272]">
                 Coba Untuk Simpan Produk yang nanti kamu mau beli

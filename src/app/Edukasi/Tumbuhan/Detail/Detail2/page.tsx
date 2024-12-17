@@ -22,7 +22,7 @@ function page() {
       </div>
       <div className="grid grid-cols-2 justify-between ml-[8%] mr-[8%]">
         <div className="mt-[5%] -translate-x-2">
-          <Image
+          <img
             src="/img/tan2.png"
             className="w-full h-auto rounded-lg"
             alt={"daun"}
@@ -65,7 +65,7 @@ function page() {
           tetap lembap, namun hindari genangan air agar akar tidak membusuk.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group1.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -73,7 +73,7 @@ function page() {
             height={150}
           />
         </div>
-        <Image
+        <img
           src="/img/Penyiraman Tanaman Yang Tepat.jpg"
           className="rounded-lg"
           alt={"daun"}
@@ -92,7 +92,7 @@ function page() {
           mendukung pertumbuhannya.
         </p>
         <div className="-translate-y-[20%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -100,7 +100,7 @@ function page() {
             height={170}
           />
         </div>
-        <Image
+        <img
           src="/img/Pencahayaan yang Cukup.jpg"
           className="rounded-lg"
           alt={"daun"}
@@ -118,7 +118,7 @@ function page() {
           untuk memastikan tanaman mendapatkan nutrisi yang dibutuhkan.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group3.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -126,7 +126,7 @@ function page() {
             height={150}
           />
         </div>
-        <Image
+        <img
           src="/img/pemupukan.jpeg"
           className="rounded-lg w-[500px] h-[130px]"
           alt={"daun"}
@@ -144,7 +144,7 @@ function page() {
           merangsang pertumbuhan baru dan menjaga tanaman tetap sehat.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group4.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -152,7 +152,7 @@ function page() {
             height={180}
           />
         </div>
-        <Image
+        <img
           src="/img/Pemangkasan Daun Kering.jpg"
           className="rounded-lg"
           alt={"daun"}
@@ -171,7 +171,7 @@ function page() {
           tanaman tetap terjaga kesehatannya.
         </p>
         <div className="-translate-y-[25%] translate-x-[85%]">
-          <Image
+          <img
             src="/icon/group5.svg"
             className="rounded-lg"
             alt={"daun"}
@@ -179,7 +179,7 @@ function page() {
             height={200}
           />
         </div>
-        <Image
+        <img
           src="/img/Pengendalian Hama.jpg"
           className="rounded-lg"
           alt={"daun"}

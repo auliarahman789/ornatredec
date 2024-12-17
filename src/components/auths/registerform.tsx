@@ -95,7 +95,7 @@ const Register = ({
                 className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
               />
-              <Image
+             <Image
                 src={userIcon}
                 alt="username"
                 width={25}
@@ -113,7 +113,7 @@ const Register = ({
                 className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
               />
-              <Image
+             <Image
                 src={messageIcon}
                 alt="email"
                 width={27}
@@ -132,7 +132,7 @@ const Register = ({
                 className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
               />
-              <Image
+             <Image
                 src={passwordIcon}
                 alt="password"
                 width={27}
@@ -161,7 +161,7 @@ const Register = ({
                 className="w-[320px] bg-[#E3FFF3] pb-[13px] pt-[15px] placeholder:text-[#3F9272] text-[19px] ps-12 text-[#3F9272] rounded-md"
                 required
               />
-              <Image
+             <Image
                 src={phoneIcon}
                 alt="telepon"
                 width={27}

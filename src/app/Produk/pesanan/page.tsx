@@ -78,7 +78,7 @@ const DetailPesanan = () => {
                 onClick={tambahKeKeranjang}
                 className="text-white bg-green-500 rounded-lg py-2 px-[5%] ml-2 translate-x-[350%]"
               >
-                <Image
+                <img
                   src="/icon/troli.svg"
                   width={35}
                   height={35}

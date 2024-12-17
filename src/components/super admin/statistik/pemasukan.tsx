@@ -16,7 +16,7 @@ import PemasukanDes from './pengeluaran-pemasuk/desember/pemasukan';
 function Pemasukan() {
     const [active, setActive] = useState('Januari');
   return (
-      <div className='bg-[#E4FFF2] w-full min-h-screen rounded-xl px-5 pt-5 pb-8'>
+      <div className='bg-[#E4FFF2] w-full min-h-screen rounded-xl ps-[1%] pe-[3%] pt-5 pb-8'>
           <div className="flex">
               <ul className='ms-1 rounded-xl space-x-[22px] bg-white flex px-3 py-4'>
               <li onClick={() => setActive('Januari')} className={`cursor-pointer ${active === 'Januari' ? 'border-b-4 border-[#308967]' : ''}`}>Januari</li>

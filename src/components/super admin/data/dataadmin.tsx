@@ -63,7 +63,7 @@ const Dataadmin = () => {
               className="bg-white  flex w-[100%] h-[20%] mt-[2%] py-4 px-5"
             >
               <div className="w-[36%] flex">
-                <Image
+                <img
                   src={
                     item.photoProfile
                       ? "https://74gslzvj-8000.asse.devtunnels.ms" +
