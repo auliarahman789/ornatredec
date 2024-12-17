@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
-import "./global.d.ts"; 
+import "./global.d.ts";
 type Produk = {
   judul_produk: string;
   deskripsi_produk: string;
@@ -134,21 +134,21 @@ const Page = () => {
       }
     }
   };
- const [transactionToken, setTransactionToken] = useState(null);
+  const [transactionToken, setTransactionToken] = useState(null);
   async function postTransaksi() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/paymentgateway`;
     try {
       const res = await axios.post(
         url,
         {
-        id_transaksi:id,
+          id_transaksi: id,
           payment_method: "gopay",
         },
         {
           withCredentials: true,
         }
       );
-setTransactionToken(res.data.token);
+      setTransactionToken(res.data.token);
 
       console.log(res);
     } catch (error) {
@@ -158,7 +158,6 @@ setTransactionToken(res.data.token);
 
   useEffect(() => {
     handleConfirmCheckout();
-
   }, []);
 
   const formatHarga = (itung: number) => {
@@ -195,7 +194,7 @@ setTransactionToken(res.data.token);
           <div className="grid grid-cols-[48%_13%_13%_13%_13%] justify-center items-center mt-[2%] ml-[7%] mr-[7%] py-[2rem] bg-[#F3FFFB] font-semibold text-white">
             <div className="flex justify-center gap-2 w-full ">
               <div className="relative size-[100px]">
-                <Image
+                <img
                   className="object-cover object-center rounded-md"
                   src={
                     data.foto_produk
