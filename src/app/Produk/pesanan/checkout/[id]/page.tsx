@@ -6,22 +6,6 @@ import Link from "next/link";
 import axios from "axios";
 import "./global.d.ts";
 
-type Produk = {
-  judul_produk: string;
-  deskripsi_produk: string;
-  harga: number;
-  foto_produk: string;
-  variasis: {
-    nama_variasi: string;
-    subvariasis: {
-      nama_sub_variasi: string;
-      stok: number;
-      harga: number;
-      usia: string;
-    }[];
-  };
-};
-
 interface CheckoutPopupProps {
   isOpen: boolean;
   onClose: () => void;
@@ -100,8 +84,6 @@ const Page = () => {
     }
   };
 
-  const [transactionToken, setTransactionToken] = useState(null);
-
   async function postTransaksi() {
     const url = `${process.env.NEXT_PUBLIC_URL}api/paymentgateway`;
     try {
@@ -114,7 +96,6 @@ const Page = () => {
         { withCredentials: true }
       );
       setTransactionToken(res.data.token);
-
       console.log(res);
     } catch (error) {
       console.error(error);
@@ -160,7 +141,7 @@ const Page = () => {
           <div className="grid grid-cols-[48%_13%_13%_13%_13%] justify-center items-center mt-[2%] ml-[7%] mr-[7%] py-[2rem] bg-[#F3FFFB] font-semibold text-white">
             <div className="flex justify-center gap-2 w-full ">
               <div className="relative size-[100px]">
-                <img
+                <Image
                   className="object-cover object-center rounded-md"
                   src={`https://74gslzvj-8000.asse.devtunnels.ms${data.TransaksiProduks[0]?.produk.foto_produk}`}
                   alt="Produk"
